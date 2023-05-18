@@ -1,0 +1,21 @@
+{
+  "imports": [
+    "//__i-libraries______",
+    "//__i-style__________",
+    "//__i-context________",
+    "//__i-helper_________",
+    "//__i-components_____"
+  ],
+  "main": {
+    "1": "//__m-immediate_____",
+    "2": "//__m-related_______"
+  },
+  "components": {
+    "1": "//__c-hooks________",
+    "2": "//__c-logic________"
+  },
+  "exports": {
+    "1": "//__e-component____",
+    "2": "//__e-related______"
+  }
+}
