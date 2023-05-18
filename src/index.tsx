@@ -4,7 +4,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 //__i-style__________
-import "./index.scss";
+import "./_index.scss";
 //__i-components_____
 import App from "./App";
 
@@ -15,6 +15,6 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <App></App>
   </React.StrictMode>
 );
