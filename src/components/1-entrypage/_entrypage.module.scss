@@ -1,5 +1,51 @@
-.entrypage {
-  background-color: blue;
-  width: 20rem;
-  height: 20rem;
+@import "../../styles/variables";
+
+.main {
+  background-color: $dark-blue;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: 95%;
+  grid-template-rows: repeat(3, 30%);
+}
+
+.upper {
+  // background-color: grey;
+}
+
+.middle {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 65% 18%;
+  grid-template-rows: 66% 34%;
+  grid-template-areas:
+    "title logo"
+    "subline logo";
+
+  &--title {
+    font-size: 7vw;
+    font-weight: 500;
+    grid-area: title;
+    justify-self: center;
+    align-self: center;
+  }
+
+  &--subline {
+    font-weight: 300;
+    font-size: 1.5vw;
+    grid-area: subline;
+    justify-self: center;
+  }
+
+  &--logo {
+    width: 15vw;
+    height: 15vw;
+    grid-area: logo;
+    justify-self: right;
+  }
+}
+
+.lower {
 }
