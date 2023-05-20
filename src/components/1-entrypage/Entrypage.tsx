@@ -1,7 +1,7 @@
 //---------IMPORTS------------\
 
 import classes from "./_Entrypage.module.scss";
-import Logo from "../0-independent/1-logo/Logo";
+import MiddleArea from "./sub-components/1-level/middle-area/MiddleArea";
 
 //---------COMPONENT----------\
 
@@ -9,15 +9,7 @@ const Entrypage = function () {
   return (
     <div className={classes.main}>
       <div className={classes.upper}></div>
-      <div className={classes.middle}>
-        <div className={classes["middle--title"]}>taskmanager.io</div>
-        <div className={classes["middle--subline"]}>
-          Welcome, click somewhere to start!
-        </div>
-        <div className={classes["middle--logo"]}>
-          <Logo></Logo>
-        </div>
-      </div>
+      <MiddleArea></MiddleArea>
       <div className={classes.lower}></div>
     </div>
   );
