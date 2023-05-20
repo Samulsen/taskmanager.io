@@ -1,6 +1,6 @@
 //---------IMPORTS------------\
 
-import classes from "./_logo.module.scss";
+import classes from "./_Logo.module.scss";
 import logo from "./logo.svg";
 
 //---------COMPONENT----------\

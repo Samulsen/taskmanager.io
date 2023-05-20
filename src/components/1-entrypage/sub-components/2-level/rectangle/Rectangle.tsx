@@ -1,13 +1,13 @@
 //---------IMPORTS------------\
 
-import classes from "./_circle.module.scss";
+import classes from "./_Rectangle.module.scss";
 
 //---------COMPONENT----------\
 
-const Cirlce = function () {
+const Rectangle = function () {
   return <div></div>;
 };
 
 //---------EXPORTS------------\
 
-export default Cirlce;
+export default Rectangle;

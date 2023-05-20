@@ -1,13 +1,13 @@
 //---------IMPORTS------------\
 
-import classes from "./_rectangle.module.scss";
+import classes from "./_MiddleArea.module.scss";
 
 //---------COMPONENT----------\
 
-const Rectangle = function () {
+const MiddleArea = function () {
   return <div></div>;
 };
 
 //---------EXPORTS------------\
 
-export default Rectangle;
+export default MiddleArea;

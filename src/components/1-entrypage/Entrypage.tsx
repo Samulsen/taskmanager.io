@@ -1,6 +1,6 @@
 //---------IMPORTS------------\
 
-import classes from "./_entrypage.module.scss";
+import classes from "./_Entrypage.module.scss";
 import Logo from "../0-independent/1-logo/Logo";
 
 //---------COMPONENT----------\
