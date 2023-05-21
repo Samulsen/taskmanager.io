@@ -14,25 +14,25 @@
 
 .first {
   grid-area: first;
-  @include fadeInAnimation(0.5s, 1.25s);
+  @include fadeInAnimation(1s, 1.25s);
 }
 
 .second {
   grid-area: second;
   justify-self: center;
   margin-left: 15rem;
-  @include fadeInAnimation(0.5s, 3.25s);
+  @include fadeInAnimation(1s, 3.25s);
 }
 
 .third {
   grid-area: third;
   justify-self: center;
   margin-right: 15rem;
-  @include fadeInAnimation(0.5s, 2.25s);
+  @include fadeInAnimation(1s, 2.25s);
 }
 
 .fourth {
   grid-area: fourth;
   justify-self: right;
-  @include fadeInAnimation(0.5s, 3.5s);
+  @include fadeInAnimation(1s, 3.5s);
 }

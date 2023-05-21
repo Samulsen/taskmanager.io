@@ -16,17 +16,17 @@
 .first {
   grid-area: first;
   justify-self: left;
-  @include fadeInAnimation(0.25s, 1s);
+  @include fadeInAnimation(1s, 1s);
 }
 
 .second {
   grid-area: first;
   justify-self: right;
-  @include fadeInAnimation(0.25s, 2.75s);
+  @include fadeInAnimation(1s, 2.75s);
 }
 
 .third {
   grid-area: second;
   justify-self: center;
-  @include fadeInAnimation(0.25s, 1.75s);
+  @include fadeInAnimation(1s, 1.75s);
 }
