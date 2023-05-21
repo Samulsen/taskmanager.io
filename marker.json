@@ -12,7 +12,8 @@
   },
   "components": {
     "1": "//__c-hooks________",
-    "2": "//__c-logic________"
+    "2": "//__c-logic________",
+    "3": "//__c-invocation___"
   },
   "exports": {
     "1": "//__e-component____",

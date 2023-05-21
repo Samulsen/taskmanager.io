@@ -1,12 +1,22 @@
 //---------IMPORTS------------\
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import classes from "./_NavTrigger.module.scss";
+
+//---------MAIN---------------\
+
+type setState = React.Dispatch<React.SetStateAction<boolean>>;
 
 //---------COMPONENT----------\
 
-const NavTrigger = function () {
-  return <Link to="../login" className={classes.navTrigger}></Link>;
+const NavTrigger: React.FC<{ sendClickRequest: setState }> = function (props) {
+  const Logic = {
+    handleClick() {
+      props.sendClickRequest(true);
+    },
+  };
+
+  return <div className={classes.navTrigger} onClick={Logic.handleClick}></div>;
 };
 
 //---------EXPORTS------------\

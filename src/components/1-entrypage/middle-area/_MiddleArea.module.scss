@@ -25,7 +25,7 @@
   grid-area: subline;
   padding-top: 2rem;
   justify-self: center;
-  animation: sublineOnLoad 2s ease-in-out 4.75s infinite normal backwards;
+  animation: sublineOnLoad 2s ease-in-out 5s infinite normal backwards;
 }
 
 .logo {
@@ -34,7 +34,7 @@
   grid-area: logo;
   justify-self: right;
   align-self: center;
-  animation: logoOnLoad 1s ease-in-out 4.5s 1 normal backwards;
+  animation: logoOnLoad 1s ease-in-out 4s 1 normal backwards;
 }
 
 @keyframes titleOnLoad {
