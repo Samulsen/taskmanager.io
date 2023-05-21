@@ -1,17 +1,12 @@
 //---------IMPORTS------------\
 
+import { Link } from "react-router-dom";
 import classes from "./_NavTrigger.module.scss";
-
-//---------MAIN---------------\
-
-const navigateToHome = function () {
-  console.log("I was clicked!");
-};
 
 //---------COMPONENT----------\
 
 const NavTrigger = function () {
-  return <div className={classes.navTrigger} onClick={navigateToHome}></div>;
+  return <Link to="../login" className={classes.navTrigger}></Link>;
 };
 
 //---------EXPORTS------------\
