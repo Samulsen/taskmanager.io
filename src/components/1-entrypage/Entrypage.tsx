@@ -52,12 +52,8 @@ const Entrypage = function () {
     },
   };
   //__c-invocation___
-  useEffect(() => {
-    Logic.initiateSwitchRequest();
-  }, [switchRequest]);
-  useEffect(() => {
-    Logic.closeSwitchRequest();
-  }, [allowSwitch]);
+  useEffect(Logic.initiateSwitchRequest, [switchRequest]);
+  useEffect(Logic.closeSwitchRequest, [allowSwitch]);
 
   return (
     <div
