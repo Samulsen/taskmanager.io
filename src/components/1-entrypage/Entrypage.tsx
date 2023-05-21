@@ -1,9 +1,9 @@
 //---------IMPORTS------------\
 
 import classes from "./_Entrypage.module.scss";
-import TopArea from "./sub-components/1-level/top-area/TopArea";
-import MiddleArea from "./sub-components/1-level/middle-area/MiddleArea";
-import LowerArea from "./sub-components/1-level/lower-area/LowerArea";
+import TopArea from "./top-area/TopArea";
+import MiddleArea from "./middle-area/MiddleArea";
+import LowerArea from "./lower-area/LowerArea";
 
 //---------COMPONENT----------\
 
