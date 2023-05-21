@@ -1,3 +1,5 @@
+@import "./../../../styles/mixins";
+
 .middle {
   display: grid;
   justify-content: center;
@@ -14,6 +16,7 @@
   grid-area: title;
   justify-self: center;
   align-self: center;
+  animation: titleOnLoad 5s ease-in-out 0s 1 normal forwards;
 }
 
 .subline {
@@ -22,6 +25,7 @@
   grid-area: subline;
   padding-top: 2rem;
   justify-self: center;
+  animation: sublineOnLoad 2s ease-in-out 4.75s infinite normal backwards;
 }
 
 .logo {
@@ -30,4 +34,45 @@
   grid-area: logo;
   justify-self: right;
   align-self: center;
+  animation: logoOnLoad 1s ease-in-out 4.5s 1 normal backwards;
+}
+
+@keyframes titleOnLoad {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateX(10rem);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes logoOnLoad {
+  from {
+    transform: translateX(10rem);
+    opacity: 0;
+  }
+}
+
+@keyframes sublineOnLoad {
+  from {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
