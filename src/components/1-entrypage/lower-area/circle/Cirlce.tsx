@@ -1,11 +1,11 @@
 //---------IMPORTS------------\
 
-import classes from "./_Cirlce.module.scss";
+import classes from "./_Circle.module.scss";
 
 //---------COMPONENT----------\
 
-const Cirlce = function () {
-  return <div></div>;
+const Cirlce: React.FC<{ position: string }> = function (props) {
+  return <div className={classes.circle + " " + props.position}></div>;
 };
 
 //---------EXPORTS------------\

@@ -1,0 +1,32 @@
+.lowerArea {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  grid-template-areas:
+    "first second"
+    "third fourth";
+  align-items: center;
+}
+
+.first {
+  grid-area: first;
+}
+
+.second {
+  grid-area: second;
+  justify-self: center;
+  margin-left: 15rem;
+}
+
+.third {
+  grid-area: third;
+  justify-self: center;
+  margin-right: 15rem;
+}
+
+.fourth {
+  grid-area: fourth;
+  justify-self: right;
+}
