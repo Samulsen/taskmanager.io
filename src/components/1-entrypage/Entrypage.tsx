@@ -1,13 +1,13 @@
 //---------IMPORTS------------\
-
+//__i-libraries______
 import classes from "./_Entrypage.module.scss";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 //__i-components_____
 import NavTrigger from "./navigation-trigger/NavTrigger";
 import TopArea from "./top-area/TopArea";
 import MiddleArea from "./middle-area/MiddleArea";
 import LowerArea from "./lower-area/LowerArea";
-import { useNavigate } from "react-router-dom";
 
 //---------COMPONENT----------\
 
