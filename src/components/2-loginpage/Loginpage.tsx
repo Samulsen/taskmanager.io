@@ -2,7 +2,10 @@
 
 import { Form } from "react-router-dom";
 import classes from "./_Loginpage.module.scss";
+//__i-components_____
 import Anchor from "../0-independent/anchor/Anchor";
+import Logo from "../0-independent/logo/Logo";
+import Title from "../0-independent/title/Title";
 
 //---------MAIN---------------\
 
@@ -14,17 +17,12 @@ const Loginpage = function () {
   return (
     <Anchor>
       <div className={classes.body}>
-        <div className={classes.logo}></div>
-        <div className={classes.title}></div>
-        <Form className={classes.form} method="post">
-          {/* Username Input */}
-          {/* Passowrd Input */}
-          <div className={classes.form__buttonBox}>
-            {/* Login */}
-            <div className={classes.form__buttonBox_or}></div>
-            {/* Register */}
-          </div>
-        </Form>
+        <div className={classes.logo}>
+          <Logo animation="noDelay" />
+        </div>
+        <div className={classes.title}>
+          <Title />
+        </div>
       </div>
     </Anchor>
   );

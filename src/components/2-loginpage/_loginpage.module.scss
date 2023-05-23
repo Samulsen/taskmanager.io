@@ -7,40 +7,21 @@
   height: 55rem;
   display: grid;
   grid-template-columns: 50rem;
-  grid-template-rows: repeat(5, 11rem);
+  grid-template-rows: 11rem 11rem 33rem;
   grid-template-areas:
     "logo"
     "title"
-    "form"
-    "form"
     "form";
+  justify-items: center;
+  align-items: center;
 }
 
 .logo {
+  width: 11rem;
+  height: 11rem;
 }
 
 .title {
-}
-
-.form {
-  grid-area: form;
-
-  &__input {
-    &_username {
-    }
-
-    &_password {
-    }
-  }
-
-  &__buttonBox {
-    &_login {
-    }
-
-    &_or {
-    }
-
-    &_register {
-    }
-  }
+  font-size: 5.9rem;
+  // padding-bottom: 1rem;
 }

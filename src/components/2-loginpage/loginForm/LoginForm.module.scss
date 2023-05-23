@@ -1,0 +1,22 @@
+.form {
+  grid-area: form;
+
+  &__input {
+    &_username {
+    }
+
+    &_password {
+    }
+  }
+
+  &__buttonBox {
+    &_login {
+    }
+
+    &_or {
+    }
+
+    &_register {
+    }
+  }
+}

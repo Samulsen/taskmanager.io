@@ -5,7 +5,7 @@ import logo from "./logo.svg";
 
 //---------MAIN---------------\
 
-type animations = { animation: "entrypage" | "noDelay" };
+type animations = { animation: string };
 
 //---------COMPONENT----------\
 
