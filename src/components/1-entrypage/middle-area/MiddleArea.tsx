@@ -9,13 +9,9 @@ import Title from "../../0-independent/title/Title";
 const MiddleArea = function () {
   return (
     <div className={classes.middle}>
-      <div className={classes.title}>
-        <Title />
-      </div>
+      <Title individualClass={classes.title} />
       <div className={classes.subline}>Welcome, click somewhere to start!</div>
-      <div className={classes.logo}>
-        <Logo animation="entrypage"></Logo>
-      </div>
+      <Logo individualClass={classes.logo} animation="entrypage"></Logo>
     </div>
   );
 };

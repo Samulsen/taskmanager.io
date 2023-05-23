@@ -17,11 +17,10 @@ const Loginpage = function () {
   return (
     <Anchor>
       <div className={classes.body}>
-        <div className={classes.logo}>
-          <Logo animation="noDelay" />
-        </div>
+        <Logo individualClass={classes.logo} animation="noDelay" />
+
         <div className={classes.title}>
-          <Title />
+          <Title individualClass={classes.title} />
         </div>
       </div>
     </Anchor>
