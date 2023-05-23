@@ -6,6 +6,7 @@ import classes from "./_Loginpage.module.scss";
 import Anchor from "../0-independent/anchor/Anchor";
 import Logo from "../0-independent/logo/Logo";
 import Title from "../0-independent/title/Title";
+import LoginForm from "./loginForm/LoginForm";
 
 //---------MAIN---------------\
 
@@ -18,10 +19,8 @@ const Loginpage = function () {
     <Anchor>
       <div className={classes.body}>
         <Logo individualClass={classes.logo} animation="noDelay" />
-
-        <div className={classes.title}>
-          <Title individualClass={classes.title} />
-        </div>
+        <Title individualClass={classes.title} />
+        <LoginForm />
       </div>
     </Anchor>
   );
