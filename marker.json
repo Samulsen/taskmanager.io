@@ -13,7 +13,8 @@
   "components": {
     "1": "//__c-hooks________",
     "2": "//__c-logic________",
-    "3": "//__c-invocation___"
+    "3": "//__c-invocation___",
+    "4": "//__c-structure____"
   },
   "exports": {
     "1": "//__e-component____",
