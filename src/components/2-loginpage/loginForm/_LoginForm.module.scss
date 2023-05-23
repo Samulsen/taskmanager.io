@@ -14,14 +14,23 @@
 }
 
 .buttonBox {
-  display: grid;
+  width: 30rem;
+  height: 9rem;
+  display: flex;
   grid-template-rows: 9rem;
-  grid-template-columns: 30rem;
+  grid-template-columns: 12rem 6rem 12rem;
+  justify-items: center;
+  align-items: center;
 
   &_login {
   }
 
   &_or {
+    width: 6rem;
+    text-align: center;
+    font-size: 2.7rem;
+    font-weight: 500;
+    padding-bottom: 0.7rem;
   }
 
   &_register {
