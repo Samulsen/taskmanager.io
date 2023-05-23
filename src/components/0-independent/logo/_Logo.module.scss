@@ -17,11 +17,13 @@
   z-index: 1;
   border-radius: 40% 60% 70% 30% / 40% 40% 60% 50%;
 
-  &__animation_entrypage {
-    animation: morph 10s linear 5s infinite forwards;
-  }
-  &__animation_noDelay {
-    animation: morph 10s linear 0s infinite forwards;
+  &__animation {
+    &_entrypage {
+      animation: morph 10s linear 5s infinite forwards;
+    }
+    &__noDelay {
+      animation: morph 10s linear 0s infinite forwards;
+    }
   }
 }
 
