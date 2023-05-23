@@ -9,42 +9,15 @@
 }
 
 .input {
-  background-color: $pinkish-blue;
-  text-align: center;
-  outline-width: 0;
   font-size: 1.5rem;
-  font-weight: 400;
-  color: white;
-  border-color: $pinkish-blue;
-  border-radius: 1rem;
-  width: 30rem;
   height: 5.5rem;
-  transition: all 0.3s;
-
-  &:focus {
-    outline: none;
-    transform: scale(1.05);
-    border-color: $main-green;
-    border-width: 0.3rem;
-  }
-
-  &::placeholder {
-    color: white;
-    //for firefox opacity lol
-    opacity: 1;
-  }
-
-  &_username {
-  }
-
-  &_password {
-  }
 }
 
 .buttonBox {
   display: grid;
   grid-template-rows: 9rem;
   grid-template-columns: 30rem;
+
   &_login {
   }
 

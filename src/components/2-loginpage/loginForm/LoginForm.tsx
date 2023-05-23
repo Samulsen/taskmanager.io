@@ -2,21 +2,23 @@
 
 import classes from "./_LoginForm.module.scss";
 import { Form } from "react-router-dom";
+import InputLogReg from "../../0-independent/inputs/LogReg/InputLogReg";
+import ButtonOutside from "../../0-independent/buttons/ButtonOutside";
 
 //---------COMPONENT----------\
 
 const LoginForm = function () {
   return (
     <Form className={classes.body} method="post">
-      <input
-        className={classes.input}
+      <InputLogReg
+        individualClass={classes.input}
         type="text"
         name="username"
         placeholder="Username"
       />
-      <input
-        className={classes.input}
-        type="text"
+      <InputLogReg
+        individualClass={classes.input}
+        type="password"
         name="password"
         placeholder="Password"
       />
