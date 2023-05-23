@@ -1,6 +1,6 @@
 //---------IMPORTS------------\
 
-import classes from "./_InputLogReg.module.scss";
+import classes from "./_InputOutside.module.scss";
 
 //---------MAIN---------------\
 
@@ -13,7 +13,7 @@ type attributes = {
 
 //---------COMPONENT----------\
 
-const InputLogReg: React.FC<attributes> = function (props) {
+const InputOutside: React.FC<attributes> = function (props) {
   return (
     <input
       className={classes.main + " " + props.individualClass}
@@ -26,4 +26,4 @@ const InputLogReg: React.FC<attributes> = function (props) {
 
 //---------EXPORTS------------\
 
-export default InputLogReg;
+export default InputOutside;
