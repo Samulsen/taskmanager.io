@@ -11,7 +11,7 @@ const MiddleArea = function () {
       <div className={classes.title}>taskmanager.io</div>
       <div className={classes.subline}>Welcome, click somewhere to start!</div>
       <div className={classes.logo}>
-        <Logo></Logo>
+        <Logo animation="entrypage"></Logo>
       </div>
     </div>
   );

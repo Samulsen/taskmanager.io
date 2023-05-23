@@ -1,13 +1,46 @@
 @import "../../styles/variables";
 @import "../../styles/mixins";
 
-.anchor {
-  background-color: $dark-blue;
-  overflow: auto;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
+.body {
+  margin: auto;
+  width: 50rem;
+  height: 55rem;
+  display: grid;
+  grid-template-columns: 50rem;
+  grid-template-rows: repeat(5, 11rem);
+  grid-template-areas:
+    "logo"
+    "title"
+    "form"
+    "form"
+    "form";
 }
 
-.body {
+.logo {
+}
+
+.title {
+}
+
+.form {
+  grid-area: form;
+
+  &__input {
+    &_username {
+    }
+
+    &_password {
+    }
+  }
+
+  &__buttonBox {
+    &_login {
+    }
+
+    &_or {
+    }
+
+    &_register {
+    }
+  }
 }
