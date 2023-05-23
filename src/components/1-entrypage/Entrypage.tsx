@@ -16,7 +16,7 @@ const Entrypage = function () {
   const [canTrigger, setTrigger] = useState(false);
   const [switchRequest, setRequest] = useState(false);
   const [allowSwitch, setSwitch] = useState(false);
-  const [anchorClassList, setClassList] = useState(classes.anchor);
+  const [bodyClassList, setClassList] = useState(classes.body);
   const navigate = useNavigate();
   //__c-logic________
 
@@ -42,7 +42,7 @@ const Entrypage = function () {
 
     initiateSwitchRequest() {
       if (switchRequest) {
-        setClassList(classes.anchor + " " + classes.offLoad);
+        setClassList(classes.body + " " + classes.offLoad);
       }
     },
     closeSwitchRequest() {
@@ -57,12 +57,12 @@ const Entrypage = function () {
 
   return (
     <div
-      className={classes.main}
+      className={classes.anchor}
       onAnimationStart={Logic.enableTrigger}
       onAnimationEnd={Logic.evalutateSwitchEnd}
     >
       {Logic.evaluateTrigger()}
-      <div className={anchorClassList}>
+      <div className={bodyClassList}>
         <TopArea />
         <MiddleArea />
         <LowerArea />

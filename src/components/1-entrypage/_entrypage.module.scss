@@ -1,7 +1,7 @@
 @import "../../styles/variables";
 @import "../../styles/mixins";
 
-.main {
+.anchor {
   background-color: $dark-blue;
   overflow: auto;
   width: 100vw;
@@ -10,7 +10,7 @@
   position: relative;
 }
 
-.anchor {
+.body {
   margin: auto;
   display: grid;
   grid-template-columns: 120rem;
