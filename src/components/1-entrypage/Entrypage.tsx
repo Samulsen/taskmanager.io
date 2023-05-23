@@ -4,6 +4,7 @@ import classes from "./_Entrypage.module.scss";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 //__i-components_____
+import Anchor from "../0-independent/anchor/Anchor";
 import NavTrigger from "./navigation-trigger/NavTrigger";
 import TopArea from "./top-area/TopArea";
 import MiddleArea from "./middle-area/MiddleArea";
@@ -56,18 +57,18 @@ const Entrypage = function () {
   useEffect(Logic.closeSwitchRequest, [allowSwitch]);
 
   return (
-    <div
-      className={classes.anchor}
-      onAnimationStart={Logic.enableTrigger}
-      onAnimationEnd={Logic.evalutateSwitchEnd}
-    >
+    <Anchor>
       {Logic.evaluateTrigger()}
-      <div className={bodyClassList}>
+      <div
+        className={bodyClassList}
+        onAnimationStart={Logic.enableTrigger}
+        onAnimationEnd={Logic.evalutateSwitchEnd}
+      >
         <TopArea />
         <MiddleArea />
         <LowerArea />
       </div>
-    </div>
+    </Anchor>
   );
 };
 

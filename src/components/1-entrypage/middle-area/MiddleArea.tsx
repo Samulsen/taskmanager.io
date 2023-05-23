@@ -1,7 +1,7 @@
 //---------IMPORTS------------\
 
 import classes from "./_MiddleArea.module.scss";
-import Logo from "../../0-independent/1-logo/Logo";
+import Logo from "../../0-independent/logo/Logo";
 
 //---------COMPONENT----------\
 
