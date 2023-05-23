@@ -1,6 +1,6 @@
 //---------IMPORTS------------\
 
-import classes from "./_loginpage.module.scss";
+import classes from "./_Loginpage.module.scss";
 
 //---------COMPONENT----------\
 
