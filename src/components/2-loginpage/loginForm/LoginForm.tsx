@@ -11,17 +11,18 @@ const LoginForm = function () {
   return (
     <Form className={classes.body} method="post">
       <InputOutside
-        individualClass={classes.input}
+        individualClass={classes.input + " " + classes.username}
         type="text"
         name="usernameInputOutside"
         placeholder="Username"
       />
       <InputOutside
-        individualClass={classes.input}
+        individualClass={classes.input + " " + classes.password}
         type="password"
         name="passwordInputOutside"
         placeholder="Password"
       />
+      <div className={classes.toggler}>toggler</div>
       <div className={classes.buttonBox}>
         <ButtonOutside border="green" displayText="Login" name="loginButton" />
         <div className={classes.buttonBox_or}>or</div>

@@ -7,7 +7,7 @@ import Anchor from "../0-independent/anchor/Anchor";
 import Logo from "../0-independent/logo/Logo";
 import Title from "../0-independent/title/Title";
 import LoginForm from "./loginForm/LoginForm";
-import LoginErrorMessage from "./loginForm/loginErrorMessage/LoginErrorMessage";
+import LoginErrorMessage from "./loginErrorMessage/LoginErrorMessage";
 
 //---------MAIN---------------\
 
