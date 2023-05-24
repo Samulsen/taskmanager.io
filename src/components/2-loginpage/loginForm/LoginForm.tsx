@@ -23,7 +23,7 @@ const LoginForm = function () {
         name="passwordInputOutside"
         placeholder="Password"
       />
-      <PasswordToggler drilledClass={classes.toggler} />
+      <PasswordToggler individualClass={classes.toggler} />
       <div className={classes.buttonBox}>
         <ButtonOutside border="green" displayText="Login" name="loginButton" />
         <div className={classes.buttonBox_or}>or</div>
