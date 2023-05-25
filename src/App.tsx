@@ -1,11 +1,7 @@
 //---------IMPORTS------------\
 //__i-libraries______
 import React from "react";
-import {
-  createBrowserRouter,
-  redirect,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 //__i-components_____
 import Entrypage from "./components/1-entrypage/Entrypage";
 import Loginpage from "./components/2-loginpage/Loginpage";
@@ -28,6 +24,11 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Loginpage />,
+    action: ({ request }) => {
+      request.formData().then(console.log);
+
+      return null;
+    },
   },
   {
     path: "/register",
@@ -40,11 +41,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "child1",
-        element: <div>CHIDL1</div>,
+        element: <div>child1</div>,
       },
       {
         path: "child2",
-        element: <div>CHIDL1</div>,
+        element: <div>child1</div>,
       },
     ],
   },

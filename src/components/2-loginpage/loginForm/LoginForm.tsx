@@ -12,11 +12,11 @@ const LoginForm = function () {
   return (
     <Form className={classes.body} method="post">
       <InputOutside
-        key="inp-username"
-        individualClass={classes.input + " " + classes.username}
+        key="inp-mail"
+        individualClass={classes.input + " " + classes.mail}
         type="text"
-        name="usernameInputOutside"
-        placeholder="Username"
+        name="mailInputOutside"
+        placeholder="E - Mail"
       />
       <InputOutside
         key="inp-password"
