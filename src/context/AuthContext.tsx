@@ -7,6 +7,7 @@ import { createContext, useState, ReactNode } from "react";
 type ContextValueType = {
   authState: boolean;
   login: () => void;
+  logout: () => void;
 };
 const AuthContext = createContext<ContextValueType | null>(null);
 
@@ -19,9 +20,14 @@ const AuthProvider: React.FC<{ children: ReactNode }> = function (props) {
     setAuthState(true);
   };
 
+  const logout = () => {
+    setAuthState(false);
+  };
+
   const contextValues = {
     authState,
     login,
+    logout,
   };
 
   return (
