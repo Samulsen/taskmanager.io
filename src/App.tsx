@@ -3,6 +3,7 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 //__i-components_____
+import Anchor from "./components/0-independent/anchor/Anchor";
 import Entrypage from "./components/1-entrypage/Entrypage";
 import Loginpage from "./components/2-loginpage/Loginpage";
 import Registerpage from "./components/3-registerpage/Registerpage";
@@ -15,39 +16,27 @@ import authCheck from "./util/authCheck";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>ROOT ROUTE</div>,
+    element: <Anchor />,
+    children: [
+      {
+        path: "entry",
+        element: <Entrypage />,
+      },
+      {
+        index: true,
+        path: "login",
+        element: <Loginpage />,
+      },
+      {
+        path: "register",
+        element: <Registerpage />,
+      },
+    ],
   },
-  {
-    path: "/entry",
-    element: <Entrypage />,
-  },
-  {
-    path: "/login",
-    element: <Loginpage />,
-    action: ({ request }) => {
-      request.formData().then(console.log);
 
-      return null;
-    },
-  },
-  {
-    path: "/register",
-    element: <Registerpage />,
-  },
   {
     path: "/main",
     element: <Main />,
-    loader: authCheck,
-    children: [
-      {
-        path: "child1",
-        element: <div>child1</div>,
-      },
-      {
-        path: "child2",
-        element: <div>child1</div>,
-      },
-    ],
   },
 ]);
 

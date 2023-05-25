@@ -57,7 +57,7 @@ const Entrypage = function () {
   useEffect(Logic.closeSwitchRequest, [allowSwitch]);
 
   return (
-    <Anchor>
+    <>
       {Logic.evaluateTrigger()}
       <div
         className={bodyClassList}
@@ -68,7 +68,7 @@ const Entrypage = function () {
         <MiddleArea />
         <LowerArea />
       </div>
-    </Anchor>
+    </>
   );
 };
 
