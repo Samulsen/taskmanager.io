@@ -8,8 +8,6 @@ import Entrypage from "./components/1-entrypage/Entrypage";
 import Loginpage from "./components/2-loginpage/Loginpage";
 import Registerpage from "./components/3-registerpage/Registerpage";
 import Main from "./components/4-main/Main";
-//__i-helpers________
-import authCheck from "./util/authCheck";
 
 //---------MAIN---------------\
 
@@ -43,7 +41,7 @@ const router = createBrowserRouter([
 //---------COMPONENT----------\
 
 function App() {
-  return <RouterProvider router={router}></RouterProvider>;
+  return <RouterProvider router={router} />;
 }
 
 //---------EXPORTS------------\
