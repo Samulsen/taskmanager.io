@@ -8,6 +8,7 @@ import Entrypage from "./components/1-entrypage/Entrypage";
 import Loginpage from "./components/2-loginpage/Loginpage";
 import Registerpage from "./components/3-registerpage/Registerpage";
 import Main from "./components/4-main/Main";
+import validateAuth from "./util/auth/validateAuth";
 
 //---------MAIN---------------\
 
@@ -17,23 +18,23 @@ const router = createBrowserRouter([
     element: <Anchor />,
     children: [
       {
-        path: "entry",
+        path: "/entry",
         element: <Entrypage />,
       },
       {
         index: true,
-        path: "login",
+        path: "/login",
         element: <Loginpage />,
       },
       {
-        path: "register",
+        path: "/register",
         element: <Registerpage />,
       },
     ],
   },
-
   {
     path: "/main",
+    loader: validateAuth,
     element: <Main />,
   },
 ]);
