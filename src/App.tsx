@@ -1,6 +1,5 @@
 //---------IMPORTS------------\
 //__i-libraries______
-import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 //__i-components_____
 import Anchor from "./components/0-independent/anchor/Anchor";
