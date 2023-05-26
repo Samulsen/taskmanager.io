@@ -32,19 +32,23 @@ const LoginForm = function () {
       let password = inputPassword.current!.value;
       return signInWithEmailAndPassword(auth, email, password);
     },
-    getCredential(userCredential: any) {
+    getCredentials(userCredential: any) {
       console.log("Logged in: " + userCredential.user.uid);
       AuthContextLocal!.setUserUID(userCredential.user.uid);
       AuthContextLocal!.setAuthState(true);
-      console.log(AuthContextLocal?.authState);
     },
     getError(error: any) {
       console.error(error.message);
     },
+    moveToPrivate() {
+      navigate("/authTrue/allTasks");
+      return Promise.resolve();
+    },
     loginRequest() {
       this.initChain()
         .then(this.signIn)
-        .then(this.getCredential)
+        .then(this.getCredentials)
+        .then(this.moveToPrivate)
         .catch(this.getError);
     },
     registerRedirect() {

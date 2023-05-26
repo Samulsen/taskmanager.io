@@ -25,11 +25,7 @@ const router = createBrowserRouter([
       {
         index: true,
         path: "/login",
-        element: (
-          <AuthContextProvider>
-            <Loginpage />
-          </AuthContextProvider>
-        ),
+        element: <Loginpage />,
       },
       {
         path: "/register",
@@ -39,11 +35,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/authTrue",
-    element: (
-      <AuthContextProvider>
-        <ProtectedContainer />
-      </AuthContextProvider>
-    ),
+    element: <ProtectedContainer />,
     children: [
       { path: "allTasks", element: <Main /> },
       { path: "board-1", element: <div>board-1</div> },
@@ -54,11 +46,7 @@ const router = createBrowserRouter([
 //---------COMPONENT----------\
 
 function App() {
-  return (
-    // <AuthContext>
-    <RouterProvider router={router} />
-    // </AuthContext>
-  );
+  return <RouterProvider router={router} />;
 }
 
 //---------EXPORTS------------\

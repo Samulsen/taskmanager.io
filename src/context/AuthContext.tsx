@@ -16,9 +16,7 @@ export const AuthContext = createContext<ContextValueType | null>(null);
 
 //---------COMPONENT----------\
 
-const AuthContextProvider: React.FC<{ children: ReactNode }> = function (
-  props
-) {
+const AuthContextProvider: React.FC<{ children: ReactNode }> = function (pr) {
   const [authState, setAuthState] = useState(false);
   const [userUID, setUserUID] = useState("deffault");
 
@@ -35,7 +33,7 @@ const AuthContextProvider: React.FC<{ children: ReactNode }> = function (
   //       }
   //     });
   //   }, []);
-  console.log("Auth context ran!!!");
+  console.warn("Auth context ran!!!");
   console.log("current log state of app= " + authState);
   console.log("current user= " + userUID);
 
@@ -48,7 +46,7 @@ const AuthContextProvider: React.FC<{ children: ReactNode }> = function (
 
   return (
     <AuthContext.Provider value={AuthContextValues}>
-      {props.children}
+      {pr.children}
     </AuthContext.Provider>
   );
 };

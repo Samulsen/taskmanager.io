@@ -7,7 +7,7 @@ import ReactDOM from "react-dom/client";
 import "./_index.scss";
 //__i-components_____
 import App from "./App";
-// import AuthContext from "./context/AuthContext";
+import AuthContextProvider from "./context/AuthContext";
 
 //---------MAIN---------------\
 
@@ -16,8 +16,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    {/* <AuthContext> */}
-    <App />
-    {/* </AuthContext> */}
+    <AuthContextProvider>
+      <App />
+    </AuthContextProvider>
   </React.StrictMode>
 );
