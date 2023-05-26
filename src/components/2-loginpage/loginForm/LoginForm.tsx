@@ -1,8 +1,8 @@
 //---------IMPORTS------------\
 
-//__i-libraries______"
+//__i-libraries______
 import { useNavigate } from "react-router-dom";
-import { useRef, useContext } from "react";
+import { useRef, useContext, useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../firebase";
 //__i-style__________
@@ -13,6 +13,7 @@ import { AuthContext } from "../../../context/AuthContext";
 import PasswordToggler from "../passwordToggler/PasswordToggler";
 import ButtonOutside from "../../0-independent/buttons/outside/ButtonOutside";
 import InputOutside from "../../0-independent/inputs/outside/InputOutside";
+import LoginErrorMessage from "../loginErrorMessage/LoginErrorMessage";
 
 //---------COMPONENT----------\
 
@@ -20,10 +21,12 @@ const LoginForm = function () {
   //__c-hooks________
   const AuthContextLocal = useContext(AuthContext);
   const navigate = useNavigate();
+  const [error, setError] = useState(false);
   const inputPassword = useRef<HTMLInputElement>(null);
   const inputMail = useRef<HTMLInputElement>(null);
   //__c-logic________
   const Logic = {
+    //SECTION______________________: Login
     initChain() {
       return Promise.resolve();
     },
@@ -36,13 +39,20 @@ const LoginForm = function () {
       AuthContextLocal!.setUserUID(userCredential.user.uid);
       AuthContextLocal!.setAuthState(true);
     },
+    evaluateErrorState() {
+      if (error) {
+        return <LoginErrorMessage />;
+      }
+    },
     getError(error: any) {
       console.error(error.message);
+      setError(true);
     },
     moveToPrivate() {
       navigate("/authTrue/allTasks");
       return Promise.resolve();
     },
+    //__NOTE:Main function
     loginRequest() {
       this.initChain()
         .then(this.signIn)
@@ -50,6 +60,7 @@ const LoginForm = function () {
         .then(this.moveToPrivate)
         .catch(this.getError);
     },
+    //SECTION______________________: Redirection
     registerRedirect() {
       navigate("../register");
     },
@@ -74,6 +85,7 @@ const LoginForm = function () {
         name="passwordInputOutside"
         placeholder="Password"
       />
+      <PasswordToggler individualClass={classes.toggler} />
       <div className={classes.buttonBox}>
         <ButtonOutside
           border="green"
@@ -87,7 +99,7 @@ const LoginForm = function () {
           clickMethod={Logic.registerRedirect}
         />
       </div>
-      <PasswordToggler individualClass={classes.toggler} />
+      {Logic.evaluateErrorState()}
     </div>
   );
 };
