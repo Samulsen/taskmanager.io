@@ -4,7 +4,7 @@ import classes from "./_ButtonOutside.module.scss";
 
 //---------MAIN---------------\
 
-type additions = { border: string; displayText: string; name: string };
+type additions = { border: string; displayText: string };
 
 //---------COMPONENT----------\
 
@@ -23,15 +23,7 @@ const ButtonOutside: React.FC<additions> = function (props) {
     },
   };
 
-  return (
-    <button
-      className={Logic.evaluteClassList()}
-      name={props.name}
-      type="submit"
-    >
-      {props.displayText}
-    </button>
-  );
+  return <div className={Logic.evaluteClassList()}>{props.displayText}</div>;
 };
 
 //---------EXPORTS------------\

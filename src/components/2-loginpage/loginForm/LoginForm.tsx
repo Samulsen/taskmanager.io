@@ -1,16 +1,22 @@
 //---------IMPORTS------------\
 
 import classes from "./_LoginForm.module.scss";
-import { Form } from "react-router-dom";
 import InputOutside from "../../0-independent/inputs/outside/InputOutside";
 import ButtonOutside from "../../0-independent/buttons/outside/ButtonOutside";
 import PasswordToggler from "../passwordToggler/PasswordToggler";
+
+//---------MAIN---------------\
+
+const loginRequest = function (event: React.FormEvent) {
+  event.preventDefault();
+  console.log(event);
+};
 
 //---------COMPONENT----------\
 
 const LoginForm = function () {
   return (
-    <Form className={classes.body} method="post">
+    <div className={classes.body}>
       <InputOutside
         key="inp-mail"
         individualClass={classes.input + " " + classes.mail}
@@ -21,21 +27,18 @@ const LoginForm = function () {
       <InputOutside
         key="inp-password"
         individualClass={classes.input + " " + classes.password}
-        type="password"
+        //NOTE: Temp "type" later deffault password
+        type="type"
         name="passwordInputOutside"
         placeholder="Password"
       />
       <PasswordToggler individualClass={classes.toggler} />
       <div className={classes.buttonBox}>
-        <ButtonOutside border="green" displayText="Login" name="loginButton" />
+        <ButtonOutside border="green" displayText="Login" />
         <div className={classes.buttonBox_or}>or</div>
-        <ButtonOutside
-          border="green"
-          displayText="Register"
-          name="registerButton"
-        />
+        <ButtonOutside border="green" displayText="Register" />
       </div>
-    </Form>
+    </div>
   );
 };
 
