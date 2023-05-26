@@ -3,7 +3,7 @@
 //__i-libraries______"
 import { useNavigate } from "react-router-dom";
 import { useRef, useContext } from "react";
-import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../firebase";
 //__i-style__________
 import classes from "./_LoginForm.module.scss";
@@ -25,7 +25,7 @@ const LoginForm = function () {
   //__c-logic________
   const Logic = {
     initChain() {
-      return Promise.resolve("test of promise chain !");
+      return Promise.resolve();
     },
     signIn() {
       let email = inputMail.current!.value;
@@ -33,7 +33,6 @@ const LoginForm = function () {
       return signInWithEmailAndPassword(auth, email, password);
     },
     getCredentials(userCredential: any) {
-      console.log("Logged in: " + userCredential.user.uid);
       AuthContextLocal!.setUserUID(userCredential.user.uid);
       AuthContextLocal!.setAuthState(true);
     },
@@ -54,7 +53,6 @@ const LoginForm = function () {
     registerRedirect() {
       navigate("../register");
     },
-    //__NOTE: temp for testing!
   };
 
   return (
@@ -76,7 +74,6 @@ const LoginForm = function () {
         name="passwordInputOutside"
         placeholder="Password"
       />
-      <PasswordToggler individualClass={classes.toggler} />
       <div className={classes.buttonBox}>
         <ButtonOutside
           border="green"
@@ -87,10 +84,10 @@ const LoginForm = function () {
         <ButtonOutside
           border="green"
           displayText="Register"
-          // clickMethod={Logic.registerRedirect}
           clickMethod={Logic.registerRedirect}
         />
       </div>
+      <PasswordToggler individualClass={classes.toggler} />
     </div>
   );
 };

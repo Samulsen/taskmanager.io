@@ -33,9 +33,10 @@ const AuthContextProvider: React.FC<{ children: ReactNode }> = function (pr) {
   //       }
   //     });
   //   }, []);
-  console.warn("Auth context ran!!!");
-  console.log("current log state of app= " + authState);
-  console.log("current user= " + userUID);
+
+  // console.warn("Auth context ran!!!");
+  // console.log("current log state of app= " + authState);
+  // console.log("current user= " + userUID);
 
   const AuthContextValues: ContextValueType = {
     userUID,

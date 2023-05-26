@@ -15,12 +15,10 @@ const ProtectedContainer = function () {
   const Logic = {
     AuthCheck() {
       if (AuthValue!.authState === false) {
-        console.log(
-          "FROM ProtectedContainer Status is= " + AuthValue!.authState
-        );
+        console.error("Refused access!");
         navigate("../login");
       } else {
-        console.log("user logged in, letting through!");
+        console.log("Acces granted for User!");
       }
     },
   };

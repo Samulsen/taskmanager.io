@@ -17,8 +17,12 @@ const Main = function () {
       .then(() => {
         AuthContextLocal!.setUserUID("deffault");
         AuthContextLocal!.setAuthState(false);
+        console.log("Succesfully logged out!");
       })
-      .catch((error) => {});
+      .catch((error) => {
+        console.log("Loggout error!");
+        console.log(error);
+      });
   };
 
   return (
