@@ -1,6 +1,7 @@
 //---------IMPORTS------------\
 
 import classes from "./_InputOutside.module.scss";
+import { forwardRef } from "react";
 
 //---------MAIN---------------\
 
@@ -14,17 +15,17 @@ type attributes = {
 
 //---------COMPONENT----------\
 
-const InputOutside: React.FC<attributes> = function (props) {
+const InputOutside: React.FC<attributes> = forwardRef(function (props, ref) {
   return (
     <input
-      ref={props.ref}
+      ref={ref}
       className={classes.main + " " + props.individualClass}
       type={props.type}
       name={props.name}
       placeholder={props.placeholder}
     />
   );
-};
+});
 
 //---------EXPORTS------------\
 
