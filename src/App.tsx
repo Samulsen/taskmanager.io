@@ -1,6 +1,8 @@
 //---------IMPORTS------------\
 //__i-libraries______
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+//__i-context________
+import AuthContext from "./context/AuthContext";
 //__i-components_____
 import Anchor from "./components/0-independent/anchor/Anchor";
 import ProtectedContainer from "./context/ProtectedContainer";
@@ -44,7 +46,11 @@ const router = createBrowserRouter([
 //---------COMPONENT----------\
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <AuthContext>
+      <RouterProvider router={router} />
+    </AuthContext>
+  );
 }
 
 //---------EXPORTS------------\

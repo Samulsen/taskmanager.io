@@ -2,49 +2,26 @@
 
 //__i-libraries______"
 import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { useRef, useContext } from "react";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../../../firebase";
 //__i-style__________
 import classes from "./_LoginForm.module.scss";
 //__i-context________
-import { AuthContextAnchor } from "../../../context/AuthContext";
+import { AuthContext } from "../../../context/AuthContext";
 //__i-components_____
 import PasswordToggler from "../passwordToggler/PasswordToggler";
 import ButtonOutside from "../../0-independent/buttons/outside/ButtonOutside";
 import InputOutside from "../../0-independent/inputs/outside/InputOutside";
 
-//---------MAIN---------------\
-
-// TODO: make interface for firebase error and user credentials object
-
-type userObject = {
-  user: {
-    uid: string;
-    email: string;
-    emailVerified: boolean;
-    isAnonymous: boolean;
-    providerData: object;
-    stsTokenManager: {
-      refreshToken: string;
-      accessToken: string;
-      expirationTime: number;
-    };
-    createdAt: string;
-    lastLoginAt: string;
-    apiKey: string;
-    appName: string;
-  };
-};
-
 //---------COMPONENT----------\
 
 const LoginForm = function () {
   //__c-hooks________
+  const AuthContextLocal = useContext(AuthContext);
   const navigate = useNavigate();
   const inputPassword = useRef<HTMLInputElement>(null);
   const inputMail = useRef<HTMLInputElement>(null);
-
   //__c-logic________
   const Logic = {
     initChain() {
@@ -56,7 +33,9 @@ const LoginForm = function () {
       return signInWithEmailAndPassword(auth, email, password);
     },
     getCredential(userCredential: any) {
-      console.log(userCredential.user);
+      console.log(userCredential.user.uid);
+      AuthContextLocal!.setUserUID(userCredential.user.uid);
+      AuthContextLocal!.setAuthState(true);
     },
     getError(error: any) {
       console.error(error.message);
@@ -69,6 +48,14 @@ const LoginForm = function () {
     },
     registerRedirect() {
       navigate("../register");
+    },
+    //__NOTE: temp for testing!
+    logoutRequest() {
+      signOut(auth)
+        .then(() => {
+          console.log("Signed out successfully");
+        })
+        .catch((error) => {});
     },
   };
 
@@ -93,7 +80,6 @@ const LoginForm = function () {
       />
       <PasswordToggler individualClass={classes.toggler} />
       <div className={classes.buttonBox}>
-        {/* //__NOTE: Button receives another click handler! */}
         <ButtonOutside
           border="green"
           displayText="Login"
@@ -103,7 +89,8 @@ const LoginForm = function () {
         <ButtonOutside
           border="green"
           displayText="Register"
-          clickMethod={Logic.registerRedirect}
+          // clickMethod={Logic.registerRedirect}
+          clickMethod={Logic.logoutRequest}
         />
       </div>
     </div>

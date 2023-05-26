@@ -2,7 +2,7 @@
 
 import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { AuthContextAnchor } from "./AuthContext";
+import { AuthContext } from "./AuthContext";
 import { useContext, useEffect } from "react";
 
 //---------COMPONENT----------\
@@ -10,17 +10,22 @@ import { useContext, useEffect } from "react";
 const ProtectedContainer = function () {
   //__c-hooks________
   const navigate = useNavigate();
-  const AuthValue = useContext(AuthContextAnchor);
+  const AuthValue = useContext(AuthContext);
   //__c-logic________
   const Logic = {
     AuthCheck() {
-      if (AuthValue?.authState === false) {
+      if (AuthValue!.authState === false) {
+        console.log(
+          "FROM ProtectedContainer Status is= " + AuthValue!.authState
+        );
         navigate("../login");
+      } else {
+        console.log("user logged in, letting through!");
       }
     },
   };
 
-  useEffect(Logic.AuthCheck, [AuthValue?.authState]);
+  useEffect(Logic.AuthCheck, [AuthValue!.authState]);
 
   return <Outlet />;
 };

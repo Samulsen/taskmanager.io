@@ -1,47 +1,55 @@
 //---------IMPORTS------------\
 
-import { createContext, useState, ReactNode } from "react";
+import { createContext, useState, ReactNode, useEffect } from "react";
+import { auth } from "../firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 //---------MAIN---------------\
 
 type ContextValueType = {
-  userData: string;
+  userUID: string;
   authState: boolean;
-  login: () => void;
-  logout: () => void;
-  setUserData: React.Dispatch<React.SetStateAction<string>>;
+  setAuthState: React.Dispatch<React.SetStateAction<boolean>>;
+  setUserUID: React.Dispatch<React.SetStateAction<string>>;
 };
-export const AuthContextAnchor = createContext<ContextValueType | null>(null);
+export const AuthContext = createContext<ContextValueType | null>(null);
 
 //---------COMPONENT----------\
 
-const AuthContext: React.FC<{ children: ReactNode }> = function (props) {
+const AuthContextProvider: React.FC<{ children: ReactNode }> = function (
+  props
+) {
   const [authState, setAuthState] = useState(false);
-  const [userData, setUserData] = useState("User-1");
+  const [userUID, setUserUID] = useState("UID");
 
-  const login = () => {
-    setAuthState(true);
-  };
+  //   useEffect(() => {
+  //     onAuthStateChanged(auth, (user) => {
+  //       if (user) {
+  //         console.log("User is logged in!");
+  //         setUserUID(user.uid);
+  //         setAuthState(true);
+  //         console.log(authState);
+  //       } else {
+  //         console.log("user is not logged in!");
+  //         setAuthState(false);
+  //       }
+  //     });
+  //   }, []);
 
-  const logout = () => {
-    setAuthState(false);
-  };
-
-  const AuthContextValues = {
-    userData,
+  const AuthContextValues: ContextValueType = {
+    userUID,
     authState,
-    login,
-    logout,
-    setUserData,
+    setUserUID,
+    setAuthState,
   };
 
   return (
-    <AuthContextAnchor.Provider value={AuthContextValues}>
+    <AuthContext.Provider value={AuthContextValues}>
       {props.children}
-    </AuthContextAnchor.Provider>
+    </AuthContext.Provider>
   );
 };
 
 //---------EXPORTS------------\
 
-export default AuthContext;
+export default AuthContextProvider;
