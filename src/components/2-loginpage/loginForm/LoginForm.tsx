@@ -52,7 +52,7 @@ const LoginForm = function () {
       navigate("/authTrue/allTasks");
       return Promise.resolve();
     },
-    //__NOTE:Main function
+    //__NOTE: Main function
     loginRequest() {
       this.initChain()
         .then(this.signIn)
