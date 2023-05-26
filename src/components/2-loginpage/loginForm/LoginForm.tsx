@@ -55,13 +55,6 @@ const LoginForm = function () {
       navigate("../register");
     },
     //__NOTE: temp for testing!
-    logoutRequest() {
-      signOut(auth)
-        .then(() => {
-          console.log("Signed out successfully");
-        })
-        .catch((error) => {});
-    },
   };
 
   return (
@@ -95,7 +88,7 @@ const LoginForm = function () {
           border="green"
           displayText="Register"
           // clickMethod={Logic.registerRedirect}
-          clickMethod={Logic.logoutRequest}
+          clickMethod={Logic.registerRedirect}
         />
       </div>
     </div>

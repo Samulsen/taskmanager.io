@@ -1,8 +1,6 @@
 //---------IMPORTS------------\
 //__i-libraries______
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-//__i-context________
-import AuthContextProvider from "./context/AuthContext";
 //__i-components_____
 import Anchor from "./components/0-independent/anchor/Anchor";
 import ProtectedContainer from "./context/ProtectedContainer";
@@ -36,10 +34,7 @@ const router = createBrowserRouter([
   {
     path: "/authTrue",
     element: <ProtectedContainer />,
-    children: [
-      { path: "allTasks", element: <Main /> },
-      { path: "board-1", element: <div>board-1</div> },
-    ],
+    children: [{ path: "allTasks", element: <Main /> }],
   },
 ]);
 
