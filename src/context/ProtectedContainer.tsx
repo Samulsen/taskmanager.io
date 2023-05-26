@@ -4,6 +4,8 @@ import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthContext";
 import { useContext, useEffect } from "react";
+import { auth } from "../firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 //---------COMPONENT----------\
 
@@ -22,6 +24,19 @@ const ProtectedContainer = function () {
       }
     },
   };
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log("User is logged in!");
+        AuthValue!.setUserUID(user.uid);
+        AuthValue!.setAuthState(true);
+        navigate("/authTrue/allTasks");
+      } else {
+        console.log("user is not logged in!");
+      }
+    });
+  }, []);
 
   useEffect(Logic.AuthCheck, [AuthValue!.authState]);
 
