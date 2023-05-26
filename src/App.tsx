@@ -2,7 +2,7 @@
 //__i-libraries______
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 //__i-context________
-import AuthContext from "./context/AuthContext";
+import AuthContextProvider from "./context/AuthContext";
 //__i-components_____
 import Anchor from "./components/0-independent/anchor/Anchor";
 import ProtectedContainer from "./context/ProtectedContainer";
@@ -25,7 +25,11 @@ const router = createBrowserRouter([
       {
         index: true,
         path: "/login",
-        element: <Loginpage />,
+        element: (
+          <AuthContextProvider>
+            <Loginpage />
+          </AuthContextProvider>
+        ),
       },
       {
         path: "/register",
@@ -35,7 +39,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/authTrue",
-    element: <ProtectedContainer />,
+    element: (
+      <AuthContextProvider>
+        <ProtectedContainer />
+      </AuthContextProvider>
+    ),
     children: [
       { path: "allTasks", element: <Main /> },
       { path: "board-1", element: <div>board-1</div> },
@@ -47,9 +55,9 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <AuthContext>
-      <RouterProvider router={router} />
-    </AuthContext>
+    // <AuthContext>
+    <RouterProvider router={router} />
+    // </AuthContext>
   );
 }
 

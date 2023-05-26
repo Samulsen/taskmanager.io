@@ -20,7 +20,7 @@ const AuthContextProvider: React.FC<{ children: ReactNode }> = function (
   props
 ) {
   const [authState, setAuthState] = useState(false);
-  const [userUID, setUserUID] = useState("UID");
+  const [userUID, setUserUID] = useState("deffault");
 
   //   useEffect(() => {
   //     onAuthStateChanged(auth, (user) => {
@@ -35,6 +35,9 @@ const AuthContextProvider: React.FC<{ children: ReactNode }> = function (
   //       }
   //     });
   //   }, []);
+  console.log("Auth context ran!!!");
+  console.log("current log state of app= " + authState);
+  console.log("current user= " + userUID);
 
   const AuthContextValues: ContextValueType = {
     userUID,

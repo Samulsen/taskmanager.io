@@ -33,9 +33,10 @@ const LoginForm = function () {
       return signInWithEmailAndPassword(auth, email, password);
     },
     getCredential(userCredential: any) {
-      console.log(userCredential.user.uid);
+      console.log("Logged in: " + userCredential.user.uid);
       AuthContextLocal!.setUserUID(userCredential.user.uid);
       AuthContextLocal!.setAuthState(true);
+      console.log(AuthContextLocal?.authState);
     },
     getError(error: any) {
       console.error(error.message);
