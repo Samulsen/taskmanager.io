@@ -4,7 +4,7 @@ import classes from "./_ButtonOutside.module.scss";
 
 //---------MAIN---------------\
 
-type additions = { border: string; displayText: string };
+type additions = { border: string; displayText: string; clickMethod: any };
 
 //---------COMPONENT----------\
 
@@ -23,7 +23,11 @@ const ButtonOutside: React.FC<additions> = function (props) {
     },
   };
 
-  return <div className={Logic.evaluteClassList()}>{props.displayText}</div>;
+  return (
+    <div className={Logic.evaluteClassList()} onClick={props.clickMethod}>
+      {props.displayText}
+    </div>
+  );
 };
 
 //---------EXPORTS------------\

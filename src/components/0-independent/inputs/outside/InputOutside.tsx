@@ -9,6 +9,7 @@ type attributes = {
   type: string;
   name: string;
   placeholder: string;
+  ref: React.Ref<HTMLInputElement>;
 };
 
 //---------COMPONENT----------\
@@ -16,6 +17,7 @@ type attributes = {
 const InputOutside: React.FC<attributes> = function (props) {
   return (
     <input
+      ref={props.ref}
       className={classes.main + " " + props.individualClass}
       type={props.type}
       name={props.name}
