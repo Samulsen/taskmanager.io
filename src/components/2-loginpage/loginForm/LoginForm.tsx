@@ -22,6 +22,7 @@ const LoginForm = function () {
   const AuthContextLocal = useContext(AuthContext);
   const navigate = useNavigate();
   const [error, setError] = useState(false);
+  const [passwordVisibility, setVisibility] = useState("password");
   const inputPassword = useRef<HTMLInputElement>(null);
   const inputMail = useRef<HTMLInputElement>(null);
   //__c-logic________
@@ -80,12 +81,14 @@ const LoginForm = function () {
         ref={inputPassword}
         key="inp-password"
         individualClass={classes.input + " " + classes.password}
-        //__NOTE: Temp "type" later deffault password
-        type="type"
+        type={passwordVisibility}
         name="passwordInputOutside"
         placeholder="Password"
       />
-      <PasswordToggler individualClass={classes.toggler} />
+      <PasswordToggler
+        individualClass={classes.toggler}
+        setPasswordVisibility={setVisibility}
+      />
       <div className={classes.buttonBox}>
         <ButtonOutside
           border="green"

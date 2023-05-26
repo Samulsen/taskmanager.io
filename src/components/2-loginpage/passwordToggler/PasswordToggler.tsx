@@ -7,9 +7,10 @@ import unshowSign from "./unshow.svg";
 
 //---------COMPONENT----------\
 
-const PasswordToggler: React.FC<{ individualClass: string }> = function (
-  props
-) {
+const PasswordToggler: React.FC<{
+  individualClass: string;
+  setPasswordVisibility: any;
+}> = function (props) {
   const [visibility, setVisibility] = useState(false);
 
   const Logic = {
@@ -23,8 +24,10 @@ const PasswordToggler: React.FC<{ individualClass: string }> = function (
     toogleVisibility() {
       if (visibility) {
         setVisibility(false);
+        props.setPasswordVisibility("password");
       } else {
         setVisibility(true);
+        props.setPasswordVisibility("text");
       }
     },
   };
