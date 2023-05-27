@@ -2,6 +2,7 @@
 
 import { createContext, useState, ReactNode } from "react";
 import logCol from "../util/logColor";
+import debugLoggerAuth from "../util/debugLoggerAuth";
 import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -22,11 +23,7 @@ const AuthContextProvider: React.FC<{ children: ReactNode }> = function (pr) {
   const [authState, setAuthState] = useState(false);
   const [userUID, setUserUID] = useState("anonymous");
 
-  console.warn(` 
-  Auth Context was (re-)executed
-  Current Auth State= ${authState}
-  CUrrent User UID= ${userUID}
-  `);
+  debugLoggerAuth(authState, userUID);
 
   const authColdStart = (): Promise<boolean> => {
     return new Promise((resolve) => {
