@@ -1,3 +1,4 @@
+//---------MAIN---------------\
 const logCol = function (text: string, col: string): void {
   let colorString;
   switch (col) {
@@ -13,5 +14,5 @@ const logCol = function (text: string, col: string): void {
 
   console.log("%c" + text, colorString);
 };
-
+//---------EXPORTS------------\
 export default logCol;

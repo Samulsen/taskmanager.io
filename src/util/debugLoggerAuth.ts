@@ -1,3 +1,4 @@
+//---------MAIN---------------\
 const debugLoggerAuth = function (authState: boolean, userUID: string) {
   console.log(
     `
@@ -20,5 +21,5 @@ const debugLoggerAuth = function (authState: boolean, userUID: string) {
     }`
   );
 };
-
+//---------EXPORTS------------\
 export default debugLoggerAuth;

@@ -1,10 +1,11 @@
 //---------IMPORTS------------\
-
+//__i-libraries______
 import { createContext, useState, ReactNode } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase";
+//__i-helper_________
 import logCol from "../util/logColor";
 import debugLoggerAuth from "../util/debugLoggerAuth";
-import { auth } from "../firebase";
-import { onAuthStateChanged } from "firebase/auth";
 
 //---------MAIN---------------\
 
