@@ -1,6 +1,9 @@
 //---------IMPORTS------------\
 
-import { createContext, useState, ReactNode, useEffect } from "react";
+import { createContext, useState, ReactNode } from "react";
+import logCol from "../util/logColor";
+import { auth } from "../firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 //---------MAIN---------------\
 
@@ -9,6 +12,7 @@ type ContextValueType = {
   authState: boolean;
   setAuthState: React.Dispatch<React.SetStateAction<boolean>>;
   setUserUID: React.Dispatch<React.SetStateAction<string>>;
+  authColdStart: () => Promise<boolean>;
 };
 export const AuthContext = createContext<ContextValueType | null>(null);
 
@@ -16,17 +20,34 @@ export const AuthContext = createContext<ContextValueType | null>(null);
 
 const AuthContextProvider: React.FC<{ children: ReactNode }> = function (pr) {
   const [authState, setAuthState] = useState(false);
-  const [userUID, setUserUID] = useState("deffault");
+  const [userUID, setUserUID] = useState("anonymous");
 
-  console.warn("Auth context ran!!!");
-  console.log("current log state of app= " + authState);
-  console.log("current user= " + userUID);
+  console.warn(` 
+  Auth Context was (re-)executed
+  Current Auth State= ${authState}
+  CUrrent User UID= ${userUID}
+  `);
+
+  const authColdStart = (): Promise<boolean> => {
+    return new Promise((resolve) => {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          logCol("User is logged in!", "green");
+          resolve(true);
+        } else {
+          logCol("User is not logged in!", "red");
+          resolve(false);
+        }
+      });
+    });
+  };
 
   const AuthContextValues: ContextValueType = {
     userUID,
     authState,
     setUserUID,
     setAuthState,
+    authColdStart,
   };
 
   return (
