@@ -2,8 +2,8 @@
 //__i-libraries______
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 //__i-components_____
-import Public from "./components/#-authLogicWrappers/Public";
-import Private from "./components/#-authLogicWrappers/Private";
+import Public from "./components/0-auth/Public";
+import Private from "./components/0-auth/Private";
 import Entrypage from "./components/1-entrypage/Entrypage";
 import Loginpage from "./components/2-loginpage/Loginpage";
 import Registerpage from "./components/3-registerpage/Registerpage";
