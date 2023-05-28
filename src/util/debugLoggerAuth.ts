@@ -1,24 +1,19 @@
+import { User } from "firebase/auth";
+
 //---------MAIN---------------\
-const debugLoggerAuth = function (authState: boolean, userUID: string) {
+
+const debugLoggerAuth = function (userObject: User | null) {
   console.log(
     `
-      %cAuth Context was (re-)executed!
-      %cCurrent Auth State: %c${authState}
-      %cCurrent User UID: %c${userUID}
+      %cUse Effect was executed!
+      %cCurrent Auth State: %c${userObject ? true : false}
+      %cCurrent User UID: %c${userObject?.email}
       `,
     "font-weight: bold; color:yellow",
     "color:white",
-    `${
-      authState
-        ? "font-weight: bold; color:green"
-        : "font-weight: bold; color:red"
-    }`,
+    `${userObject ? "color:green" : "color:red"}`,
     "color:white",
-    `${
-      userUID === "anonymous"
-        ? "font-weight: bold; color:grey"
-        : "font-weight: bold; color:yellowgreen"
-    }`
+    `${userObject ? "color:yellowgreen" : "color:grey"}`
   );
 };
 //---------EXPORTS------------\

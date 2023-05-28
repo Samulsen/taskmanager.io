@@ -1,60 +1,63 @@
 //---------IMPORTS------------\
+
 //__i-libraries______
-import { createContext, useState, ReactNode } from "react";
+
+import { createContext, ReactNode, useEffect, useContext } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase";
+import { User } from "firebase/auth";
+
 //__i-helper_________
-import logCol from "../util/logColor";
+
 import debugLoggerAuth from "../util/debugLoggerAuth";
+import logCol from "../util/logColor";
 
 //---------MAIN---------------\
 
 type ContextValueType = {
-  userUID: string;
-  authState: boolean;
-  setAuthState: React.Dispatch<React.SetStateAction<boolean>>;
-  setUserUID: React.Dispatch<React.SetStateAction<string>>;
-  authColdStart: () => Promise<boolean>;
+  userObject: null | User;
+  // authState: boolean;
+  // setAuthState: React.Dispatch<React.SetStateAction<boolean>>;
+  // setUserUID: React.Dispatch<React.SetStateAction<string>>;
 };
-export const AuthContext = createContext<ContextValueType | null>(null);
+const AuthContextLocal = createContext<ContextValueType | null>(null);
 
 //---------COMPONENT----------\
 
 const AuthContextProvider: React.FC<{ children: ReactNode }> = function (pr) {
-  const [authState, setAuthState] = useState(false);
-  const [userUID, setUserUID] = useState("anonymous");
+  let userObject: null | User = null;
 
-  debugLoggerAuth(authState, userUID);
-
-  const authColdStart = (): Promise<boolean> => {
-    return new Promise((resolve) => {
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          logCol("User is logged in!", "green");
-          resolve(true);
-        } else {
-          logCol("User is not logged in!", "red");
-          resolve(false);
-        }
-      });
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        logCol("User is logged in!", "green");
+        userObject = user;
+        debugLoggerAuth(userObject);
+      } else {
+        logCol("User is NOT logged in!", "red");
+        debugLoggerAuth(userObject);
+      }
     });
-  };
+  }, []);
 
   const AuthContextValues: ContextValueType = {
-    userUID,
-    authState,
-    setUserUID,
-    setAuthState,
-    authColdStart,
+    userObject,
+    // authState,
+    // setUserUID,
+    // setAuthState,
   };
 
   return (
-    <AuthContext.Provider value={AuthContextValues}>
+    <AuthContextLocal.Provider value={AuthContextValues}>
       {pr.children}
-    </AuthContext.Provider>
+    </AuthContextLocal.Provider>
   );
 };
 
 //---------EXPORTS------------\
 
 export default AuthContextProvider;
+
+export const AuthContext = function () {
+  return useContext(AuthContextLocal);
+};
