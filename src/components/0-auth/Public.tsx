@@ -1,25 +1,45 @@
 //---------IMPORTS------------\
 
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import timeout from "../../util/timeout";
 import Anchor from "../0-independent/anchor/Anchor";
+import Loading from "./loader/Loading";
 
 //---------COMPONENT----------\
 
 const Public = function () {
-  const coldState = AuthContext()?.coldState;
+  const authState = AuthContext()?.authState;
+  const navigate = useNavigate();
 
-  if (coldState === "cold") {
-    console.log("checking the cold state");
-    return <></>;
-  } else {
-    console.log("check done! result= " + coldState);
-    return (
-      <Anchor>
-        <Outlet />
-      </Anchor>
-    );
-  }
+  const Logic = {
+    evaluateAuthState() {
+      if (authState === "UNEVALUATED") {
+        return (
+          <Anchor>
+            <Loading />
+          </Anchor>
+        );
+      }
+      if (authState === true) {
+        navigate("/private/allTasks");
+        return;
+      }
+      if (authState === false) {
+        return (
+          <Anchor>
+            <Outlet />
+          </Anchor>
+        );
+      }
+    },
+  };
+  // return <>{Logic.evaluateAuthState()}</>;
+  return (
+    <Anchor>
+      <Loading />
+    </Anchor>
+  );
 };
 
 export default Public;

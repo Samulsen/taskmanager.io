@@ -20,10 +20,18 @@ import logCol from "../util/logColor";
 
 //---------MAIN---------------\
 
+const state = {
+  //__NOTE: by default not evaluated because of async op of firebase auth, when returning => either true or false, private and public subscribed!
+  cold: "UNEVALUATED",
+  loggedIn: true,
+  notLoggedIn: false,
+};
+
 type userStates = null | User;
+type authStates = string | boolean;
 interface ContextValueType {
   userObject: userStates;
-  coldState: string;
+  authState: authStates;
 }
 const AuthContextLocal = createContext<ContextValueType | null>(null);
 
@@ -33,26 +41,26 @@ const AuthContextProvider: React.FC<{ children: ReactNode }> = function ({
   children,
 }) {
   const [userObject, setUserObject] = useState<userStates>(null);
-  const [coldState, setColdState] = useState("cold");
+  const [authState, setAuthState] = useState<authStates>(state.cold);
 
   useEffect(() => {
     logCol("onAuthStateChanged was initiated!", "orange");
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setUserObject(user);
-        setColdState("isLoggedIn");
+        setAuthState(state.loggedIn);
         debugLoggerAuth(userObject);
       } else {
         setUserObject(user);
         debugLoggerAuth(userObject);
-        setColdState("isNotLogged");
+        setAuthState(state.notLoggedIn);
       }
     });
   }, []);
 
   const AuthContextValues: ContextValueType = {
     userObject,
-    coldState,
+    authState,
   };
 
   return (
