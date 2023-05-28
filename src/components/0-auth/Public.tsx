@@ -1,9 +1,8 @@
 //---------IMPORTS------------\
 
 import { Outlet, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import timeout from "../../util/timeout";
+//__i-components_____
 import Anchor from "../0-independent/anchor/Anchor";
 import Loading from "./loader/Loading";
 
@@ -27,6 +26,7 @@ const Public = function () {
         return;
       }
       if (authState === false) {
+        //__NOTE: show requested route
         return (
           <Anchor>
             <Outlet />
