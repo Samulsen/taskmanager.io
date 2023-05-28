@@ -1,6 +1,6 @@
 import { FunctionBody } from "typescript";
 
-const timeout = function (callback: Function, sec: number): void {
+const timeout = function (callback: any, sec: number): void {
   setTimeout(() => {
     callback();
   }, sec * 1000);

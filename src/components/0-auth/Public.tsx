@@ -1,6 +1,7 @@
 //---------IMPORTS------------\
 
 import { Outlet, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import timeout from "../../util/timeout";
 import Anchor from "../0-independent/anchor/Anchor";
@@ -34,12 +35,7 @@ const Public = function () {
       }
     },
   };
-  // return <>{Logic.evaluateAuthState()}</>;
-  return (
-    <Anchor>
-      <Loading />
-    </Anchor>
-  );
+  return <>{Logic.evaluateAuthState()}</>;
 };
 
 export default Public;
