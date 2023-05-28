@@ -2,7 +2,13 @@
 
 //__i-libraries______
 
-import { createContext, ReactNode, useEffect, useContext } from "react";
+import {
+  createContext,
+  ReactNode,
+  useEffect,
+  useContext,
+  useState,
+} from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase";
 import { User } from "firebase/auth";
@@ -14,24 +20,25 @@ import logCol from "../util/logColor";
 
 //---------MAIN---------------\
 
+type userStates = null | User;
+
 type ContextValueType = {
-  userObject: null | User;
-  // authState: boolean;
-  // setAuthState: React.Dispatch<React.SetStateAction<boolean>>;
-  // setUserUID: React.Dispatch<React.SetStateAction<string>>;
+  userObject: userStates;
 };
 const AuthContextLocal = createContext<ContextValueType | null>(null);
 
 //---------COMPONENT----------\
 
-const AuthContextProvider: React.FC<{ children: ReactNode }> = function (pr) {
-  let userObject: null | User = null;
+const AuthContextProvider: React.FC<{ children: ReactNode }> = function ({
+  children,
+}) {
+  const [userObject, setUserObject] = useState<userStates>(null);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         logCol("User is logged in!", "green");
-        userObject = user;
+        setUserObject(user);
         debugLoggerAuth(userObject);
       } else {
         logCol("User is NOT logged in!", "red");
@@ -42,14 +49,11 @@ const AuthContextProvider: React.FC<{ children: ReactNode }> = function (pr) {
 
   const AuthContextValues: ContextValueType = {
     userObject,
-    // authState,
-    // setUserUID,
-    // setAuthState,
   };
 
   return (
     <AuthContextLocal.Provider value={AuthContextValues}>
-      {pr.children}
+      {children}
     </AuthContextLocal.Provider>
   );
 };

@@ -1,12 +1,12 @@
 //---------IMPORTS------------\
 
 import classes from "./_Anchor.module.scss";
-import { Outlet } from "react-router-dom";
+import { FC } from "react";
 
 //---------COMPONENT----------\
 
-const Anchor = function () {
-  return <div className={classes.anchor}>{<Outlet />}</div>;
+const Anchor: FC<{ children: any }> = function ({ children }) {
+  return <div className={classes.anchor}>{children}</div>;
 };
 
 //---------EXPORTS------------\

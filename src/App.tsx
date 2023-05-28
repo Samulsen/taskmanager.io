@@ -2,8 +2,8 @@
 //__i-libraries______
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 //__i-components_____
-import Anchor from "./components/0-independent/anchor/Anchor";
-import ProtectedContainer from "./context/ProtectedContainer";
+import Public from "./components/#-authLogicWrappers/Public";
+import Private from "./components/#-authLogicWrappers/Private";
 import Entrypage from "./components/1-entrypage/Entrypage";
 import Loginpage from "./components/2-loginpage/Loginpage";
 import Registerpage from "./components/3-registerpage/Registerpage";
@@ -14,7 +14,7 @@ import Main from "./components/4-main/Main";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Anchor />,
+    element: <Public />,
     children: [
       {
         path: "/entry",
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/authTrue",
-    element: <ProtectedContainer />,
+    element: <Private />,
     children: [{ path: "allTasks", element: <Main /> }],
   },
 ]);
