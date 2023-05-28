@@ -21,7 +21,7 @@ import logCol from "../util/logColor";
 //---------MAIN---------------\
 
 type userStates = null | User;
-export interface ContextValueType {
+interface ContextValueType {
   userObject: userStates;
   coldState: string;
 }
@@ -36,15 +36,14 @@ const AuthContextProvider: React.FC<{ children: ReactNode }> = function ({
   const [coldState, setColdState] = useState("cold");
 
   useEffect(() => {
+    logCol("onAuthStateChanged was initiated!", "orange");
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        logCol("User is logged in!", "green");
         setUserObject(user);
         setColdState("isLoggedIn");
         debugLoggerAuth(userObject);
       } else {
         setUserObject(user);
-        logCol("User is NOT logged in!", "red");
         debugLoggerAuth(userObject);
         setColdState("isNotLogged");
       }

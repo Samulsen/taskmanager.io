@@ -5,9 +5,9 @@ import { User } from "firebase/auth";
 const debugLoggerAuth = function (userObject: User | null) {
   console.log(
     `
-      %cUse Effect was executed!
-      %cCurrent Auth State: %c${userObject ? true : false}
-      %cCurrent User UID: %c${userObject?.email}
+%conAuthStateChanged evaluates a change...
+%cCurrent Auth State: %c${userObject ? true : false}
+%cCurrent User UID: %c${userObject?.email}
       `,
     "font-weight: bold; color:yellow",
     "color:white",

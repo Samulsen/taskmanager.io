@@ -13,26 +13,26 @@ import Main from "./components/4-main/Main";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/public",
     element: <Public />,
     children: [
       {
-        path: "/entry",
+        path: "entry",
         element: <Entrypage />,
       },
       {
         index: true,
-        path: "/login",
+        path: "login",
         element: <Loginpage />,
       },
       {
-        path: "/register",
+        path: "register",
         element: <Registerpage />,
       },
     ],
   },
   {
-    path: "/authTrue",
+    path: "/private",
     element: <Private />,
     children: [{ path: "allTasks", element: <Main /> }],
   },
