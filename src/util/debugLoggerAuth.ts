@@ -2,16 +2,27 @@ import { User } from "firebase/auth";
 
 //---------MAIN---------------\
 
-const debugLoggerAuth = function (userObject: User | null) {
+const debugLoggerAuth = function (
+  userObject: User | null,
+  authState: string | boolean
+) {
   console.log(
     `
-%conAuthStateChanged evaluates a change...
-%cCurrent Auth State: %c${userObject ? true : false}
-%cCurrent User UID: %c${userObject?.email}
+%conAuthContext evaluates AuthState
+%cCurrent Auth State: %c${
+      typeof authState === "string" ? "UNEVALUATED" : authState ? true : false
+    }
+%cCurrent User Mail: %c${userObject?.email}
       `,
     "font-weight: bold; color:yellow",
     "color:white",
-    `${userObject ? "color:green" : "color:red"}`,
+    `${
+      typeof authState === "string"
+        ? "color:burlywood"
+        : userObject
+        ? "color:green"
+        : "color:red"
+    }`,
     "color:white",
     `${userObject ? "color:yellowgreen" : "color:grey"}`
   );

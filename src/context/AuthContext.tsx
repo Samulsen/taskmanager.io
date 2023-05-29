@@ -72,7 +72,7 @@ const AuthContextProvider: React.FC<{ children: ReactNode }> = function ({
 }) {
   const [userObject, setUserObject] = useState<userStates>(null);
   const [authState, setAuthState] = useState<authStates>(state.cold);
-  debugLoggerAuth(userObject);
+  debugLoggerAuth(userObject, authState);
   useEffect(() => {
     logCol("onAuthStateChanged was initiated!", "orange");
     onAuthStateChanged(auth, (user) => {
