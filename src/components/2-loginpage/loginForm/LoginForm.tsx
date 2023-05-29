@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 //__i-style__________
 import classes from "./_LoginForm.module.scss";
-import base from "././../../../styles/./public modules/_base.module.scss";
 //__i-context________
 import { AuthContext } from "../../../context/AuthContext";
 //__i-components_____
@@ -67,14 +66,14 @@ const LoginForm = function () {
         ref={inputMail}
         key="inp-mail"
         type="text"
-        className={`${classes.input} ${classes.mail} ${base.inputOutside}`}
+        className={`${classes.input} ${classes.mail}`}
         name="mailInputOutside"
         placeholder="E - Mail"
       />
       <input
         ref={inputPassword}
         key="inp-password"
-        className={`${classes.input} ${classes.password} ${base.inputOutside}`}
+        className={`${classes.input} ${classes.password}`}
         type={passwordVisibility}
         name="passwordInputOutside"
         placeholder="Password"

@@ -16,6 +16,39 @@
 .input {
   font-size: 1.5rem;
   height: 5.5rem;
+  width: 30rem;
+  border-color: $pinkish-blue;
+
+  background-color: $pinkish-blue;
+  text-align: center;
+  outline-width: 0;
+  font-weight: 400;
+  color: white;
+  border-style: solid;
+  border-radius: 1rem;
+  transition: all 0.3s;
+  font-family: "Roboto Mono", monospace;
+
+  &:hover {
+    border-color: white;
+  }
+
+  &:focus {
+    outline: none;
+    transform: scale(1.05);
+    border-color: $main-green;
+    border-width: 0.3rem;
+
+    &::placeholder {
+      opacity: 0;
+    }
+  }
+
+  &::placeholder {
+    color: white;
+    //__NOTE: needed for firefox
+    opacity: 1;
+  }
 }
 .mail {
   grid-area: username;

@@ -6,10 +6,8 @@
   outline-width: 0;
   font-weight: 400;
   color: white;
-  border-color: $pinkish-blue;
   border-style: solid;
   border-radius: 1rem;
-  width: 30rem;
   transition: all 0.3s;
   font-family: "Roboto Mono", monospace;
 
@@ -20,8 +18,6 @@
   &:focus {
     outline: none;
     transform: scale(1.05);
-    border-color: $main-green;
-    border-width: 0.3rem;
 
     &::placeholder {
       opacity: 0;
@@ -30,7 +26,7 @@
 
   &::placeholder {
     color: white;
-    //for firefox opacity lol
+    //__NOTE: needed for firefox
     opacity: 1;
   }
 }
