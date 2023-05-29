@@ -65,6 +65,7 @@ const LoginForm = function () {
     <div className={classes.body}>
       <input
         ref={inputMail}
+        key="inp-mail"
         type="text"
         className={`${classes.input} ${classes.mail} ${base.inputOutside}`}
         name="mailInputOutside"
