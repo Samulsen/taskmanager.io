@@ -1,0 +1,25 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.body {
+  margin: auto;
+  // width: 50rem;
+  // height: 49rem;
+  display: grid;
+  grid-template-columns: 50rem;
+  grid-template-rows: 11rem 11rem 30.7rem;
+  grid-auto-rows: 3rem;
+  grid-auto-columns: 30rem;
+  justify-items: center;
+  align-items: center;
+}
+
+.logo {
+  width: 11rem;
+  height: 11rem;
+}
+
+.title {
+  font-size: 5.9rem;
+  // padding-bottom: 1rem;
+}

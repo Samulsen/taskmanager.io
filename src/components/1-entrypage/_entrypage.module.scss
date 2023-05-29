@@ -1,0 +1,15 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.body {
+  margin: auto;
+  display: grid;
+  grid-template-columns: 120rem;
+  grid-template-rows: 20rem 30rem 20rem;
+  width: 120rem;
+  height: 70rem;
+}
+
+.offLoad {
+  @include fadeOutAnimation(1s, 0s);
+}

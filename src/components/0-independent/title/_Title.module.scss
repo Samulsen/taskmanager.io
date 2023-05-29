@@ -1,0 +1,18 @@
+@import "./../../../styles/variables";
+
+.body {
+  font-weight: 500;
+  display: flex;
+}
+
+.part {
+  &_1 {
+  }
+
+  &_2 {
+    color: $main_green;
+  }
+
+  &_3 {
+  }
+}

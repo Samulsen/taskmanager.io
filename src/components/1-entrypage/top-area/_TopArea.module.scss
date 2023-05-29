@@ -1,0 +1,32 @@
+@import "./../../../styles/mixins";
+
+.topArea {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 50% 50%;
+  grid-template-areas:
+    "first"
+    "second";
+  align-items: center;
+  overflow: auto;
+}
+
+.first {
+  grid-area: first;
+  justify-self: left;
+  @include fadeInAnimation(1s, 1s);
+}
+
+.second {
+  grid-area: first;
+  justify-self: right;
+  @include fadeInAnimation(1s, 2.75s);
+}
+
+.third {
+  grid-area: second;
+  justify-self: center;
+  @include fadeInAnimation(1s, 1.75s);
+}

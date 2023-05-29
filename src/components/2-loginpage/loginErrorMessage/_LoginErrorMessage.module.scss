@@ -1,0 +1,24 @@
+.body {
+  grid-area: error;
+  display: grid;
+  grid-template-columns: 30rem;
+  grid-template-rows: 0.7rem 3rem;
+  justify-items: center;
+  align-items: center;
+}
+
+.line {
+  width: 30rem;
+  background-color: white;
+  height: 0.1rem;
+}
+
+.message {
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.errorPart {
+  color: rgb(201, 15, 15);
+  font-weight: 500;
+}

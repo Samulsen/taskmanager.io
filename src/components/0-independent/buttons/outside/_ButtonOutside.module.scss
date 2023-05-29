@@ -1,0 +1,35 @@
+@import "./../../../../styles/variables";
+
+.body {
+  height: 4.9rem;
+  width: 12rem;
+  border-style: solid;
+  border-width: 0.4rem;
+  background-color: $dark-blue;
+  border-radius: 1rem;
+  font-size: 1.7rem;
+  font-weight: 600;
+  transition: all 0.3s;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.border_green {
+  border-color: $main-green;
+  &:hover {
+    border-color: white;
+    background-color: $pinkish-blue;
+    transform: translateY(-1rem);
+  }
+  &:active {
+    border-color: white;
+    background-color: $pinkish-blue;
+    transform: translateY(-1rem) scale(0.95);
+  }
+}
+
+.border_white {
+  border-color: white;
+}

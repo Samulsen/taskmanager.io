@@ -1,0 +1,9 @@
+@import "./animations";
+
+@mixin fadeInAnimation($length, $delay) {
+  animation: fadeIn $length ease-in-out $delay 1 normal backwards;
+}
+
+@mixin fadeOutAnimation($length, $delay) {
+  animation: fadeOut $length ease-in-out $delay 1 normal forwards;
+}
