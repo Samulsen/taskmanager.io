@@ -2,11 +2,16 @@
 
 import classes from "./_main.module.scss";
 import ButtonOutside from "../0-independent/buttons/outside/ButtonOutside";
+import { AuthContext } from "../../context/AuthContext";
 
 //---------COMPONENT----------\
 
 const Main = function () {
-  const logoutRequest = function () {};
+  const AuthLogic = AuthContext();
+
+  const logoutRequest = function () {
+    return AuthLogic?.loggout();
+  };
 
   return (
     <div className={classes.main}>

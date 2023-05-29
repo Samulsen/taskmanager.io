@@ -3,23 +3,22 @@
 //__i-libraries______
 import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../firebase";
 //__i-style__________
 import classes from "./_LoginForm.module.scss";
 //__i-context________
-// import { AuthContext } from "../../../context/AuthContext";
+import { AuthContext } from "../../../context/AuthContext";
 //__i-components_____
 import PasswordToggler from "../passwordToggler/PasswordToggler";
 import ButtonOutside from "../../0-independent/buttons/outside/ButtonOutside";
 import InputOutside from "../../0-independent/inputs/outside/InputOutside";
 import LoginErrorMessage from "../loginErrorMessage/LoginErrorMessage";
+import { UserCredential, AuthError } from "firebase/auth";
 
 //---------COMPONENT----------\
 
 const LoginForm = function () {
   //__c-hooks________
-  // const AuthContextLocal = useContext(AuthContext);
+  const AuthLogic = AuthContext();
   const navigate = useNavigate();
   const [error, setError] = useState(false);
   const [passwordVisibility, setVisibility] = useState("password");
@@ -34,30 +33,29 @@ const LoginForm = function () {
     signIn() {
       let email = inputMail.current!.value;
       let password = inputPassword.current!.value;
-      return signInWithEmailAndPassword(auth, email, password);
+      return AuthLogic?.loggin(email, password);
     },
-    getCredentials(userCredential: any) {
-      // AuthContextLocal!.setUserUID(userCredential.user.uid);
-      // AuthContextLocal!.setAuthState(true);
+    getCredential(userCredential: UserCredential | undefined) {
+      console.log(userCredential?.user.email);
     },
     evaluateErrorState() {
       if (error) {
         return <LoginErrorMessage />;
       }
     },
-    getError(error: any) {
+    getError(error: AuthError) {
       console.error(error.message);
       setError(true);
     },
     moveToPrivate() {
-      navigate("/authTrue/allTasks");
+      navigate("/private/allTasks");
       return Promise.resolve();
     },
     //__NOTE: Main function
     loginRequest() {
       this.initChain()
         .then(this.signIn)
-        .then(this.getCredentials)
+        .then(this.getCredential)
         .then(this.moveToPrivate)
         .catch(this.getError);
     },

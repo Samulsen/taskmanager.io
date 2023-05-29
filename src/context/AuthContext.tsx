@@ -72,7 +72,7 @@ const AuthContextProvider: React.FC<{ children: ReactNode }> = function ({
 }) {
   const [userObject, setUserObject] = useState<userStates>(null);
   const [authState, setAuthState] = useState<authStates>(state.cold);
-
+  debugLoggerAuth(userObject);
   useEffect(() => {
     logCol("onAuthStateChanged was initiated!", "orange");
     onAuthStateChanged(auth, (user) => {
@@ -80,10 +80,10 @@ const AuthContextProvider: React.FC<{ children: ReactNode }> = function ({
       if (user) {
         setUserObject(user);
         setAuthState(state.loggedIn);
-        debugLoggerAuth(userObject);
+        // debugLoggerAuth(userObject);
       } else {
         setUserObject(user);
-        debugLoggerAuth(userObject);
+        // debugLoggerAuth(userObject);
         setAuthState(state.notLoggedIn);
       }
       // }, 1000);
