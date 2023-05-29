@@ -5,12 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 //__i-style__________
 import classes from "./_LoginForm.module.scss";
+import base from "././../../../styles/./public modules/_base.module.scss";
 //__i-context________
 import { AuthContext } from "../../../context/AuthContext";
 //__i-components_____
 import PasswordToggler from "../passwordToggler/PasswordToggler";
 import ButtonOutside from "../../0-independent/buttons/outside/ButtonOutside";
-import InputOutside from "../../0-independent/inputs/outside/InputOutside";
 import LoginErrorMessage from "../loginErrorMessage/LoginErrorMessage";
 import { AuthError } from "firebase/auth";
 
@@ -63,18 +63,17 @@ const LoginForm = function () {
 
   return (
     <div className={classes.body}>
-      <InputOutside
+      <input
         ref={inputMail}
-        key="inp-mail"
-        individualClass={classes.input + " " + classes.mail}
         type="text"
+        className={`${classes.input} ${classes.mail} ${base.inputOutside}`}
         name="mailInputOutside"
         placeholder="E - Mail"
       />
-      <InputOutside
+      <input
         ref={inputPassword}
         key="inp-password"
-        individualClass={classes.input + " " + classes.password}
+        className={`${classes.input} ${classes.password} ${base.inputOutside}`}
         type={passwordVisibility}
         name="passwordInputOutside"
         placeholder="Password"
