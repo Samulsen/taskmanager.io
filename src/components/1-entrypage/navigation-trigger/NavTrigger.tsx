@@ -1,6 +1,5 @@
 //---------IMPORTS------------\
 
-import { Link, useNavigate } from "react-router-dom";
 import classes from "./_NavTrigger.module.scss";
 
 //---------MAIN---------------\

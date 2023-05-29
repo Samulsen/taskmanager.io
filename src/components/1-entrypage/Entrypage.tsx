@@ -13,11 +13,13 @@ import LowerArea from "./lower-area/LowerArea";
 
 const Entrypage = function () {
   //__c-hooks________
+
   const [canTrigger, setTrigger] = useState(false);
   const [switchRequest, setRequest] = useState(false);
   const [allowSwitch, setSwitch] = useState(false);
   const [bodyClassList, setClassList] = useState(classes.body);
   const navigate = useNavigate();
+
   //__c-logic________
 
   const Logic = {
@@ -51,7 +53,9 @@ const Entrypage = function () {
       }
     },
   };
+
   //__c-invocation___
+
   useEffect(Logic.initiateSwitchRequest, [switchRequest]);
   useEffect(Logic.closeSwitchRequest, [allowSwitch]);
 
