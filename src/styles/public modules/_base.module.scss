@@ -11,6 +11,16 @@
   border-radius: 1rem;
   width: 30rem;
   transition: all 0.3s;
+  font-family: "Roboto Mono", monospace;
+
+  //__NOTE: added because chrome displays very small dots
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    &[type="password"] {
+      font-family: Verdana;
+      -webkit-text-stroke-width: 0.2rem;
+      letter-spacing: 0.4rem;
+    }
+  }
 
   &:hover {
     border-color: white;
