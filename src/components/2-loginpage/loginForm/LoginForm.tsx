@@ -12,7 +12,7 @@ import PasswordToggler from "../passwordToggler/PasswordToggler";
 import ButtonOutside from "../../0-independent/buttons/outside/ButtonOutside";
 import InputOutside from "../../0-independent/inputs/outside/InputOutside";
 import LoginErrorMessage from "../loginErrorMessage/LoginErrorMessage";
-import { UserCredential, AuthError } from "firebase/auth";
+import { AuthError } from "firebase/auth";
 
 //---------COMPONENT----------\
 
@@ -35,9 +35,6 @@ const LoginForm = function () {
       let password = inputPassword.current!.value;
       return AuthLogic?.loggin(email, password);
     },
-    getCredential(userCredential: UserCredential | undefined) {
-      console.log(userCredential?.user.email);
-    },
     evaluateErrorState() {
       if (error) {
         return <LoginErrorMessage />;
@@ -55,7 +52,6 @@ const LoginForm = function () {
     loginRequest() {
       this.initChain()
         .then(this.signIn)
-        .then(this.getCredential)
         .then(this.moveToPrivate)
         .catch(this.getError);
     },
