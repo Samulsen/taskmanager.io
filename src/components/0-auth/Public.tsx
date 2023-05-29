@@ -9,9 +9,12 @@ import Loading from "./loader/Loading";
 //---------COMPONENT----------\
 
 const Public = function () {
+  //__c-hooks________
+
   const authState = AuthContext()?.authState;
   const navigate = useNavigate();
 
+  //__c-logic________
   const Logic = {
     evaluateAuthState() {
       if (authState === "UNEVALUATED") {

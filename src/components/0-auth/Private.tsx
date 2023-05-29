@@ -1,18 +1,41 @@
 //---------IMPORTS------------\
 
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import Anchor from "../0-independent/anchor/Anchor";
+import Loading from "./loader/Loading";
 
 //---------COMPONENT----------\
 
 const Private = function () {
-  // //__c-hooks________
-  // const navigate = useNavigate();
-  // //__c-logic________
-  // const Logic = {
-  //   authCheck() {},
-  // };
+  //__c-hooks________
 
-  return <Outlet />;
+  const navigate = useNavigate();
+  const authState = AuthContext()?.authState;
+
+  //__c-logic________
+
+  const Logic = {
+    evaluateAuthState() {
+      if (authState === "UNEVALUATED") {
+        return (
+          <Anchor>
+            <Loading />
+          </Anchor>
+        );
+      }
+      if (authState === true) {
+        //__NOTE: show requested route
+        return <Outlet />;
+      }
+      if (authState === false) {
+        navigate("/public/login");
+        return;
+      }
+    },
+  };
+
+  return <>{Logic.evaluateAuthState()}</>;
 };
 
 //---------EXPORTS------------\
