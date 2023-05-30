@@ -1,0 +1,28 @@
+@import "./../../../../styles/variables";
+
+.body {
+  background-color: $pinkish-blue;
+  text-align: center;
+  outline-width: 0;
+  font-weight: 400;
+  color: white;
+  border-style: solid;
+  border-radius: 1rem;
+  transition: all 0.3s;
+  font-family: "Roboto Mono", monospace;
+
+  &:focus {
+    outline: none;
+    transform: scale(1.05);
+
+    &::placeholder {
+      opacity: 0;
+    }
+  }
+
+  &::placeholder {
+    color: white;
+    //__NOTE: needed for firefox
+    opacity: 1;
+  }
+}
