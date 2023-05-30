@@ -46,6 +46,10 @@ const RegisterForm = function () {
         placeholder="Password"
         name="input-passwordInit"
       />
+      <Info
+        description="Password must be at least 4 chars long and has no whitespace!"
+        position={classes.passwordInfo}
+      />
       <PasswordToggler
         individualClass={classes.password_toggle}
         setPasswordVisibility={""}
