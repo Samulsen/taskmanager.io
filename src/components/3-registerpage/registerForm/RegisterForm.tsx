@@ -41,12 +41,20 @@ const RegisterForm = function () {
         placeholder="Password"
         name="input-passwordInit"
       />
+      <PasswordToggler
+        individualClass={classes.password_toggle}
+        setPasswordVisibility={""}
+      />
       <CheckedInput
         key="inpPassRep"
         type="password"
         individualClass={classes.repeat}
         placeholder="Repeat Password"
         name="input-passwordRepeat"
+      />
+      <PasswordToggler
+        individualClass={classes.repeat_toggle}
+        setPasswordVisibility={""}
       />
     </div>
   );

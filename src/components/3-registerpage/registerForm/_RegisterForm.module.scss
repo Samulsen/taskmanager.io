@@ -28,10 +28,22 @@
 
 .password {
   grid-area: four;
+
+  &_toggle {
+    width: 4rem;
+    height: 4rem;
+    grid-area: tog-in;
+  }
 }
 
 .repeat {
   grid-area: five;
+
+  &_toggle {
+    width: 4rem;
+    height: 4rem;
+    grid-area: tog-rep;
+  }
 }
 
 .buttonBox {
