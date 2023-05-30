@@ -6,7 +6,7 @@ import { FC } from "react";
 //---------COMPONENT----------\
 
 const Anchor: FC<{ children: any }> = function ({ children }) {
-  return <div className={classes.anchor}>{children}</div>;
+  return <div className={classes.body}>{children}</div>;
 };
 
 //---------EXPORTS------------\
