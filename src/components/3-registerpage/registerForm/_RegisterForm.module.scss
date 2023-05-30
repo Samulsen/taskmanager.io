@@ -24,6 +24,10 @@
 
 .mail {
   grid-area: third;
+
+  &Info {
+    grid-area: q-one;
+  }
 }
 
 .password {

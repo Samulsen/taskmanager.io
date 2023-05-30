@@ -6,6 +6,7 @@ import { useRef } from "react";
 //__i-components_____
 import CheckedInput from "./checkedInput/CheckedInput";
 import ButtonOutside from "../../0-independent/buttons/outside/ButtonOutside";
+import Info from "./Info/Info";
 import PasswordToggler from "../../0-independent/passwordToggler/PasswordToggler";
 
 //---------COMPONENT----------\
@@ -33,6 +34,10 @@ const RegisterForm = function () {
         individualClass={classes.mail}
         placeholder="E - Mail"
         name="input-mail"
+      />
+      <Info
+        description="E - Mail must be of valid format (email@provider.com) and unused!"
+        position={classes.mailInfo}
       />
       <CheckedInput
         key="inpPassInit"
