@@ -2,6 +2,7 @@
 
 import classes from "./_RegisterForm.module.scss";
 import { useRef } from "react";
+
 //__i-components_____
 import CheckedInput from "./checkedInput/CheckedInput";
 import ButtonOutside from "../../0-independent/buttons/outside/ButtonOutside";
