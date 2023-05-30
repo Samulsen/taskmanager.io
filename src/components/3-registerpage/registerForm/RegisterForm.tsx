@@ -11,7 +11,7 @@ const RegisterForm = function () {
       <CheckedInput
         key="inpName"
         type="text"
-        individualClass=""
+        individualClass={classes.firstName}
         placeholder="First Name"
         name="input-firstName"
       />

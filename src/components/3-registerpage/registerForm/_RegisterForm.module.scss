@@ -5,9 +5,15 @@
   grid-template-areas:
     "first first first"
     "second second second"
-    "q-one third empty"
+    "q-one third empty-third"
     "q-two four tog-in"
-    "empty five tog-rep"
+    "empty-five five tog-rep"
     "button button button"
     "error error error";
+  align-items: center;
+  justify-items: center;
+}
+
+.firstName {
+  grid-area: first;
 }
