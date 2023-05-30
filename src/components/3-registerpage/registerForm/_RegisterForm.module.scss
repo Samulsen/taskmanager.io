@@ -1,5 +1,13 @@
 .body {
   display: grid;
   grid-template-columns: 10rem 30rem 10rem;
-  grid-template-rows: repeat(5, 6rem) 7rem, 4rem;
+  grid-template-rows: repeat(5, 6rem) 7rem 4rem;
+  grid-template-areas:
+    "first first first"
+    "second second second"
+    "q-one third empty"
+    "q-two four tog-in"
+    "empty five tog-rep"
+    "button button button"
+    "error error error";
 }

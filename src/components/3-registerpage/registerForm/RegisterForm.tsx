@@ -1,11 +1,22 @@
 //---------IMPORTS------------\
 
 import classes from "./_RegisterForm.module.scss";
+import CheckedInput from "./checkedInput/CheckedInput";
 
 //---------COMPONENT----------\
 
 const RegisterForm = function () {
-  return <div className={classes.body}></div>;
+  return (
+    <div className={classes.body}>
+      <CheckedInput
+        key="inpName"
+        type="text"
+        individualClass=""
+        placeholder="First Name"
+        name="input-firstName"
+      />
+    </div>
+  );
 };
 
 //---------EXPORTS------------\
