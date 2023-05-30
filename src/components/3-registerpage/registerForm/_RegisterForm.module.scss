@@ -30,9 +30,11 @@
   grid-area: four;
 
   &_toggle {
+    grid-area: tog-in;
     width: 4rem;
     height: 4rem;
-    grid-area: tog-in;
+    justify-self: left;
+    margin-left: 1rem;
   }
 }
 
@@ -40,9 +42,11 @@
   grid-area: five;
 
   &_toggle {
+    grid-area: tog-rep;
     width: 4rem;
     height: 4rem;
-    grid-area: tog-rep;
+    justify-self: left;
+    margin-left: 1rem;
   }
 }
 
