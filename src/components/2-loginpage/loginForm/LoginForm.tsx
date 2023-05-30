@@ -8,7 +8,7 @@ import classes from "./_LoginForm.module.scss";
 //__i-context________
 import { AuthContext } from "../../../context/AuthContext";
 //__i-components_____
-import PasswordToggler from "../passwordToggler/PasswordToggler";
+import PasswordToggler from "../../0-independent/passwordToggler/PasswordToggler";
 import ButtonOutside from "../../0-independent/buttons/outside/ButtonOutside";
 import LoginErrorMessage from "../loginErrorMessage/LoginErrorMessage";
 import { AuthError } from "firebase/auth";

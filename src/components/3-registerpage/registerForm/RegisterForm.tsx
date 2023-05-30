@@ -1,8 +1,11 @@
 //---------IMPORTS------------\
 
 import classes from "./_RegisterForm.module.scss";
-import CheckedInput from "./checkedInput/CheckedInput";
 import { useRef } from "react";
+//__i-components_____
+import CheckedInput from "./checkedInput/CheckedInput";
+import ButtonOutside from "../../0-independent/buttons/outside/ButtonOutside";
+import PasswordToggler from "../../0-independent/passwordToggler/PasswordToggler";
 
 //---------COMPONENT----------\
 
@@ -22,6 +25,27 @@ const RegisterForm = function () {
         individualClass={classes.lastName}
         placeholder="Last Name"
         name="input-lastName"
+      />
+      <CheckedInput
+        key="inpMail"
+        type="text"
+        individualClass={classes.mail}
+        placeholder="E - Mail"
+        name="input-mail"
+      />
+      <CheckedInput
+        key="inpPassInit"
+        type="password"
+        individualClass={classes.password}
+        placeholder="Password"
+        name="input-passwordInit"
+      />
+      <CheckedInput
+        key="inpPassRep"
+        type="password"
+        individualClass={classes.repeat}
+        placeholder="Repeat Password"
+        name="input-passwordRepeat"
       />
     </div>
   );
