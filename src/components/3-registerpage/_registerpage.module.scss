@@ -1,5 +1,16 @@
-.register {
-  background-color: rgb(255, 0, 217);
-  width: 20rem;
-  height: 20rem;
+.body {
+  display: grid;
+  margin: auto;
+  grid-template-rows: 8rem 8rem 41rem;
+  grid-template-columns: 50rem;
+  align-items: center;
+  justify-items: center;
+}
+
+.logo {
+  width: 8rem;
+}
+
+.title {
+  font-size: 5.5rem;
 }

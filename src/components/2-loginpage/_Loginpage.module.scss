@@ -8,7 +8,6 @@
   display: grid;
   grid-template-columns: 50rem;
   grid-template-rows: 11rem 11rem 30.7rem;
-  grid-auto-rows: 3rem;
   grid-auto-columns: 30rem;
   justify-items: center;
   align-items: center;
@@ -21,6 +20,4 @@
 
 .title {
   font-size: 5.9rem;
-  // padding-bottom: 1rem;
-  // adding changes
 }
