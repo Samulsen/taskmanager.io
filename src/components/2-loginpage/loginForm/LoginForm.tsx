@@ -17,13 +17,16 @@ import { AuthError } from "firebase/auth";
 
 const LoginForm = function () {
   //__c-hooks________
+
   const AuthLogic = AuthContext();
   const navigate = useNavigate();
   const [error, setError] = useState(false);
   const [passwordVisibility, setVisibility] = useState("password");
   const inputPassword = useRef<HTMLInputElement>(null);
   const inputMail = useRef<HTMLInputElement>(null);
+
   //__c-logic________
+
   const Logic = {
     //SECTION______________________: Login
     initChain() {

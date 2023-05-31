@@ -48,10 +48,24 @@
   border-color: grey;
   &:hover {
     border-color: red;
+    background-color: rgba(255, 0, 0, 0.119);
     transform: translateY(-0.5rem);
   }
   &:active {
     border-color: red;
+    background-color: rgba(255, 0, 0, 0.119);
+    transform: translateY(-0.5rem) scale(0.95);
+  }
+}
+
+.border_valid {
+  border-color: $main-green;
+  &:hover {
+    background-color: rgba(0, 128, 0, 0.307);
+    transform: translateY(-0.5rem);
+  }
+  &:active {
+    background-color: rgba(0, 128, 0, 0.307);
     transform: translateY(-0.5rem) scale(0.95);
   }
 }
