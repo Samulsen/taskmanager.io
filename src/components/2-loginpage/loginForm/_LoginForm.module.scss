@@ -66,14 +66,10 @@
 }
 
 .buttonBox {
-  width: 30rem;
-  height: 9rem;
+  grid-area: box;
   display: flex;
-  grid-template-rows: 9rem;
-  grid-template-columns: 12rem 6rem 12rem;
   justify-items: center;
   align-items: center;
-  grid-area: box;
 
   &_or {
     width: 6rem;

@@ -21,19 +21,37 @@
   &:hover {
     border-color: white;
     background-color: $pinkish-blue;
-    transform: translateY(-1rem);
+    transform: translateY(-0.5rem);
   }
   &:active {
     border-color: white;
     background-color: $pinkish-blue;
-    transform: translateY(-1rem) scale(0.95);
+    transform: translateY(-0.5rem) scale(0.95);
   }
 }
 
 .border_white {
   border-color: white;
+  &:hover {
+    border-color: $main-green;
+    background-color: $pinkish-blue;
+    transform: translateY(-0.5rem);
+  }
+  &:active {
+    border-color: white;
+    background-color: $pinkish-blue;
+    transform: translateY(-0.5rem) scale(0.95);
+  }
 }
 
 .border_grey {
   border-color: grey;
+  &:hover {
+    border-color: red;
+    transform: translateY(-0.5rem);
+  }
+  &:active {
+    border-color: red;
+    transform: translateY(-0.5rem) scale(0.95);
+  }
 }

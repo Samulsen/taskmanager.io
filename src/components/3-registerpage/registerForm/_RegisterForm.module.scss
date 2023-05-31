@@ -60,7 +60,16 @@
 
 .buttonBox {
   grid-area: button;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+
   &_or {
+    width: 6rem;
+    text-align: center;
+    font-size: 2.7rem;
+    font-weight: 500;
+    padding-bottom: 0.7rem;
   }
 }
 
