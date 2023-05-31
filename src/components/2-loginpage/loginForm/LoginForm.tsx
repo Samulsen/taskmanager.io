@@ -67,7 +67,6 @@ const LoginForm = function () {
     <div className={classes.body}>
       <input
         ref={inputMail}
-        key="inp-mail"
         type="text"
         className={`${classes.input} ${classes.mail}`}
         name="mailInputOutside"
@@ -75,24 +74,26 @@ const LoginForm = function () {
       />
       <input
         ref={inputPassword}
-        key="inp-password"
         className={`${classes.input} ${classes.password}`}
         type={passwordVisibility}
         name="passwordInputOutside"
         placeholder="Password"
       />
       <PasswordToggler
+        key="password-toggler"
         individualClass={classes.toggler}
         setPasswordVisibility={setVisibility}
       />
       <div className={classes.buttonBox}>
         <ButtonOutside
+          key="button-login"
           border="green"
           displayText="Login"
           clickMethod={Logic.loginRequest.bind(Logic)}
         />
         <div className={classes.buttonBox_or}>or</div>
         <ButtonOutside
+          key="button-register"
           border="green"
           displayText="Register"
           clickMethod={Logic.registerRedirect}
