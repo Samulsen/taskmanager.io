@@ -1,7 +1,7 @@
 //---------IMPORTS------------\
 
 import classes from "./_RegisterForm.module.scss";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 //__i-components_____
 import CheckedInput from "./checkedInput/CheckedInput";
@@ -12,6 +12,14 @@ import PasswordToggler from "../../0-independent/passwordToggler/PasswordToggler
 //---------COMPONENT----------\
 
 const RegisterForm = function () {
+  //__c-hooks________
+  const [visbilityInit, setVisibilityInit] = useState("password");
+  const [visbilityRep, setVisibilityRep] = useState("password");
+  //__c-logic________
+
+  const Logic = {};
+
+  //__c-invocation___
   return (
     <div className={classes.body}>
       <CheckedInput
@@ -36,34 +44,38 @@ const RegisterForm = function () {
         name="input-mail"
       />
       <Info
+        key="info-email"
         description="E - Mail must be of valid format (email@provider.com) and unused!"
         position={classes.mailInfo}
       />
       <CheckedInput
         key="inpPassInit"
-        type="password"
+        type={visbilityInit}
         individualClass={classes.password}
         placeholder="Password"
         name="input-passwordInit"
       />
       <Info
-        description="Password must be at least 4 char- acters long and has no whitespace!"
+        key="info-password"
+        description="Password must be at least 4 charac- ters long and contains no whitespaces!"
         position={classes.passwordInfo}
       />
       <PasswordToggler
+        key="toggler-init"
         individualClass={classes.password_toggle}
-        setPasswordVisibility={""}
+        setPasswordVisibility={setVisibilityInit}
       />
       <CheckedInput
         key="inpPassRep"
-        type="password"
+        type={visbilityRep}
         individualClass={classes.repeat}
         placeholder="Repeat Password"
         name="input-passwordRepeat"
       />
       <PasswordToggler
+        key="toggler-rep"
         individualClass={classes.repeat_toggle}
-        setPasswordVisibility={""}
+        setPasswordVisibility={setVisibilityRep}
       />
       <div className={classes.buttonBox}>
         <ButtonOutside border="white" displayText="Back" clickMethod={""} />
