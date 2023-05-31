@@ -22,8 +22,8 @@ const ButtonOutside: FC<props> = function (props) {
         return classList;
       }
 
-      if (props.border === "grey") {
-        classList = classes.body + " " + classes.border_grey;
+      if (props.border === "invalid") {
+        classList = classes.body + " " + classes.border_invalid;
         return classList;
       }
 
