@@ -11,9 +11,8 @@
   transition: all 0.3s;
   font-family: "Roboto Mono", monospace;
   width: 30rem;
-  height: 4rem;
-  font-size: 1.2rem;
-  // border-color: $pinkish-blue;
+  height: 4.5rem;
+  font-size: 1.3rem;
 
   &:focus {
     outline: none;
@@ -28,5 +27,19 @@
     color: white;
     //__NOTE: needed for firefox
     opacity: 1;
+  }
+}
+
+.border {
+  &_cold {
+    border-color: $pinkish-blue;
+  }
+
+  &_invalid {
+    border-color: red;
+  }
+
+  &_valid {
+    border-color: green;
   }
 }

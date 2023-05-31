@@ -16,7 +16,13 @@ type ref = HTMLInputElement;
 //---------COMPONENT----------\
 
 const CheckedInput = forwardRef<ref, props>((props, ref) => {
+  //__c-hooks________
+
   const [value, setValue] = useState();
+
+  //__c-logic________
+
+  const Logic = {};
 
   return (
     <input
