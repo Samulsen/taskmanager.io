@@ -47,7 +47,7 @@ const RegisterForm = function () {
         name="input-passwordInit"
       />
       <Info
-        description="Password must be at least 4 chars long and has no whitespace!"
+        description="Password must be at least 4 char- acters long and has no whitespace!"
         position={classes.passwordInfo}
       />
       <PasswordToggler
@@ -65,6 +65,11 @@ const RegisterForm = function () {
         individualClass={classes.repeat_toggle}
         setPasswordVisibility={""}
       />
+      <div className={classes.buttonBox}>
+        <ButtonOutside border="white" displayText="Back" clickMethod={""} />
+        <div className={classes.buttonBox_or}>or</div>
+        <ButtonOutside border="grey" displayText="Continue" clickMethod={""} />
+      </div>
     </div>
   );
 };

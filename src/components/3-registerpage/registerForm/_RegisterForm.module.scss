@@ -59,6 +59,9 @@
 }
 
 .buttonBox {
+  grid-area: button;
+  &_or {
+  }
 }
 
 .error {

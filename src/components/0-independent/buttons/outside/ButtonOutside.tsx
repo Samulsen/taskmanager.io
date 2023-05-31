@@ -20,6 +20,11 @@ const ButtonOutside: React.FC<additions> = function (props) {
         classList = classes.body + " " + classes.border_green;
         return classList;
       }
+
+      if (props.border === "grey") {
+        classList = classes.body + " " + classes.border_grey;
+        return classList;
+      }
     },
   };
 
