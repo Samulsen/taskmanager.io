@@ -15,10 +15,12 @@ import logCol from "../../../util/logColor";
 
 const RegisterForm = function () {
   //__c-hooks________
+
   const [visbilityInit, setVisibilityInit] = useState("password");
   const [visbilityRep, setVisibilityRep] = useState("password");
   const [formValidity, setValidity] = useState(false);
   const navigate = useNavigate();
+
   //__c-logic________
 
   const Logic = {
@@ -111,7 +113,7 @@ const RegisterForm = function () {
         <div className={classes.buttonBox_or}>or</div>
         <ButtonOutside
           key="button-register"
-          border="invalid"
+          border={Logic.evaluateButtonState()}
           displayText="Continue"
           clickMethod={Logic.handleRegisterRequest.bind(Logic)}
         />
