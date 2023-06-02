@@ -27,16 +27,14 @@ type fRef = HTMLInputElement;
 
 const CheckedInput = forwardRef<fRef, props>((props, fRef) => {
   //__c-hooks________
-
+  const [initRender, setInitRender] = useState(false);
   const [value, setValue] = useState("");
 
   //__c-logic________
 
   const Logic = {
-    checkInputValidity(e: React.ChangeEvent<HTMLInputElement>) {
+    setValue(e: React.ChangeEvent<HTMLInputElement>) {
       setValue(e.target.value);
-      console.log(value);
-      props.validityLogic(value, props.setInputValidity);
     },
     evaluateBorderColor() {
       if (props.inputValidity === "cold") return classes.border_cold;
@@ -45,9 +43,17 @@ const CheckedInput = forwardRef<fRef, props>((props, fRef) => {
     },
   };
 
+  useEffect(() => {
+    if (initRender) {
+      props.validityLogic(value, props.setInputValidity);
+    } else {
+      setInitRender(true);
+    }
+  }, [value]);
+
   return (
     <input
-      onChange={Logic.checkInputValidity}
+      onChange={Logic.setValue}
       value={value}
       ref={fRef}
       name={props.name}
