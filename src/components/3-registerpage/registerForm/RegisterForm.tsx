@@ -3,13 +3,15 @@
 import classes from "./_RegisterForm.module.scss";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { input, nameValidator } from "../../../types/types";
 //__i-components_____
 import CheckedInput from "./checkedInput/CheckedInput";
 import ButtonOutside from "../../0-independent/buttons/outside/ButtonOutside";
 import Info from "./Info/Info";
 import PasswordToggler from "../../0-independent/passwordToggler/PasswordToggler";
 import logCol from "../../../util/logColor";
+
+//---------MAIN---------------\
 
 //---------COMPONENT----------\
 
@@ -20,6 +22,9 @@ const RegisterForm = function () {
   const [visbilityRep, setVisibilityRep] = useState("password");
   const [formValidity, setValidity] = useState(false);
   const navigate = useNavigate();
+  //SECTION______________________: Single Form States + corresponded ref
+  const [firstNameValidity, setFirstNameValidity] = useState<input>("cold");
+  const firstNameRef = useRef<HTMLInputElement>(null);
 
   //__c-logic________
 
@@ -27,21 +32,29 @@ const RegisterForm = function () {
     goBackToLogin() {
       navigate("/public/login");
     },
-    allowRegistration() {
-      logCol("Allow registration!", "green");
-    },
-    blockRegistration() {
-      logCol("Form invalid, registration disallowed!", "red");
-    },
     evaluateButtonState() {
       return formValidity ? "valid" : "invalid";
     },
-    handleRegisterRequest() {
-      if (formValidity) {
-        this.allowRegistration();
-      } else {
-        this.blockRegistration();
-      }
+    Registration: {
+      handleRequest() {
+        if (formValidity) {
+          this.allow();
+        } else {
+          this.block();
+        }
+      },
+      allow() {
+        logCol("Allow registration!", "green");
+      },
+      block() {
+        logCol("Form invalid, registration disallowed!", "red");
+      },
+    },
+    Valididation: {
+      forName(value: string, validator: nameValidator) {
+        if (value.trim().length === 0) validator(false);
+        else validator(true);
+      },
     },
   };
 
@@ -49,13 +62,17 @@ const RegisterForm = function () {
   return (
     <div className={classes.body}>
       <CheckedInput
+        ref={firstNameRef}
         key="inpNameFirst"
         type="text"
         position={classes.firstName}
         placeholder="First Name"
         name="input-firstName"
+        validityLogic={Logic.Valididation.forName}
+        inputValidity={firstNameValidity}
+        setInputValidity={setFirstNameValidity}
       />
-      <CheckedInput
+      {/* <CheckedInput
         key="inpNameLast"
         type="text"
         position={classes.lastName}
@@ -117,7 +134,7 @@ const RegisterForm = function () {
           displayText="Continue"
           clickMethod={Logic.handleRegisterRequest.bind(Logic)}
         />
-      </div>
+      </div> */}
     </div>
   );
 };
