@@ -7,7 +7,7 @@ import { forwardRef, useState } from "react";
 
 interface props {
   type: string;
-  individualClass: string;
+  position: string;
   placeholder: string;
   name: string;
 }
@@ -18,7 +18,7 @@ type ref = HTMLInputElement;
 const CheckedInput = forwardRef<ref, props>((props, ref) => {
   //__c-hooks________
 
-  const [value, setValue] = useState();
+  const [value, setValue] = useState("");
 
   //__c-logic________
 
@@ -30,7 +30,7 @@ const CheckedInput = forwardRef<ref, props>((props, ref) => {
       ref={ref}
       name={props.name}
       type={props.type}
-      className={`${classes.body} ${props.individualClass}`}
+      className={`${classes.body} ${props.position}`}
       placeholder={props.placeholder}
     />
   );

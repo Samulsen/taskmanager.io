@@ -51,21 +51,21 @@ const RegisterForm = function () {
       <CheckedInput
         key="inpNameFirst"
         type="text"
-        individualClass={classes.firstName}
+        position={classes.firstName}
         placeholder="First Name"
         name="input-firstName"
       />
       <CheckedInput
         key="inpNameLast"
         type="text"
-        individualClass={classes.lastName}
+        position={classes.lastName}
         placeholder="Last Name"
         name="input-lastName"
       />
       <CheckedInput
         key="inpMail"
         type="text"
-        individualClass={classes.mail}
+        position={classes.mail}
         placeholder="E - Mail"
         name="input-mail"
       />
@@ -77,7 +77,7 @@ const RegisterForm = function () {
       <CheckedInput
         key="inpPassInit"
         type={visbilityInit}
-        individualClass={classes.password}
+        position={classes.password}
         placeholder="Password"
         name="input-passwordInit"
       />
@@ -94,7 +94,7 @@ const RegisterForm = function () {
       <CheckedInput
         key="inpPassRep"
         type={visbilityRep}
-        individualClass={classes.repeat}
+        position={classes.repeat}
         placeholder="Repeat Password"
         name="input-passwordRepeat"
       />
