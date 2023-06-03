@@ -51,11 +51,11 @@ const CheckedInput = forwardRef<fRef, props>((props, fRef) => {
 
   useEffect(() => {
     if (wasTouched) Logic.evaluateValidity();
-  }, [value]);
+  }, [value, wasTouched]);
 
   return (
     <input
-      onFocus={Logic.setTouchState}
+      onBlur={Logic.setTouchState}
       onChange={Logic.setValue}
       value={value}
       ref={fRef}

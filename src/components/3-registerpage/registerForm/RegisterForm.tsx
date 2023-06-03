@@ -73,7 +73,10 @@ const RegisterForm = function () {
         if (passwordRegEx.test(value)) validator(true);
         else validator(false);
       },
-      forRepPassword(value: string, validator: nameValidator) {},
+      forRepPassword(value: string, validator: nameValidator) {
+        if (value === passInitRef.current?.value) validator(true);
+        else validator(false);
+      },
     },
   };
 
@@ -139,13 +142,17 @@ const RegisterForm = function () {
         individualClass={classes.password_toggle}
         setPasswordVisibility={setVisibilityInit}
       />
-      {/* <CheckedInput
+      <CheckedInput
         key="inpPassRep"
         type={visbilityRep}
         position={classes.repeat}
         placeholder="Repeat Password"
         name="input-passwordRepeat"
-      /> */}
+        ref={passRepRef}
+        inputValidity={passRepValidity}
+        setInputValidity={setRepValidity}
+        validityLogic={Logic.Valididation.forRepPassword}
+      />
       <PasswordToggler
         key="toggler-rep"
         individualClass={classes.repeat_toggle}
