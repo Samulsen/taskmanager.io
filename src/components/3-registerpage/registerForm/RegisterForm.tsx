@@ -1,9 +1,9 @@
 //---------IMPORTS------------\
 
 import classes from "./_RegisterForm.module.scss";
-import { useRef, useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { input, nameValidator } from "../../../types/types";
+import { nameValidator } from "../../../types/types";
 //__i-components_____
 import useOutsideInput from "../../../hooks/useOutsideInput";
 import CheckedInput from "./checkedInput/CheckedInput";
@@ -43,18 +43,18 @@ const RegisterForm = function () {
       return formValidity ? "valid" : "invalid";
     },
     Registration: {
+      allow() {
+        logCol("Allow registration!", "green");
+      },
+      block() {
+        logCol("Form invalid, registration disallowed!", "red");
+      },
       handleRequest() {
         if (formValidity) {
           this.allow();
         } else {
           this.block();
         }
-      },
-      allow() {
-        logCol("Allow registration!", "green");
-      },
-      block() {
-        logCol("Form invalid, registration disallowed!", "red");
       },
     },
     Valididation: {
@@ -86,8 +86,30 @@ const RegisterForm = function () {
         if (value === passInitRef.current?.value) validator(true);
         else validator(false);
       },
+      forMainForm() {
+        if (
+          firstNameValidity &&
+          lastNameValidity &&
+          mailValidity &&
+          passInitValidity &&
+          passRepValidity
+        )
+          setValidity(true);
+        else setValidity(false);
+      },
     },
   };
+
+  useEffect(() => {
+    Logic.Valididation.forMainForm();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    firstNameValidity,
+    lastNameValidity,
+    mailValidity,
+    passInitValidity,
+    passRepValidity,
+  ]);
 
   //__c-invocation___
   return (

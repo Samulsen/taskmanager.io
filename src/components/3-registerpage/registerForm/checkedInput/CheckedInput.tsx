@@ -51,12 +51,13 @@ const CheckedInput = forwardRef<fRef, props>((props, fRef) => {
 
   useEffect(() => {
     if (wasTouched) Logic.evaluateValidity();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, wasTouched]);
 
   return (
     <input
-      onBlur={Logic.setTouchState}
-      onFocus={Logic.evaluateValidity}
+      // onBlur={}
+      onFocus={Logic.setTouchState}
       onChange={Logic.setValue}
       value={value}
       ref={fRef}
