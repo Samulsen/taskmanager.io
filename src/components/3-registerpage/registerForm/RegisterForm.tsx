@@ -181,7 +181,9 @@ const RegisterForm = function () {
           key="button-register"
           border={Logic.evaluateButtonState()}
           displayText="Continue"
-          clickMethod={Logic.Registration.handleRequest.bind(Logic)}
+          clickMethod={Logic.Registration.handleRequest.bind(
+            Logic.Registration
+          )}
         />
       </div>
     </div>
