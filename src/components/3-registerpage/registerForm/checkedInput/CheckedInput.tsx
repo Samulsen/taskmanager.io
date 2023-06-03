@@ -56,6 +56,7 @@ const CheckedInput = forwardRef<fRef, props>((props, fRef) => {
   return (
     <input
       onBlur={Logic.setTouchState}
+      onFocus={Logic.evaluateValidity}
       onChange={Logic.setValue}
       value={value}
       ref={fRef}

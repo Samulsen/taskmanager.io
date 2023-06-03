@@ -70,10 +70,19 @@ const RegisterForm = function () {
       },
       forInitPassword(value: string, validator: nameValidator) {
         const passwordRegEx: RegExp = /^(?=.*\d)(?=.*[A-Z])\S{4,}$/;
-        if (passwordRegEx.test(value)) validator(true);
-        else validator(false);
+        if (passwordRegEx.test(value)) {
+          validator(true);
+          this.forRepPassword(passRepRef.current!.value, setRepValidity);
+        } else {
+          validator(false);
+          this.forRepPassword(passRepRef.current!.value, setRepValidity);
+        }
       },
       forRepPassword(value: string, validator: nameValidator) {
+        if (value.trim().length === 0) {
+          validator(false);
+          return;
+        }
         if (value === passInitRef.current?.value) validator(true);
         else validator(false);
       },
@@ -130,7 +139,9 @@ const RegisterForm = function () {
         ref={passInitRef}
         inputValidity={passInitValidity}
         setInputValidity={setInitValidity}
-        validityLogic={Logic.Valididation.forInitPassword}
+        validityLogic={Logic.Valididation.forInitPassword.bind(
+          Logic.Valididation
+        )}
       />
       <Info
         key="info-password"
