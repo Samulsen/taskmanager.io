@@ -88,11 +88,11 @@ const RegisterForm = function () {
       },
       forMainForm() {
         if (
-          firstNameValidity &&
-          lastNameValidity &&
-          mailValidity &&
-          passInitValidity &&
-          passRepValidity
+          (firstNameValidity &&
+            lastNameValidity &&
+            mailValidity &&
+            passInitValidity &&
+            passRepValidity) === true
         )
           setValidity(true);
         else setValidity(false);
