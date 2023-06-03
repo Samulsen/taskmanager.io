@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { input, nameValidator } from "../../../types/types";
 //__i-components_____
+import useOutsideInput from "../../../hooks/useOutsideInput";
 import CheckedInput from "./checkedInput/CheckedInput";
 import ButtonOutside from "../../0-independent/buttons/outside/ButtonOutside";
 import Info from "./Info/Info";
@@ -23,8 +24,10 @@ const RegisterForm = function () {
   const [formValidity, setValidity] = useState(false);
   const navigate = useNavigate();
   //SECTION______________________: Single Form States + corresponded ref
-  const [firstNameValidity, setFirstNameValidity] = useState<input>("cold");
-  const firstNameRef = useRef<HTMLInputElement>(null);
+  const [firstNameValidity, setFirstNameValidity, firstNameRef] =
+    useOutsideInput();
+  const [lastNameValidity, setLastNameValidity, lastNameRef] =
+    useOutsideInput();
 
   //__c-logic________
 
@@ -55,6 +58,7 @@ const RegisterForm = function () {
         if (value.trim().length === 0) validator(false);
         else validator(true);
       },
+      forMail(value: string, validator: nameValidator) {},
     },
   };
 
@@ -62,24 +66,28 @@ const RegisterForm = function () {
   return (
     <div className={classes.body}>
       <CheckedInput
-        ref={firstNameRef}
         key="inpNameFirst"
         type="text"
         position={classes.firstName}
         placeholder="First Name"
         name="input-firstName"
+        ref={firstNameRef}
         validityLogic={Logic.Valididation.forName}
         inputValidity={firstNameValidity}
         setInputValidity={setFirstNameValidity}
       />
-      {/* <CheckedInput
+      <CheckedInput
         key="inpNameLast"
         type="text"
         position={classes.lastName}
         placeholder="Last Name"
         name="input-lastName"
+        ref={lastNameRef}
+        validityLogic={Logic.Valididation.forName}
+        inputValidity={lastNameValidity}
+        setInputValidity={setLastNameValidity}
       />
-      <CheckedInput
+      {/* <CheckedInput
         key="inpMail"
         type="text"
         position={classes.mail}
