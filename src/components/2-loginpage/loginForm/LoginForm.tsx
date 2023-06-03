@@ -45,8 +45,10 @@ const LoginForm = function () {
       );
     },
     getError(error: AuthError) {
+      if (error.message.includes("auth/invalid-email")) {
+        setMessage("Invalid Credentials!");
+      } else setMessage(error.message);
       console.error(error.message);
-      setMessage("Invalid Credentials!");
     },
     moveToPrivate() {
       navigate("/private/allTasks");

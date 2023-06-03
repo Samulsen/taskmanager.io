@@ -7,10 +7,11 @@ import { nameValidator } from "../../../types/types";
 
 //__i-components_____
 import { AuthContext } from "../../../context/AuthContext";
+import ErrorMessageOutside from "../../0-independent/errorMessageOutside/ErrorMessageOutside";
 import useOutsideInput from "../../../hooks/useOutsideInput";
 import CheckedInput from "./checkedInput/CheckedInput";
 import ButtonOutside from "../../0-independent/buttons/outside/ButtonOutside";
-import Info from "./Info/Info";
+import Info from "./info/Info";
 import PasswordToggler from "../../0-independent/passwordToggler/PasswordToggler";
 import logCol from "../../../util/logColor";
 import { AuthError } from "firebase/auth";
@@ -23,6 +24,7 @@ const RegisterForm = function () {
   //__c-hooks________
 
   const register = AuthContext()!.register;
+  const [errorMessage, setErrorMessage] = useState<null | string>(null);
   const [visbilityInit, setVisibilityInit] = useState("password");
   const [visbilityRep, setVisibilityRep] = useState("password");
   const [formValidity, setValidity] = useState(false);
@@ -47,9 +49,19 @@ const RegisterForm = function () {
     evaluateButtonState() {
       return formValidity ? "valid" : "invalid";
     },
+    evaluateErrorState() {
+      return errorMessage ? (
+        <ErrorMessageOutside message={errorMessage} />
+      ) : (
+        <></>
+      );
+    },
     Registration: {
       handleError(error: AuthError) {
-        console.log(error.message);
+        if (error.message.includes("auth/email-already-in-use")) {
+          setErrorMessage("Mail already in use! Change mail and try again!");
+          setMailValidity(false);
+        } else setErrorMessage(error.message);
       },
       allow() {
         const firstName = firstNameRef.current!.value;
@@ -61,6 +73,7 @@ const RegisterForm = function () {
       },
       block() {
         logCol("Form invalid, registration disallowed!", "red");
+        setErrorMessage("Form is incomplete... Please fill out all Fields!");
       },
       handleRequest() {
         if (formValidity) {
@@ -221,6 +234,7 @@ const RegisterForm = function () {
           )}
         />
       </div>
+      {Logic.evaluateErrorState()}
     </div>
   );
 };

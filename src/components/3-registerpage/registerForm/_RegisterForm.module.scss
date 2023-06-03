@@ -1,7 +1,7 @@
 .body {
   display: grid;
   grid-template-columns: 10rem 30rem 10rem;
-  grid-template-rows: repeat(5, 6rem) 7rem 4rem;
+  grid-template-rows: repeat(5, 6rem) repeat(2, 7rem);
   grid-template-areas:
     "first first first"
     "second second second"
