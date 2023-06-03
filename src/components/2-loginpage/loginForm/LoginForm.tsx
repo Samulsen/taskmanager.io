@@ -46,7 +46,7 @@ const LoginForm = function () {
     },
     getError(error: AuthError) {
       console.error(error.message);
-      setMessage(error.message);
+      setMessage("Invalid Credentials!");
     },
     moveToPrivate() {
       navigate("/private/allTasks");
