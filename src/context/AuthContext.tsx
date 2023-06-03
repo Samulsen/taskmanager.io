@@ -80,10 +80,8 @@ const AuthContextProvider: React.FC<{ children: ReactNode }> = function ({
         if (user) {
           setUserObject(user);
           setAuthState(state.loggedIn);
-          // debugLoggerAuth(userObject);
         } else {
           setUserObject(user);
-          // debugLoggerAuth(userObject);
           setAuthState(state.notLoggedIn);
         }
       }, 200);

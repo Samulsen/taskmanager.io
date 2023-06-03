@@ -4,13 +4,16 @@ import classes from "./_RegisterForm.module.scss";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { nameValidator } from "../../../types/types";
+
 //__i-components_____
+import { AuthContext } from "../../../context/AuthContext";
 import useOutsideInput from "../../../hooks/useOutsideInput";
 import CheckedInput from "./checkedInput/CheckedInput";
 import ButtonOutside from "../../0-independent/buttons/outside/ButtonOutside";
 import Info from "./Info/Info";
 import PasswordToggler from "../../0-independent/passwordToggler/PasswordToggler";
 import logCol from "../../../util/logColor";
+import { AuthError } from "firebase/auth";
 
 //---------MAIN---------------\
 
@@ -19,6 +22,7 @@ import logCol from "../../../util/logColor";
 const RegisterForm = function () {
   //__c-hooks________
 
+  const register = AuthContext()!.register;
   const [visbilityInit, setVisibilityInit] = useState("password");
   const [visbilityRep, setVisibilityRep] = useState("password");
   const [formValidity, setValidity] = useState(false);
@@ -43,8 +47,16 @@ const RegisterForm = function () {
       return formValidity ? "valid" : "invalid";
     },
     Registration: {
+      handleError(error: AuthError) {
+        console.log(error.message);
+      },
       allow() {
+        const firstName = firstNameRef.current!.value;
+        const lastName = lastNameRef.current!.value;
+        const mail = mailRef.current!.value;
+        const password = passInitRef.current!.value;
         logCol("Allow registration!", "green");
+        register(mail, password).catch(this.handleError);
       },
       block() {
         logCol("Form invalid, registration disallowed!", "red");
