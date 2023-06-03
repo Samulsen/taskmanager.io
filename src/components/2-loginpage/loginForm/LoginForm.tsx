@@ -10,7 +10,7 @@ import { AuthContext } from "../../../context/AuthContext";
 //__i-components_____
 import PasswordToggler from "../../0-independent/passwordToggler/PasswordToggler";
 import ButtonOutside from "../../0-independent/buttons/outside/ButtonOutside";
-import LoginErrorMessage from "../loginErrorMessage/LoginErrorMessage";
+import ErrorMessageOutside from "../../0-independent/errorMessageOutside/ErrorMessageOutside";
 import { AuthError } from "firebase/auth";
 
 //---------COMPONENT----------\
@@ -20,7 +20,7 @@ const LoginForm = function () {
 
   const AuthLogic = AuthContext();
   const navigate = useNavigate();
-  const [error, setError] = useState(false);
+  const [errorMessage, setMessage] = useState<null | string>(null);
   const [passwordVisibility, setVisibility] = useState("password");
   const inputPassword = useRef<HTMLInputElement>(null);
   const inputMail = useRef<HTMLInputElement>(null);
@@ -38,13 +38,15 @@ const LoginForm = function () {
       return AuthLogic?.loggin(email, password);
     },
     evaluateErrorState() {
-      if (error) {
-        return <LoginErrorMessage />;
-      }
+      return errorMessage ? (
+        <ErrorMessageOutside message={errorMessage} />
+      ) : (
+        <></>
+      );
     },
     getError(error: AuthError) {
       console.error(error.message);
-      setError(true);
+      setMessage(error.message);
     },
     moveToPrivate() {
       navigate("/private/allTasks");

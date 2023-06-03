@@ -29,6 +29,7 @@ const RegisterForm = function () {
   const navigate = useNavigate();
 
   //SECTION______________________: Single Form States + corresponded ref
+
   const [firstNameValidity, setFirstNameValidity, firstNameRef] =
     useOutsideInput();
   const [lastNameValidity, setLastNameValidity, lastNameRef] =

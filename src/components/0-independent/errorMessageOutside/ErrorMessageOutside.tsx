@@ -1,16 +1,23 @@
 //---------IMPORTS------------\
 
-import classes from "./_LoginErrorMessage.module.scss";
+import classes from "./_ErrorMessageOutside.module.scss";
+import { FC } from "react";
+
+//---------MAIN---------------\
+
+interface props {
+  message: string | null;
+}
 
 //---------COMPONENT----------\
 
-const LoginErrorMessage = function () {
+const ErrorMessageOutside: FC<props> = function (props) {
   return (
     <div className={classes.body}>
       <div className={classes.line}></div>
       <div className={classes.message}>
         <span className={classes.errorPart}>Error</span>
-        <span>: Invalid Credentials!</span>
+        <span>: {props.message}</span>
       </div>
     </div>
   );
@@ -18,4 +25,4 @@ const LoginErrorMessage = function () {
 
 //---------EXPORTS------------\
 
-export default LoginErrorMessage;
+export default ErrorMessageOutside;
