@@ -23,11 +23,15 @@ const RegisterForm = function () {
   const [visbilityRep, setVisibilityRep] = useState("password");
   const [formValidity, setValidity] = useState(false);
   const navigate = useNavigate();
+
   //SECTION______________________: Single Form States + corresponded ref
   const [firstNameValidity, setFirstNameValidity, firstNameRef] =
     useOutsideInput();
   const [lastNameValidity, setLastNameValidity, lastNameRef] =
     useOutsideInput();
+  const [mailValidity, setMailValidity, mailRef] = useOutsideInput();
+  const [passInitValidity, setInitValidity, passInitRef] = useOutsideInput();
+  const [passRepValidity, setRepValidity, passRepRef] = useOutsideInput();
 
   //__c-logic________
 
@@ -58,7 +62,18 @@ const RegisterForm = function () {
         if (value.trim().length === 0) validator(false);
         else validator(true);
       },
-      forMail(value: string, validator: nameValidator) {},
+      forMail(value: string, validator: nameValidator) {
+        const emailRegEx: RegExp =
+          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (emailRegEx.test(value)) validator(true);
+        else validator(false);
+      },
+      forInitPassword(value: string, validator: nameValidator) {
+        const passwordRegEx: RegExp = /^(?=.*\d)(?=.*[A-Z])\S{4,}$/;
+        if (passwordRegEx.test(value)) validator(true);
+        else validator(false);
+      },
+      forRepPassword(value: string, validator: nameValidator) {},
     },
   };
 
@@ -72,9 +87,9 @@ const RegisterForm = function () {
         placeholder="First Name"
         name="input-firstName"
         ref={firstNameRef}
-        validityLogic={Logic.Valididation.forName}
         inputValidity={firstNameValidity}
         setInputValidity={setFirstNameValidity}
+        validityLogic={Logic.Valididation.forName}
       />
       <CheckedInput
         key="inpNameLast"
@@ -83,16 +98,20 @@ const RegisterForm = function () {
         placeholder="Last Name"
         name="input-lastName"
         ref={lastNameRef}
-        validityLogic={Logic.Valididation.forName}
         inputValidity={lastNameValidity}
         setInputValidity={setLastNameValidity}
+        validityLogic={Logic.Valididation.forName}
       />
-      {/* <CheckedInput
+      <CheckedInput
         key="inpMail"
         type="text"
         position={classes.mail}
         placeholder="E - Mail"
         name="input-mail"
+        ref={mailRef}
+        inputValidity={mailValidity}
+        setInputValidity={setMailValidity}
+        validityLogic={Logic.Valididation.forMail}
       />
       <Info
         key="info-email"
@@ -105,10 +124,14 @@ const RegisterForm = function () {
         position={classes.password}
         placeholder="Password"
         name="input-passwordInit"
+        ref={passInitRef}
+        inputValidity={passInitValidity}
+        setInputValidity={setInitValidity}
+        validityLogic={Logic.Valididation.forInitPassword}
       />
       <Info
         key="info-password"
-        description="Password must be at least 4 charac- ters long and contains no whitespaces!"
+        description="Password must be at least 4 characters long! Contains: 1 number, 1 upper- case letter and no whitespaces!"
         position={classes.passwordInfo}
       />
       <PasswordToggler
@@ -116,13 +139,13 @@ const RegisterForm = function () {
         individualClass={classes.password_toggle}
         setPasswordVisibility={setVisibilityInit}
       />
-      <CheckedInput
+      {/* <CheckedInput
         key="inpPassRep"
         type={visbilityRep}
         position={classes.repeat}
         placeholder="Repeat Password"
         name="input-passwordRepeat"
-      />
+      /> */}
       <PasswordToggler
         key="toggler-rep"
         individualClass={classes.repeat_toggle}
@@ -140,9 +163,9 @@ const RegisterForm = function () {
           key="button-register"
           border={Logic.evaluateButtonState()}
           displayText="Continue"
-          clickMethod={Logic.handleRegisterRequest.bind(Logic)}
+          clickMethod={Logic.Registration.handleRequest.bind(Logic)}
         />
-      </div> */}
+      </div>
     </div>
   );
 };

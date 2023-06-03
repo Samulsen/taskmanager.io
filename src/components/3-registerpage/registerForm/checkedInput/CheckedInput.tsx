@@ -49,7 +49,9 @@ const CheckedInput = forwardRef<fRef, props>((props, fRef) => {
     },
   };
 
-  if (wasTouched) Logic.evaluateValidity();
+  useEffect(() => {
+    if (wasTouched) Logic.evaluateValidity();
+  }, [value]);
 
   return (
     <input
