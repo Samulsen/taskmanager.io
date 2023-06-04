@@ -54,7 +54,7 @@ const DataContextProvider: FC<{ children: ReactNode }> = function ({
   children,
 }) {
   //__c-hooks________
-
+  let unsub;
   const uid = AuthContext()?.userObject?.uid;
   const [appMetaData, setAppMetaData] = useState<appMetaData | string>("cold");
 
@@ -101,16 +101,20 @@ const DataContextProvider: FC<{ children: ReactNode }> = function ({
   };
 
   useEffect(() => {
-    Logic.initChain()
-      .then(Logic.Metadata.getSnapshot)
-      .then(Logic.Metadata.deconstruct)
-      .then(Logic.Metadata.merge);
+    // Logic.initChain()
+    //   .then(Logic.Metadata.getSnapshot)
+    //   .then(Logic.Metadata.deconstruct)
+    //   .then(Logic.Metadata.merge);
 
-    // onSnapshot(collection(db, `MainUserDataPool_${uid}`), (snapshot) => {
-    //   snapshot.forEach((doc) => {
-    //     console.log(doc.data());
-    //   });
-    // });
+    unsub = onSnapshot(
+      collection(db, `MainUserDataPool_${uid}`),
+      (snapshot) => {
+        snapshot.forEach((doc) => {
+          console.log(doc.data());
+        });
+      }
+    );
+    return unsub;
   }, []);
 
   const DataContextValues: ContextValueType = { appMetaData };
