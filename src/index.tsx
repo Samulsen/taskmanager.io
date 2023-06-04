@@ -8,7 +8,6 @@ import "./_index.scss";
 //__i-components_____
 import App from "./App";
 import AuthContextProvider from "./context/AuthContext";
-import DataContextProvider from "./context/DataContext";
 
 //---------MAIN---------------\
 
@@ -18,9 +17,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <AuthContextProvider>
-      <DataContextProvider>
-        <App />
-      </DataContextProvider>
+      <App />
     </AuthContextProvider>
   </React.StrictMode>
 );
