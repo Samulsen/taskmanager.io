@@ -7,7 +7,11 @@ import { createContext, FC, ReactNode, useContext } from "react";
 
 //SECTION______________________: Type definitions
 
-interface ContextValueType {}
+interface ContextValueType {
+  teststring: string;
+}
+
+const teststring = "eeeee";
 
 //SECTION______________________: Firebase References
 
@@ -20,7 +24,7 @@ const DataContextLocal = createContext<ContextValueType | null>(null);
 const DataContextProvider: FC<{ children: ReactNode }> = function ({
   children,
 }) {
-  const DataContextValues: ContextValueType = {};
+  const DataContextValues: ContextValueType = { teststring };
 
   return (
     <DataContextLocal.Provider value={DataContextValues}>

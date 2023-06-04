@@ -3,14 +3,15 @@
 import classes from "./_main.module.scss";
 import ButtonOutside from "../0-independent/buttons/outside/ButtonOutside";
 import { AuthContext } from "../../context/AuthContext";
+import { DataContext } from "../../context/DataContext";
 
 //---------COMPONENT----------\
 
 const Main = function () {
-  const AuthLogic = AuthContext();
+  const loggout = AuthContext()!.loggout;
 
   const logoutRequest = function () {
-    return AuthLogic?.loggout();
+    return loggout();
   };
 
   return (
