@@ -8,6 +8,7 @@ import {
   useEffect,
   useContext,
   useState,
+  FC,
 } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase";
@@ -67,7 +68,7 @@ const AuthContextLocal = createContext<ContextValueType | null>(null);
 
 //---------COMPONENT----------\
 
-const AuthContextProvider: React.FC<{ children: ReactNode }> = function ({
+const AuthContextProvider: FC<{ children: ReactNode }> = function ({
   children,
 }) {
   const [userObject, setUserObject] = useState<userStates>(null);
