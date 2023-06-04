@@ -8,8 +8,10 @@ import { DataContext } from "../../context/DataContext";
 //---------COMPONENT----------\
 
 const Main = function () {
+  //__c-hooks________
   const loggout = AuthContext()!.loggout;
-
+  const appMetaData = DataContext()?.appMetaData;
+  //__c-logic________
   const logoutRequest = function () {
     return loggout();
   };

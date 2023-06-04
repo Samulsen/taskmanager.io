@@ -1,5 +1,5 @@
 //---------IMPORTS------------\
-
+//__i-libraries______
 import { db } from "../firebase";
 import {
   DocumentData,
@@ -15,7 +15,10 @@ import {
   useEffect,
   useState,
 } from "react";
+//__i-context________
 import { AuthContext } from "./AuthContext";
+//__i-helper_________
+import debugLoggerData from "../util/debugLoggerData";
 import logCol from "../util/logColor";
 
 //---------MAIN---------------\
@@ -35,7 +38,7 @@ interface docType {
   data: () => userMetaData | userBoards | userConfig;
 }
 
-interface appMetaData {
+export interface appMetaData {
   firstName: string;
   lastName: string;
   config: { autoDeleteOnDone: boolean };
@@ -54,9 +57,9 @@ const DataContextProvider: FC<{ children: ReactNode }> = function ({
   children,
 }) {
   //__c-hooks________
-  let unsub;
   const uid = AuthContext()?.userObject?.uid;
   const [appMetaData, setAppMetaData] = useState<appMetaData | string>("cold");
+  debugLoggerData(appMetaData);
 
   //__c-logic________
 
@@ -65,9 +68,6 @@ const DataContextProvider: FC<{ children: ReactNode }> = function ({
       return Promise.resolve();
     },
     Metadata: {
-      getSnapshot() {
-        return getDocs(collection(db, `MainUserDataPool_${uid}`));
-      },
       deconstruct(docData: DocumentData): Promise<appMetaData> {
         return new Promise((resolve) => {
           const tempMetaData: appMetaData = {
@@ -95,23 +95,16 @@ const DataContextProvider: FC<{ children: ReactNode }> = function ({
       },
       merge(tempMetaData: appMetaData) {
         setAppMetaData(tempMetaData);
-        logCol("Updated App Meta Data!", "greenyellow");
       },
     },
   };
 
   useEffect(() => {
-    // Logic.initChain()
-    //   .then(Logic.Metadata.getSnapshot)
-    //   .then(Logic.Metadata.deconstruct)
-    //   .then(Logic.Metadata.merge);
-
-    unsub = onSnapshot(
+    logCol("onSnapshot appMetaData was iniated!", "orangered");
+    let unsub = onSnapshot(
       collection(db, `MainUserDataPool_${uid}`),
-      (snapshot) => {
-        snapshot.forEach((doc) => {
-          console.log(doc.data());
-        });
+      (docData) => {
+        Logic.Metadata.deconstruct(docData).then(Logic.Metadata.merge);
       }
     );
     return unsub;
