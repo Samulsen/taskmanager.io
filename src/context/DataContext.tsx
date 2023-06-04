@@ -2,18 +2,32 @@
 
 import { db } from "../firebase";
 import { DocumentData, collection, getDocs } from "firebase/firestore";
-import { createContext, FC, ReactNode, useContext } from "react";
+import { createContext, FC, ReactNode, useContext, useState } from "react";
 import { AuthContext } from "./AuthContext";
+import logCol from "../util/logColor";
 
 //---------MAIN---------------\
 
 //SECTION______________________: Type definitions
 
 interface ContextValueType {
-  teststring: string;
+  appMetaData: appMetaData | string;
 }
 
-const teststring = "eeeee";
+type boardNames = { boardNames: string[] };
+type userMetaData = { firstName: string; lastName: string };
+
+interface docType {
+  id: string;
+  data: () => userMetaData | boardNames;
+}
+
+interface appMetaData {
+  firstName: string;
+  lastName: string;
+  config: { autoDeleteOnDone: boolean };
+  boardNames: string[];
+}
 
 //SECTION______________________: Firebase References
 
@@ -29,6 +43,7 @@ const DataContextProvider: FC<{ children: ReactNode }> = function ({
   //__c-hooks________
 
   const uid = AuthContext()?.userObject?.uid;
+  const [appMetaData, setAppMetaData] = useState<appMetaData | string>("cold");
 
   //__c-logic________
 
@@ -36,19 +51,44 @@ const DataContextProvider: FC<{ children: ReactNode }> = function ({
     initChain() {
       return Promise.resolve();
     },
-    getSnapshot() {
-      return getDocs(collection(db, `MainUserDataPool_${uid}`));
-    },
-    handleSnapshot(docData: DocumentData) {
-      docData.forEach((doc: any) => {
-        console.log(doc.data());
-      });
+    Metadata: {
+      getSnapshot() {
+        return getDocs(collection(db, `MainUserDataPool_${uid}`));
+      },
+      deconstruct(docData: DocumentData) {
+        return new Promise((resolve) => {
+          const tempMetaData: appMetaData = {
+            firstName: "",
+            lastName: "",
+            config: { autoDeleteOnDone: true },
+            boardNames: [],
+          };
+          docData.forEach((doc: docType) => {
+            if (doc.id === "UserBoards") {
+              tempMetaData.boardNames = (doc.data() as boardNames).boardNames;
+            }
+            if (doc.id === "UserConfig") {
+              tempMetaData.firstName = (doc.data() as userMetaData).firstName;
+              tempMetaData.lastName = (doc.data() as userMetaData).lastName;
+            }
+          });
+          resolve(tempMetaData);
+        });
+      },
+      merge(tempMetaData: unknown) {
+        // setAppMetaData(appMetaData);
+        logCol("Updated App Meta Data!", "greenyellow");
+        console.log(tempMetaData);
+      },
     },
   };
 
-  Logic.initChain().then(Logic.getSnapshot).then(Logic.handleSnapshot);
+  Logic.initChain()
+    .then(Logic.Metadata.getSnapshot)
+    .then(Logic.Metadata.deconstruct)
+    .then(Logic.Metadata.merge);
 
-  const DataContextValues: ContextValueType = { teststring };
+  const DataContextValues: ContextValueType = { appMetaData };
 
   return (
     <DataContextLocal.Provider value={DataContextValues}>
