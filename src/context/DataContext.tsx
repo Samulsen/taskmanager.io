@@ -1,7 +1,7 @@
 //---------IMPORTS------------\
 
 import { db } from "../firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { DocumentData, collection, getDocs } from "firebase/firestore";
 import { createContext, FC, ReactNode, useContext } from "react";
 import { AuthContext } from "./AuthContext";
 
@@ -26,18 +26,27 @@ const DataContextLocal = createContext<ContextValueType | null>(null);
 const DataContextProvider: FC<{ children: ReactNode }> = function ({
   children,
 }) {
-  //SECTION______________________: get main pool reference
+  //__c-hooks________
 
-  //   const uid = AuthContext()?.userObject?.uid;
-  //     const mainUserDataPoolCollection = uid
-  //       ? collection(db, `MainUserDataPool_GpCgW56iXEgj94Gj2aANA7Em23G3`)
-  //       : null;
-  const mainUserDataPoolCollection = collection(
-    db,
-    `MainUserDataPool_GpCgW56iXEgj94Gj2aANA7Em23G3`
-  );
+  const uid = AuthContext()?.userObject?.uid;
 
-  //SECTION______________________: return structure
+  //__c-logic________
+
+  const Logic = {
+    initChain() {
+      return Promise.resolve();
+    },
+    getSnapshot() {
+      return getDocs(collection(db, `MainUserDataPool_${uid}`));
+    },
+    handleSnapshot(docData: DocumentData) {
+      docData.forEach((doc: any) => {
+        console.log(doc.data());
+      });
+    },
+  };
+
+  Logic.initChain().then(Logic.getSnapshot).then(Logic.handleSnapshot);
 
   const DataContextValues: ContextValueType = { teststring };
 
