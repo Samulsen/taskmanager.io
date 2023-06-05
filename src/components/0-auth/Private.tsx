@@ -13,6 +13,8 @@ const Private = function () {
 
   const navigate = useNavigate();
   const authState = AuthContext()?.authState;
+  const loggout = AuthContext()!.loggout;
+  // loggout();
 
   //__c-logic________
 
@@ -29,7 +31,7 @@ const Private = function () {
         //__NOTE: show requested route
         return (
           <DataContextProvider>
-            <Outlet />
+            <Outlet context={loggout} />
           </DataContextProvider>
         );
       }

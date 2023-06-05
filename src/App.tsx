@@ -7,7 +7,9 @@ import Private from "./components/0-auth/Private";
 import Entrypage from "./components/1-entrypage/Entrypage";
 import Loginpage from "./components/2-loginpage/Loginpage";
 import Registerpage from "./components/3-registerpage/Registerpage";
-import Main from "./components/4-main/Main";
+import Interface from "./components/4-interface/Interface";
+import Total from "./components/4-interface/boards/total/Total";
+import Dynamic from "./components/4-interface/boards/dynamic/Dynamic";
 
 //---------MAIN---------------\
 
@@ -34,7 +36,16 @@ const router = createBrowserRouter([
   {
     path: "/private",
     element: <Private />,
-    children: [{ path: "allTasks", element: <Main /> }],
+    children: [
+      {
+        path: ":uid",
+        element: <Interface />,
+        children: [
+          { path: "total", element: <Total /> },
+          { path: ":boardID", element: <Dynamic /> },
+        ],
+      },
+    ],
   },
 ]);
 

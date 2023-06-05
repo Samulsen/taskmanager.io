@@ -11,7 +11,7 @@ import { AuthContext } from "../../../context/AuthContext";
 import PasswordToggler from "../../0-independent/passwordToggler/PasswordToggler";
 import ButtonOutside from "../../0-independent/buttons/outside/ButtonOutside";
 import ErrorMessageOutside from "../../0-independent/errorMessageOutside/ErrorMessageOutside";
-import { AuthError } from "firebase/auth";
+import { AuthError, UserCredential } from "firebase/auth";
 
 //---------COMPONENT----------\
 
@@ -32,10 +32,10 @@ const LoginForm = function () {
     initChain() {
       return Promise.resolve();
     },
-    signIn() {
+    signIn(): Promise<UserCredential> {
       let email = inputMail.current!.value;
       let password = inputPassword.current!.value;
-      return AuthLogic?.loggin(email, password);
+      return AuthLogic!.loggin(email, password);
     },
     evaluateErrorState() {
       return errorMessage ? (
@@ -50,8 +50,9 @@ const LoginForm = function () {
       } else setMessage(error.message);
       console.error(error.message);
     },
-    moveToPrivate() {
-      navigate("/private/allTasks");
+    moveToPrivate(UserCredential: UserCredential) {
+      //__NOTE:not necessary because of immediate state change
+      // navigate(`/private/${UserCredential.user.uid}/total`);
       return Promise.resolve();
     },
     //__NOTE: Main function
