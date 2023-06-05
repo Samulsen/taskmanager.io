@@ -61,13 +61,22 @@ const RegisterForm = function () {
     Registration: {
       Datapool: {
         create(UserCredential: UserCredential) {
-          const userNameData = {
+          // return new Promise((resolve) => {
+          const userMetaData = {
             firstName: firstNameRef.current!.value,
             lastName: lastNameRef.current!.value,
           };
+          const userConfigData = { autoDeleteOnDone: false };
+          const userBoardsData = { boardsName: ["noBoards"] };
           const uid = UserCredential.user.uid;
           const mainPoolRef = `MainUserDataPool_${uid}`;
-          return setDoc(doc(db, mainPoolRef, "UserMetaData"), userNameData);
+
+          // });
+          return Promise.all([
+            setDoc(doc(db, mainPoolRef, "UserMetaData"), userMetaData),
+            setDoc(doc(db, mainPoolRef, "UserConfig"), userConfigData),
+            setDoc(doc(db, mainPoolRef, "UserBoards"), userBoardsData),
+          ]);
         },
       },
 
@@ -79,11 +88,15 @@ const RegisterForm = function () {
         };
         initRegistration(mail, password)
           .then(this.Datapool.create)
+          .then(this.registrationEnd)
           .catch(this.handleError);
       },
       block() {
         logCol("Form invalid, registration disallowed!", "red");
         setErrorMessage("Form is incomplete... Please fill out all Fields!");
+      },
+      registrationEnd() {
+        logCol("The registration has succesfully finished!", "green");
       },
       handleError(error: AuthError) {
         if (error.message.includes("auth/email-already-in-use")) {
