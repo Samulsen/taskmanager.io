@@ -67,7 +67,7 @@ const RegisterForm = function () {
             lastName: lastNameRef.current!.value,
           };
           const userConfigData = { autoDeleteOnDone: false };
-          const userBoardsData = { boardsName: ["noBoards"] };
+          const userBoardsData = { boardNames: ["noBoards"] };
           const uid = UserCredential.user.uid;
           const mainPoolRef = `MainUserDataPool_${uid}`;
 
