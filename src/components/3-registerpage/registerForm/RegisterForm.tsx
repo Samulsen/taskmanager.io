@@ -12,7 +12,7 @@ import ErrorMessageOutside from "../../0-independent/errorMessageOutside/ErrorMe
 import useOutsideInput from "../../../hooks/useOutsideInput";
 import CheckedInput from "./checkedInput/CheckedInput";
 import ButtonOutside from "../../0-independent/buttons/outside/ButtonOutside";
-import Info from "./info/Info";
+import Info from "./Info/Info";
 import PasswordToggler from "../../0-independent/passwordToggler/PasswordToggler";
 import logCol from "../../../util/logColor";
 import { AuthError, UserCredential } from "firebase/auth";
