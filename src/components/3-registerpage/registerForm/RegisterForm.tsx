@@ -16,6 +16,7 @@ import Info from "./info/Info";
 import PasswordToggler from "../../0-independent/passwordToggler/PasswordToggler";
 import logCol from "../../../util/logColor";
 import { AuthError, UserCredential } from "firebase/auth";
+import { db } from "../../../firebase";
 
 //---------MAIN---------------\
 
@@ -66,6 +67,7 @@ const RegisterForm = function () {
           };
           const uid = UserCredential.user.uid;
           const mainPoolRef = `MainUserDataPool_${uid}`;
+          return setDoc(doc(db, mainPoolRef, "UserMetaData"), userNameData);
         },
       },
 
@@ -75,7 +77,9 @@ const RegisterForm = function () {
           mail: mailRef.current!.value,
           password: passInitRef.current!.value,
         };
-        initRegistration(mail, password).catch(this.handleError);
+        initRegistration(mail, password)
+          .then(this.Datapool.create)
+          .catch(this.handleError);
       },
       block() {
         logCol("Form invalid, registration disallowed!", "red");
