@@ -1,8 +1,9 @@
 //---------IMPORTS------------\
-
+//__i-libraries______
 import { Outlet, useNavigate } from "react-router-dom";
+//__i-context________
 import { AuthContext } from "../../context/AuthContext";
-import { DataContext } from "../../context/DataContext";
+//__i-components_____
 import Anchor from "../0-independent/anchor/Anchor";
 import Loading from "./loader/Loading";
 import DataContextProvider from "../../context/DataContext";
@@ -14,8 +15,6 @@ const Private = function () {
 
   const navigate = useNavigate();
   const authState = AuthContext()?.authState;
-  const loggout = AuthContext()!.loggout;
-  // loggout();
 
   //__c-logic________
 
@@ -32,7 +31,7 @@ const Private = function () {
         //__NOTE: show requested route
         return (
           <DataContextProvider>
-            <Outlet context={loggout} />
+            <Outlet />
           </DataContextProvider>
         );
       }

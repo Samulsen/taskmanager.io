@@ -2,11 +2,13 @@
 //__i-libraries______
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 //__i-components_____
+//Public Routes
 import Public from "./components/0-auth/Public";
-import Private from "./components/0-auth/Private";
 import Entrypage from "./components/1-entrypage/Entrypage";
 import Loginpage from "./components/2-loginpage/Loginpage";
 import Registerpage from "./components/3-registerpage/Registerpage";
+//Private Routes
+import Private from "./components/0-auth/Private";
 import Interface from "./components/4-interface/Interface";
 import Total from "./components/4-interface/boards/total/Total";
 import Dynamic from "./components/4-interface/boards/dynamic/Dynamic";
