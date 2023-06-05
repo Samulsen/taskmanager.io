@@ -4,6 +4,8 @@ import classes from "./_RegisterForm.module.scss";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { nameValidator } from "../../../types/types";
+import { doc, setDoc } from "firebase/firestore";
+import { UserCredential, User } from "firebase/auth";
 
 //__i-components_____
 import { AuthContext } from "../../../context/AuthContext";
@@ -18,6 +20,13 @@ import { AuthError } from "firebase/auth";
 
 //---------MAIN---------------\
 
+interface registerData {
+  firstName: string;
+  lastName: string;
+  mail: string;
+  password: string;
+}
+
 //---------COMPONENT----------\
 
 const RegisterForm = function () {
@@ -30,7 +39,7 @@ const RegisterForm = function () {
   const [formValidity, setValidity] = useState(false);
   const navigate = useNavigate();
 
-  //SECTION______________________: Single Form States + corresponded ref
+  //SECTION______________________: Single Form States + corresponded ref (custom hook)
 
   const [firstNameValidity, setFirstNameValidity, firstNameRef] =
     useOutsideInput();
@@ -57,23 +66,34 @@ const RegisterForm = function () {
       );
     },
     Registration: {
+      registerFormData: {
+        firstName: firstNameRef.current!.value,
+        lastName: lastNameRef.current!.value,
+        mail: mailRef.current!.value,
+        password: passInitRef.current!.value,
+      },
+      initChain() {
+        return Promise.resolve(this.registerFormData);
+      },
+      firebaseRegisterRequest(data: registerData) {
+        return register(data.mail, data.password);
+      },
+      allow() {
+        logCol("Allow registration!", "green");
+        this.initChain()
+          .then(this.firebaseRegisterRequest)
+          .then()
+          .catch(this.handleError);
+      },
+      block() {
+        logCol("Form invalid, registration disallowed!", "red");
+        setErrorMessage("Form is incomplete... Please fill out all Fields!");
+      },
       handleError(error: AuthError) {
         if (error.message.includes("auth/email-already-in-use")) {
           setErrorMessage("Mail already in use! Change mail and try again!");
           setMailValidity(false);
         } else setErrorMessage(error.message);
-      },
-      allow() {
-        const firstName = firstNameRef.current!.value;
-        const lastName = lastNameRef.current!.value;
-        const mail = mailRef.current!.value;
-        const password = passInitRef.current!.value;
-        logCol("Allow registration!", "green");
-        register(mail, password).catch(this.handleError);
-      },
-      block() {
-        logCol("Form invalid, registration disallowed!", "red");
-        setErrorMessage("Form is incomplete... Please fill out all Fields!");
       },
       handleRequest() {
         if (formValidity) {
@@ -81,6 +101,15 @@ const RegisterForm = function () {
         } else {
           this.block();
         }
+      },
+      Datapool: {
+        create(firstName: string, lastName: string, uid: string) {
+          const mainPool = `MainUserDataPool_${uid}`;
+          this.addMetaData();
+        },
+        addUserBoards() {},
+        addUserConfig() {},
+        addMetaData() {},
       },
     },
     Valididation: {
