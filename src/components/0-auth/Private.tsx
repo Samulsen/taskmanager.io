@@ -2,6 +2,7 @@
 
 import { Outlet, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { DataContext } from "../../context/DataContext";
 import Anchor from "../0-independent/anchor/Anchor";
 import Loading from "./loader/Loading";
 import DataContextProvider from "../../context/DataContext";
