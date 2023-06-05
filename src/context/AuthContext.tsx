@@ -8,6 +8,7 @@ import {
   useEffect,
   useContext,
   useState,
+  FC,
 } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase";
@@ -67,7 +68,7 @@ const AuthContextLocal = createContext<ContextValueType | null>(null);
 
 //---------COMPONENT----------\
 
-const AuthContextProvider: React.FC<{ children: ReactNode }> = function ({
+const AuthContextProvider: FC<{ children: ReactNode }> = function ({
   children,
 }) {
   const [userObject, setUserObject] = useState<userStates>(null);
@@ -76,17 +77,15 @@ const AuthContextProvider: React.FC<{ children: ReactNode }> = function ({
   useEffect(() => {
     logCol("onAuthStateChanged was initiated!", "orange");
     onAuthStateChanged(auth, (user) => {
-      // setTimeout(() => {
-      if (user) {
-        setUserObject(user);
-        setAuthState(state.loggedIn);
-        // debugLoggerAuth(userObject);
-      } else {
-        setUserObject(user);
-        // debugLoggerAuth(userObject);
-        setAuthState(state.notLoggedIn);
-      }
-      // }, 1000);
+      setTimeout(() => {
+        if (user) {
+          setUserObject(user);
+          setAuthState(state.loggedIn);
+        } else {
+          setUserObject(user);
+          setAuthState(state.notLoggedIn);
+        }
+      }, 200);
     });
   }, []);
 

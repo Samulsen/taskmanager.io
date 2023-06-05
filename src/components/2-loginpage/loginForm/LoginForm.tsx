@@ -5,26 +5,28 @@ import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 //__i-style__________
 import classes from "./_LoginForm.module.scss";
-import base from "././../../../styles/./public modules/_base.module.scss";
 //__i-context________
 import { AuthContext } from "../../../context/AuthContext";
 //__i-components_____
-import PasswordToggler from "../passwordToggler/PasswordToggler";
+import PasswordToggler from "../../0-independent/passwordToggler/PasswordToggler";
 import ButtonOutside from "../../0-independent/buttons/outside/ButtonOutside";
-import LoginErrorMessage from "../loginErrorMessage/LoginErrorMessage";
+import ErrorMessageOutside from "../../0-independent/errorMessageOutside/ErrorMessageOutside";
 import { AuthError } from "firebase/auth";
 
 //---------COMPONENT----------\
 
 const LoginForm = function () {
   //__c-hooks________
+
   const AuthLogic = AuthContext();
   const navigate = useNavigate();
-  const [error, setError] = useState(false);
+  const [errorMessage, setMessage] = useState<null | string>(null);
   const [passwordVisibility, setVisibility] = useState("password");
   const inputPassword = useRef<HTMLInputElement>(null);
   const inputMail = useRef<HTMLInputElement>(null);
+
   //__c-logic________
+
   const Logic = {
     //SECTION______________________: Login
     initChain() {
@@ -36,13 +38,17 @@ const LoginForm = function () {
       return AuthLogic?.loggin(email, password);
     },
     evaluateErrorState() {
-      if (error) {
-        return <LoginErrorMessage />;
-      }
+      return errorMessage ? (
+        <ErrorMessageOutside message={errorMessage} />
+      ) : (
+        <></>
+      );
     },
     getError(error: AuthError) {
+      if (error.message.includes("auth/invalid-email")) {
+        setMessage("Invalid Credentials!");
+      } else setMessage(error.message);
       console.error(error.message);
-      setError(true);
     },
     moveToPrivate() {
       navigate("/private/allTasks");
@@ -65,32 +71,33 @@ const LoginForm = function () {
     <div className={classes.body}>
       <input
         ref={inputMail}
-        key="inp-mail"
         type="text"
-        className={`${classes.input} ${classes.mail} ${base.inputOutside}`}
+        className={`${classes.input} ${classes.mail}`}
         name="mailInputOutside"
         placeholder="E - Mail"
       />
       <input
         ref={inputPassword}
-        key="inp-password"
-        className={`${classes.input} ${classes.password} ${base.inputOutside}`}
+        className={`${classes.input} ${classes.password}`}
         type={passwordVisibility}
         name="passwordInputOutside"
         placeholder="Password"
       />
       <PasswordToggler
+        key="password-toggler"
         individualClass={classes.toggler}
         setPasswordVisibility={setVisibility}
       />
       <div className={classes.buttonBox}>
         <ButtonOutside
+          key="button-login"
           border="green"
           displayText="Login"
           clickMethod={Logic.loginRequest.bind(Logic)}
         />
         <div className={classes.buttonBox_or}>or</div>
         <ButtonOutside
+          key="button-register"
           border="green"
           displayText="Register"
           clickMethod={Logic.registerRedirect}

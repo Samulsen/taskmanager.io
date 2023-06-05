@@ -1,0 +1,77 @@
+.body {
+  display: grid;
+  grid-template-columns: 10rem 30rem 10rem;
+  grid-template-rows: repeat(5, 6rem) repeat(2, 7rem);
+  grid-template-areas:
+    "first first first"
+    "second second second"
+    "q-one third empty-third"
+    "q-two four tog-in"
+    "empty-five five tog-rep"
+    "button button button"
+    "error error error";
+  align-items: center;
+  justify-items: center;
+}
+
+.firstName {
+  grid-area: first;
+}
+
+.lastName {
+  grid-area: second;
+}
+
+.mail {
+  grid-area: third;
+
+  &Info {
+    grid-area: q-one;
+  }
+}
+
+.password {
+  grid-area: four;
+
+  &_toggle {
+    grid-area: tog-in;
+    width: 4.5rem;
+    height: 4.5rem;
+    justify-self: left;
+    margin-left: 1rem;
+  }
+
+  &Info {
+    grid-area: q-two;
+  }
+}
+
+.repeat {
+  grid-area: five;
+
+  &_toggle {
+    grid-area: tog-rep;
+    width: 4.5rem;
+    height: 4.5rem;
+    justify-self: left;
+    margin-left: 1rem;
+  }
+}
+
+.buttonBox {
+  grid-area: button;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+
+  &_or {
+    width: 6rem;
+    text-align: center;
+    font-size: 2.7rem;
+    font-weight: 500;
+    padding-bottom: 0.7rem;
+  }
+}
+
+.error {
+}

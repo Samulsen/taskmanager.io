@@ -1,3 +1,5 @@
+//---------IMPORTS------------\
+
 import { User } from "firebase/auth";
 
 //---------MAIN---------------\
@@ -8,7 +10,7 @@ const debugLoggerAuth = function (
 ) {
   console.log(
     `
-%conAuthContext evaluates AuthState
+%cAuthContext evaluates the current AuthState...
 %cCurrent Auth State: %c${
       typeof authState === "string" ? "UNEVALUATED" : authState ? true : false
     }

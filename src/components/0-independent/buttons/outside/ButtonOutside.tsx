@@ -1,14 +1,15 @@
 //---------IMPORTS------------\
 
 import classes from "./_ButtonOutside.module.scss";
+import { FC } from "react";
 
 //---------MAIN---------------\
 
-type additions = { border: string; displayText: string; clickMethod: any };
+type props = { border: string; displayText: string; clickMethod: any };
 
 //---------COMPONENT----------\
 
-const ButtonOutside: React.FC<additions> = function (props) {
+const ButtonOutside: FC<props> = function (props) {
   const Logic = {
     evaluteClassList() {
       let classList;
@@ -18,6 +19,16 @@ const ButtonOutside: React.FC<additions> = function (props) {
       }
       if (props.border === "green") {
         classList = classes.body + " " + classes.border_green;
+        return classList;
+      }
+
+      if (props.border === "invalid") {
+        classList = classes.body + " " + classes.border_invalid;
+        return classList;
+      }
+
+      if (props.border === "valid") {
+        classList = classes.body + " " + classes.border_valid;
         return classList;
       }
     },

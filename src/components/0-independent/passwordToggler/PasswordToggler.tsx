@@ -16,9 +16,11 @@ const PasswordToggler: React.FC<{
   const Logic = {
     evaluateVisibility() {
       if (visibility) {
-        return <img src={unshowSign} alt="unshowSign" />;
+        return (
+          <img className={classes.scale} src={unshowSign} alt="unshowSign" />
+        );
       } else {
-        return <img src={showSign} alt="showSign" />;
+        return <img className={classes.scale} src={showSign} alt="showSign" />;
       }
     },
     toogleVisibility() {
