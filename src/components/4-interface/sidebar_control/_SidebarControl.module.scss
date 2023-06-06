@@ -1,5 +1,42 @@
 .body {
+  overflow: auto;
   background-color: #022d6c;
-  padding: 0.5rem;
+  padding: 0.8rem;
   display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 15rem auto 17rem;
+
+  &::-webkit-scrollbar {
+    opacity: 0;
+    width: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    opacity: 0;
+    background: white;
+    border-radius: 2rem;
+  }
+}
+
+.menu {
+  &_upper {
+    background-color: rgba(255, 255, 255, 0.267);
+  }
+  &_lower {
+    background-color: rgba(255, 255, 0, 0.449);
+  }
+}
+
+.header {
+  overflow: hidden;
+  display: flex;
+}
+
+.transfomer {
+  padding-left: 0.7rem;
+  transform: rotate(180deg);
+  margin: auto;
+  font-size: 2.5rem;
+  writing-mode: vertical-rl;
+  text-orientation: sideways-right;
 }
