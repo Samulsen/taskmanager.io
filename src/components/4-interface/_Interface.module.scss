@@ -1,5 +1,29 @@
+@import "./../../styles/variables";
+
 .body {
-  background-color: rgb(253, 105, 0);
-  width: 20rem;
-  height: 20rem;
+  background-color: grey;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 6.5rem 18rem auto;
+  grid-template-rows: 100vh;
+  grid-template-areas: "sideControll sideBoards board";
+}
+
+.sidebar {
+  &_controll {
+    grid-area: sideControll;
+    background-color: #022d6c;
+  }
+
+  &_boards {
+    grid-area: sideBoards;
+    background-color: #174d9a;
+  }
+}
+
+.board_area {
+  grid-area: board;
+  background-color: #13005a;
+  width: 100%;
 }

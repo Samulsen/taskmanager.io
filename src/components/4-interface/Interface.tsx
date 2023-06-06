@@ -9,7 +9,11 @@ const Interface = function () {
 
   return (
     <div className={classes.body}>
-      <Outlet />
+      <div className={classes.sidebar_controll}></div>
+      <div className={classes.sidebar_boards}></div>
+      <div className={classes.board_area}>
+        <Outlet />
+      </div>
     </div>
   );
 };
