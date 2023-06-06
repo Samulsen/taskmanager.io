@@ -10,8 +10,8 @@ import Registerpage from "./components/3-registerpage/Registerpage";
 //Private Routes
 import Private from "./components/0-auth/Private";
 import Interface from "./components/4-interface/Interface";
-import Total from "./components/4-interface/boards/total/Total";
-import Dynamic from "./components/4-interface/boards/dynamic/Dynamic";
+import Total from "./components/4-interface/board_area/boards/total/Total";
+import Dynamic from "./components/4-interface/board_area/boards/dynamic/Dynamic";
 
 //---------MAIN---------------\
 

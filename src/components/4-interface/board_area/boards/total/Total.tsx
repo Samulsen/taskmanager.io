@@ -5,7 +5,7 @@ import classes from "./_Total.module.scss";
 //---------COMPONENT----------\
 
 const Total = function () {
-  return <></>;
+  return <div className={classes.body}></div>;
 };
 
 //---------EXPORTS------------\

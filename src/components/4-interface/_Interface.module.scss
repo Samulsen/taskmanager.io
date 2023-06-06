@@ -12,18 +12,15 @@
 
 .sidebar {
   &_controll {
-    grid-area: sideControll;
     background-color: #022d6c;
   }
 
   &_boards {
-    grid-area: sideBoards;
     background-color: #174d9a;
   }
 }
 
 .board_area {
-  grid-area: board;
   background-color: #13005a;
   width: 100%;
 }
