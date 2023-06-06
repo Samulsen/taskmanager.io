@@ -6,11 +6,11 @@ import { DataContext, appMetaData } from "../../../../../context/DataContext";
 //---------COMPONENT----------\
 
 const ProfileButton = function () {
-  // const UserMetaData = DataContext()!.appMetaData as appMetaData;
+  const UserMetaData = DataContext()!.appMetaData as appMetaData;
   const Logic = {
     evaluateUserShort() {
-      const userInitials = "SB";
-      // UserMetaData?.firstName[0] + UserMetaData?.lastName[0];
+      const userInitials =
+        UserMetaData?.firstName[0] + UserMetaData?.lastName[0];
       return userInitials;
     },
   };
