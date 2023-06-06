@@ -12,17 +12,15 @@
   grid-area: pos;
 }
 
-.message {
-  z-index: 2;
-  grid-area: pos;
-  position: relative;
+// .message {
+//   position: relative;
+//   z-index: 2;
+//   grid-area: pos;
 
-  &:hover::after {
-    position: fixed;
-    left: 2rem;
-    z-index: 3;
-    content: attr(data-description);
-    color: white;
-    font-size: 1rem;
-  }
-}
+//   &:hover::after {
+//     position: absolute;
+//     content: attr(data-description);
+//     color: white;
+//     font-size: 1.5rem;
+//   }
+// }
