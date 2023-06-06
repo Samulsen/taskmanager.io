@@ -1,8 +1,11 @@
 //---------IMPORTS------------\
 
-import classes from "./_Interface.module.scss";
 import { Outlet } from "react-router-dom";
+import classes from "./_Interface.module.scss";
+//__i-components_____
 import BoardArea from "./board_area/BoardArea";
+import SidebarBoards from "./sidebar_boards/SidebarBoards";
+import SidebarControl from "./sidebar_control/SidebarControl";
 
 //---------COMPONENT----------\
 const Interface = function () {
@@ -10,8 +13,8 @@ const Interface = function () {
 
   return (
     <div className={classes.body}>
-      <div className={classes.sidebar_controll}></div>
-      <div className={classes.sidebar_boards}></div>
+      <SidebarControl />
+      <SidebarBoards />
       <BoardArea>
         <Outlet />
       </BoardArea>

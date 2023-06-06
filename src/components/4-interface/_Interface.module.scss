@@ -7,15 +7,5 @@
   display: grid;
   grid-template-columns: 6.5rem 18rem auto;
   grid-template-rows: 100vh;
-  grid-template-areas: "sideControll sideBoards boardArea";
-}
-
-.sidebar {
-  &_controll {
-    background-color: #022d6c;
-  }
-
-  &_boards {
-    background-color: #174d9a;
-  }
+  grid-template-areas: "sideControl sideBoards boardArea";
 }
