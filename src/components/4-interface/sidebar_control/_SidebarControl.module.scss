@@ -7,28 +7,11 @@
   grid-template-rows: 15rem auto 17rem;
 
   &::-webkit-scrollbar {
-    opacity: 0;
-    width: 2px;
+    width: 0.2rem;
   }
 
   &::-webkit-scrollbar-thumb {
-    opacity: 0;
     background: white;
     border-radius: 2rem;
   }
-}
-
-.header {
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.transfomer {
-  padding-left: 0.7rem;
-  transform: rotate(180deg);
-  font-size: 2.5rem;
-  writing-mode: vertical-rl;
-  text-orientation: sideways-right;
 }
