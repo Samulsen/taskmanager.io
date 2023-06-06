@@ -1,0 +1,16 @@
+@import "./../../../../../styles/variables";
+
+.body {
+  border-radius: 10rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-color: white;
+  border-width: 0.3rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: $main-green;
+  border-style: solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
