@@ -1,3 +1,28 @@
 .body {
   width: 50%;
+  cursor: pointer;
+  display: grid;
+  grid-template-rows: 3rem;
+  grid-template-columns: 100%;
+  grid-template-areas: "pos";
+}
+
+.icon {
+  z-index: 1;
+  grid-area: pos;
+}
+
+.message {
+  z-index: 2;
+  grid-area: pos;
+  position: relative;
+
+  &:hover::after {
+    position: fixed;
+    left: 2rem;
+    z-index: 3;
+    content: attr(data-description);
+    color: white;
+    font-size: 1rem;
+  }
 }

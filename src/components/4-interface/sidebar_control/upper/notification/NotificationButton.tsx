@@ -8,7 +8,8 @@ import bellOff from "./bellOff.svg";
 const NotificationButton = function () {
   return (
     <div className={classes.body}>
-      <img src={bellOff} alt="bellOffIcon" />
+      <div className={classes.message} data-description="coming soon..."></div>
+      <img className={classes.icon} src={bellOff} alt="bellOffIcon" />
     </div>
   );
 };

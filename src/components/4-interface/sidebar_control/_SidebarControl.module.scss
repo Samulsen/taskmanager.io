@@ -1,5 +1,6 @@
 .body {
-  overflow: auto;
+  // overflow-x: visible;
+  // overflow-y: auto;
   background-color: #022d6c;
   padding: 0.8rem;
   display: grid;
@@ -12,6 +13,5 @@
 
   &::-webkit-scrollbar-thumb {
     background: white;
-    border-radius: 2rem;
   }
 }
