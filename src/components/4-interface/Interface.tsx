@@ -2,6 +2,7 @@
 
 import classes from "./_Interface.module.scss";
 import { Outlet } from "react-router-dom";
+import BoardArea from "./board_area/BoardArea";
 
 //---------COMPONENT----------\
 const Interface = function () {
@@ -11,9 +12,9 @@ const Interface = function () {
     <div className={classes.body}>
       <div className={classes.sidebar_controll}></div>
       <div className={classes.sidebar_boards}></div>
-      <div className={classes.board_area}>
+      <BoardArea>
         <Outlet />
-      </div>
+      </BoardArea>
     </div>
   );
 };
