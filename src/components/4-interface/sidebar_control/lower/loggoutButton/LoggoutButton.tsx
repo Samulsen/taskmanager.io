@@ -1,14 +1,22 @@
 //---------IMPORTS------------\
 
-import { AuthContext } from "../../../../../context/AuthContext";
+import { useState } from "react";
 import classes from "./_LoggoutButton.module.scss";
+
+import { AuthContext } from "../../../../../context/AuthContext";
 import icon from "./loggoutIcon.svg";
 import LoggoutConfirmPop from "./LoggoutConfirmPop/LoggoutConfirmPop";
 
 //---------COMPONENT----------\
 
 const LoggoutButton = function () {
-  const loggout = AuthContext()!.loggout;
+  const [requestState, setRequestState] = useState(false);
+
+  const Logic = {
+    enableConfirmButton() {
+      setRequestState(true);
+    },
+  };
 
   return (
     <div className={classes.body}>
@@ -16,9 +24,13 @@ const LoggoutButton = function () {
         className={classes.icon}
         src={icon}
         alt="loggoutButtonIcon"
-        onClick={loggout}
+        onClick={Logic.enableConfirmButton}
       />
-      <LoggoutConfirmPop />
+      {requestState ? (
+        <LoggoutConfirmPop setRequestState={setRequestState} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
