@@ -4,6 +4,7 @@ import classes from "./_BoardItem.module.scss";
 import { FC } from "react";
 import boardIcon from "./boardIcon.svg";
 import optionIcon from "./optionsIcon.svg";
+import { Link } from "react-router-dom";
 
 //---------COMPONENT----------\
 
@@ -20,7 +21,7 @@ const BoardItem: FC<{ data: string }> = function (props) {
   };
 
   return (
-    <div className={classes.body}>
+    <Link className={classes.body} to={""}>
       <img
         className={`${classes.icon} ${classes.board}`}
         src={boardIcon}
@@ -32,7 +33,7 @@ const BoardItem: FC<{ data: string }> = function (props) {
         src={optionIcon}
         alt="iconOptionIcon"
       />
-    </div>
+    </Link>
   );
 };
 
