@@ -2,14 +2,16 @@
 
 import classes from "./_SidebarBoards.module.scss";
 import Line from "../../0-independent/line/Line";
+import BoardBarMenu from "./boardBarMenu/BoardBarMenu";
+import BoardBarList from "./boardBarList/BoardBarList";
 
 //---------COMPONENT----------\
 
 const SidebarBoards = function () {
   return (
     <div className={classes.body}>
-      <div className={classes.menu}></div>
-      <div className={classes.list}></div>
+      <BoardBarMenu />
+      <BoardBarList />
       <Line />
     </div>
   );
