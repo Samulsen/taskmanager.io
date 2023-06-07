@@ -9,6 +9,14 @@
   border-radius: 1rem;
   left: 7rem;
   top: 0rem;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  grid-template-areas:
+    "message message"
+    "cancel loggout";
+  align-items: center;
+  justify-items: center;
 }
 
 .pointer {
@@ -19,4 +27,11 @@
   left: 5.3rem;
   top: 0.3rem;
   background-color: $mid-blue;
+}
+
+.message {
+  grid-area: message;
+  font-size: 1.4rem;
+  font-weight: 300;
+  text-align: center;
 }
