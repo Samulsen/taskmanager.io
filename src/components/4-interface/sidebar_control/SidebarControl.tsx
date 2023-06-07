@@ -1,6 +1,5 @@
 //---------IMPORTS------------\
 
-import Title from "../../0-independent/title/Title";
 import classes from "./_SidebarControl.module.scss";
 import LowerMenu from "./lower/LowerMenu";
 import MiddleBarHeader from "./middle/MiddleBarHeader";
