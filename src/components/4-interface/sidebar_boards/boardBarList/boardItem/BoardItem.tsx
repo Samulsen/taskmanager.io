@@ -21,7 +21,7 @@ const BoardItem: FC<{ data: string }> = function (props) {
   };
 
   return (
-    <Link className={classes.body} to={""}>
+    <Link className={classes.body} to={"first board_292992"}>
       <img
         className={`${classes.icon} ${classes.board}`}
         src={boardIcon}

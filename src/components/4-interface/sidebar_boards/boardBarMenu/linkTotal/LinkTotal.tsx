@@ -9,7 +9,7 @@ import allTasks from "./allTasks.svg";
 const LinkTotal = function () {
   return (
     <div className={classes.body}>
-      <Link className={classes.body} to={""}>
+      <Link className={classes.body} to={"total"}>
         <img className={classes.icon} src={allTasks} alt="allTaskBtton" />
         See all tasks
       </Link>
