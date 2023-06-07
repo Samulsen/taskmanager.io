@@ -1,15 +1,30 @@
 .body {
   display: flex;
+  flex-direction: column;
   flex-wrap: nowrap;
-  align-items: center;
-  justify-content: center;
+  align-items: left;
+  justify-content: space-between;
 }
 
 .title {
+  font-size: 2rem;
+  font-weight: 500;
+  border-style: solid;
+  border-color: white;
+  border-radius: 0.7rem;
+  border-width: 0.2rem;
+  text-align: center;
+  padding: 0.5rem;
 }
 
 .linkTotal {
+  text-decoration: none;
 }
 
 .newBoard {
+}
+
+.icon {
+  width: 2rem;
+  height: 2rem;
 }
