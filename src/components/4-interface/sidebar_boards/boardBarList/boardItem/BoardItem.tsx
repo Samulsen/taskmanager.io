@@ -11,15 +11,29 @@ const BoardItem: FC<{ data: string }> = function (props) {
   const Logic = {
     DisplayBoardName() {
       const name = props.data.split("_")[0];
-      if (name.length > 10) {
-        return name.slice(0, 10) + "...";
+      if (name.length > 13) {
+        return name.slice(0, 12) + "...";
       } else {
         return name;
       }
     },
   };
 
-  return <div className={classes.body}>{props.data.split("_")[0]}</div>;
+  return (
+    <div className={classes.body}>
+      <img
+        className={`${classes.icon} ${classes.board}`}
+        src={boardIcon}
+        alt="iconBoardItem"
+      />
+      {Logic.DisplayBoardName()}
+      <img
+        className={`${classes.icon} ${classes.option}`}
+        src={optionIcon}
+        alt="iconOptionIcon"
+      />
+    </div>
+  );
 };
 
 //---------EXPORTS------------\
