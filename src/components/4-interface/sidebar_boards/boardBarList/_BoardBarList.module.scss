@@ -1,0 +1,8 @@
+.body {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: grid;
+  row-gap: 1rem;
+  grid-template-columns: 100%;
+  grid-auto-rows: 2.5rem;
+}
