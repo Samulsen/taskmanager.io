@@ -9,7 +9,7 @@ const LoggoutConfirmPop = function () {
   return (
     <>
       <div className={classes.body}>
-        <div className={classes.message}>Do you want to log out?</div>
+        <div className={classes.message}>Do you really want to log out?</div>
         <InsideButtonLight
           key="buttonCancelLoggout"
           name="Cancel"

@@ -22,7 +22,10 @@ const InsideButtonLight: FC<props> = function (props) {
   };
 
   return (
-    <div className={`${classes.body} ${Logic.evaluateColor()}`}>
+    <div
+      className={`${classes.body} ${Logic.evaluateColor()}`}
+      onClick={props.clickMethod}
+    >
       {props.name}
     </div>
   );

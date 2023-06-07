@@ -12,7 +12,12 @@ const LoggoutButton = function () {
 
   return (
     <div className={classes.body}>
-      <img src={icon} alt="loggoutButtonIcon" onClick={loggout} />
+      <img
+        className={classes.icon}
+        src={icon}
+        alt="loggoutButtonIcon"
+        onClick={loggout}
+      />
       <LoggoutConfirmPop />
     </div>
   );
@@ -29,7 +34,6 @@ export default LoggoutButton;
 // import { AuthContext } from "../../../../../context/AuthContext";
 // import classes from "./_LoggoutButton.module.scss";
 // import icon from "./loggoutIcon.svg";
-// import LoggoutConfirmPop from "./LoggoutConfirmPop/LoggoutConfirmPop";
 
 // //---------COMPONENT----------\
 
@@ -39,7 +43,6 @@ export default LoggoutButton;
 //   return (
 //     <div className={classes.body}>
 //       <img src={icon} alt="loggoutButtonIcon" onClick={loggout} />
-
 //     </div>
 //   );
 // };

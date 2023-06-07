@@ -1,11 +1,9 @@
 .body {
   width: 65%;
   margin-right: 0.5rem;
-  // transition: all 0.3s;
-  // cursor: pointer;
   position: relative;
+}
 
-  &:hover {
-    // transform: translateX(-0.2rem);
-  }
+.icon {
+  cursor: pointer;
 }
