@@ -7,24 +7,33 @@
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 500;
   border-style: solid;
   border-color: white;
   border-radius: 0.7rem;
   border-width: 0.2rem;
   text-align: center;
-  padding: 0.5rem;
+  padding: 0.7rem;
 }
 
 .linkTotal {
   text-decoration: none;
+  color: white;
 }
 
 .newBoard {
 }
 
 .icon {
+  margin-right: 0.5rem;
   width: 2rem;
   height: 2rem;
+}
+
+.structure {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  cursor: pointer;
 }

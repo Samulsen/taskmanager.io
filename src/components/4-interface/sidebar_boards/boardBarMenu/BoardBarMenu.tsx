@@ -12,11 +12,11 @@ const BoardBarMenu = function () {
   return (
     <div className={classes.body}>
       <div className={classes.title}>Workspace</div>
-      <Link className={classes.linkTotal} to={""}>
+      <Link className={`${classes.linkTotal} ${classes.structure}`} to={""}>
         <img className={classes.icon} src={iconAllTasks} alt="allTaskBtton" />
         See all tasks
       </Link>
-      <div className={classes.newBoard}>
+      <div className={`${classes.newBoard} ${classes.structure}`}>
         <img className={classes.icon} src={iconNewBoard} alt="newBoardBtton" />
         Add new Board
       </div>
