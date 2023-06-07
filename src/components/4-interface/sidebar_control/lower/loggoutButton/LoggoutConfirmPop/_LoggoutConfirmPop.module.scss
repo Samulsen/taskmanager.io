@@ -3,7 +3,7 @@
 .body {
   position: absolute;
   width: 15rem;
-  height: 10rem;
+  height: 9rem;
   background-color: $mid-blue;
   z-index: 10;
   border-radius: 1rem;
@@ -30,6 +30,7 @@
 }
 
 .message {
+  margin-top: 1rem;
   grid-area: message;
   font-size: 1.4rem;
   font-weight: 300;

@@ -1,0 +1,22 @@
+.body {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+
+.reddish {
+  background-color: rgba(255, 0, 0, 0.277);
+  transition: all 0.3s;
+  &:hover {
+    background-color: rgba(255, 0, 0, 0.441);
+  }
+}
+
+.neutral {
+  transition: all 0.3s;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.163);
+  }
+}
