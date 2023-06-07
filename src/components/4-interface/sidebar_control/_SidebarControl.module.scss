@@ -1,6 +1,6 @@
 .body {
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow-y: clip;
+  overflow-x: visible;
   background-color: #022d6c;
   padding: 0.8rem;
   display: grid;

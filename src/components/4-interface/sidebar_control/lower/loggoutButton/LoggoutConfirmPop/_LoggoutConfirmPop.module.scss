@@ -1,0 +1,9 @@
+@import "./../../../../../../styles/variables";
+
+.body {
+  position: absolute;
+  width: 15rem;
+  height: 10rem;
+  background-color: $mid-blue;
+  z-index: 10;
+}
