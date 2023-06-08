@@ -4,7 +4,9 @@ import { createContext, FC, ReactNode, useContext, useState } from "react";
 
 //---------MAIN---------------\
 
-interface ContextValueType {}
+interface ContextValueType {
+  test: string;
+}
 
 //SECTION______________________: Context objects
 
@@ -15,7 +17,9 @@ const BoardContextProvider: FC<{ children: ReactNode }> = function ({
 }) {
   //__c-hooks________
   //__c-logic________
-  const BoardContextValues: ContextValueType = {};
+  const BoardContextValues: ContextValueType = {
+    test: "this is a test",
+  };
 
   return (
     <BoardContextLocal.Provider value={BoardContextValues}>

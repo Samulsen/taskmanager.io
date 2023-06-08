@@ -2,14 +2,17 @@
 
 import classes from "./_BoardArea.module.scss";
 import { FC } from "react";
+import BoardContextProvider from "../../../context/BoardContext";
 
 //---------COMPONENT----------\
 
-const BoardArea: FC<{ children: any }> = function ({ children: outlet }) {
+const BoardArea: FC<{ children: any }> = function ({ children: board }) {
   return (
     <div className={classes.body}>
-      <div className={classes.views}></div>
-      <div className={classes.boardspace}>{outlet}</div>
+      <BoardContextProvider>
+        <div className={classes.views}></div>
+        {board}
+      </BoardContextProvider>
     </div>
   );
 };
