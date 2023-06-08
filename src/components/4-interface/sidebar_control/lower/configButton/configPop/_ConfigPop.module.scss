@@ -1,13 +1,18 @@
 @import "./../../../../../../styles/variables";
 
 .body {
+  padding: 1rem 0.5rem;
   position: absolute;
   width: 17rem;
-  height: 15rem;
+  height: 16rem;
   background-color: $mid-blue;
   left: 8.5rem;
   bottom: 5rem;
   border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .pointer {
@@ -19,4 +24,26 @@
   bottom: 11rem;
 
   background-color: $mid-blue;
+}
+
+.header {
+  font-size: 1.5rem;
+  border-style: solid;
+  border-color: white;
+  border-radius: 0.5rem;
+  border-width: 0.2rem;
+  padding: 0.5rem 1rem;
+}
+
+.settings {
+}
+
+.confirm {
+  width: fit-content;
+  height: fit-content;
+  padding: 0.5rem 1rem;
+
+  background-color: #174d9a;
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
 }
