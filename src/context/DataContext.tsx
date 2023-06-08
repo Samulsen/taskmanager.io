@@ -1,12 +1,7 @@
 //---------IMPORTS------------\
 //__i-libraries______
 import { db } from "../firebase";
-import {
-  DocumentData,
-  collection,
-  getDocs,
-  onSnapshot,
-} from "firebase/firestore";
+import { DocumentData, collection, onSnapshot } from "firebase/firestore";
 import {
   createContext,
   FC,
@@ -44,8 +39,6 @@ export interface appMetaData {
   config: { autoDeleteOnDone: boolean };
   boardNames: string[];
 }
-
-//SECTION______________________: Firebase References
 
 //SECTION______________________: Context Object
 
