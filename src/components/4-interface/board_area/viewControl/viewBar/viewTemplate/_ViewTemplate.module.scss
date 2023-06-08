@@ -1,16 +1,28 @@
 .body {
   width: fit-content;
-  height: 2rem;
-  padding: 0.5rem;
+  height: 3rem;
+  padding: 0 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.3rem;
-  background-color: rgba(128, 128, 128, 0.763);
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+  cursor: pointer;
 }
 
 .icon {
   margin-right: 1rem;
   height: 2rem;
   width: 2rem;
+}
+
+.selected {
+  background-color: rgba(255, 255, 255, 0.234);
+}
+
+.unselected {
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.234);
+  }
 }
