@@ -1,0 +1,22 @@
+@import "./../../../../../../styles/variables";
+
+.body {
+  position: absolute;
+  width: 17rem;
+  height: 15rem;
+  background-color: $mid-blue;
+  left: 8.5rem;
+  bottom: 5rem;
+  border-radius: 0.5rem;
+}
+
+.pointer {
+  position: absolute;
+  clip-path: polygon(100% 0, 15% 50%, 100% 100%);
+  width: 3rem;
+  height: 3rem;
+  left: 6.5rem;
+  bottom: 11rem;
+
+  background-color: $mid-blue;
+}
