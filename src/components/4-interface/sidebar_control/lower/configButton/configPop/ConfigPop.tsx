@@ -1,5 +1,8 @@
 //---------IMPORTS------------\
+
 import classes from "./_ConfigPop.module.scss";
+import arrowIcon from "./arrow.svg";
+import checkIcon from "./check.svg";
 
 //---------COMPONENT----------\
 const ConfigPop = function () {
@@ -9,10 +12,16 @@ const ConfigPop = function () {
         <div className={classes.header}>Settings</div>
         <div className={classes.settings}>
           <div className={classes.detail}>
-            Delete Task when Status is <span>"Done!"</span>?
+            Delete Task when Status is "<span>Done!</span>"?
           </div>
-          <div className={classes.arrow}></div>
-          <div className={classes.tickbox}></div>
+          <img className={classes.arrow} src={arrowIcon} alt="arrowToField" />
+          <div className={classes.tickbox}>
+            <img
+              className={classes.icon}
+              src={checkIcon}
+              alt="checkIconTaskAutomation"
+            />
+          </div>
         </div>
         <div className={classes.confirm}>Save & Back</div>
       </div>
