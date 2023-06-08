@@ -1,2 +1,16 @@
-.body {}
+.body {
+  width: fit-content;
+  height: 2rem;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
+  background-color: rgba(128, 128, 128, 0.763);
+}
 
+.icon {
+  margin-right: 1rem;
+  height: 2rem;
+  width: 2rem;
+}

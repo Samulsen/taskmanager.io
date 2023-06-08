@@ -1,26 +1,28 @@
 //---------IMPORTS------------\
 
+//__i-style__________
 import classes from "./_ViewBar.module.scss";
+import homeIcon from "./svgs/homeIcon.svg";
+
+//__i-components_____
 import EffectFilter from "./effectFilter/EffectFilter";
 import EffectSort from "./effectSort/EffectSort";
 import SepBig from "./seperator/sepBig/SepBig";
 import SepSmall from "./seperator/sepSmall/SepSmall";
-import ViewHome from "./viewHome/ViewHome";
-import ViewProgress from "./viewProgress/ViewProgress";
-import ViewUntouched from "./viewUntouched/ViewUntouched";
+import ViewTemplate from "./viewTemplate/ViewTemplate";
 
 //---------COMPONENT----------\
 
 const ViewBar = function () {
   return (
     <div className={classes.body}>
-      <ViewHome />
+      <ViewTemplate icon={homeIcon} effect="Home" />
       <SepSmall />
-      <ViewHome />
+      {/*  */}
       <SepSmall />
-      <ViewProgress />
+      {/*  */}
       <SepSmall />
-      <ViewUntouched />
+      {/*  */}
       <SepBig />
       <EffectFilter />
       <SepSmall />
