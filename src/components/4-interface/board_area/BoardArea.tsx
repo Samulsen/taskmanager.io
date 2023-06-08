@@ -5,8 +5,13 @@ import { FC } from "react";
 
 //---------COMPONENT----------\
 
-const BoardArea: FC<{ children: any }> = function ({ children }) {
-  return <div className={classes.body}>{children}</div>;
+const BoardArea: FC<{ children: any }> = function ({ children: outlet }) {
+  return (
+    <div className={classes.body}>
+      <div className={classes.views}></div>
+      <div className={classes.boardspace}>{outlet}</div>
+    </div>
+  );
 };
 
 //---------EXPORTS------------\
