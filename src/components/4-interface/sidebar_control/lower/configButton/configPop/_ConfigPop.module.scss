@@ -4,7 +4,7 @@
   padding: 1rem 0.5rem;
   position: absolute;
   width: 21rem;
-  height: 16rem;
+  height: 18rem;
   background-color: $mid-blue;
   left: 8.5rem;
   bottom: 5rem;
@@ -30,6 +30,7 @@
   justify-content: space-between;
   align-items: center;
   .detail {
+    line-height: 1.5;
     height: fit-content;
     width: 10rem;
     padding: 0.5rem;
@@ -48,7 +49,7 @@
 
   .tickbox {
     border-radius: 0.5rem;
-    padding: 0.7rem;
+    padding: 1rem;
     display: flex;
     justify-content: center;
     align-content: center;
