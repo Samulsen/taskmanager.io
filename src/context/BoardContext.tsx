@@ -10,15 +10,17 @@ interface ContextValueType {}
 
 const BoardContextLocal = createContext<ContextValueType | null>(null);
 
-const BoardContextProvider: FC<{ children: ReactNode }> = function () {
+const BoardContextProvider: FC<{ children: ReactNode }> = function ({
+  children,
+}) {
   //__c-hooks________
   //__c-logic________
   const BoardContextValues: ContextValueType = {};
 
   return (
-    <BoardContextLocal.Provider
-      value={BoardContextValues}
-    ></BoardContextLocal.Provider>
+    <BoardContextLocal.Provider value={BoardContextValues}>
+      {children}
+    </BoardContextLocal.Provider>
   );
 };
 
