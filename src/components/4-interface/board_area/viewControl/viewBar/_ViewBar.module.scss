@@ -1,11 +1,7 @@
 .body {
   display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
   height: 5rem;
   background-color: rgba(222, 184, 135, 0.4);
-}
-
-.seperator {
-  height: 5rem;
-  width: 0.2rem;
-  background-color: white;
 }

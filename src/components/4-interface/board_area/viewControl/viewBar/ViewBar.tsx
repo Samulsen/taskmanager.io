@@ -1,13 +1,16 @@
 //---------IMPORTS------------\
 
 import classes from "./_ViewBar.module.scss";
+import SepBig from "./seperator/sepBig/SepBig";
+import SepSmall from "./seperator/sepSmall/SepSmall";
 
 //---------COMPONENT----------\
 
 const ViewBar = function () {
   return (
     <div className={classes.body}>
-      <div className={classes.seperator}></div>
+      <SepBig />
+      <SepSmall />
     </div>
   );
 };
