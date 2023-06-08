@@ -21,19 +21,19 @@ const BoardItem: FC<{ data: string }> = function (props) {
   };
 
   return (
-    <Link className={classes.body} to={"first board_292992"}>
+    <div className={classes.body}>
       <img
         className={`${classes.icon} ${classes.board}`}
         src={boardIcon}
         alt="iconBoardItem"
       />
-      {Logic.DisplayBoardName()}
+      <Link to={"first board_292992"}>{Logic.DisplayBoardName()}</Link>
       <img
         className={`${classes.icon} ${classes.option}`}
         src={optionIcon}
         alt="iconOptionIcon"
       />
-    </Link>
+    </div>
   );
 };
 
