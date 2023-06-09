@@ -3,12 +3,17 @@
 import classes from "./_ConfigButton.module.scss";
 import icon from "./cfgicon.svg";
 import ConfigPop from "./configPop/ConfigPop";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 //---------COMPONENT----------\
 
 const ConfigButton = function () {
   const [configPopState, setConfigPop] = useState(false);
+
+  useEffect(() => {
+    console.log("Config Button was rendered");
+    console.log(configPopState);
+  }, [configPopState]);
 
   const Logic = {
     enableConfigPop() {
@@ -17,7 +22,7 @@ const ConfigButton = function () {
 
     evaluateConfigPop() {
       return configPopState ? (
-        <ConfigPop setCofigPopState={setConfigPop} />
+        <ConfigPop setConfigPopState={setConfigPop} />
       ) : (
         <></>
       );
