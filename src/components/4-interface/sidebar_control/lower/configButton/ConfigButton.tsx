@@ -15,19 +15,27 @@ const ConfigButton = function () {
       setConfigPop(true);
     },
 
-    evaluateConfigPop() {
-      return configPopState ? (
-        <ConfigPop setConfigPopState={setConfigPop} />
-      ) : (
-        <></>
-      );
+    UI: {
+      evaluateConfigPop() {
+        return configPopState ? (
+          <ConfigPop setConfigPopState={setConfigPop} />
+        ) : (
+          <></>
+        );
+      },
     },
   };
 
   return (
     <div className={classes.body} onClick={Logic.enableConfigPop}>
-      <img className={classes.icon} src={icon} alt="configIconButton" />
-      {Logic.evaluateConfigPop()}
+      <img
+        className={
+          configPopState ? `${classes.icon} ${classes.selected}` : classes.icon
+        }
+        src={icon}
+        alt="configIconButton"
+      />
+      {Logic.UI.evaluateConfigPop.bind(Logic)()}
     </div>
   );
 };
