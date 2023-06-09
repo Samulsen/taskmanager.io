@@ -6,13 +6,4 @@
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 18rem auto 20rem;
-
-  &::-webkit-scrollbar {
-    width: 0.2rem;
-    height: 0.2rem;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.289);
-  }
 }
