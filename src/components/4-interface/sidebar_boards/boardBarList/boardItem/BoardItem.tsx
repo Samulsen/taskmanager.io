@@ -7,11 +7,16 @@ import classes from "./_BoardItem.module.scss";
 import boardIcon from "./boardIcon.svg";
 import optionIcon from "./optionsIcon.svg";
 //__i-components_____
-import ItemMenu from "./ItemMenu/ItemMenu";
+import ItemListMenu from "./ItemMenu/ItemListMenu";
 
 //---------COMPONENT----------\
 
 const BoardItem: FC<{ data: string }> = function (props) {
+  //__c-hooks________
+
+  const [menuState, setMenuState] = useState(false);
+
+  //__c-logic________
   const Logic = {
     UI: {
       fitName() {
@@ -22,7 +27,14 @@ const BoardItem: FC<{ data: string }> = function (props) {
           return name;
         }
       },
-      setMenu() {},
+      Menu: {
+        evaluate() {
+          return menuState ? <ItemListMenu /> : <></>;
+        },
+        enable() {
+          setMenuState(true);
+        },
+      },
     },
   };
 
@@ -38,7 +50,9 @@ const BoardItem: FC<{ data: string }> = function (props) {
         className={`${classes.icon} ${classes.option}`}
         src={optionIcon}
         alt="iconOptionIcon"
+        onClick={Logic.UI.Menu.enable.bind(Logic)}
       />
+      {Logic.UI.Menu.evaluate()}
     </div>
   );
 };
