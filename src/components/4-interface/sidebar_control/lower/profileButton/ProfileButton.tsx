@@ -14,7 +14,14 @@ const ProfileButton = function () {
       return userInitials;
     },
   };
-  return <div className={classes.body}>{Logic.evaluateUserShort()}</div>;
+  return (
+    <div
+      data-description="profile settings currently not available..."
+      className={classes.body}
+    >
+      {Logic.evaluateUserShort()}
+    </div>
+  );
 };
 
 //---------EXPORTS------------\
