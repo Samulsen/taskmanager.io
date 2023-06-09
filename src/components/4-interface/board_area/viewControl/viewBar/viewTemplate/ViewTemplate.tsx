@@ -2,45 +2,46 @@
 
 import classes from "./_ViewTemplate.module.scss";
 import { FC, Dispatch, SetStateAction } from "react";
+import {
+  BoardContext,
+  ContextValueTypeBoard,
+} from "../../../../../../context/BoardContext";
 
 //---------MAIN---------------\
 
 interface props {
   effect: string;
   icon: string;
-  selectionState: string;
-  setSelection: Dispatch<SetStateAction<string>>;
 }
 
 //---------COMPONENT----------\
 
-const ViewTemplate: FC<props> = function ({
-  effect,
-  icon,
-  selectionState,
-  setSelection,
-}) {
+const ViewTemplate: FC<props> = function ({ effect, icon }) {
+  const {
+    viewControl: { state, setState },
+  } = BoardContext() as ContextValueTypeBoard;
+
   const Logic = {
     setSelfSelection() {
-      setSelection(effect);
+      setState(effect);
     },
     evaluateStyle() {
-      let mySelectionState;
+      let mystate;
 
-      if (selectionState === "Home" && selectionState === effect) {
-        mySelectionState = true;
+      if (state === "Home" && state === effect) {
+        mystate = true;
       }
-      if (selectionState === "Done" && selectionState === effect) {
-        mySelectionState = true;
+      if (state === "Done" && state === effect) {
+        mystate = true;
       }
-      if (selectionState === "In Progress" && selectionState === effect) {
-        mySelectionState = true;
+      if (state === "In Progress" && state === effect) {
+        mystate = true;
       }
-      if (selectionState === "Untouched" && selectionState === effect) {
-        mySelectionState = true;
+      if (state === "Untouched" && state === effect) {
+        mystate = true;
       }
 
-      return mySelectionState
+      return mystate
         ? `${classes.body} ${classes.selected}`
         : `${classes.body} ${classes.unselected}`;
     },

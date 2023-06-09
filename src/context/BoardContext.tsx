@@ -1,24 +1,35 @@
 //---------IMPORTS------------\
 
-import { createContext, FC, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  FC,
+  ReactNode,
+  useContext,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from "react";
 
 //---------MAIN---------------\
 
-interface ContextValueType {
-  test: string;
+export interface ContextValueTypeBoard {
+  viewControl: { state: string; setState: Dispatch<SetStateAction<string>> };
 }
 
 //SECTION______________________: Context objects
 
-const BoardContextLocal = createContext<ContextValueType | null>(null);
+const BoardContextLocal = createContext<ContextValueTypeBoard | null>(null);
 
 const BoardContextProvider: FC<{ children: ReactNode }> = function ({
   children,
 }) {
   //__c-hooks________
+
+  const [viewControlstate, setViewControlState] = useState("Home");
+
   //__c-logic________
-  const BoardContextValues: ContextValueType = {
-    test: "this is a test",
+  const BoardContextValues: ContextValueTypeBoard = {
+    viewControl: { state: viewControlstate, setState: setViewControlState },
   };
 
   return (
