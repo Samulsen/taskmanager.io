@@ -9,7 +9,7 @@ const BoardBarList = function () {
   return (
     <div className={classes.body}>
       <BoardItem data="First Board_2893928" />
-      {/* <BoardItem data="Second Board_292883" /> */}
+      <BoardItem data="Second Board_292883" />
     </div>
   );
 };
