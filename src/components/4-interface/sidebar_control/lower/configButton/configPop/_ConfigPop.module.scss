@@ -62,10 +62,16 @@
 
 .selected {
   background-color: $main-green;
+  &:hover {
+    background-color: rgba(0, 128, 0, 0.386);
+  }
 }
 
 .unselected {
   background-color: rgb(236, 99, 99);
+  &:hover {
+    background-color: rgba(236, 99, 99, 0.442);
+  }
 }
 
 .confirm {
@@ -76,6 +82,10 @@
   border-radius: 0.5rem;
   font-size: 1.5rem;
   cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    background-color: #174e9a70;
+  }
 }
 
 .pointer {
