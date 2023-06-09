@@ -1,6 +1,6 @@
 //---------IMPORTS------------\
 
-import { useState, FC, Dispatch, SetStateAction, useCallback } from "react";
+import { useState, FC, Dispatch, SetStateAction, MouseEvent } from "react";
 import classes from "./_ConfigPop.module.scss";
 import arrowIcon from "./arrow.svg";
 import checkIcon from "./check.svg";
@@ -17,41 +17,37 @@ import { db } from "../../../../../../firebase";
 //---------COMPONENT----------\
 const ConfigPop: FC<{ setConfigPopState: Dispatch<SetStateAction<boolean>> }> =
   function ({ setConfigPopState }) {
+    //__c-hooks________
     const {
       config: { autoDeleteOnDone: configState },
     } = DataContext()!.appMetaData as appMetaData;
     const uid = AuthContext()?.userObject?.uid;
-    // const [savedSelectionState, setSavedSelectionState] = useState(configState);
     const [uiSelectionState, setUISelectionState] = useState(configState);
-    //test
+    //__c-logic________
     const Logic = {
-      test() {
-        console.log("i was fired!");
-        setConfigPopState(false);
-      },
       Update: {
-        saveCurrentSetting() {
+        saveCurrentSetting(event: MouseEvent<HTMLDivElement>) {
+          event.stopPropagation();
           if (uiSelectionState === configState) {
-            console.log("No change");
+            setConfigPopState(false);
           } else {
-            console.log("Change!");
-
-            // const ref = doc(db, `MainUserDataPool_${uid}`, "UserConfig");
-            // const updatedData = { autoOnDeleteOnDone: uiSelectionState };
-            // updateDoc(ref, updatedData)
-            //   .then((updatedData) => {
-            //     setConfigPopState(false);
-            //     console.log(updatedData);
-            //   })
-            //   .catch((error) => {
-            //     console.log(error);
-            //   });
+            const ref = doc(db, `MainUserDataPool_${uid}`, "UserConfig");
+            const updatedData = { autoDeleteOnDone: uiSelectionState };
+            updateDoc(ref, updatedData)
+              .then((updatedData) => {
+                setConfigPopState(false);
+                console.log(updatedData);
+              })
+              .catch((error) => {
+                console.log(error);
+              });
           }
         },
       },
 
       UI: {
-        toggleSelection() {
+        toggleSelection(event: MouseEvent<HTMLDivElement>) {
+          event.stopPropagation();
           uiSelectionState
             ? setUISelectionState(false)
             : setUISelectionState(true);
@@ -89,8 +85,7 @@ const ConfigPop: FC<{ setConfigPopState: Dispatch<SetStateAction<boolean>> }> =
           </div>
           <div
             className={classes.confirm}
-            // onClick={Logic.Update.saveCurrentSetting.bind(Logic)}
-            onClick={Logic.test}
+            onClick={Logic.Update.saveCurrentSetting.bind(Logic)}
           >
             Save & Back
           </div>
