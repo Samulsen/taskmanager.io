@@ -3,7 +3,6 @@
 import { useState } from "react";
 import classes from "./_LoggoutButton.module.scss";
 
-import { AuthContext } from "../../../../../context/AuthContext";
 import icon from "./loggoutIcon.svg";
 import LoggoutConfirmPop from "./LoggoutConfirmPop/LoggoutConfirmPop";
 

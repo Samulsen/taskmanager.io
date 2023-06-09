@@ -12,15 +12,30 @@
   grid-area: pos;
 }
 
-// .message {
-//   position: relative;
-//   z-index: 2;
-//   grid-area: pos;
+.message {
+  position: relative;
+  z-index: 2;
+  grid-area: pos;
 
-//   &:hover::after {
-//     position: absolute;
-//     content: attr(data-description);
-//     color: white;
-//     font-size: 1.5rem;
-//   }
-// }
+  &:hover::after {
+    clip-path: polygon(
+      10% 0,
+      100% 0,
+      100% 100%,
+      10% 100%,
+      10% 49%,
+      0 43%,
+      10% 33%
+    );
+    padding: 1rem 2rem;
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    content: attr(data-description);
+    color: black;
+    background-color: white;
+    font-size: 1.5rem;
+    left: 3rem;
+    top: -0.75rem;
+  }
+}
