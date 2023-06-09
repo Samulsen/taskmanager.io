@@ -21,8 +21,9 @@ const LoggoutButton = function () {
   return (
     <div className={classes.body}>
       <img
-        tabIndex={0}
-        className={classes.icon}
+        className={
+          requestState ? `${classes.icon} ${classes.selected}` : classes.icon
+        }
         src={icon}
         alt="loggoutButtonIcon"
         onClick={Logic.enableConfirmButton}

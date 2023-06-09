@@ -5,12 +5,13 @@
 }
 
 .icon {
-  transition: all 0.2s;
+  transition: all 0.3s;
   cursor: pointer;
   &:hover {
-    transform: translateX(-0.2rem);
+    translate: -0.3rem;
   }
-  &:active {
-    transform: translateX(-0.2rem);
-  }
+}
+
+.selected {
+  translate: -0.3rem;
 }
