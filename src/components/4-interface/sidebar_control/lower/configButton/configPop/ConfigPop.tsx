@@ -11,40 +11,34 @@ import {
 } from "../../../../../../context/DataContext";
 import { AuthContext } from "../../../../../../context/AuthContext";
 import useClickOutside from "../../../../../../hooks/useClickOutside";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../../../../../firebase";
 
 //---------COMPONENT----------\
 const ConfigPop: FC<{ setConfigPopState: Dispatch<SetStateAction<boolean>> }> =
   function ({ setConfigPopState }) {
     //__c-hooks________
+
     const {
       config: { autoDeleteOnDone: configState },
     } = DataContext()!.appMetaData as appMetaData;
     const uid = AuthContext()?.userObject?.uid;
     const [uiSelectionState, setUISelectionState] = useState(configState);
+
     //__c-logic________
+
     const Logic = {
       Update: {
-        saveCurrentSetting(event: MouseEvent<HTMLDivElement>) {
+        save(event: MouseEvent<HTMLDivElement>) {
           event.stopPropagation();
-          if (uiSelectionState === configState) {
-            setConfigPopState(false);
-          } else {
+          if (!(uiSelectionState === configState)) {
             const ref = doc(db, `MainUserDataPool_${uid}`, "UserConfig");
             const updatedData = { autoDeleteOnDone: uiSelectionState };
-            updateDoc(ref, updatedData)
-              .then((updatedData) => {
-                setConfigPopState(false);
-                console.log(updatedData);
-              })
-              .catch((error) => {
-                console.log(error);
-              });
+            updateDoc(ref, updatedData).catch();
           }
+          setConfigPopState(false);
         },
       },
-
       UI: {
         toggleSelection(event: MouseEvent<HTMLDivElement>) {
           event.stopPropagation();
@@ -85,7 +79,7 @@ const ConfigPop: FC<{ setConfigPopState: Dispatch<SetStateAction<boolean>> }> =
           </div>
           <div
             className={classes.confirm}
-            onClick={Logic.Update.saveCurrentSetting.bind(Logic)}
+            onClick={Logic.Update.save.bind(Logic)}
           >
             Save & Back
           </div>
