@@ -4,6 +4,7 @@ import { useState } from "react";
 import classes from "./_ConfigPop.module.scss";
 import arrowIcon from "./arrow.svg";
 import checkIcon from "./check.svg";
+import uncheckedIcon from "./unchecked.svg";
 
 //---------COMPONENT----------\
 const ConfigPop = function () {
@@ -18,13 +19,9 @@ const ConfigPop = function () {
     },
     evaluateCheckIcon() {
       return selectionState ? (
-        <img
-          className={classes.icon}
-          src={checkIcon}
-          alt="checkIconTaskAutomation"
-        />
+        <img src={checkIcon} alt="checkIconTaskAutomation" />
       ) : (
-        <></>
+        <img src={uncheckedIcon} alt="uncheckIconTaskAutomation" />
       );
     },
   };
