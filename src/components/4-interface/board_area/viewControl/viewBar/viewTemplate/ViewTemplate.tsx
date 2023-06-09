@@ -1,7 +1,7 @@
 //---------IMPORTS------------\
 
 import classes from "./_ViewTemplate.module.scss";
-import { FC, Dispatch, SetStateAction } from "react";
+import { FC } from "react";
 import {
   BoardContext,
   ContextValueTypeBoard,
