@@ -55,9 +55,17 @@
     align-content: center;
     width: 3.5rem;
     height: 3.5rem;
-    background-color: $pinkish-blue;
     cursor: pointer;
+    transition: all 0.2s;
   }
+}
+
+.selected {
+  background-color: $main-green;
+}
+
+.unselected {
+  background-color: $pinkish-blue;
 }
 
 .confirm {
