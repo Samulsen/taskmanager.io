@@ -8,10 +8,26 @@ import { useState } from "react";
 //---------COMPONENT----------\
 
 const ConfigButton = function () {
+  const [configPopState, setConfigPop] = useState(false);
+
+  const Logic = {
+    enableConfigPop() {
+      setConfigPop(true);
+    },
+
+    evaluateConfigPop() {
+      return configPopState ? (
+        <ConfigPop setCofigPopState={setConfigPop} />
+      ) : (
+        <></>
+      );
+    },
+  };
+
   return (
-    <div className={classes.body}>
+    <div className={classes.body} onClick={Logic.enableConfigPop}>
       <img className={classes.icon} src={icon} alt="configIconButton" />
-      <ConfigPop />
+      {Logic.evaluateConfigPop()}
     </div>
   );
 };
