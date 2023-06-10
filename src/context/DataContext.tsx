@@ -28,7 +28,7 @@ type userBoards = {
   boardNames: {
     [key: string]: {
       name: string;
-      timestamp: { seconds: number; nanoseconds: number };
+      timestamp: { seconds: number | null; nanoseconds: number };
     };
   };
 };
@@ -46,7 +46,7 @@ export interface appMetaData {
   config: userConfig;
   boardNames: [
     string,
-    { name: string; timestamp: { seconds: number; nanoseconds: number } }
+    { name: string; timestamp: { seconds: number | null; nanoseconds: number } }
   ][];
 }
 
@@ -104,7 +104,6 @@ const DataContextProvider: FC<{ children: ReactNode }> = function ({
       },
     },
   };
-  console.log((appMetaData as appMetaData).boardNames);
 
   useEffect(() => {
     logCol("onSnapshot appMetaData was iniated!", "orangered");

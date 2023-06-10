@@ -13,16 +13,21 @@ const BoardBarList = function () {
   const Logic = {
     UI: {
       renderList() {
-        return boardListArray
-          .filter(([boardId]) => boardId !== "initialField")
-          .sort((a, b) => b[1].timestamp.seconds - a[1].timestamp.seconds)
-          .map(([boardId, { name }]) => (
-            <BoardItem
-              key={boardId}
-              boardId={boardId}
-              currentBoardName={name}
-            />
-          ));
+        try {
+          return boardListArray
+            .filter(([boardId]) => boardId !== "initialField")
+            .sort(
+              (a, b) =>
+                (b[1]?.timestamp.seconds ?? 1) - (a[1]?.timestamp.seconds ?? 0)
+            )
+            .map(([boardId, { name }]) => (
+              <BoardItem
+                key={boardId}
+                boardId={boardId}
+                currentBoardName={name}
+              />
+            ));
+        } catch {}
       },
     },
   };
