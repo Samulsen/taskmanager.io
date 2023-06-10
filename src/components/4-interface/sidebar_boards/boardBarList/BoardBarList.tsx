@@ -10,12 +10,23 @@ const BoardBarList = function () {
   const { boardNames: boardListArray } = DataContext()
     ?.appMetaData as appMetaData;
 
-  return (
-    <div className={classes.body}>
-      <BoardItem data="First Board_2893928" />
-      <BoardItem data="Second Board_292883" />
-    </div>
-  );
+  const Logic = {
+    UI: {
+      renderList() {
+        return boardListArray
+          .filter(([boardId]) => boardId !== "initialField")
+          .map(([boardId, currentBoardName]) => (
+            <BoardItem
+              key={boardId}
+              boardId={boardId}
+              currentBoardName={currentBoardName}
+            />
+          ));
+      },
+    },
+  };
+
+  return <div className={classes.body}>{Logic.UI.renderList()}</div>;
 };
 
 //---------EXPORTS------------\

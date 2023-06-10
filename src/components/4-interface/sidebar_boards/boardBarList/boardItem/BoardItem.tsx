@@ -11,7 +11,10 @@ import ItemListMenu from "./ItemMenu/ItemListMenu";
 
 //---------COMPONENT----------\
 
-const BoardItem: FC<{ data: string }> = function (props) {
+const BoardItem: FC<{ boardId: string; currentBoardName: string }> = function ({
+  boardId,
+  currentBoardName,
+}) {
   //__c-hooks________
 
   const [menuState, setMenuState] = useState(false);
@@ -20,9 +23,9 @@ const BoardItem: FC<{ data: string }> = function (props) {
   const Logic = {
     UI: {
       fitName() {
-        const name = props.data.split("_")[0];
-        if (name.length > 13) {
-          return name.slice(0, 12) + "...";
+        const name = currentBoardName;
+        if (name.length > 14) {
+          return name.slice(0, 11) + "...";
         } else {
           return name;
         }
@@ -49,7 +52,7 @@ const BoardItem: FC<{ data: string }> = function (props) {
         src={boardIcon}
         alt="iconBoardItem"
       />
-      <Link to={"first board_292992"}>{Logic.UI.fitName()}</Link>
+      <Link to={boardId}>{Logic.UI.fitName()}</Link>
       <img
         className={`${classes.icon} ${classes.option}`}
         src={optionIcon}
