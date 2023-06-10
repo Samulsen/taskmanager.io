@@ -12,14 +12,21 @@ const AddNewBoard: FC<{
   const [wasEmptyOnRequest, setWasEmptyState] = useState(false);
 
   const Logic = {
-    Data: {
-      OpenNewBoardCollection() {},
-      UpdateBoardNames() {},
+    UI: {
+      evaluateValidSubmission() {
+        return wasEmptyOnRequest
+          ? { placeholder: "cannot be empty!" }
+          : { placeholder: "" };
+      },
     },
-    evaluateValidSubmission() {
-      return wasEmptyOnRequest
-        ? { placeholder: "cannot be empty!" }
-        : { placeholder: "" };
+    Data: {
+      initRequestChain() {
+        return Promise.resolve();
+      },
+      openNewBoardCollection() {
+        return Promise.resolve();
+      },
+      updateBoardNames() {},
     },
     handleEnter(event: KeyboardEvent<HTMLInputElement>) {
       event.stopPropagation();
@@ -27,6 +34,10 @@ const AddNewBoard: FC<{
         if (event.currentTarget.value.trim().length === 0) {
           setWasEmptyState(true);
         } else {
+          this.Data.initRequestChain()
+            .then(this.Data.openNewBoardCollection)
+            .then(this.Data.updateBoardNames)
+            .catch();
         }
       }
     },
@@ -39,7 +50,7 @@ const AddNewBoard: FC<{
           onKeyDown={Logic.handleEnter}
           autoFocus
           type="text"
-          {...Logic.evaluateValidSubmission()}
+          {...Logic.UI.evaluateValidSubmission()}
         />
       </div>
     </div>
