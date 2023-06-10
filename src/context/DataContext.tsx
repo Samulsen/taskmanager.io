@@ -24,7 +24,7 @@ interface ContextValueType {
   appMetaData: appMetaData | string;
 }
 
-type userBoards = { boardNames: string[] };
+type userBoards = { boardNames: { initialField: string } };
 type userMetaData = { firstName: string; lastName: string };
 type userConfig = { autoDeleteOnDone: boolean };
 
@@ -36,8 +36,8 @@ interface docType {
 export interface appMetaData {
   firstName: string;
   lastName: string;
-  config: { autoDeleteOnDone: boolean };
-  boardNames: string[];
+  config: userConfig;
+  boardNames: {};
 }
 
 //SECTION______________________: Context Object
@@ -67,11 +67,13 @@ const DataContextProvider: FC<{ children: ReactNode }> = function ({
             firstName: "",
             lastName: "",
             config: { autoDeleteOnDone: true },
-            boardNames: [],
+            boardNames: {},
           };
           docData.forEach((doc: docType) => {
             if (doc.id === "UserBoards") {
-              tempMetaData.boardNames = (doc.data() as userBoards).boardNames;
+              tempMetaData.boardNames = Object.entries(
+                (doc.data() as userBoards).boardNames
+              );
             }
             if (doc.id === "UserMetaData") {
               tempMetaData.firstName = (doc.data() as userMetaData).firstName;

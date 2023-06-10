@@ -61,17 +61,15 @@ const RegisterForm = function () {
     Registration: {
       Datapool: {
         create(UserCredential: UserCredential) {
-          // return new Promise((resolve) => {
           const userMetaData = {
             firstName: firstNameRef.current!.value,
             lastName: lastNameRef.current!.value,
           };
           const userConfigData = { autoDeleteOnDone: false };
-          const userBoardsData = { boardNames: ["noBoards"] };
+          const userBoardsData = { boardNames: { initialField: "noBoards" } };
           const uid = UserCredential.user.uid;
           const mainPoolRef = `MainUserDataPool_${uid}`;
 
-          // });
           return Promise.all([
             setDoc(doc(db, mainPoolRef, "UserMetaData"), userMetaData),
             setDoc(doc(db, mainPoolRef, "UserConfig"), userConfigData),
