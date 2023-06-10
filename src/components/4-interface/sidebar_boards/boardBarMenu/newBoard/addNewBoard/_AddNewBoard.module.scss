@@ -1,0 +1,18 @@
+@import "./../../../../../../styles/variables";
+.body {
+  input {
+    width: 14.5rem;
+    font-size: 1.2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    padding: 0 0.5rem;
+    border-color: $mid-blue;
+    background-color: $mid-blue;
+    outline-width: 0;
+    font-weight: 400;
+    color: white;
+    border-style: solid;
+    transition: all 0.3s;
+    font-family: "Roboto Mono", monospace;
+  }
+}
