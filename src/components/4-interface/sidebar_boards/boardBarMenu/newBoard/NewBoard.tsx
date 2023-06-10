@@ -1,6 +1,5 @@
 //---------IMPORTS------------\
 
-import useClickOutside from "../../../../../hooks/useClickOutside";
 import classes from "./_NewBoard.module.scss";
 import AddNewBoard from "./addNewBoard/AddNewBoard";
 import newBoardIcon from "./newBoard.svg";
