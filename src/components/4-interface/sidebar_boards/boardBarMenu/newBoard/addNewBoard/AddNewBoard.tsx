@@ -38,13 +38,15 @@ const AddNewBoard: FC<{
       updateBoardNames() {
         const ref = pathBoardNames(uid);
         const namePath = `boardNames.${randomID()}`;
-        interface updateData {
-          namePath: {
-            id: { name: string; timestamp: string };
-          };
-        }
+        // interface updateDataType {
+        //   [key: string]:
+        //     { name: string; timestamp: string };
+        // }
         const updateData = {
-          [namePath]: boardInputNameRef.current!.value,
+          [namePath]: {
+            name: boardInputNameRef.current!.value,
+            timestamp: serverTimestamp(),
+          },
         };
         return updateDoc(ref, updateData);
       },

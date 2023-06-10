@@ -12,22 +12,22 @@ const BoardBarList = function () {
 
   const Logic = {
     UI: {
-      // renderList() {
-      //   return boardListArray
-      //     .filter(([boardId]) => boardId !== "initialField")
-      //     .map(([boardId, currentBoardName]) => (
-      //       <BoardItem
-      //         key={boardId}
-      //         boardId={boardId}
-      //         currentBoardName={currentBoardName}
-      //       />
-      //     ));
-      // },
+      renderList() {
+        return boardListArray
+          .filter(([boardId]) => boardId !== "initialField")
+          .sort((a, b) => b[1].timestamp.seconds - a[1].timestamp.seconds)
+          .map(([boardId, { name }]) => (
+            <BoardItem
+              key={boardId}
+              boardId={boardId}
+              currentBoardName={name}
+            />
+          ));
+      },
     },
   };
 
-  // return <div className={classes.body}>{Logic.UI.renderList()}</div>;
-  return <div className={classes.body}></div>;
+  return <div className={classes.body}>{Logic.UI.renderList()}</div>;
 };
 
 //---------EXPORTS------------\
