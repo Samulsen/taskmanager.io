@@ -29,7 +29,11 @@ const BoardItem: FC<{ data: string }> = function (props) {
       },
       Menu: {
         evaluate() {
-          return menuState ? <ItemListMenu /> : <></>;
+          return menuState ? (
+            <ItemListMenu setMenuState={setMenuState} />
+          ) : (
+            <></>
+          );
         },
         enable() {
           setMenuState(true);
