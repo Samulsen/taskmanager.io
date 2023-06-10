@@ -3,6 +3,7 @@
 import classes from "./_AddNewBoard.module.scss";
 import useClickOutside from "../../../../../../hooks/useClickOutside";
 import { Dispatch, FC, SetStateAction, KeyboardEvent, useState } from "react";
+import randomID from "../../../../../../util/randomID";
 
 //---------COMPONENT----------\
 const AddNewBoard: FC<{
