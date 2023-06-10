@@ -37,7 +37,7 @@ export interface appMetaData {
   firstName: string;
   lastName: string;
   config: userConfig;
-  boardNames: {};
+  boardNames: [string, string][];
 }
 
 //SECTION______________________: Context Object
@@ -67,7 +67,7 @@ const DataContextProvider: FC<{ children: ReactNode }> = function ({
             firstName: "",
             lastName: "",
             config: { autoDeleteOnDone: true },
-            boardNames: {},
+            boardNames: [],
           };
           docData.forEach((doc: docType) => {
             if (doc.id === "UserBoards") {
