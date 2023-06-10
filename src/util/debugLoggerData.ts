@@ -25,9 +25,7 @@ const debugLoggerData = function (appMetaData: appMetaData | string) {
 %c${`Name: %c${(appMetaData as appMetaData).firstName} ${
         (appMetaData as appMetaData).lastName
       }
-%cBoards: %c${(appMetaData as appMetaData).boardNames.map(([key, value]) => {
-        return value;
-      })}`}
+%cBoards Count: %c${(appMetaData as appMetaData).boardNames.length}`}
         `,
       "font-weight: bold; color:rgb(21, 255, 181)",
       "color:white",

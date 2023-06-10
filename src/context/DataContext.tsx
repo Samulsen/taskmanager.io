@@ -28,7 +28,7 @@ type userBoards = {
   boardNames: {
     [key: string]: {
       name: string;
-      timestamp: { seconds: number | null; nanoseconds: number };
+      timestamp: { seconds: number; nanoseconds: number };
     };
   };
 };
@@ -46,7 +46,7 @@ export interface appMetaData {
   config: userConfig;
   boardNames: [
     string,
-    { name: string; timestamp: { seconds: number | null; nanoseconds: number } }
+    { name: string; timestamp: { seconds: number; nanoseconds: number } }
   ][];
 }
 
@@ -110,7 +110,9 @@ const DataContextProvider: FC<{ children: ReactNode }> = function ({
     let unsub = onSnapshot(
       collection(db, `MainUserDataPool_${uid}`),
       (docData) => {
-        Logic.Metadata.deconstruct(docData).then(Logic.Metadata.merge);
+        if (!docData.metadata.hasPendingWrites) {
+          Logic.Metadata.deconstruct(docData).then(Logic.Metadata.merge);
+        }
       }
     );
     return unsub;
