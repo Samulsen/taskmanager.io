@@ -2,28 +2,44 @@
 
 import classes from "./_AddNewBoard.module.scss";
 import useClickOutside from "../../../../../../hooks/useClickOutside";
-import { Dispatch, FC, SetStateAction, KeyboardEvent } from "react";
+import { Dispatch, FC, SetStateAction, KeyboardEvent, useState } from "react";
 
 //---------COMPONENT----------\
 const AddNewBoard: FC<{
   setCanAddBoardstate: Dispatch<SetStateAction<boolean>>;
 }> = function ({ setCanAddBoardstate }) {
+  const [wasEmptyOnRequest, setWasEmptyState] = useState(false);
+
   const Logic = {
     Data: {
-      evaluateRequest(event: KeyboardEvent<HTMLInputElement>) {
-        if (event.key === "Enter") {
-          console.log("emter was ht");
+      OpenNewBoardCollection() {},
+      UpdateBoardNames() {},
+    },
+    evaluateValidSubmission() {
+      return wasEmptyOnRequest
+        ? { placeholder: "cannot be empty!" }
+        : { placeholder: "" };
+    },
+    handleEnter(event: KeyboardEvent<HTMLInputElement>) {
+      event.stopPropagation();
+      if (event.key === "Enter") {
+        if (event.currentTarget.value.trim().length === 0) {
+          setWasEmptyState(true);
         } else {
-          console.log("enter was not hit");
         }
-      },
+      }
     },
   };
 
   return (
     <div className={classes.body}>
       <div ref={useClickOutside(setCanAddBoardstate)}>
-        <input onKeyDown={Logic.Data.evaluateRequest} autoFocus type="text" />
+        <input
+          onKeyDown={Logic.handleEnter}
+          autoFocus
+          type="text"
+          {...Logic.evaluateValidSubmission()}
+        />
       </div>
     </div>
   );
