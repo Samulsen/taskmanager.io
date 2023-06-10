@@ -2,7 +2,7 @@
 //__i-libraries______
 import classes from "./_AddNewBoard.module.scss";
 import { Dispatch, FC, SetStateAction, KeyboardEvent, useState } from "react";
-import { updateDoc } from "firebase/firestore";
+import { updateDoc, serverTimestamp } from "firebase/firestore";
 import { useRef } from "react";
 //__i-context________
 import { AuthContext } from "../../../../../../context/AuthContext";
@@ -38,6 +38,11 @@ const AddNewBoard: FC<{
       updateBoardNames() {
         const ref = pathBoardNames(uid);
         const namePath = `boardNames.${randomID()}`;
+        interface updateData {
+          namePath: {
+            id: { name: string; timestamp: string };
+          };
+        }
         const updateData = {
           [namePath]: boardInputNameRef.current!.value,
         };

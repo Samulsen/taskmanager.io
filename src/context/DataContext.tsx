@@ -24,7 +24,14 @@ interface ContextValueType {
   appMetaData: appMetaData | string;
 }
 
-type userBoards = { boardNames: { initialField: string } };
+type userBoards = {
+  boardNames: {
+    [key: string]: {
+      name: string;
+      timestamp: { seconds: number; nanoseconds: number };
+    };
+  };
+};
 type userMetaData = { firstName: string; lastName: string };
 type userConfig = { autoDeleteOnDone: boolean };
 
@@ -37,7 +44,10 @@ export interface appMetaData {
   firstName: string;
   lastName: string;
   config: userConfig;
-  boardNames: [string, string][];
+  boardNames: [
+    string,
+    { name: string; timestamp: { seconds: number; nanoseconds: number } }
+  ][];
 }
 
 //SECTION______________________: Context Object
@@ -74,6 +84,7 @@ const DataContextProvider: FC<{ children: ReactNode }> = function ({
               tempMetaData.boardNames = Object.entries(
                 (doc.data() as userBoards).boardNames
               );
+              // tempMetaData.boardNames = (doc.data() as userBoards).boardNames;
             }
             if (doc.id === "UserMetaData") {
               tempMetaData.firstName = (doc.data() as userMetaData).firstName;
@@ -93,6 +104,7 @@ const DataContextProvider: FC<{ children: ReactNode }> = function ({
       },
     },
   };
+  console.log((appMetaData as appMetaData).boardNames);
 
   useEffect(() => {
     logCol("onSnapshot appMetaData was iniated!", "orangered");

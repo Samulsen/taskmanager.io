@@ -12,21 +12,22 @@ const BoardBarList = function () {
 
   const Logic = {
     UI: {
-      renderList() {
-        return boardListArray
-          .filter(([boardId]) => boardId !== "initialField")
-          .map(([boardId, currentBoardName]) => (
-            <BoardItem
-              key={boardId}
-              boardId={boardId}
-              currentBoardName={currentBoardName}
-            />
-          ));
-      },
+      // renderList() {
+      //   return boardListArray
+      //     .filter(([boardId]) => boardId !== "initialField")
+      //     .map(([boardId, currentBoardName]) => (
+      //       <BoardItem
+      //         key={boardId}
+      //         boardId={boardId}
+      //         currentBoardName={currentBoardName}
+      //       />
+      //     ));
+      // },
     },
   };
 
-  return <div className={classes.body}>{Logic.UI.renderList()}</div>;
+  // return <div className={classes.body}>{Logic.UI.renderList()}</div>;
+  return <div className={classes.body}></div>;
 };
 
 //---------EXPORTS------------\
