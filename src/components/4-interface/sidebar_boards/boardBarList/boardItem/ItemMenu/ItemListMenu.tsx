@@ -15,6 +15,7 @@ import { AuthContext } from "../../../../../../context/AuthContext";
 const ItemListMenu: FC<{
   setMenuState: Dispatch<SetStateAction<boolean>>;
   boardId: string;
+  setRenameState: Dispatch<SetStateAction<boolean>>;
 }> = function ({ setMenuState, boardId }) {
   const [requestDeletion, setRegquestDeletion] = useState(false);
   const uid = AuthContext()?.userObject?.uid;

@@ -1,0 +1,17 @@
+.body {
+  input {
+    width: 100%;
+    font-size: 1.2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    padding: 0 0.5rem;
+    border-color: rgba(255, 255, 255, 0);
+    background-color: rgba(255, 255, 255, 0.144);
+    outline-width: 0;
+    font-weight: 400;
+    color: white;
+    border-style: solid;
+    transition: all 0.3s;
+    font-family: "Roboto Mono", monospace;
+  }
+}

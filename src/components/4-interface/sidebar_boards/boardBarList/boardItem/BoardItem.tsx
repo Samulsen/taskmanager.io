@@ -8,6 +8,7 @@ import boardIcon from "./boardIcon.svg";
 import optionIcon from "./optionsIcon.svg";
 //__i-components_____
 import ItemListMenu from "./ItemMenu/ItemListMenu";
+import RenameInput from "./RenameInput/RenameInput";
 
 //---------COMPONENT----------\
 
@@ -18,6 +19,7 @@ const BoardItem: FC<{ boardId: string; currentBoardName: string }> = function ({
   //__c-hooks________
 
   const [menuState, setMenuState] = useState(false);
+  const [renameState, setRenameState] = useState(false);
 
   //__c-logic________
   const Logic = {
@@ -33,7 +35,11 @@ const BoardItem: FC<{ boardId: string; currentBoardName: string }> = function ({
       Menu: {
         evaluate() {
           return menuState ? (
-            <ItemListMenu setMenuState={setMenuState} boardId={boardId} />
+            <ItemListMenu
+              setMenuState={setMenuState}
+              setRenameState={setRenameState}
+              boardId={boardId}
+            />
           ) : (
             <></>
           );
@@ -52,13 +58,14 @@ const BoardItem: FC<{ boardId: string; currentBoardName: string }> = function ({
         src={boardIcon}
         alt="iconBoardItem"
       />
-      <Link to={boardId}>{Logic.UI.fitName()}</Link>
-      <img
+      {/* <Link to={boardId}>{Logic.UI.fitName()}</Link> */}
+      <RenameInput />
+      {/* <img
         className={`${classes.icon} ${classes.option}`}
         src={optionIcon}
         alt="iconOptionIcon"
         onClick={Logic.UI.Menu.enable.bind(Logic)}
-      />
+      /> */}
       {Logic.UI.Menu.evaluate()}
     </div>
   );
