@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import classes from "./_Interface.module.scss";
 //__i-components_____
 import { DataContext, appMetaData } from "../../context/DataContext";
+import MetaDataContextProvider from "../../context/MetadataContext";
 import BoardContextProvider from "../../context/BoardContext";
 import BoardArea from "./board_area/BoardArea";
 import SidebarBoards from "./sidebar_boards/SidebarBoards";
@@ -31,7 +32,9 @@ const Interface = function () {
       if (true) {
         return (
           <div className={classes.body}>
-            <SidebarControl />
+            <MetaDataContextProvider>
+              <SidebarControl />
+            </MetaDataContextProvider>
             <BoardContextProvider>
               <SidebarBoards />
               <BoardArea>
