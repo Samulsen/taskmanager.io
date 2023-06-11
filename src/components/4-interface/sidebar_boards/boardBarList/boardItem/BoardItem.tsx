@@ -32,6 +32,22 @@ const BoardItem: FC<{ boardId: string; currentBoardName: string }> = function ({
           return name;
         }
       },
+      evaluateRenameState() {
+        if (renameState) {
+          return <RenameInput setRenameState={setRenameState} />;
+        }
+        return (
+          <>
+            <Link to={boardId}>{Logic.UI.fitName()}</Link>
+            <img
+              className={`${classes.icon} ${classes.option}`}
+              src={optionIcon}
+              alt="iconOptionIcon"
+              onClick={Logic.UI.Menu.enable.bind(Logic)}
+            />
+          </>
+        );
+      },
       Menu: {
         evaluate() {
           return menuState ? (
@@ -58,14 +74,7 @@ const BoardItem: FC<{ boardId: string; currentBoardName: string }> = function ({
         src={boardIcon}
         alt="iconBoardItem"
       />
-      {/* <Link to={boardId}>{Logic.UI.fitName()}</Link> */}
-      <RenameInput />
-      {/* <img
-        className={`${classes.icon} ${classes.option}`}
-        src={optionIcon}
-        alt="iconOptionIcon"
-        onClick={Logic.UI.Menu.enable.bind(Logic)}
-      /> */}
+      {Logic.UI.evaluateRenameState()}
       {Logic.UI.Menu.evaluate()}
     </div>
   );
