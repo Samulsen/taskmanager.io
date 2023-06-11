@@ -33,7 +33,7 @@ const BoardItem: FC<{ boardId: string; currentBoardName: string }> = function ({
       Menu: {
         evaluate() {
           return menuState ? (
-            <ItemListMenu setMenuState={setMenuState} />
+            <ItemListMenu setMenuState={setMenuState} boardId={boardId} />
           ) : (
             <></>
           );

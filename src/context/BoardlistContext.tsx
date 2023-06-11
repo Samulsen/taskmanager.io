@@ -78,8 +78,10 @@ const BoardlistContextProvider: FC<{ children: ReactNode }> = function ({
     );
     const unsub = onSnapshot(
       doc(db, `MainUserDataPool_${uid}`, "UserBoards"),
+      { includeMetadataChanges: true },
       (boardNamesSnapshot) => {
         if (!boardNamesSnapshot.metadata.hasPendingWrites) {
+          console.log("i updated the ui!");
           Logic.Data.deconstruct(boardNamesSnapshot).merge();
         }
       }
