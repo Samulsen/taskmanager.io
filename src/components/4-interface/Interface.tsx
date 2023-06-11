@@ -11,6 +11,8 @@ import SidebarBoards from "./sidebar_boards/SidebarBoards";
 import SidebarControl from "./sidebar_control/SidebarControl";
 import Anchor from "../0-independent/anchor/Anchor";
 import Loading from "../0-auth/loader/Loading";
+import ConfigContextProvider from "../../context/ConfigContext";
+import WorkspaceContextProvider from "../../context/WorkspaceContext";
 
 //---------COMPONENT----------\
 const Interface = function () {
@@ -33,10 +35,14 @@ const Interface = function () {
         return (
           <div className={classes.body}>
             <MetaDataContextProvider>
-              <SidebarControl />
+              <ConfigContextProvider>
+                <SidebarControl />
+              </ConfigContextProvider>
             </MetaDataContextProvider>
             <BoardContextProvider>
-              <SidebarBoards />
+              <WorkspaceContextProvider>
+                <SidebarBoards />
+              </WorkspaceContextProvider>
               <BoardArea>
                 <Outlet />
               </BoardArea>

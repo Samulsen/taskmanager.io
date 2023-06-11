@@ -10,15 +10,17 @@ interface ContextValueType {}
 
 const ConfigContextLocal = createContext<ContextValueType | null>(null);
 
-const ConfigContextProvider: FC<{ children: ReactNode }> = function () {
+const ConfigContextProvider: FC<{ children: ReactNode }> = function ({
+  children,
+}) {
   //__c-hooks________
   //__c-logic________
   const ConfigContextValues: ContextValueType = {};
 
   return (
-    <ConfigContextLocal.Provider
-      value={ConfigContextValues}
-    ></ConfigContextLocal.Provider>
+    <ConfigContextLocal.Provider value={ConfigContextValues}>
+      {children}
+    </ConfigContextLocal.Provider>
   );
 };
 

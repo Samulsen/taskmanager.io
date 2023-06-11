@@ -12,15 +12,17 @@ const WorkspaceContextLocal = createContext<ContextValueTypeWorkspace | null>(
   null
 );
 
-const WorkspaceContextProvider: FC<{ children: ReactNode }> = function () {
+const WorkspaceContextProvider: FC<{ children: ReactNode }> = function ({
+  children,
+}) {
   //__c-hooks________
   //__c-logic________
   const WorkspaceContextValues: ContextValueTypeWorkspace = {};
 
   return (
-    <WorkspaceContextLocal.Provider
-      value={WorkspaceContextValues}
-    ></WorkspaceContextLocal.Provider>
+    <WorkspaceContextLocal.Provider value={WorkspaceContextValues}>
+      {children}
+    </WorkspaceContextLocal.Provider>
   );
 };
 
