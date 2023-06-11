@@ -72,12 +72,12 @@ const ConfigContextProvider: FC<{ children: ReactNode }> = function ({
     return unsub;
   }, []);
 
-  useEffect(() => {
-    logCol(
-      `ConfigData Update: DeleteMode = ${configData.autoDeleteOnDone}`,
-      "rgb(255, 140, 98)"
-    );
-  }, [configData]);
+  // useEffect(() => {
+  //   logCol(
+  //     `ConfigData Update: DeleteMode = ${configData.autoDeleteOnDone}`,
+  //     "rgb(255, 140, 98)"
+  //   );
+  // }, [configData]);
 
   const ConfigContextValues: ContextValueTypeConfig = {
     ...configData,
