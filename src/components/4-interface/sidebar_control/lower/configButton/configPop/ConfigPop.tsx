@@ -1,6 +1,13 @@
 //---------IMPORTS------------\
 //__i-libraries______
-import { useState, FC, Dispatch, SetStateAction, MouseEvent } from "react";
+import {
+  useState,
+  FC,
+  Dispatch,
+  SetStateAction,
+  MouseEvent,
+  useEffect,
+} from "react";
 import { AuthContext } from "../../../../../../context/AuthContext";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../../../../../firebase";
@@ -58,6 +65,10 @@ const ConfigPop: FC<{ setConfigPopState: Dispatch<SetStateAction<boolean>> }> =
         },
       },
     };
+
+    useEffect(() => {
+      setUISelectionState(autoDeleteOnDone);
+    }, [autoDeleteOnDone]);
 
     return (
       <>

@@ -8,10 +8,10 @@ import {
   useState,
   useEffect,
 } from "react";
-import logCol from "../util/logColor";
 import { DocumentData, doc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 import { AuthContext } from "./AuthContext";
+import logCol from "../util/logColor";
 
 //---------MAIN---------------\
 
