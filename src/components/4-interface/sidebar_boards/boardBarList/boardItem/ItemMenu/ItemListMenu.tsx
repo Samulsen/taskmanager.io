@@ -16,7 +16,7 @@ const ItemListMenu: FC<{
   setMenuState: Dispatch<SetStateAction<boolean>>;
   boardId: string;
   setRenameState: Dispatch<SetStateAction<boolean>>;
-}> = function ({ setMenuState, boardId }) {
+}> = function ({ setMenuState, boardId, setRenameState }) {
   const [requestDeletion, setRegquestDeletion] = useState(false);
   const uid = AuthContext()?.userObject?.uid;
   const Logic = {
@@ -59,6 +59,10 @@ const ItemListMenu: FC<{
           );
         }
       },
+      enableRenameRequest() {
+        setRenameState(true);
+        setMenuState(false);
+      },
     },
     Data: {
       abortDeletion() {
@@ -75,7 +79,10 @@ const ItemListMenu: FC<{
   return (
     <>
       <div ref={useClickOutside(setMenuState)} className={classes.body}>
-        <div className={`${classes.option} ${classes.rename}`}>
+        <div
+          className={`${classes.option} ${classes.rename}`}
+          onClick={Logic.UI.enableRenameRequest.bind(Logic)}
+        >
           <img
             className={classes.icon}
             src={renameIcon}

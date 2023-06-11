@@ -32,10 +32,12 @@ const AddNewBoard: FC<{
       initRequestChain() {
         return Promise.resolve();
       },
+      //__NOTE: actually opens a new collection for the board items!
       openNewBoardCollection() {
         return Promise.resolve();
       },
-      updateBoardNames() {
+      //__NOTE: adds only to the boardNames Map!
+      addToBoardNames() {
         const ref = pathBoardNames(uid);
         const namePath = `boardNames.${randomID()}`;
         // interface updateDataType {
@@ -62,7 +64,7 @@ const AddNewBoard: FC<{
         } else {
           this.Data.initRequestChain()
             .then(this.Data.openNewBoardCollection)
-            .then(this.Data.updateBoardNames)
+            .then(this.Data.addToBoardNames)
             .then(this.Data.closeRequest)
             .catch();
         }
