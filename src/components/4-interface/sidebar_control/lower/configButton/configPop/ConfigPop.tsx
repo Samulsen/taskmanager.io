@@ -9,6 +9,8 @@ import classes from "./_ConfigPop.module.scss";
 import uncheckedIcon from "./unchecked.svg";
 import checkIcon from "./check.svg";
 import arrowIcon from "./arrow.svg";
+//__i-context________
+import { ConfigContext } from "../../../../../../context/ConfigContext";
 //__i-helper_________
 import useClickOutside from "../../../../../../hooks/useClickOutside";
 
@@ -17,11 +19,9 @@ const ConfigPop: FC<{ setConfigPopState: Dispatch<SetStateAction<boolean>> }> =
   function ({ setConfigPopState }) {
     //__c-hooks________
 
-    // const {
-    //   config: { autoDeleteOnDone: configState },
-    // } = DataContext()!.appMetaData as appMetaData;
+    const { autoDeleteOnDone } = ConfigContext();
     const uid = AuthContext()?.userObject?.uid;
-    const [uiSelectionState, setUISelectionState] = useState(true);
+    const [uiSelectionState, setUISelectionState] = useState(autoDeleteOnDone);
 
     //__c-logic________
 
@@ -29,8 +29,7 @@ const ConfigPop: FC<{ setConfigPopState: Dispatch<SetStateAction<boolean>> }> =
       Update: {
         save(event: MouseEvent<HTMLDivElement>) {
           event.stopPropagation();
-          // if (!(uiSelectionState === configState)) {
-          if (!(uiSelectionState === true)) {
+          if (!(uiSelectionState === autoDeleteOnDone)) {
             const ref = doc(db, `MainUserDataPool_${uid}`, "UserConfig");
             const updatedData = { autoDeleteOnDone: uiSelectionState };
             updateDoc(ref, updatedData).catch();

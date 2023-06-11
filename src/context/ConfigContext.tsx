@@ -1,11 +1,26 @@
 //---------IMPORTS------------\
 
-import { createContext, FC, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  FC,
+  ReactNode,
+  useContext,
+  useState,
+  useEffect,
+} from "react";
+import logCol from "../util/logColor";
+import { DocumentData, doc, onSnapshot } from "firebase/firestore";
+import { db } from "../firebase";
+import { AuthContext } from "./AuthContext";
 
 //---------MAIN---------------\
 
 interface ContextValueTypeConfig {
   state: string;
+  autoDeleteOnDone: boolean;
+}
+
+interface QueryData {
   autoDeleteOnDone: boolean;
 }
 
@@ -26,9 +41,46 @@ const ConfigContextProvider: FC<{ children: ReactNode }> = function ({
   children,
 }) {
   //__c-hooks________
+
+  const uid = AuthContext()?.userObject?.uid;
+  const [configData, updateConfigData] = useState(coldData);
+
   //__c-logic________
+
+  const Logic = {
+    Data: {
+      tempData: {} as ContextValueTypeConfig,
+      deconstruct(configDataSnap: DocumentData) {
+        const { autoDeleteOnDone }: QueryData = configDataSnap.data();
+        this.tempData = { state: "warm", autoDeleteOnDone };
+        return Logic.Data;
+      },
+      merge() {
+        updateConfigData(this.tempData);
+      },
+    },
+  };
+
+  useEffect(() => {
+    logCol("SnapshotHook: ConfigData => was initiated!", "rgb(255, 140, 98)");
+    const unsub = onSnapshot(
+      doc(db, `MainUserDataPool_${uid}`, "UserConfig"),
+      (configDataSnap) => {
+        Logic.Data.deconstruct(configDataSnap).merge();
+      }
+    );
+    return unsub;
+  }, []);
+
+  useEffect(() => {
+    logCol(
+      `ConfigData Update: DeleteMode = ${configData.autoDeleteOnDone}`,
+      "rgb(255, 140, 98)"
+    );
+  }, [configData]);
+
   const ConfigContextValues: ContextValueTypeConfig = {
-    ...coldData,
+    ...configData,
   };
 
   return (

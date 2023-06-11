@@ -45,7 +45,8 @@ const MetadataContextProvider: FC<{ children: ReactNode }> = function ({
 }) {
   //__c-hooks________
 
-  const [metadata, setMetadata] = useState<ContextValueTypeMetadata>(coldData);
+  const [metadata, updateMetadata] =
+    useState<ContextValueTypeMetadata>(coldData);
   const uid = AuthContext()?.userObject?.uid;
 
   //__c-logic________
@@ -59,7 +60,7 @@ const MetadataContextProvider: FC<{ children: ReactNode }> = function ({
         return Logic.Data;
       },
       merge() {
-        setMetadata(this.tempData);
+        updateMetadata(this.tempData);
       },
     },
   };
