@@ -36,9 +36,9 @@ const coldData: ContextValueTypeMetadata = {
 
 //SECTION______________________: Context objects
 
-const MetaDataContextLocal = createContext<ContextValueTypeMetadata>(coldData);
+const MetadataContextLocal = createContext<ContextValueTypeMetadata>(coldData);
 
-const MetaDataContextProvider: FC<{ children: ReactNode }> = function ({
+const MetadataContextProvider: FC<{ children: ReactNode }> = function ({
   children,
 }) {
   //__c-hooks________
@@ -63,7 +63,7 @@ const MetaDataContextProvider: FC<{ children: ReactNode }> = function ({
   };
 
   useEffect(() => {
-    logCol("SnapshotHook: MetaData => was initiated!", "rgb(243, 248, 145)");
+    logCol("SnapshotHook: Metadata => was initiated!", "rgb(243, 248, 145)");
     const unsub = onSnapshot(
       doc(db, `MainUserDataPool_${uid}`, "UserMetaData"),
       (metadataSnap) => {
@@ -73,20 +73,20 @@ const MetaDataContextProvider: FC<{ children: ReactNode }> = function ({
     return unsub;
   }, []);
 
-  const MetaDataContextValues: ContextValueTypeMetadata = {
+  const MetadataContextValues: ContextValueTypeMetadata = {
     ...metadata,
   };
 
   return (
-    <MetaDataContextLocal.Provider value={MetaDataContextValues}>
+    <MetadataContextLocal.Provider value={MetadataContextValues}>
       {children}
-    </MetaDataContextLocal.Provider>
+    </MetadataContextLocal.Provider>
   );
 };
 
 //---------EXPORTS------------\
 
-export default MetaDataContextProvider;
-export const MetaDataContext = function () {
-  return useContext(MetaDataContextLocal);
+export default MetadataContextProvider;
+export const MetadataContext = function () {
+  return useContext(MetadataContextLocal);
 };

@@ -1,12 +1,12 @@
 //---------IMPORTS------------\
 
 import classes from "./_ProfileButton.module.scss";
-import { MetaDataContext } from "../../../../../context/MetadataContext";
+import { MetadataContext } from "../../../../../context/MetadataContext";
 
 //---------COMPONENT----------\
 
 const ProfileButton = function () {
-  const { firstName, lastName } = MetaDataContext();
+  const { firstName, lastName } = MetadataContext();
 
   const Logic = {
     evaluateUserShort() {
