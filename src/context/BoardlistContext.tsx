@@ -81,7 +81,6 @@ const BoardlistContextProvider: FC<{ children: ReactNode }> = function ({
       { includeMetadataChanges: true },
       (boardNamesSnapshot) => {
         if (!boardNamesSnapshot.metadata.hasPendingWrites) {
-          console.log("i updated the ui!");
           Logic.Data.deconstruct(boardNamesSnapshot).merge();
         }
       }
