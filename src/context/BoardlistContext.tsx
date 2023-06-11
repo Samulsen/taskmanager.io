@@ -11,6 +11,7 @@ import {
 import { AuthContext } from "./AuthContext";
 import { DocumentData, doc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
+import logCol from "../util/logColor";
 
 //---------MAIN---------------\
 
@@ -71,6 +72,10 @@ const BoardlistContextProvider: FC<{ children: ReactNode }> = function ({
   };
 
   useEffect(() => {
+    logCol(
+      "SnapshotHook: Boardlist Data => was initiated!",
+      "rgb(175, 243, 29)"
+    );
     const unsub = onSnapshot(
       doc(db, `MainUserDataPool_${uid}`, "UserBoards"),
       (boardNamesSnapshot) => {

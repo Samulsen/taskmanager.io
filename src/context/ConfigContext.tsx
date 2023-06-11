@@ -62,7 +62,7 @@ const ConfigContextProvider: FC<{ children: ReactNode }> = function ({
   };
 
   useEffect(() => {
-    logCol("SnapshotHook: ConfigData => was initiated!", "rgb(255, 140, 98)");
+    logCol("SnapshotHook: Config Data => was initiated!", "rgb(255, 140, 98)");
     const unsub = onSnapshot(
       doc(db, `MainUserDataPool_${uid}`, "UserConfig"),
       (configDataSnap) => {
