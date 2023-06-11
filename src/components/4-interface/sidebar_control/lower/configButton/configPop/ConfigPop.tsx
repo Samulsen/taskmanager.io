@@ -19,11 +19,11 @@ const ConfigPop: FC<{ setConfigPopState: Dispatch<SetStateAction<boolean>> }> =
   function ({ setConfigPopState }) {
     //__c-hooks________
 
-    const {
-      config: { autoDeleteOnDone: configState },
-    } = DataContext()!.appMetaData as appMetaData;
+    // const {
+    //   config: { autoDeleteOnDone: configState },
+    // } = DataContext()!.appMetaData as appMetaData;
     const uid = AuthContext()?.userObject?.uid;
-    const [uiSelectionState, setUISelectionState] = useState(configState);
+    const [uiSelectionState, setUISelectionState] = useState(true);
 
     //__c-logic________
 
@@ -31,7 +31,8 @@ const ConfigPop: FC<{ setConfigPopState: Dispatch<SetStateAction<boolean>> }> =
       Update: {
         save(event: MouseEvent<HTMLDivElement>) {
           event.stopPropagation();
-          if (!(uiSelectionState === configState)) {
+          // if (!(uiSelectionState === configState)) {
+          if (!(uiSelectionState === true)) {
             const ref = doc(db, `MainUserDataPool_${uid}`, "UserConfig");
             const updatedData = { autoDeleteOnDone: uiSelectionState };
             updateDoc(ref, updatedData).catch();

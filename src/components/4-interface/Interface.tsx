@@ -15,18 +15,20 @@ import Loading from "../0-auth/loader/Loading";
 const Interface = function () {
   //__c-hooks________
 
-  const userMetaData = DataContext()!.appMetaData;
+  // const userMetaData = DataContext()!.appMetaData;
 
   const Logic = {
     evaluateConnectionMainDataPool() {
-      if (userMetaData === "cold") {
+      // if (userMetaData === "cold") {
+      if (false) {
         return (
           <Anchor>
             <Loading />
           </Anchor>
         );
       }
-      if (typeof (userMetaData as appMetaData).firstName === "string") {
+      // if (typeof (userMetaData as appMetaData).firstName === "string") {
+      if (true) {
         return (
           <div className={classes.body}>
             <SidebarControl />

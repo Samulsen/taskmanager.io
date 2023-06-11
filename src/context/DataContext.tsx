@@ -62,7 +62,8 @@ const DataContextProvider: FC<{ children: ReactNode }> = function ({
   //__c-hooks________
   const uid = AuthContext()?.userObject?.uid;
   const [appMetaData, setAppMetaData] = useState<appMetaData | string>("cold");
-  debugLoggerData(appMetaData);
+  // debugLoggerData(appMetaData);
+  //a
 
   //__c-logic________
 
