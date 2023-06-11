@@ -44,7 +44,10 @@ const ItemListMenu: FC<{
           );
         } else {
           return (
-            <div className={classes.option} onClick={Logic.UI.requestDeletion}>
+            <div
+              className={`${classes.option} ${classes.delete}`}
+              onClick={Logic.UI.requestDeletion}
+            >
               <img
                 className={classes.icon}
                 src={deleteIcon}
@@ -71,7 +74,7 @@ const ItemListMenu: FC<{
   return (
     <>
       <div ref={useClickOutside(setMenuState)} className={classes.body}>
-        <div className={classes.option}>
+        <div className={`${classes.option} ${classes.rename}`}>
           <img
             className={classes.icon}
             src={renameIcon}
@@ -79,7 +82,6 @@ const ItemListMenu: FC<{
           />
           Rename
         </div>
-
         {Logic.UI.evaluateDeletionRequest()}
       </div>
       <div className={classes.pointer}></div>
