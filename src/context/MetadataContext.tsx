@@ -38,6 +38,8 @@ const coldData: ContextValueTypeMetadata = {
 
 const MetadataContextLocal = createContext<ContextValueTypeMetadata>(coldData);
 
+//---------COMPONENT----------\
+
 const MetadataContextProvider: FC<{ children: ReactNode }> = function ({
   children,
 }) {

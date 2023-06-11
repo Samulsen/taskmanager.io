@@ -4,18 +4,32 @@ import { createContext, FC, ReactNode, useContext, useState } from "react";
 
 //---------MAIN---------------\
 
-interface ContextValueType {}
+interface ContextValueTypeConfig {
+  state: string;
+  autoDeleteOnDone: boolean;
+}
+
+//SECTION______________________: Init Data
+
+const coldData: ContextValueTypeConfig = {
+  state: "cold",
+  autoDeleteOnDone: false,
+};
 
 //SECTION______________________: Context objects
 
-const ConfigContextLocal = createContext<ContextValueType | null>(null);
+const ConfigContextLocal = createContext<ContextValueTypeConfig>(coldData);
+
+//---------COMPONENT----------\
 
 const ConfigContextProvider: FC<{ children: ReactNode }> = function ({
   children,
 }) {
   //__c-hooks________
   //__c-logic________
-  const ConfigContextValues: ContextValueType = {};
+  const ConfigContextValues: ContextValueTypeConfig = {
+    ...coldData,
+  };
 
   return (
     <ConfigContextLocal.Provider value={ConfigContextValues}>

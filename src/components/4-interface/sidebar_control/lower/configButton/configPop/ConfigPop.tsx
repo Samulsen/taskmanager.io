@@ -1,18 +1,16 @@
 //---------IMPORTS------------\
-
+//__i-libraries______
 import { useState, FC, Dispatch, SetStateAction, MouseEvent } from "react";
-import classes from "./_ConfigPop.module.scss";
-import arrowIcon from "./arrow.svg";
-import checkIcon from "./check.svg";
-import uncheckedIcon from "./unchecked.svg";
-import {
-  DataContext,
-  appMetaData,
-} from "../../../../../../context/DataContext";
 import { AuthContext } from "../../../../../../context/AuthContext";
-import useClickOutside from "../../../../../../hooks/useClickOutside";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../../../../../firebase";
+//__i-style__________
+import classes from "./_ConfigPop.module.scss";
+import uncheckedIcon from "./unchecked.svg";
+import checkIcon from "./check.svg";
+import arrowIcon from "./arrow.svg";
+//__i-helper_________
+import useClickOutside from "../../../../../../hooks/useClickOutside";
 
 //---------COMPONENT----------\
 const ConfigPop: FC<{ setConfigPopState: Dispatch<SetStateAction<boolean>> }> =
