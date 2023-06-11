@@ -17,6 +17,7 @@
   cursor: pointer;
   transition: all 0.3s;
   &:hover::after {
+    z-index: 10;
     clip-path: polygon(
       10% 0,
       100% 0,
