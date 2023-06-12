@@ -11,6 +11,7 @@ import {
   KeyboardEvent,
 } from "react";
 import { AuthContext } from "../../../../../../context/AuthContext";
+import { BoardContext } from "../../../../../../context/BoardContext";
 import pathBoardNames from "../../../../../../util/pathBoardNames";
 import { updateDoc } from "firebase/firestore";
 
@@ -23,6 +24,7 @@ const RenameInput: FC<{
   const [wasEmptyOnRequest, setWasEmptyState] = useState(false);
   const uid = AuthContext()!.userObject!.uid;
   const updatedNameInputRef = useRef<HTMLInputElement>(null);
+  const { boardControl } = BoardContext()!;
   //__c-logic________
 
   const Logic = {
@@ -31,6 +33,13 @@ const RenameInput: FC<{
         return wasEmptyOnRequest
           ? { placeholder: "cannot be empty!" }
           : { placeholder: "" };
+      },
+      evaluateSelectionState() {
+        if (boardControl.state === boardId) {
+          return classes.isAlsoSelected;
+        } else {
+          return classes.notSelected;
+        }
       },
     },
 
@@ -69,6 +78,7 @@ const RenameInput: FC<{
   return (
     <div className={classes.body} ref={useClickOutside(setRenameState)}>
       <input
+        className={Logic.UI.evaluateSelectionState()}
         ref={updatedNameInputRef}
         type="text"
         autoFocus

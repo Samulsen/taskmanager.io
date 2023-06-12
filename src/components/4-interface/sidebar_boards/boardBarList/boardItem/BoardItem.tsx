@@ -57,7 +57,9 @@ const BoardItem: FC<{ boardId: string; currentBoardName: string }> = function ({
           }
           return (
             <>
-              <Link to={boardId}>{Logic.UI.fitName()}</Link>
+              <Link onClick={Logic.UI.setSelfSelection} to={boardId}>
+                {Logic.UI.fitName()}
+              </Link>
               <img
                 className={`${classes.icon} ${classes.option}`}
                 src={optionIcon}
@@ -88,10 +90,7 @@ const BoardItem: FC<{ boardId: string; currentBoardName: string }> = function ({
   };
 
   return (
-    <div
-      className={Logic.UI.evaluateSelectionState()}
-      onClick={Logic.UI.setSelfSelection}
-    >
+    <div className={Logic.UI.evaluateSelectionState()}>
       <img
         className={`${classes.icon} ${classes.boardIcon}`}
         src={boardIcon}

@@ -6,7 +6,6 @@
     border-radius: 0.5rem;
     padding: 0 0.5rem;
     border-color: rgba(255, 255, 255, 0);
-    background-color: rgba(255, 255, 255, 0.144);
     outline-width: 0;
     font-weight: 400;
     color: white;
@@ -14,4 +13,12 @@
     transition: all 0.3s;
     font-family: "Roboto Mono", monospace;
   }
+}
+
+.isAlsoSelected {
+  background-color: rgba(243, 43, 43, 0);
+}
+
+.notSelected {
+  background-color: rgba(255, 255, 255, 0.144);
 }
