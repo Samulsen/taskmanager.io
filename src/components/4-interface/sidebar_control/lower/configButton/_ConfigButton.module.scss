@@ -1,0 +1,18 @@
+.body {
+  width: 65%;
+}
+
+.active {
+  rotate: -30deg;
+}
+.icon {
+  transition: all 0.4s;
+  cursor: pointer;
+  &:hover {
+    rotate: -30deg;
+  }
+}
+
+.selected {
+  rotate: -30deg;
+}

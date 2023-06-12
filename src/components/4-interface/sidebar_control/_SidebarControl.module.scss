@@ -1,0 +1,9 @@
+.body {
+  overflow-y: clip;
+  overflow-x: visible;
+  background-color: #022d6c;
+  padding: 0.8rem;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 18rem auto 20rem;
+}

@@ -1,10 +1,11 @@
 //---------IMPORTS------------\
-
+//__i-libraries______
 import { Outlet, useNavigate } from "react-router-dom";
+//__i-context________
 import { AuthContext } from "../../context/AuthContext";
+//__i-components_____
 import Anchor from "../0-independent/anchor/Anchor";
 import Loading from "./loader/Loading";
-import DataContextProvider from "../../context/DataContext";
 
 //---------COMPONENT----------\
 
@@ -27,11 +28,7 @@ const Private = function () {
       }
       if (authState === true) {
         //__NOTE: show requested route
-        return (
-          <DataContextProvider>
-            <Outlet />
-          </DataContextProvider>
-        );
+        return <Outlet />;
       }
       if (authState === false) {
         navigate("/public/login");

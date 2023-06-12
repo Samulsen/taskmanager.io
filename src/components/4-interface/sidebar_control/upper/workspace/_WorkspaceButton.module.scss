@@ -1,0 +1,16 @@
+.body {
+  width: 50%;
+  position: relative;
+  cursor: pointer;
+}
+
+.pointer {
+  position: absolute;
+  background-color: #174d9a;
+  width: 2rem;
+  height: 2rem;
+  clip-path: polygon(50% 50%, 0% 100%, 100% 100%);
+  transform: rotate(-90deg);
+  top: 1rem;
+  right: -2rem;
+}

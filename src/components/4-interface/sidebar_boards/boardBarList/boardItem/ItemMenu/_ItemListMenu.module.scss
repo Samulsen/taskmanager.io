@@ -1,0 +1,76 @@
+@import "./../../../../../../styles/variables";
+
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  width: 12rem;
+  height: 8.5rem;
+  border-radius: 1rem;
+  background-color: $mid-blue;
+  padding: 1.2rem;
+  font-size: 1.3rem;
+  z-index: 5;
+  top: 3.5rem;
+  left: 5rem;
+}
+
+.option {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.75rem;
+}
+
+.confirm {
+  margin-right: 1.5rem;
+  width: 2rem;
+  border-radius: 10rem;
+  transition: all 0.3s;
+  &:hover {
+    background-color: rgba(49, 246, 5, 0.362);
+  }
+}
+
+.rename {
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.137);
+  }
+}
+
+.delete {
+  &:hover {
+    background-color: rgba(255, 0, 0, 0.215);
+  }
+}
+
+.abort {
+  margin-left: 1.5rem;
+  width: 2rem;
+  border-radius: 10rem;
+
+  transition: all 0.3s;
+  &:hover {
+    background-color: rgba(255, 0, 0, 0.377);
+  }
+}
+
+.pointer {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  background-color: $mid-blue;
+  left: 14.8rem;
+  top: 2.5rem;
+}

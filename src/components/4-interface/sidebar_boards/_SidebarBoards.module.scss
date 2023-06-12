@@ -1,0 +1,11 @@
+.body {
+  background-color: #174d9a;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 13rem auto 2.31rem;
+  grid-template-areas:
+    "menu"
+    "list"
+    "foot";
+}

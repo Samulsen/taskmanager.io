@@ -11,24 +11,24 @@ import Loading from "./loader/Loading";
 const Public = function () {
   //__c-hooks________
 
-  const authState = AuthContext()?.authState;
+  const authValues = AuthContext();
   const navigate = useNavigate();
 
   //__c-logic________
   const Logic = {
     evaluateAuthState() {
-      if (authState === "UNEVALUATED") {
+      if (authValues?.authState === "UNEVALUATED") {
         return (
           <Anchor>
             <Loading />
           </Anchor>
         );
       }
-      if (authState === true) {
-        navigate("/private/allTasks");
+      if (authValues?.authState === true) {
+        navigate(`/private/${authValues?.userObject?.uid}/total`);
         return;
       }
-      if (authState === false) {
+      if (authValues?.authState === false) {
         //__NOTE: show requested route
         return (
           <Anchor>

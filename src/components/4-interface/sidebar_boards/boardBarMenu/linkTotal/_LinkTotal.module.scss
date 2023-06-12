@@ -1,0 +1,30 @@
+@import "./../../../../../styles/variables";
+
+.body {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+}
+
+.icon {
+  margin-right: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+.selected {
+  background-color: $transparent-white;
+}
+
+.unselected {
+  background-color: none;
+  &:hover {
+    background-color: $transparent-white;
+  }
+}

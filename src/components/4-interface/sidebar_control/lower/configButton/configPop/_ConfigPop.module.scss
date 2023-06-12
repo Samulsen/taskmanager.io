@@ -1,0 +1,100 @@
+@import "./../../../../../../styles/variables";
+
+.body {
+  padding: 1rem 0.5rem;
+  position: absolute;
+  width: 21rem;
+  height: 18rem;
+  background-color: $mid-blue;
+  left: 8.5rem;
+  bottom: 5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.header {
+  font-size: 1.8rem;
+  border-style: solid;
+  border-color: white;
+  border-radius: 0.5rem;
+  border-width: 0.2rem;
+  padding: 0.5rem 1rem;
+}
+
+.settings {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .detail {
+    line-height: 1.5;
+    height: fit-content;
+    width: 10rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    background-color: $pinkish-blue;
+    font-size: 1.2rem;
+    span {
+      background-color: $main-green;
+    }
+  }
+  .arrow {
+    height: 1.5rem;
+    margin: 0 1rem;
+  }
+
+  .tickbox {
+    border-radius: 0.5rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+}
+
+.selected {
+  background-color: $main-green;
+  &:hover {
+    background-color: rgba(0, 128, 0, 0.386);
+  }
+}
+
+.unselected {
+  background-color: rgb(236, 99, 99);
+  &:hover {
+    background-color: rgba(236, 99, 99, 0.442);
+  }
+}
+
+.confirm {
+  width: fit-content;
+  height: fit-content;
+  padding: 0.5rem 1rem;
+  background-color: #174d9a;
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    background-color: #174e9a70;
+  }
+}
+
+.pointer {
+  position: absolute;
+  clip-path: polygon(100% 0, 15% 50%, 100% 100%);
+  width: 3rem;
+  height: 3rem;
+  left: 6.5rem;
+  bottom: 11rem;
+  background-color: $mid-blue;
+  z-index: 1;
+}

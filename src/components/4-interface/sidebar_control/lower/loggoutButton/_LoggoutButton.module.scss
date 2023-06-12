@@ -1,0 +1,17 @@
+.body {
+  width: 65%;
+  margin-right: 0.5rem;
+  position: relative;
+}
+
+.icon {
+  transition: all 0.3s;
+  cursor: pointer;
+  &:hover {
+    translate: -0.3rem;
+  }
+}
+
+.selected {
+  translate: -0.3rem;
+}

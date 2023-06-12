@@ -1,0 +1,44 @@
+@import "./../../../../../styles/variables";
+
+.body {
+  position: relative;
+  border-radius: 10rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-color: white;
+  border-width: 0.2rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: $main-green;
+  border-style: solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover::after {
+    z-index: 10;
+    clip-path: polygon(
+      10% 0,
+      100% 0,
+      100% 100%,
+      10% 100%,
+      10% 49%,
+      0 43%,
+      10% 33%
+    );
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 3rem;
+    padding-right: 1rem;
+    width: 20rem;
+    height: fit-content;
+    position: absolute;
+    content: attr(data-description);
+    color: black;
+    background-color: white;
+    font-size: 1.5rem;
+    left: 4.5rem;
+    top: -1.5rem;
+  }
+}

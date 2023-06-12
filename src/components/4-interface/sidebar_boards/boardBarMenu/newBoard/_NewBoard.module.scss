@@ -1,0 +1,19 @@
+.body {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+}
+
+.icon {
+  margin-right: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    rotate: -30deg;
+  }
+}
