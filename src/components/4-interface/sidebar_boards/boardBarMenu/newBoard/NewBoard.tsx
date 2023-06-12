@@ -30,13 +30,8 @@ const NewBoard = function () {
   };
 
   return (
-    <div className={classes.body}>
-      <img
-        onClick={Logic.enableAddRequests}
-        className={classes.icon}
-        src={newBoardIcon}
-        alt="newBoardBtton"
-      />
+    <div className={classes.body} onClick={Logic.enableAddRequests}>
+      <img className={classes.icon} src={newBoardIcon} alt="newBoardBtton" />
       {Logic.UI.evaluateAddBoard()}
     </div>
   );
