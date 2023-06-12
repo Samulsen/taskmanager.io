@@ -7,6 +7,7 @@ import classes from "./_BoardItem.module.scss";
 import boardIcon from "./boardIcon.svg";
 import optionIcon from "./optionsIcon.svg";
 //__i-components_____
+import { BoardContext } from "../../../../../context/BoardContext";
 import ItemListMenu from "./ItemMenu/ItemListMenu";
 import RenameInput from "./RenameInput/RenameInput";
 
@@ -20,6 +21,9 @@ const BoardItem: FC<{ boardId: string; currentBoardName: string }> = function ({
 
   const [menuState, setMenuState] = useState(false);
   const [renameState, setRenameState] = useState(false);
+  const {
+    boardControl: { state, setState },
+  } = BoardContext()!;
 
   //__c-logic________
   const Logic = {
@@ -74,7 +78,7 @@ const BoardItem: FC<{ boardId: string; currentBoardName: string }> = function ({
   return (
     <div className={classes.body}>
       <img
-        className={`${classes.icon} ${classes.board}`}
+        className={`${classes.icon} ${classes.boardIcon}`}
         src={boardIcon}
         alt="iconBoardItem"
       />

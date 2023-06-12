@@ -1,3 +1,5 @@
+@import "./../../../../../styles/variables";
+
 .body {
   font-size: 1.2rem;
   padding: 0.5rem;
@@ -6,6 +8,7 @@
   display: flex;
   align-items: center;
   position: relative;
+  border-radius: 0.5rem;
 }
 
 .icon {
@@ -13,11 +16,22 @@
   height: 1.5rem;
 }
 
-.board {
+.boardIcon {
   margin-right: 0.7rem;
 }
 
 .option {
   margin-left: auto;
   cursor: pointer;
+}
+
+.selected {
+  background-color: $transparent-white;
+}
+
+.unselected {
+  background-color: none;
+  &:hover {
+    background-color: $transparent-white;
+  }
 }

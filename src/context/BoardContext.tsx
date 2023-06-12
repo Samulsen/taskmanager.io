@@ -14,6 +14,7 @@ import {
 
 export interface ContextValueTypeBoard {
   viewControl: { state: string; setState: Dispatch<SetStateAction<string>> };
+  boardControl: { state: string; setState: Dispatch<SetStateAction<string>> };
 }
 
 //SECTION______________________: Context objects
@@ -25,11 +26,19 @@ const BoardContextProvider: FC<{ children: ReactNode }> = function ({
 }) {
   //__c-hooks________
 
-  const [viewControlstate, setViewControlState] = useState("Home");
+  const [viewControlSelection, setViewControlSelection] = useState("Home");
+  const [boardListSelection, setBoardListSelection] = useState("total");
 
   //__c-logic________
   const BoardContextValues: ContextValueTypeBoard = {
-    viewControl: { state: viewControlstate, setState: setViewControlState },
+    viewControl: {
+      state: viewControlSelection,
+      setState: setViewControlSelection,
+    },
+    boardControl: {
+      state: boardListSelection,
+      setState: setBoardListSelection,
+    },
   };
 
   return (
