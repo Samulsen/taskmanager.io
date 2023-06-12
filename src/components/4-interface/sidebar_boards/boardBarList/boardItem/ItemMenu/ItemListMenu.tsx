@@ -1,15 +1,19 @@
 //---------IMPORTS------------\
-
+//__i-libraries______
 import { Dispatch, FC, SetStateAction, useState } from "react";
+import { doc, updateDoc, deleteField } from "firebase/firestore";
+import { db } from "../../../../../../firebase";
+import { useNavigate } from "react-router-dom";
+//__i-style__________
 import classes from "./_ItemListMenu.module.scss";
 import deleteIcon from "./svgs/delete.svg";
 import renameIcon from "./svgs/rename.svg";
 import confirmIcon from "./svgs/confirm.svg";
 import abortIcon from "./svgs/abort.svg";
-import useClickOutside from "../../../../../../hooks/useClickOutside";
-import { doc, updateDoc, deleteField } from "firebase/firestore";
-import { db } from "../../../../../../firebase";
+//__i-components_____
+import { BoardContext } from "../../../../../../context/BoardContext";
 import { AuthContext } from "../../../../../../context/AuthContext";
+import useClickOutside from "../../../../../../hooks/useClickOutside";
 
 //---------COMPONENT----------\
 const ItemListMenu: FC<{
@@ -17,8 +21,11 @@ const ItemListMenu: FC<{
   boardId: string;
   setRenameState: Dispatch<SetStateAction<boolean>>;
 }> = function ({ setMenuState, boardId, setRenameState }) {
+  const { boardControl } = BoardContext()!;
+  const navigate = useNavigate();
   const [requestDeletion, setRegquestDeletion] = useState(false);
   const uid = AuthContext()?.userObject?.uid;
+
   const Logic = {
     UI: {
       requestDeletion() {
@@ -69,6 +76,8 @@ const ItemListMenu: FC<{
         setRegquestDeletion(false);
       },
       confirmDeletion() {
+        navigate("total");
+        boardControl.setState("total");
         const userBoardsRef = doc(db, `MainUserDataPool_${uid}`, "UserBoards");
         const namePath = `boardNames.${boardId}`;
         updateDoc(userBoardsRef, { [namePath]: deleteField() });

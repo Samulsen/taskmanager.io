@@ -31,6 +31,7 @@ const AddNewBoard: FC<{
     },
     Data: {
       initRequestChain() {
+        //__NOTE:Provides stable random id throught async request, passes down through resolved values!
         return Promise.resolve(randomID());
       },
       //__NOTE: actually opens a new sub collection for the board items!
