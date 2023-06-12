@@ -22,6 +22,7 @@ const BoardItem: FC<{ boardId: string; currentBoardName: string }> = function ({
   const [menuState, setMenuState] = useState(false);
   const [renameState, setRenameState] = useState(false);
   const {
+    viewControl: { setState: setView },
     boardControl: { state, setState },
   } = BoardContext()!;
 
@@ -34,6 +35,17 @@ const BoardItem: FC<{ boardId: string; currentBoardName: string }> = function ({
           return name.slice(0, 11) + "...";
         } else {
           return name;
+        }
+      },
+      setSelfSelection() {
+        setView("Home");
+        setState(boardId);
+      },
+      evaluateSelectionState() {
+        if (state === boardId) {
+          return `${classes.body} ${classes.selected}`;
+        } else {
+          return `${classes.body} ${classes.unselected}`;
         }
       },
       Rename: {
@@ -76,7 +88,10 @@ const BoardItem: FC<{ boardId: string; currentBoardName: string }> = function ({
   };
 
   return (
-    <div className={classes.body}>
+    <div
+      className={Logic.UI.evaluateSelectionState()}
+      onClick={Logic.UI.setSelfSelection}
+    >
       <img
         className={`${classes.icon} ${classes.boardIcon}`}
         src={boardIcon}

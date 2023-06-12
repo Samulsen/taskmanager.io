@@ -10,11 +10,13 @@ import { BoardContext } from "../../../../../context/BoardContext";
 const LinkTotal = function () {
   const {
     boardControl: { state, setState },
+    viewControl: { setState: setView },
   } = BoardContext()!;
 
   const Logic = {
     UI: {
       setSelfSelection() {
+        setView("Home");
         setState("total");
       },
 
