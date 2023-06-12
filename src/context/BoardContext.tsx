@@ -10,7 +10,7 @@ import {
   SetStateAction,
 } from "react";
 
-//---------MAIN---------------\
+//----------PRE---------------\
 
 export interface ContextValueTypeBoard {
   viewControl: { state: string; setState: Dispatch<SetStateAction<string>> };

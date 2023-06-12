@@ -21,11 +21,12 @@ const ItemListMenu: FC<{
   boardId: string;
   setRenameState: Dispatch<SetStateAction<boolean>>;
 }> = function ({ setMenuState, boardId, setRenameState }) {
+  //__c-hooks________
   const { boardControl } = BoardContext()!;
   const navigate = useNavigate();
   const [requestDeletion, setRegquestDeletion] = useState(false);
   const uid = AuthContext()?.userObject?.uid;
-
+  //__c-logic________
   const Logic = {
     UI: {
       requestDeletion() {
@@ -84,6 +85,8 @@ const ItemListMenu: FC<{
       },
     },
   };
+
+  //__c-structure____
 
   return (
     <>

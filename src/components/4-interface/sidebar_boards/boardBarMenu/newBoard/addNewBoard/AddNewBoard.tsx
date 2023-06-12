@@ -84,7 +84,7 @@ const AddNewBoard: FC<{
       }
     },
   };
-
+  //__c-structure____
   return (
     <div className={classes.body}>
       <div ref={useClickOutside(setCanAddBoardstate)}>
