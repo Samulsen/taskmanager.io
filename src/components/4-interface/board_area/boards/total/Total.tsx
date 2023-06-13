@@ -14,7 +14,15 @@ const Total = function () {
   //__c-logic________
 
   //__c-structure____
-  return <div className={classes.body}></div>;
+  return (
+    <div className={classes.body}>
+      <HeadTotal />
+      <ItemTotal />
+      <ItemTotal />
+      <ItemTotal />
+      <FootTotal />
+    </div>
+  );
 };
 
 //---------EXPORTS------------\

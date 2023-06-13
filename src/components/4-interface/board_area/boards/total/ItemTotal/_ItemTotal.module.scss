@@ -1,2 +1,14 @@
-.body {}
+.body {
+  display: flex;
+  flex-wrap: nowrap;
+}
 
+.main {
+  background-color: rgba(255, 255, 255, 0.289);
+  width: 120rem;
+}
+
+.rest {
+  flex-grow: 1;
+  background-color: rgba(255, 0, 0, 0.39);
+}

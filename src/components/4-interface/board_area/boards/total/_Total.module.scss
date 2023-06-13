@@ -4,16 +4,3 @@
   grid-auto-rows: 3rem;
   overflow: auto;
 }
-
-.item {
-  display: flex;
-  flex-wrap: nowrap;
-}
-
-.main {
-  width: 120rem;
-}
-
-.rest {
-  flex-grow: 1;
-}
