@@ -1,4 +1,4 @@
-@import "./../../../../../../styles/variables";
+@import "./../../../../../styles/variables";
 
 .body {
   position: sticky;
@@ -24,7 +24,6 @@
   border-width: $border-width-board;
   border-color: $border-col-board;
   border-top-right-radius: 1rem;
-  //   justify-content: space-between;
 
   .quad {
     width: 3.5rem;

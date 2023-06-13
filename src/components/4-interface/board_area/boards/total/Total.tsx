@@ -2,8 +2,8 @@
 
 import classes from "./_Total.module.scss";
 //__i-components_____
+import HeadBase from "../../../../0-independent/board_related/columns/HeadBase/HeadBase";
 import ItemTotal from "./ItemTotal/ItemTotal";
-import HeadTotal from "./HeadTotal/HeadTotal";
 import FootTotal from "./FootTotal/FootTotal";
 
 //---------COMPONENT----------\
@@ -16,7 +16,7 @@ const Total = function () {
   //__c-structure____
   return (
     <div className={classes.body}>
-      <HeadTotal />
+      <HeadBase type="total" />
       <ItemTotal />
       <ItemTotal />
       <ItemTotal />
