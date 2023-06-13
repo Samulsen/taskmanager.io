@@ -1,5 +1,6 @@
 .body {
-  width: 10rem;
-  height: 10rem;
-  background-color: yellow;
+  display: grid;
+  grid-template-columns: auto;
+  grid-auto-rows: 3.5rem;
+  overflow: auto;
 }
