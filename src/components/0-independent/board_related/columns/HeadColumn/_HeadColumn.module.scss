@@ -1,0 +1,14 @@
+@import "./../../../../../styles/variables";
+
+.body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
+  font-weight: 500;
+  border-left: solid;
+  border-color: $border-col-board;
+  border-width: $border-width-board;
+  height: 100%;
+  padding: 0 1rem;
+}

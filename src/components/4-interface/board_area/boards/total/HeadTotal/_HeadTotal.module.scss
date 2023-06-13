@@ -1,12 +1,56 @@
+@import "./../../../../../../styles/variables";
+
 .body {
   position: sticky;
   top: 0;
   display: flex;
   flex-wrap: nowrap;
 }
+
+.grouplineUpper {
+  width: 0.5rem;
+  background-color: $main-green;
+  border-top-left-radius: 1rem;
+}
+
 .main {
-  background-color: rgb(255, 255, 255);
-  width: 120rem;
+  background-color: rgb(69, 26, 224);
+  width: auto;
+  display: flex;
+  align-items: center;
+  border-top: solid;
+  border-right: solid;
+  border-bottom: solid;
+  border-width: $border-width-board;
+  border-color: $border-col-board;
+  border-top-right-radius: 1rem;
+  //   justify-content: space-between;
+
+  .quad {
+    width: 3.5rem;
+    height: 100%;
+    border-color: $border-col-board;
+    border-width: $border-width-board;
+  }
+
+  .task {
+    width: 30rem;
+  }
+
+  .date {
+    width: fit-content;
+  }
+
+  .status {
+    width: 13rem;
+  }
+
+  .priority {
+    width: fit-content;
+  }
+  .comment {
+    width: 40rem;
+  }
 }
 
 .rest {
