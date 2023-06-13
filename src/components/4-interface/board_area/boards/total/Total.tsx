@@ -17,9 +17,9 @@ const Total = function () {
   return (
     <div className={classes.body}>
       <HeadBase type="total" />
-      <ItemBase />
-      <ItemBase />
-      <ItemBase />
+      <ItemBase type="total" />
+      <ItemBase type="total" />
+      <ItemBase type="total" />
       <FootBase type="total" />
     </div>
   );

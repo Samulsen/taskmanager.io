@@ -1,8 +1,10 @@
 //---------IMPORTS------------\
+
+import { FC } from "react";
 import classes from "./_ItemBase.module.scss";
 
 //---------COMPONENT----------\
-const ItemBase = function () {
+const ItemBase: FC<{ type: string }> = function () {
   return (
     <div className={classes.body}>
       <div className={classes.grouplineMid}></div>
