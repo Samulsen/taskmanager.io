@@ -1,2 +1,9 @@
-.body {}
+@import "./../../../../../styles/variables";
+@import "./../../../../../styles/mixins";
 
+.body {
+  width: 8.5rem;
+  @include baseBodyItemColumn;
+  padding: 0 1rem;
+  justify-content: center;
+}
