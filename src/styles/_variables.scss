@@ -4,13 +4,19 @@ $mid-blue: #00337c;
 $dark-blue: #13005a;
 $pinkish-blue: #20038b;
 $transparent-white: #00347c78;
+
+//
+
 $border-col-board: grey;
+$border-width-board: 0.1rem;
+
 $board-blue-head: rgb(69, 26, 224);
-$board-blue-item: rgba(69, 26, 224, 0.507);
-$board-blue-foot: rgba(69, 26, 224, 0.375);
-$main-green-resttrail: rgba(3, 201, 135, 0.545);
 $head-resttrail: rgba(69, 26, 224, 0.767);
+
+$board-blue-item: rgba(69, 26, 224, 0.507);
+$item-resttrail: rgba(69, 26, 224, 0.247);
+
+$board-blue-foot: rgba(69, 26, 224, 0.375);
 $foot-resttrail: rgba(69, 26, 224, 0.215);
 
 //
-$border-width-board: 0.1rem;

@@ -35,5 +35,10 @@
 
 .rest {
   flex-grow: 1;
-  background-color: $main-green-resttrail;
+  background-color: $item-resttrail;
+  border-left: solid;
+  border-bottom: solid;
+  border-right: solid;
+  border-color: $border-col-board;
+  border-width: $border-width-board;
 }
