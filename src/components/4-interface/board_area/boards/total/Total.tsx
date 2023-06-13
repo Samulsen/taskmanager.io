@@ -2,7 +2,7 @@
 
 import classes from "./_Total.module.scss";
 //__i-components_____
-import HeadBase from "../../../../0-independent/board_related/columns/HeadBase/HeadBase";
+import HeadBase from "../../../../0-independent/board_related/HeadBase/HeadBase";
 import ItemTotal from "./ItemTotal/ItemTotal";
 import FootTotal from "./FootTotal/FootTotal";
 
