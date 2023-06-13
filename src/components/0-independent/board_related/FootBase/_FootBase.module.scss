@@ -3,22 +3,37 @@
 .body {
   display: flex;
   flex-wrap: nowrap;
-  flex-direction: row;
 }
 .grouplineLower {
   width: 0.5rem;
   background-color: $main-green;
+  border-bottom-left-radius: 1rem;
 }
 .main {
   background-color: $board-blue-foot;
   width: auto;
   display: flex;
+  border-bottom: solid;
+  border-color: $border-col-board;
+  border-width: $border-width-board;
+
   .quad {
     width: 3.5rem;
     height: 100%;
-    border-color: $board-blue-item;
-    border-width: $border-width-board;
   }
+}
+
+.forTotal {
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: solid;
+  border-right: solid;
+  border-color: $border-col-board;
+  border-width: $border-width-board;
+  height: 100%;
+  width: 25rem;
 }
 
 .rest {
