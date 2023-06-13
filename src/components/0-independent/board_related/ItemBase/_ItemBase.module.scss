@@ -13,6 +13,7 @@
 .main {
   background-color: $board-blue-item;
   width: auto;
+  width: 111rem;
   display: flex;
   border-bottom: solid;
   border-color: $border-col-board;
@@ -34,5 +35,5 @@
 
 .rest {
   flex-grow: 1;
-  background-color: rgba(255, 0, 0, 0.39);
+  background-color: $main-green-resttrail;
 }

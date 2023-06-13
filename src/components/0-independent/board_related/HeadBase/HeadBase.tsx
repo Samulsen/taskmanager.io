@@ -26,7 +26,7 @@ const HeadBase: FC<{ type: string }> = function ({ type }) {
         {Logic.UI.evaluateType()}
         <HeadColumn width={classes.mid} title="Due to Date" />
         <HeadColumn width={classes.mid} title="Status" />
-        <HeadColumn width={classes.fit} title="Priority" />
+        <HeadColumn width={classes.prio} title="Priority" />
         <HeadColumn width={classes.comment} title="Comment" />
       </div>
       <div className={classes.rest}></div>
