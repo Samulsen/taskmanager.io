@@ -4,7 +4,7 @@ import classes from "./_Total.module.scss";
 //__i-components_____
 import HeadBase from "../../../../0-independent/board_related/HeadBase/HeadBase";
 import ItemBase from "../../../../0-independent/board_related/ItemBase/ItemBase";
-import FootTotal from "./FootTotal/FootTotal";
+import FootBase from "../../../../0-independent/board_related/FootBase/FootBase";
 
 //---------COMPONENT----------\
 
@@ -20,7 +20,7 @@ const Total = function () {
       <ItemBase />
       <ItemBase />
       <ItemBase />
-      <FootTotal />
+      <FootBase type="total" />
     </div>
   );
 };

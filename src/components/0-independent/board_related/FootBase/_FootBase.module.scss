@@ -1,0 +1,27 @@
+@import "./../../../../styles/variables";
+
+.body {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+.grouplineLower {
+  width: 0.5rem;
+  background-color: $main-green;
+}
+.main {
+  background-color: $board-blue-foot;
+  width: auto;
+  display: flex;
+  .quad {
+    width: 3.5rem;
+    height: 100%;
+    border-color: $board-blue-item;
+    border-width: $border-width-board;
+  }
+}
+
+.rest {
+  flex-grow: 1;
+  background-color: rgba(255, 0, 0, 0.39);
+}
