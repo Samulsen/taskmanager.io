@@ -1,8 +1,8 @@
 //---------IMPORTS------------\
-import classes from "./_ItemTotal.module.scss";
+import classes from "./_ItemBase.module.scss";
 
 //---------COMPONENT----------\
-const ItemTotal = function () {
+const ItemBase = function () {
   return (
     <div className={classes.body}>
       <div className={classes.main}></div>
@@ -12,4 +12,4 @@ const ItemTotal = function () {
 };
 
 //---------EXPORTS------------\
-export default ItemTotal;
+export default ItemBase;
