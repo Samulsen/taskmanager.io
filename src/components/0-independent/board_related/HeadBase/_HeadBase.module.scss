@@ -23,7 +23,6 @@
   border-bottom: solid;
   border-width: $border-width-board;
   border-color: $border-col-board;
-  border-top-right-radius: 1rem;
 
   .quad {
     width: 3.5rem;
@@ -47,5 +46,6 @@
 
 .rest {
   flex-grow: 1;
-  background-color: rgba(255, 0, 0, 0.39);
+  border-top-right-radius: 1rem;
+  background-color: $head-resttrail;
 }
