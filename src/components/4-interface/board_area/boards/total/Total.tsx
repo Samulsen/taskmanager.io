@@ -1,6 +1,10 @@
 //---------IMPORTS------------\
 
 import classes from "./_Total.module.scss";
+//__i-components_____
+import ItemTotal from "./ItemTotal/ItemTotal";
+import HeadTotal from "./HeadTotal/HeadTotal";
+import FootTotal from "./FootTotal/FootTotal";
 
 //---------COMPONENT----------\
 
