@@ -11,9 +11,10 @@ const HeadTotal = function () {
       <div className={classes.main}>
         <div className={classes.quad}></div>
         <HeadColumn width={classes.task} title="Task" />
-        <HeadColumn width={classes.date} title="Due to Date" />
-        <HeadColumn width={classes.status} title="Status" />
-        <HeadColumn width={classes.priority} title="Priority" />
+        <HeadColumn width={classes.mid} title="Board" />
+        <HeadColumn width={classes.mid} title="Due to Date" />
+        <HeadColumn width={classes.mid} title="Status" />
+        <HeadColumn width={classes.fit} title="Priority" />
         <HeadColumn width={classes.comment} title="Comment" />
       </div>
       <div className={classes.rest}></div>
