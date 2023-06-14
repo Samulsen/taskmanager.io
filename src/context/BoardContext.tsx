@@ -25,7 +25,7 @@ export interface ContextValueTypeBoard {
 
 //__p-others________
 
-const coldRawQueryData: CompositItemData[] = [
+export const coldRawQueryData: CompositItemData[] = [
   {
     id: "null",
     type: "coldDataItem",

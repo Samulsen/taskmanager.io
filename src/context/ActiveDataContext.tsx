@@ -1,10 +1,23 @@
 //---------IMPORTS------------\
 
-import { createContext, FC, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  Dispatch,
+  FC,
+  ReactNode,
+  SetStateAction,
+  useContext,
+  useState,
+} from "react";
+import { CompositItemData } from "../types/types";
+import { coldRawQueryData } from "./BoardContext";
 
 //---------MAIN---------------\
 
-interface ContextValueType {}
+interface ContextValueType {
+  clientAffectedData: CompositItemData[];
+  setClienAffectedData: Dispatch<SetStateAction<CompositItemData[]>>;
+}
 
 //SECTION______________________: Context objects
 
@@ -14,8 +27,14 @@ const ActiveDataContextProvider: FC<{ children: ReactNode }> = function ({
   children,
 }) {
   //__c-hooks________
+
+  const [clientAffectedData, setAffectedData] = useState(coldRawQueryData);
+
   //__c-logic________
-  const ActiveDataContextValues: ContextValueType = {};
+  const ActiveDataContextValues: ContextValueType = {
+    clientAffectedData: clientAffectedData,
+    setClienAffectedData: setAffectedData,
+  };
 
   return (
     <ActiveDataContextLocal.Provider value={ActiveDataContextValues}>

@@ -10,19 +10,46 @@ import doneIcon from "./svgs/doneIcon.svg";
 import progressIcon from "./svgs/progressIcon.svg";
 import untouchedIcon from "./svgs/untouchedIcon.svg";
 
+//__i-context________
+import { ActiveDataContext } from "../../../../../context/ActiveDataContext";
+import { BoardContext } from "../../../../../context/BoardContext";
 //__i-components_____
 import ViewTemplate from "./viewTemplate/ViewTemplate";
 import SepBig from "./seperator/sepBig/SepBig";
 import EffectFilter from "./effectFilter/EffectFilter";
 import EffectSort from "./effectSort/EffectSort";
 import SepSmall from "./seperator/sepSmall/SepSmall";
+import { CompositItemData } from "../../../../../types/types";
 
 //---------COMPONENT----------\
 
 const ViewBar = function () {
   //__c-hooks________
 
+  const { viewControl, rawQueryItems } = BoardContext()!;
+  const { setClienAffectedData } = ActiveDataContext()!;
+
   //__c-logic________
+
+  const Logic = {
+    initAffectionChain() {
+      return Promise.resolve(rawQueryItems);
+    },
+    View: {
+      Option: {
+        forHome() {},
+        forDone() {},
+        forProgress() {},
+        forUntouched() {},
+      },
+      decide() {},
+    },
+    Filter: {},
+    Sort: {},
+    finishAffectionChain(endData: CompositItemData[]) {
+      setClienAffectedData(endData);
+    },
+  };
 
   //__c-effects______
 

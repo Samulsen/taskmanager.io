@@ -14,6 +14,7 @@ import ItemBase from "../../../../0-independent/board_related/ItemBase/ItemBase"
 import FootBase from "../../../../0-independent/board_related/FootBase/FootBase";
 import { db } from "../../../../../firebase";
 import { AuthContext } from "../../../../../context/AuthContext";
+import { CompositItemData, RawItemFields } from "../../../../../types/types";
 
 //---------COMPONENT----------\
 
@@ -21,12 +22,8 @@ const Dynamic = function () {
   //__c-hooks________
 
   const { boardID } = useParams();
-  const { boardControl } = BoardContext()!;
+  const { boardControl, rawQueryItems } = BoardContext()!;
   const uid = AuthContext()?.userObject?.uid;
-
-  //__c-logic________
-
-  const Logic = {};
 
   //__c-effects______
 
@@ -41,9 +38,14 @@ const Dynamic = function () {
     );
     const unsub = onSnapshot(q, (itemsSnapshot) => {
       if (!itemsSnapshot.metadata.hasPendingWrites) {
+        const tempQueryArray = [] as CompositItemData[];
         itemsSnapshot.forEach((item) => {
-          console.log(item.id, item.data());
+          tempQueryArray.push({
+            id: item.id,
+            ...(item.data() as RawItemFields),
+          });
         });
+        rawQueryItems.setData(tempQueryArray);
       }
     });
 
