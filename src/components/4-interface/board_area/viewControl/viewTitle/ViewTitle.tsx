@@ -1,5 +1,5 @@
 //---------IMPORTS------------\
-import { onSnapshot, collection, query, where } from "firebase/firestore";
+import { onSnapshot, doc } from "firebase/firestore";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { db } from "../../../../../firebase";
@@ -17,29 +17,29 @@ const ViewTitle = function () {
 
   //__c-logic________
 
-  const Logic = {
-    setCurrentBoardName(metaDataSnapshot: string) {
-      setBoardName(metaDataSnapshot);
-    },
-  };
+  const Logic = {};
 
   //__c-effects______
 
   useEffect(() => {
     //__NOTE: If boardID is truthy, it is dynamic
     if (boardID) {
-      console.log(boardID);
-
-      const q = query(
-        collection(db, `MainUserDataPool_${uid}`, "UserBoards", `${boardID}`),
-        where("type", "==", "metadata")
+      const MetaDataRef = doc(
+        db,
+        `MainUserDataPool_${uid}`,
+        "UserBoards",
+        `${boardID}`,
+        "BoardMetaData"
       );
-      const unsub = onSnapshot(q, (itemsSnapshot) => {
-        itemsSnapshot.forEach((item) => {
-          Logic.setCurrentBoardName(
-            (item.data() as unknown as { name: string; type: string }).name
-          );
-        });
+      const unsub = onSnapshot(MetaDataRef, (BoardMetaDataFields) => {
+        setBoardName(
+          (
+            BoardMetaDataFields.data() as unknown as {
+              name: string;
+              type: string;
+            }
+          ).name
+        );
       });
 
       return unsub;
