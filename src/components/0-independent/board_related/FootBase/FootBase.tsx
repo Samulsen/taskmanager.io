@@ -1,10 +1,14 @@
 //---------IMPORTS------------\
 
-import { FC, useRef } from "react";
-import classes from "./_FootBase.module.scss";
+import { FC, useRef, KeyboardEvent } from "react";
 import { itemdata } from "../../../../types/types";
 import { serverTimestamp } from "firebase/firestore";
 import { useParams } from "react-router-dom";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../../../firebase";
+import classes from "./_FootBase.module.scss";
+//__i-context________
+import { AuthContext } from "../../../../context/AuthContext";
 
 //---------COMPONENT----------\
 const FootBase: FC<{ type: string }> = function ({ type }) {
@@ -12,22 +16,38 @@ const FootBase: FC<{ type: string }> = function ({ type }) {
 
   const newItemInputRef = useRef<HTMLInputElement>(null);
   const { boardID } = useParams();
+  const uid = AuthContext()?.userObject!.uid;
 
   //__c-logic________
   const Logic = {
     Data: {
-      createItem() {
-        const nameValue = newItemInputRef.current!.value;
-        const emptyData: itemdata = {
-          type: "item",
-          timestamp: serverTimestamp(),
-          taskname: nameValue,
-          board_origin: boardID,
-          due_to_date: "none",
-          status: "none",
-          priority: 0,
-          comment: "",
-        };
+      createItem(event: KeyboardEvent) {
+        // console.log("was triggered");
+
+        if (event.key === "Enter") {
+          const nameValue = newItemInputRef.current!.value;
+          const baseData: itemdata = {
+            type: "item",
+            timestamp: serverTimestamp(),
+            taskname: nameValue,
+            board_origin: boardID,
+            due_to_date: "none",
+            status: "none",
+            priority: 0,
+            comment: "",
+          };
+          addDoc(
+            collection(
+              db,
+              `MainUserDataPool_${uid}`,
+              "UserBoards",
+              `${boardID}`
+            ),
+            baseData
+          ).then(() => {
+            console.log("addDoc was requested!");
+          });
+        }
       },
     },
     UI: {
@@ -42,6 +62,7 @@ const FootBase: FC<{ type: string }> = function ({ type }) {
         } else {
           return (
             <input
+              onKeyDown={Logic.Data.createItem}
               ref={newItemInputRef}
               className={classes.addTask}
               type="text"
