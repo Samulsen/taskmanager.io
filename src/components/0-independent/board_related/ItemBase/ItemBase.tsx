@@ -11,19 +11,23 @@ import DueToDate from "./DueToDate/DueToDate";
 import Task from "./Task/Task";
 import Comment from "./Comment/Comment";
 import BoardOrigin from "./BoardOrigin/BoardOrigin";
+import { itemdata } from "../../../../types/types";
 
 //---------COMPONENT----------\
 
-const ItemBase: FC<{ type: string }> = function ({ type }) {
+const ItemBase: FC<{ base: string; data: itemdata }> = function ({
+  base,
+  data,
+}) {
   //__c-hooks________
 
   //__c-logic________
 
   const Logic = {
     UI: {
-      evaluateType() {
-        if (type === "total") {
-          return <BoardOrigin />;
+      evaluateBase() {
+        if (base === "total") {
+          return <BoardOrigin displayValue={data.board_origin} />;
         } else {
           return <></>;
         }
@@ -39,12 +43,12 @@ const ItemBase: FC<{ type: string }> = function ({ type }) {
         <div className={classes.marker}>
           <div className={classes.box}></div>
         </div>
-        <Task />
-        {Logic.UI.evaluateType()}
-        <DueToDate />
-        <Status />
-        <Priority />
-        <Comment />
+        <Task displayValue={data.taskname} />
+        {Logic.UI.evaluateBase()}
+        <DueToDate displayValue={data.due_to_date} />
+        <Status displayValue={data.status} />
+        <Priority displayValue={data.priority} />
+        <Comment displayValue={data.comment} />
       </div>
       <div className={classes.rest}></div>
     </div>

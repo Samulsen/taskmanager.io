@@ -1,8 +1,10 @@
 //---------IMPORTS------------\
+
 import classes from "./_Priority.module.scss";
+import { FC } from "react";
 
 //---------COMPONENT----------\
-const Priority = function () {
+const Priority: FC<{ displayValue: number }> = function ({ displayValue }) {
   return (
     <div className={classes.body}>
       <div className={classes.display}>1</div>

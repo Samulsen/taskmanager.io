@@ -1,12 +1,14 @@
 //---------IMPORTS------------\
+
 import classes from "./_Task.module.scss";
+import { FC } from "react";
 
 //---------COMPONENT----------\
 
-const Task = function () {
+const Task: FC<{ displayValue: string }> = function ({ displayValue }) {
   return (
     <div className={classes.body}>
-      <div className={classes.display}>This is a Task</div>
+      <div className={classes.display}>{displayValue}</div>
     </div>
   );
 };

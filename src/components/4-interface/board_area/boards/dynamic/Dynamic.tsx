@@ -14,21 +14,26 @@ import FootBase from "../../../../0-independent/board_related/FootBase/FootBase"
 
 const Dynamic = function () {
   //__c-hooks________
+
   const { boardID } = useParams();
   const { boardControl } = BoardContext()!;
+
   //__c-logic________
 
+  const Logic = {};
+
   //__c-effects______
+
   useEffect(() => {
     boardControl.setState(boardID as string);
   }, []);
+
   //__c-structure____
+
   return (
     <div className={classes.body}>
       <HeadBase type="dynamic" />
-      <ItemBase type="dynamic" />
-      <ItemBase type="dynamic" />
-      <ItemBase type="dynamic" />
+
       <FootBase type="dynamic" />
     </div>
   );

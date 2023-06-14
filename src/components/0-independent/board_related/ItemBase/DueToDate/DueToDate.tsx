@@ -1,11 +1,15 @@
 //---------IMPORTS------------\
+
 import classes from "./_DueToDate.module.scss";
+import { FC } from "react";
 
 //---------COMPONENT----------\
-const DueToDate = function () {
+const DueToDate: FC<{ displayValue: number | string }> = function ({
+  displayValue,
+}) {
   return (
     <div className={classes.body}>
-      <div className={classes.display}>Mo, 28.07.2023</div>
+      <div className={classes.display}>{displayValue}</div>
       {/* <input type="date" /> */}
     </div>
   );
