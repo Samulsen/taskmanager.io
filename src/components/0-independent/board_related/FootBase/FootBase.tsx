@@ -20,6 +20,7 @@ const FootBase: FC<{ type: string }> = function ({ type }) {
   const [requestValidity, setRequestValidity] = useState(true);
 
   //__c-logic________
+
   const Logic = {
     Data: {
       createItem(event: KeyboardEvent) {

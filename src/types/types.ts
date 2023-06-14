@@ -1,6 +1,5 @@
 //---------IMPORTS------------\
 
-import { FieldValue } from "firebase/firestore";
 import { Dispatch, SetStateAction } from "react";
 
 //---------EXPORTS------------\
@@ -13,8 +12,7 @@ export type nameValidator = Dispatch<SetStateAction<input>>;
 
 export interface itemdata {
   type: string;
-  //   created_at_timestamp: { seconds: number; nanoseconds: number };
-  timestamp: any;
+  timestamp: any | { seconds: number; nanoseconds: number };
   board_origin: string | undefined;
   due_to_date: number | string;
   taskname: string;
