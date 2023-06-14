@@ -40,7 +40,13 @@ const ViewBar = function () {
 
   const Logic = {
     initAffectionChain() {
-      return Promise.resolve(rawQueryItems.data);
+      // rawQueryItems.data.sort((a, b) => a.timestamp.seconds - b.timestamp.seconds)
+      // return Promise.resolve(rawQueryItems.data);
+      return Promise.resolve(
+        rawQueryItems.data.sort(
+          (a, b) => a.timestamp.seconds - b.timestamp.seconds
+        )
+      );
     },
     View: {
       Option: {
