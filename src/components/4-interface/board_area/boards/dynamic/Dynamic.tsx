@@ -46,7 +46,8 @@ const Dynamic = function () {
     });
 
     return unsub;
-  }, []);
+    //__NOTE: rerenders on new board click, unsubs from old query hook and reinitializes hook for new boardID value
+  }, [boardID]);
 
   //__c-structure____
 
