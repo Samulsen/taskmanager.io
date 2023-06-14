@@ -3,18 +3,21 @@
 import { onSnapshot, collection, query, where } from "firebase/firestore";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import classes from "./_Dynamic.module.scss";
+import { db } from "../../../../../firebase";
 
 //__i-context________
 import { BoardContext } from "../../../../../context/BoardContext";
+import { AuthContext } from "../../../../../context/AuthContext";
 import { ActiveDataContext } from "../../../../../context/ActiveDataContext";
+
+//__i-helper_________
+import classes from "./_Dynamic.module.scss";
+import { CompositItemData, RawItemFields } from "../../../../../types/types";
+
 //__i-components_____
 import HeadBase from "../../../../0-independent/board_related/HeadBase/HeadBase";
 import ItemBase from "../../../../0-independent/board_related/ItemBase/ItemBase";
 import FootBase from "../../../../0-independent/board_related/FootBase/FootBase";
-import { db } from "../../../../../firebase";
-import { AuthContext } from "../../../../../context/AuthContext";
-import { CompositItemData, RawItemFields } from "../../../../../types/types";
 
 //---------COMPONENT----------\
 
@@ -24,6 +27,8 @@ const Dynamic = function () {
   const { boardID } = useParams();
   const { boardControl, rawQueryItems } = BoardContext()!;
   const uid = AuthContext()?.userObject?.uid;
+  const { clientAffectedData } = ActiveDataContext()!;
+  console.log(clientAffectedData);
 
   //__c-effects______
 

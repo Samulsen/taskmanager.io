@@ -16,6 +16,8 @@ import { CompositItemData } from "../types/types";
 //__p-types_________
 export interface ContextValueTypeBoard {
   viewControl: { state: string; setState: Dispatch<SetStateAction<string>> };
+  filterControl: { state: string; setState: Dispatch<SetStateAction<string>> };
+  sortControl: { state: string; setState: Dispatch<SetStateAction<string>> };
   boardControl: { state: string; setState: Dispatch<SetStateAction<string>> };
   rawQueryItems: {
     data: CompositItemData[];
@@ -50,14 +52,25 @@ const BoardContextProvider: FC<{ children: ReactNode }> = function ({
 
   const [viewControlSelection, setViewControlSelection] = useState("Home");
   const [boardListSelection, setBoardListSelection] = useState("total");
+  const [filterControlSelection, setfilterControlSelection] = useState("none");
+  const [sortControlSelection, setsortControlSelection] = useState("none");
   const [rawQueryItems, setRawQueryItems] =
     useState<CompositItemData[]>(coldRawQueryData);
 
   //__c-logic________
+
   const BoardContextValues: ContextValueTypeBoard = {
     viewControl: {
       state: viewControlSelection,
       setState: setViewControlSelection,
+    },
+    filterControl: {
+      state: filterControlSelection,
+      setState: setfilterControlSelection,
+    },
+    sortControl: {
+      state: sortControlSelection,
+      setState: setsortControlSelection,
     },
     boardControl: {
       state: boardListSelection,
@@ -68,6 +81,8 @@ const BoardContextProvider: FC<{ children: ReactNode }> = function ({
       setData: setRawQueryItems,
     },
   };
+
+  //__c-structure____
 
   return (
     <BoardContextLocal.Provider value={BoardContextValues}>
