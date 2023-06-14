@@ -1,7 +1,5 @@
 //---------IMPORTS------------\
-
-import useClickOutside from "../../../../../../hooks/useClickOutside";
-import classes from "./_RenameInput.module.scss";
+//__i-libraries______
 import {
   FC,
   Dispatch,
@@ -12,9 +10,12 @@ import {
 } from "react";
 import { AuthContext } from "../../../../../../context/AuthContext";
 import { BoardContext } from "../../../../../../context/BoardContext";
-import pathBoardNames from "../../../../../../util/pathBoardNames";
 import { updateDoc, doc } from "firebase/firestore";
 import { db } from "../../../../../../firebase";
+//__i-components_____
+import classes from "./_RenameInput.module.scss";
+import pathBoardNames from "../../../../../../util/pathBoardNames";
+import useClickOutside from "../../../../../../hooks/useClickOutside";
 
 //---------COMPONENT----------\
 const RenameInput: FC<{

@@ -1,10 +1,12 @@
 //---------IMPORTS------------\
+//__i-libraries______
 import { onSnapshot, doc } from "firebase/firestore";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { db } from "../../../../../firebase";
-import { AuthContext } from "../../../../../context/AuthContext";
 import classes from "./_ViewTitle.module.scss";
+//__i-context________
+import { AuthContext } from "../../../../../context/AuthContext";
 
 //---------COMPONENT----------\
 
