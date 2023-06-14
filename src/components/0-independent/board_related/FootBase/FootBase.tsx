@@ -1,6 +1,6 @@
 //---------IMPORTS------------\
 
-import { FC, useRef, KeyboardEvent } from "react";
+import { FC, useRef, KeyboardEvent, useState } from "react";
 import { itemdata } from "../../../../types/types";
 import { serverTimestamp } from "firebase/firestore";
 import { useParams } from "react-router-dom";
@@ -17,41 +17,50 @@ const FootBase: FC<{ type: string }> = function ({ type }) {
   const newItemInputRef = useRef<HTMLInputElement>(null);
   const { boardID } = useParams();
   const uid = AuthContext()?.userObject!.uid;
+  const [requestValidity, setRequestValidity] = useState(true);
 
   //__c-logic________
   const Logic = {
     Data: {
       createItem(event: KeyboardEvent) {
-        // console.log("was triggered");
-
         if (event.key === "Enter") {
           const nameValue = newItemInputRef.current!.value;
-          const baseData: itemdata = {
-            type: "item",
-            timestamp: serverTimestamp(),
-            taskname: nameValue,
-            board_origin: boardID,
-            due_to_date: "none",
-            status: "none",
-            priority: 0,
-            comment: "",
-          };
-          addDoc(
-            collection(
-              db,
-              `MainUserDataPool_${uid}`,
-              "UserBoards",
-              `${boardID}`
-            ),
-            baseData
-          ).then(() => {
-            console.log("addDoc was requested!");
-          });
+          if (nameValue.trim().length === 0) {
+            setRequestValidity(false);
+          } else {
+            const baseData: itemdata = {
+              type: "item",
+              timestamp: serverTimestamp(),
+              taskname: nameValue,
+              board_origin: boardID,
+              due_to_date: "none",
+              status: "none",
+              priority: 0,
+              comment: "",
+            };
+            addDoc(
+              collection(
+                db,
+                `MainUserDataPool_${uid}`,
+                "UserBoards",
+                `${boardID}`
+              ),
+              baseData
+            ).then(() => {
+              setRequestValidity(true);
+              newItemInputRef.current!.value = "";
+              newItemInputRef.current!.blur();
+            });
+          }
         }
       },
     },
     UI: {
-      evaluateSubmissionValidity() {},
+      evaluateSubmissionValidity() {
+        return requestValidity
+          ? { placeholder: "+ Add a Task" }
+          : { placeholder: "cannot be empty!" };
+      },
       evaluateType() {
         if (type === "total") {
           return (
@@ -66,7 +75,7 @@ const FootBase: FC<{ type: string }> = function ({ type }) {
               ref={newItemInputRef}
               className={classes.addTask}
               type="text"
-              placeholder="+ Add a Task"
+              {...Logic.UI.evaluateSubmissionValidity()}
             />
           );
         }
