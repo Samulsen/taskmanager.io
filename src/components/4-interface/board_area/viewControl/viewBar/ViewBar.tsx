@@ -2,7 +2,7 @@
 
 //__i-libraries______
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 //__i-style__________
 
@@ -25,57 +25,105 @@ import EffectFilter from "./effectFilter/EffectFilter";
 import EffectSort from "./effectSort/EffectSort";
 import SepSmall from "./seperator/sepSmall/SepSmall";
 import { CompositItemData } from "../../../../../types/types";
+import { useAsyncValue } from "react-router-dom";
 
 //---------COMPONENT----------\
 
 const ViewBar = function () {
   //__c-hooks________
 
-  const { viewControl, rawQueryItems } = BoardContext()!;
+  const { viewControl, rawQueryItems, sortControl, filterControl } =
+    BoardContext()!;
   const { setClienAffectedData } = ActiveDataContext()!;
 
   //__c-logic________
 
   const Logic = {
     initAffectionChain() {
-      return Promise.resolve(rawQueryItems);
+      return Promise.resolve(rawQueryItems.data);
     },
     View: {
       Option: {
-        forHome(none_AffectedData: CompositItemData[]) {},
-        forDone(none_AffectedData: CompositItemData[]) {},
-        forProgress(none_AffectedData: CompositItemData[]) {},
-        forUntouched(none_AffectedData: CompositItemData[]) {},
+        forHome(
+          none_AffectedData: CompositItemData[]
+        ): Promise<CompositItemData[]> {
+          return new Promise((resolve) => {
+            resolve(none_AffectedData);
+          });
+        },
+        // forDone(none_AffectedData: CompositItemData[]) {},
+        // forProgress(none_AffectedData: CompositItemData[]) {},
+        // forUntouched(none_AffectedData: CompositItemData[]) {},
       },
-      decide() {
+      decide(none_AffectedData: CompositItemData[]) {
         if (viewControl.state === "Home") {
-          return this.Option.forHome;
+          return this.Option.forHome(none_AffectedData);
         }
-        if (viewControl.state === "Done") {
-          return this.Option.forDone;
-        }
-        if (viewControl.state === "In Progress") {
-          return this.Option.forProgress;
-        }
-        if (viewControl.state === "Untouched") {
-          return this.Option.forUntouched;
-        }
+        return [];
+        // if (viewControl.state === "Done") {
+        //   return this.Option.forDone(none_AffectedData);
+        // }
+        // if (viewControl.state === "In Progress") {
+        //   return this.Option.forProgress(none_AffectedData);
+        // }
+        // if (viewControl.state === "Untouched") {
+        //   return this.Option.forUntouched(none_AffectedData);
+        // }
       },
     },
     Filter: {
       Option: {
-        testOption() {},
+        unaffected(
+          view_AffectedData: CompositItemData[]
+        ): Promise<CompositItemData[]> {
+          return new Promise((resolve) => {
+            resolve(view_AffectedData);
+          });
+        },
       },
-
-      decide(viewAffectedData: CompositItemData[]) {},
+      decide(view_AffectedData: CompositItemData[]) {
+        if (filterControl.state === "none") {
+          return this.Option.unaffected(view_AffectedData);
+        }
+        return [];
+      },
     },
-    Sort: {},
+    Sort: {
+      Option: {
+        unaffected(
+          view_filter_AffectedData: CompositItemData[]
+        ): Promise<CompositItemData[]> {
+          return new Promise((resolve) => {
+            resolve(view_filter_AffectedData);
+          });
+        },
+      },
+      decide(view_filter_AffectedData: CompositItemData[]) {
+        if (sortControl.state === "none") {
+          return this.Option.unaffected(view_filter_AffectedData);
+        }
+        return [];
+      },
+    },
     finishAffectionChain(view_filter_sort_affectedData: CompositItemData[]) {
       setClienAffectedData(view_filter_sort_affectedData);
     },
   };
 
   //__c-effects______
+
+  // useEffect(() => {
+  Logic.initAffectionChain()
+    .then(Logic.View.decide.bind(Logic.View))
+    .then(Logic.Filter.decide.bind(Logic.Filter))
+    .then(Logic.Sort.decide.bind(Logic.Sort))
+    .then(Logic.finishAffectionChain.bind(Logic));
+  // }, [
+  //   viewControl.state,
+  //   sortControl.state,
+  //   filterControl.state,
+  //   rawQueryItems.data,
+  // ]);
 
   //__c-structure____
 
