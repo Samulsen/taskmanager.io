@@ -11,11 +11,11 @@ import DueToDate from "./DueToDate/DueToDate";
 import Task from "./Task/Task";
 import Comment from "./Comment/Comment";
 import BoardOrigin from "./BoardOrigin/BoardOrigin";
-import { itemdata } from "../../../../types/types";
+import { CompositItemData } from "../../../../types/types";
 
 //---------COMPONENT----------\
 
-const ItemBase: FC<{ base: string; data: itemdata }> = function ({
+const ItemBase: FC<{ base: string; data: CompositItemData }> = function ({
   base,
   data,
 }) {

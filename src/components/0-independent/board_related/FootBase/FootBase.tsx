@@ -1,7 +1,7 @@
 //---------IMPORTS------------\
 
 import { FC, useRef, KeyboardEvent, useState } from "react";
-import { itemdata } from "../../../../types/types";
+import { RawItemFields } from "../../../../types/types";
 import { serverTimestamp } from "firebase/firestore";
 import { useParams } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore";
@@ -29,7 +29,7 @@ const FootBase: FC<{ type: string }> = function ({ type }) {
           if (nameValue.trim().length === 0) {
             setRequestValidity(false);
           } else {
-            const baseData: itemdata = {
+            const baseData: RawItemFields = {
               type: "item",
               timestamp: serverTimestamp(),
               taskname: nameValue,

@@ -9,7 +9,7 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
-import { itemdata } from "../types/types";
+import { CompositItemData } from "../types/types";
 
 //----------PRE---------------\
 
@@ -18,15 +18,16 @@ export interface ContextValueTypeBoard {
   viewControl: { state: string; setState: Dispatch<SetStateAction<string>> };
   boardControl: { state: string; setState: Dispatch<SetStateAction<string>> };
   rawQueryItems: {
-    data: itemdata[];
-    setData: Dispatch<SetStateAction<itemdata[]>>;
+    data: CompositItemData[];
+    setData: Dispatch<SetStateAction<CompositItemData[]>>;
   };
 }
 
 //__p-others________
 
-const coldRawQueryData: itemdata[] = [
+const coldRawQueryData: CompositItemData[] = [
   {
+    id: "null",
     type: "coldDataItem",
     timestamp: "",
     board_origin: "",
@@ -50,7 +51,7 @@ const BoardContextProvider: FC<{ children: ReactNode }> = function ({
   const [viewControlSelection, setViewControlSelection] = useState("Home");
   const [boardListSelection, setBoardListSelection] = useState("total");
   const [rawQueryItems, setRawQueryItems] =
-    useState<itemdata[]>(coldRawQueryData);
+    useState<CompositItemData[]>(coldRawQueryData);
 
   //__c-logic________
   const BoardContextValues: ContextValueTypeBoard = {
