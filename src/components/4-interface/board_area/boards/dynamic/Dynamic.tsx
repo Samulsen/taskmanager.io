@@ -1,6 +1,6 @@
 //---------IMPORTS------------\
 
-import { onSnapshot, collection, query } from "firebase/firestore";
+import { onSnapshot, collection, query, where } from "firebase/firestore";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import classes from "./_Dynamic.module.scss";
@@ -35,7 +35,8 @@ const Dynamic = function () {
 
   useEffect(() => {
     const q = query(
-      collection(db, `MainUserDataPool_${uid}`, "UserBoards", `${boardID}`)
+      collection(db, `MainUserDataPool_${uid}`, "UserBoards", `${boardID}`),
+      where("type", "==", "item")
     );
     const unsub = onSnapshot(q, (itemsSnapshot) => {
       if (!itemsSnapshot.metadata.hasPendingWrites) {
