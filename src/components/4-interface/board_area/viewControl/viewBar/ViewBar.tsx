@@ -1,5 +1,8 @@
 //---------IMPORTS------------\
 
+//__i-libraries______
+import { useState } from "react";
+
 //__i-style__________
 import classes from "./_ViewBar.module.scss";
 import homeIcon from "./svgs/homeIcon.svg";
@@ -17,6 +20,14 @@ import SepSmall from "./seperator/sepSmall/SepSmall";
 //---------COMPONENT----------\
 
 const ViewBar = function () {
+  //__c-hooks________
+
+  //__c-logic________
+
+  //__c-effects______
+
+  //__c-structure____
+
   return (
     <div className={classes.body}>
       <ViewTemplate icon={homeIcon} effect="Home" />

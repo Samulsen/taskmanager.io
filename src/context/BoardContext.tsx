@@ -9,13 +9,34 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
+import { itemdata } from "../types/types";
 
 //----------PRE---------------\
 
+//__p-types_________
 export interface ContextValueTypeBoard {
   viewControl: { state: string; setState: Dispatch<SetStateAction<string>> };
   boardControl: { state: string; setState: Dispatch<SetStateAction<string>> };
+  rawQueryItems: {
+    data: itemdata[];
+    setData: Dispatch<SetStateAction<itemdata[]>>;
+  };
 }
+
+//__p-others________
+
+const coldRawQueryData: itemdata[] = [
+  {
+    type: "coldDataItem",
+    timestamp: "",
+    board_origin: "",
+    due_to_date: "",
+    taskname: "EMPTY",
+    status: "NONE",
+    priority: 0,
+    comment: "",
+  },
+];
 
 //SECTION______________________: Context objects
 
@@ -28,6 +49,8 @@ const BoardContextProvider: FC<{ children: ReactNode }> = function ({
 
   const [viewControlSelection, setViewControlSelection] = useState("Home");
   const [boardListSelection, setBoardListSelection] = useState("total");
+  const [rawQueryItems, setRawQueryItems] =
+    useState<itemdata[]>(coldRawQueryData);
 
   //__c-logic________
   const BoardContextValues: ContextValueTypeBoard = {
@@ -38,6 +61,10 @@ const BoardContextProvider: FC<{ children: ReactNode }> = function ({
     boardControl: {
       state: boardListSelection,
       setState: setBoardListSelection,
+    },
+    rawQueryItems: {
+      data: rawQueryItems,
+      setData: setRawQueryItems,
     },
   };
 

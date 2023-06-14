@@ -26,6 +26,7 @@ const Interface = function () {
         <BoardlistContextProvider>
           <SidebarBoards />
         </BoardlistContextProvider>
+        {/* // */}
         <BoardArea>
           <Outlet />
         </BoardArea>
