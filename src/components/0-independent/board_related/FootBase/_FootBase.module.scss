@@ -35,6 +35,25 @@
   width: 25rem;
 }
 
+.addTask {
+  color: white;
+  width: 25rem;
+  outline: none;
+  background-color: rgba(128, 128, 128, 0);
+  border-left: solid;
+  border-bottom: none;
+  border-right: none;
+  padding: 0 1rem;
+  border-color: $border-col-board;
+  border-width: $border-width-board;
+  font-family: "Roboto Mono", monospace;
+
+  &::placeholder {
+    opacity: 1;
+    color: white;
+  }
+}
+
 .rest {
   flex-grow: 1;
   background-color: $foot-resttrail;
