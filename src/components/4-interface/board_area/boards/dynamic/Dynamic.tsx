@@ -28,7 +28,18 @@ const Dynamic = function () {
   const { boardControl, rawQueryItems } = BoardContext()!;
   const uid = AuthContext()?.userObject?.uid;
   const { clientAffectedData } = ActiveDataContext()!;
-  console.log(clientAffectedData);
+
+  //__c-logic________
+
+  const Logic = {
+    UI: {
+      renderPassedItems() {
+        return clientAffectedData.map((data) => {
+          return <ItemBase base="dynamic" key={data.id} data={data} />;
+        });
+      },
+    },
+  };
 
   //__c-effects______
 
@@ -63,7 +74,7 @@ const Dynamic = function () {
   return (
     <div className={classes.body}>
       <HeadBase type="dynamic" />
-
+      {Logic.UI.renderPassedItems()}
       <FootBase type="dynamic" />
     </div>
   );
