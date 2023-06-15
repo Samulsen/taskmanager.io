@@ -1,6 +1,8 @@
 //---------IMPORTS------------\
 
 import classes from "./_Total.module.scss";
+//__i-context________
+import { BoardlistContext } from "../../../../../context/BoardlistContext";
 //__i-components_____
 import HeadBase from "../../../../0-independent/board_related/HeadBase/HeadBase";
 import ItemBase from "../../../../0-independent/board_related/ItemBase/ItemBase";
@@ -10,6 +12,8 @@ import FootBase from "../../../../0-independent/board_related/FootBase/FootBase"
 
 const Total = function () {
   //__c-hooks________
+
+  const { boardNames } = BoardlistContext()!;
 
   //__c-logic________
 
