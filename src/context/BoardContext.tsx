@@ -35,7 +35,7 @@ export const coldRawQueryData: CompositItemData[] = [
     board_origin: "",
     due_to_date: "",
     taskname: "EMPTY",
-    status: "NONE",
+    status: "untouched",
     priority: 0,
     comment: "Lorem ipsum dolor sit amet, consetetur hsdjhdjshdjshddsdsds",
   },
