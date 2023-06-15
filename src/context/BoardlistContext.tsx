@@ -63,9 +63,11 @@ const BoardlistContextProvider: FC<{ children: ReactNode }> = function ({
       deconstruct(boardNamesSnapshot: DocumentData) {
         this.tempData = {
           state: "warm",
-          boardNames: Object.entries(
-            boardNamesSnapshot.data()!.boardNames as QueryData
-          ) as boardNamesArray,
+          boardNames: (
+            Object.entries(
+              boardNamesSnapshot.data()!.boardNames as QueryData
+            ) as boardNamesArray
+          ).filter(([boardId]) => boardId !== "initialField"),
         };
         return Logic.Data;
       },
