@@ -26,12 +26,12 @@ const Interface = function () {
       <BoardContextProvider>
         <BoardlistContextProvider>
           <SidebarBoards />
+          <ActiveDataContextProvider>
+            <BoardArea>
+              <Outlet />
+            </BoardArea>
+          </ActiveDataContextProvider>
         </BoardlistContextProvider>
-        <ActiveDataContextProvider>
-          <BoardArea>
-            <Outlet />
-          </BoardArea>
-        </ActiveDataContextProvider>
       </BoardContextProvider>
     </div>
   );

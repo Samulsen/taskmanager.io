@@ -12,7 +12,6 @@ import Private from "./components/0-auth/Private";
 import Interface from "./components/4-interface/Interface";
 import Total from "./components/4-interface/board_area/boards/total/Total";
 import Dynamic from "./components/4-interface/board_area/boards/dynamic/Dynamic";
-import BoardlistContextProvider from "./context/BoardlistContext";
 
 //---------MAIN---------------\
 
@@ -46,11 +45,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: "total",
-            element: (
-              <BoardlistContextProvider>
-                <Total />
-              </BoardlistContextProvider>
-            ),
+            element: <Total />,
           },
           { path: ":boardID", element: <Dynamic /> },
         ],
