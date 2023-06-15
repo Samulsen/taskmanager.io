@@ -27,7 +27,7 @@ const ItemBase: FC<{ base: string; data: CompositItemData }> = function ({
     UI: {
       evaluateBase() {
         if (base === "total") {
-          return <BoardOrigin displayValue={data.board_origin} />;
+          return <BoardOrigin boardID={data.board_origin} />;
         } else {
           return <></>;
         }
