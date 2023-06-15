@@ -1,12 +1,6 @@
 //---------IMPORTS------------\
 
-import { Dispatch, SetStateAction } from "react";
-
 //---------EXPORTS------------\
-
-//__NOTE: Registerform
-export type input = boolean | string;
-export type nameValidator = Dispatch<SetStateAction<input>>;
 
 //__NOTE: Board Data
 
