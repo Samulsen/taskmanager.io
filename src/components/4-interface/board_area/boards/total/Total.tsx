@@ -18,6 +18,7 @@ import ItemBase from "../../../../0-independent/board_related/ItemBase/ItemBase"
 import FootBase from "../../../../0-independent/board_related/FootBase/FootBase";
 import { CompositItemData, RawItemFields } from "../../../../../types/types";
 import { useEffect } from "react";
+import { ActiveDataContext } from "../../../../../context/ActiveDataContext";
 
 //----------PRE---------------\
 
@@ -30,14 +31,21 @@ type boardItemsSnapshotArray = QuerySnapshot<DocumentData>[];
 const Total = function () {
   //__c-hooks________
 
-  const { boardNames } = BoardlistContext()!;
-  const { rawQueryItems } = BoardContext()!;
   const uid = AuthContext()!.userObject?.uid;
+  const { rawQueryItems } = BoardContext()!;
+  const { boardNames } = BoardlistContext()!;
+  const { clientAffectedData } = ActiveDataContext()!;
 
   //__c-logic________
 
   const Logic = {
-    UI: {},
+    UI: {
+      renderItems() {
+        return clientAffectedData.map((item) => {
+          return <ItemBase base="total" key={item.id} data={item} />;
+        });
+      },
+    },
     Data: {
       createSingleBoardSnapshot(boardId: string) {
         const q = query(
@@ -88,6 +96,7 @@ const Total = function () {
   return (
     <div className={classes.body}>
       <HeadBase type="total" />
+      {Logic.UI.renderItems()}
       <FootBase type="total" />
     </div>
   );
