@@ -8,7 +8,7 @@ export interface RawItemFields {
   type: string;
   timestamp: any | { seconds: number; nanoseconds: number };
   board_origin: string | undefined;
-  due_to_date: number | string;
+  due_to_date: string;
   taskname: string;
   status: string;
   priority: number;
@@ -20,7 +20,7 @@ export interface CompositItemData {
   type: string;
   timestamp: any | { seconds: number; nanoseconds: number };
   board_origin: string | undefined;
-  due_to_date: number | string;
+  due_to_date: string;
   taskname: string;
   status: string;
   priority: number;
