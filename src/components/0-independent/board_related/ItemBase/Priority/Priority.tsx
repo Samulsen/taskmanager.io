@@ -7,7 +7,7 @@ import { FC } from "react";
 const Priority: FC<{ displayValue: number }> = function ({ displayValue }) {
   return (
     <div className={classes.body}>
-      <div className={classes.display}>1</div>
+      <div className={classes.display}>{displayValue}</div>
       {/* <input type="number" name="" id="" /> */}
     </div>
   );
