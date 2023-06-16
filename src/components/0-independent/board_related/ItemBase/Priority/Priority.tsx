@@ -27,7 +27,7 @@ const Priority: FC<{ displayValue: string; itemOrigin: itemOrigin }> =
       UI: {
         validateInput(event: ChangeEvent<HTMLInputElement>) {
           if (event.currentTarget === event.target) {
-            const pattern: RegExp = /^(?!00$)\d*$/;
+            const pattern: RegExp = /^(?!00$)(?!0\d)\d*$/;
             if (pattern.test(event.currentTarget.value)) {
               setCurrentPrio(event.currentTarget.value);
             }
