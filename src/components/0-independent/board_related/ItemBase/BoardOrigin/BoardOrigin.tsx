@@ -26,7 +26,6 @@ const BoardOrigin: FC<{ boardID: string | undefined }> = function ({
             break;
           }
         }
-        // return boardName;
         return <Link to={`../${boardID}`}> {boardName}</Link>;
       },
     },
