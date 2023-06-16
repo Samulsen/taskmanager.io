@@ -1,0 +1,16 @@
+.body {
+  input {
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+    outline: 0;
+    border-color: rgba(255, 255, 255, 0);
+    font-family: "Roboto Mono", monospace;
+  }
+}
+::-webkit-calendar-picker-indicator {
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 0.4rem;
+  margin-left: -1rem;
+  cursor: pointer;
+}
