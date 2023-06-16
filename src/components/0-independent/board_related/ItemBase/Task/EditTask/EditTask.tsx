@@ -8,16 +8,20 @@ import { FC, Dispatch, SetStateAction } from "react";
 
 //__p-types_________
 
+interface props {
+  editMode: { set: Dispatch<SetStateAction<boolean>> };
+  displayValue: { update: Dispatch<SetStateAction<string>>; current: string };
+}
+
 //---------COMPONENT----------\
 
-const EditTask: FC<{ setEditMode: Dispatch<SetStateAction<boolean>> }> =
-  function ({ setEditMode }) {
-    return (
-      <div className={classes.body} ref={useClickOutside(setEditMode)}>
-        <input type="text" name="" id="" />
-      </div>
-    );
-  };
+const EditTask: FC<props> = function ({ editMode, displayValue }) {
+  return (
+    <div className={classes.body} ref={useClickOutside(editMode.set)}>
+      <input type="text" value={displayValue.current} />
+    </div>
+  );
+};
 
 //---------EXPORTS------------\
 export default EditTask;

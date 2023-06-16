@@ -28,7 +28,15 @@ const Task: FC<{ displayValue: string }> = function ({ displayValue }) {
           }
         },
         render() {
-          return <EditTask setEditMode={setEditMode} />;
+          return (
+            <EditTask
+              editMode={{ set: setEditMode }}
+              displayValue={{
+                current: currentDisplayValue,
+                update: setCurrentDisplayValue,
+              }}
+            />
+          );
         },
         disable() {},
       },
@@ -56,4 +64,5 @@ const Task: FC<{ displayValue: string }> = function ({ displayValue }) {
 };
 
 //---------EXPORTS------------\
+
 export default Task;
