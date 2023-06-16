@@ -4,6 +4,7 @@
 .body {
   width: 13rem;
   @include baseBodyItemColumn;
+  position: relative;
 }
 
 .display {
@@ -21,7 +22,7 @@
 }
 
 .default {
-  background-color: rgb(71, 71, 71);
+  background-color: rgb(86, 86, 86);
 }
 
 .done {
