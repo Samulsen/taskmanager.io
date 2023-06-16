@@ -11,7 +11,7 @@
 @import "./variables";
 
 @mixin baseBodyItemColumn() {
-  font-size: 1.2rem;
+  font-size: $item-fontSize;
   height: 100%;
   display: flex;
   align-items: center;

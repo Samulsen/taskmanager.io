@@ -1,7 +1,7 @@
 //---------IMPORTS------------\
 
 import classes from "./_DueToDate.module.scss";
-import { FC, useState } from "react";
+import { FC, useState, ChangeEvent } from "react";
 
 //---------COMPONENT----------\
 const DueToDate: FC<{ dateString: string }> = function ({ dateString }) {
@@ -12,8 +12,8 @@ const DueToDate: FC<{ dateString: string }> = function ({ dateString }) {
   //__c-logic________
 
   const Logic = {
-    handleDateChange(event: { target: { value: string } }) {
-      setInputDate(event.target.value);
+    handleDateChange(event: ChangeEvent<HTMLInputElement>) {
+      setInputDate(event.currentTarget.value);
     },
 
     UI: {
