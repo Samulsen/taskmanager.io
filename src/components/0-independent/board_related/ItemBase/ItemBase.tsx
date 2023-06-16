@@ -57,7 +57,10 @@ const ItemBase: FC<{ base: string; data: CompositItemData }> = function ({
         </div>
         <Task displayValue={data.taskname} itemOrigin={Logic.ItemOrigin} />
         {Logic.UI.evaluateBase()}
-        <DueToDate dateString={data.due_to_date} />
+        <DueToDate
+          dateString={data.due_to_date}
+          itemOrigin={Logic.ItemOrigin}
+        />
         <Status displayValue={data.status} />
         <Priority displayValue={data.priority} />
         <Comment displayValue={data.comment} />

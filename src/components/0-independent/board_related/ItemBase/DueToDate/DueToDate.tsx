@@ -1,11 +1,21 @@
 //---------IMPORTS------------\
 
+import { itemOrigin } from "../ItemBase";
 import EditDate from "./EditDate/EditDate";
 import classes from "./_DueToDate.module.scss";
-import { FC, useState, ChangeEvent, MouseEvent } from "react";
+import { FC, useState, MouseEvent } from "react";
+
+//----------PRE---------------\
+
+//__p-types_________
+
+interface props {
+  dateString: string;
+  itemOrigin: itemOrigin;
+}
 
 //---------COMPONENT----------\
-const DueToDate: FC<{ dateString: string }> = function ({ dateString }) {
+const DueToDate: FC<props> = function ({ dateString, itemOrigin }) {
   //__c-hooks________
 
   const [editMode, setEditMode] = useState(false);
@@ -23,11 +33,17 @@ const DueToDate: FC<{ dateString: string }> = function ({ dateString }) {
       },
       Edit: {
         render() {
-          return <EditDate setEditMode={setEditMode} />;
+          return (
+            <EditDate
+              setEditMode={setEditMode}
+              itemOrigin={itemOrigin}
+              currentDate={dateString}
+            />
+          );
         },
         enable(event: MouseEvent) {
-          const clickedElement = event.target as HTMLSpanElement;
-          const displayElement = event.currentTarget as HTMLSpanElement;
+          const clickedElement = event.target as HTMLElement;
+          const displayElement = event.currentTarget as HTMLElement;
 
           if (
             clickedElement === displayElement ||
