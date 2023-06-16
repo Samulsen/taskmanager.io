@@ -11,7 +11,7 @@ export interface RawItemFields {
   due_to_date: string;
   taskname: string;
   status: string;
-  priority: number;
+  priority: string;
   comment: string;
 }
 
@@ -23,6 +23,6 @@ export interface CompositItemData {
   due_to_date: string;
   taskname: string;
   status: string;
-  priority: number;
+  priority: string;
   comment: string;
 }

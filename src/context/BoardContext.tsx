@@ -32,12 +32,12 @@ export const coldRawQueryData: CompositItemData[] = [
     id: "null",
     type: "coldDataItem",
     timestamp: "",
-    board_origin: "",
+    board_origin: "origin",
     due_to_date: "2018-07-22",
-    taskname: "Lorem ipsum dolor sit ameter consetetur ipsum dolor",
+    taskname: "taskname",
     status: "untouched",
-    priority: 0,
-    comment: "Lorem ipsum dolor sit amet, consetetur ipsum dolor",
+    priority: "",
+    comment: "comment",
   },
 ];
 

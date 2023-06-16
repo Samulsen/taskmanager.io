@@ -36,7 +36,7 @@ const FootBase: FC<{ type: string }> = function ({ type }) {
               board_origin: boardID as string,
               due_to_date: "none",
               status: "none",
-              priority: 0,
+              priority: "",
               comment: "",
             };
             addDoc(
