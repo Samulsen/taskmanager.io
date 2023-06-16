@@ -1,16 +1,23 @@
 //---------IMPORTS------------\
 
+import { itemOrigin } from "../ItemBase";
 import EditTask from "./EditTask/EditTask";
 import classes from "./_Task.module.scss";
 import { FC, useState, MouseEvent } from "react";
 
+//----------PRE---------------\
+
+interface props {
+  displayValue: string;
+  itemOrigin: itemOrigin;
+}
+
 //---------COMPONENT----------\
 
-const Task: FC<{ displayValue: string }> = function ({ displayValue }) {
+const Task: FC<props> = function ({ displayValue, itemOrigin }) {
   //__c-hooks________
 
   const [editMode, setEditMode] = useState(false);
-  const [currentDisplayValue, setCurrentDisplayValue] = useState(displayValue);
 
   //__c-logic________
 
@@ -31,10 +38,8 @@ const Task: FC<{ displayValue: string }> = function ({ displayValue }) {
           return (
             <EditTask
               editMode={{ set: setEditMode }}
-              displayValue={{
-                current: currentDisplayValue,
-                update: setCurrentDisplayValue,
-              }}
+              displayValue={displayValue}
+              itemOrigin={itemOrigin}
             />
           );
         },

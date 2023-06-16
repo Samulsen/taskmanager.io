@@ -52,18 +52,23 @@ const Dynamic = function () {
       collection(db, `MainUserDataPool_${uid}`, "UserBoards", `${boardID}`),
       where("type", "==", "item")
     );
-    const unsub = onSnapshot(q, (itemsSnapshot) => {
-      if (!itemsSnapshot.metadata.hasPendingWrites) {
-        const tempQueryArray = [] as CompositItemData[];
-        itemsSnapshot.forEach((item) => {
-          tempQueryArray.push({
-            id: item.id,
-            ...(item.data() as RawItemFields),
+    const unsub = onSnapshot(
+      q,
+      //__NOTE: temporarily on true, possible later false for more specific rerenders
+      { includeMetadataChanges: true },
+      (itemsSnapshot) => {
+        if (!itemsSnapshot.metadata.hasPendingWrites) {
+          const tempQueryArray = [] as CompositItemData[];
+          itemsSnapshot.forEach((item) => {
+            tempQueryArray.push({
+              id: item.id,
+              ...(item.data() as RawItemFields),
+            });
           });
-        });
-        rawQueryItems.setData(tempQueryArray);
+          rawQueryItems.setData(tempQueryArray);
+        }
       }
-    });
+    );
 
     return unsub;
     //__NOTE: rerenders on new board click, unsubs from old query hook and reinitializes hook for new boardID value

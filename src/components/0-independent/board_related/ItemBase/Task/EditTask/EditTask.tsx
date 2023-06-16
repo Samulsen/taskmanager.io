@@ -2,7 +2,11 @@
 
 import classes from "./_EditTask.module.scss";
 import useClickOutside from "../../../../../../hooks/useClickOutside";
-import { FC, Dispatch, SetStateAction, ChangeEvent } from "react";
+import { FC, Dispatch, SetStateAction, ChangeEvent, useState } from "react";
+import { doc, updateDoc } from "firebase/firestore";
+import { AuthContext } from "../../../../../../context/AuthContext";
+import { db } from "../../../../../../firebase";
+import { itemOrigin } from "../../ItemBase";
 
 //----------PRE---------------\
 
@@ -10,22 +14,45 @@ import { FC, Dispatch, SetStateAction, ChangeEvent } from "react";
 
 interface props {
   editMode: { set: Dispatch<SetStateAction<boolean>> };
-  displayValue: { update: Dispatch<SetStateAction<string>>; current: string };
+  displayValue: string;
+  itemOrigin: itemOrigin;
 }
 
 //---------COMPONENT----------\
 
-const EditTask: FC<props> = function ({ editMode, displayValue }) {
+const EditTask: FC<props> = function ({ editMode, displayValue, itemOrigin }) {
   //__c-hooks________
 
-  // const []
+  const [editedDisplayValue, setEditedDisplayValue] = useState(displayValue);
+  const uid = AuthContext()!.userObject!.uid;
 
   //__c-logic________
   const Logic = {
     UI: {
-      handleChange(event: ChangeEvent<HTMLInputElement>) {
+      disableEdit() {
+        editMode.set(false);
+      },
+      handleEdit(event: ChangeEvent<HTMLInputElement>) {
         if (event.target === event.currentTarget) {
-          displayValue.update(event.currentTarget.value);
+          event.stopPropagation();
+          setEditedDisplayValue(event.currentTarget.value);
+        }
+      },
+      handleEnter(event: any) {
+        if (event.target === event.currentTarget) {
+          if (event.key === "Enter") {
+            const itemDocRef = doc(
+              db,
+              `MainUserDataPool_${uid}`,
+              "UserBoards",
+              itemOrigin.board,
+              itemOrigin.id
+            );
+            const updatedData = {
+              taskname: editedDisplayValue,
+            };
+            updateDoc(itemDocRef, updatedData).then(Logic.UI.disableEdit);
+          }
         }
       },
     },
@@ -37,8 +64,9 @@ const EditTask: FC<props> = function ({ editMode, displayValue }) {
         autoFocus
         name="editTaskInput"
         type="text"
-        value={displayValue.current}
-        onChange={Logic.UI.handleChange}
+        value={editedDisplayValue}
+        onChange={Logic.UI.handleEdit}
+        onKeyDown={Logic.UI.handleEnter}
       />
     </div>
   );

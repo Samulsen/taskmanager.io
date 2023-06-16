@@ -13,6 +13,13 @@ import Comment from "./Comment/Comment";
 import BoardOrigin from "./BoardOrigin/BoardOrigin";
 import { CompositItemData } from "../../../../types/types";
 
+//----------PRE---------------\
+
+export interface itemOrigin {
+  board: string;
+  id: string;
+}
+
 //---------COMPONENT----------\
 
 const ItemBase: FC<{ base: string; data: CompositItemData }> = function ({
@@ -24,6 +31,11 @@ const ItemBase: FC<{ base: string; data: CompositItemData }> = function ({
   //__c-logic________
 
   const Logic = {
+    ItemOrigin: {
+      board: data.board_origin,
+      id: data.id,
+    } as itemOrigin,
+
     UI: {
       evaluateBase() {
         if (base === "total") {
@@ -43,7 +55,7 @@ const ItemBase: FC<{ base: string; data: CompositItemData }> = function ({
         <div className={classes.marker}>
           <div className={classes.box}></div>
         </div>
-        <Task displayValue={data.taskname} />
+        <Task displayValue={data.taskname} itemOrigin={Logic.ItemOrigin} />
         {Logic.UI.evaluateBase()}
         <DueToDate dateString={data.due_to_date} />
         <Status displayValue={data.status} />

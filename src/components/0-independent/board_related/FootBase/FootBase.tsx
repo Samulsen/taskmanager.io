@@ -33,7 +33,7 @@ const FootBase: FC<{ type: string }> = function ({ type }) {
               type: "item",
               timestamp: serverTimestamp(),
               taskname: nameValue,
-              board_origin: boardID,
+              board_origin: boardID as string,
               due_to_date: "none",
               status: "none",
               priority: 0,
