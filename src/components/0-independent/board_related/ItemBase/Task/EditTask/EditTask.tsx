@@ -24,11 +24,17 @@ const EditTask: FC<props> = function ({ editMode, displayValue, itemOrigin }) {
   //__c-hooks________
 
   const [editedDisplayValue, setEditedDisplayValue] = useState(displayValue);
+  const [requestValidity, setRequestValidity] = useState(true);
   const uid = AuthContext()!.userObject!.uid;
 
   //__c-logic________
   const Logic = {
     UI: {
+      evaluateSubmissionValidity() {
+        return requestValidity
+          ? { placeholder: "" }
+          : { placeholder: "cannot be empty!" };
+      },
       disableEdit() {
         editMode.set(false);
       },
@@ -41,17 +47,21 @@ const EditTask: FC<props> = function ({ editMode, displayValue, itemOrigin }) {
       handleEnter(event: any) {
         if (event.target === event.currentTarget) {
           if (event.key === "Enter") {
-            const itemDocRef = doc(
-              db,
-              `MainUserDataPool_${uid}`,
-              "UserBoards",
-              itemOrigin.board,
-              itemOrigin.id
-            );
-            const updatedData = {
-              taskname: editedDisplayValue,
-            };
-            updateDoc(itemDocRef, updatedData).then(Logic.UI.disableEdit);
+            if (editedDisplayValue.trim().length === 0) {
+              setRequestValidity(false);
+            } else {
+              const itemDocRef = doc(
+                db,
+                `MainUserDataPool_${uid}`,
+                "UserBoards",
+                itemOrigin.board,
+                itemOrigin.id
+              );
+              const updatedData = {
+                taskname: editedDisplayValue,
+              };
+              updateDoc(itemDocRef, updatedData).then(Logic.UI.disableEdit);
+            }
           }
         }
       },
@@ -67,6 +77,7 @@ const EditTask: FC<props> = function ({ editMode, displayValue, itemOrigin }) {
         value={editedDisplayValue}
         onChange={Logic.UI.handleEdit}
         onKeyDown={Logic.UI.handleEnter}
+        {...Logic.UI.evaluateSubmissionValidity()}
       />
     </div>
   );
