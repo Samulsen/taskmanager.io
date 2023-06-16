@@ -33,7 +33,7 @@ const Total = function () {
 
   const uid = AuthContext()!.userObject?.uid;
   const { rawQueryItems } = BoardContext()!;
-  const { boardNames } = BoardlistContext()!;
+  const { boardNames, state } = BoardlistContext()!;
   const { clientAffectedData } = ActiveDataContext()!;
 
   //__c-logic________
@@ -86,11 +86,13 @@ const Total = function () {
   //__c-effects______
 
   useEffect(() => {
-    Logic.Data.initializePromiseAll
-      .bind(Logic.Data)()
-      .then(Logic.Data.convertAllItems.bind(Logic.Data))
-      .then(Logic.Data.mergeToRaw.bind(Logic.Data));
-  }, []);
+    if (state === "warm") {
+      Logic.Data.initializePromiseAll
+        .bind(Logic.Data)()
+        .then(Logic.Data.convertAllItems.bind(Logic.Data))
+        .then(Logic.Data.mergeToRaw.bind(Logic.Data));
+    }
+  }, [boardNames]);
 
   //__c-structure____
   return (
