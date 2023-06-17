@@ -20,9 +20,8 @@
   margin-right: 0.7rem;
 }
 
-.option {
-  margin-left: auto;
-  cursor: pointer;
+.navLink {
+  width: 100%;
 }
 
 .selected {
@@ -33,5 +32,19 @@
   background-color: none;
   &:hover {
     background-color: $transparent-white;
+  }
+}
+
+.option {
+  cursor: pointer;
+  opacity: 0;
+}
+.opSelected {
+  opacity: 1;
+}
+
+.opUnselected {
+  &:hover {
+    opacity: 1;
   }
 }

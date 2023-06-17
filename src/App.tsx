@@ -47,7 +47,8 @@ const router = createBrowserRouter([
             path: "total",
             element: <Total />,
           },
-          { path: ":boardID", element: <Dynamic /> },
+          //__NOTE: if something does not work, resort to ":boardID"
+          { path: "board/:boardID", element: <Dynamic /> },
         ],
       },
     ],

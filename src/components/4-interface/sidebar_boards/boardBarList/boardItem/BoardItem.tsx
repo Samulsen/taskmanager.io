@@ -38,13 +38,23 @@ const BoardItem: FC<{ boardId: string; currentBoardName: string }> = function ({
         boardControl.setState(boardId);
         viewControl.setState("Home");
       },
-      evaluateSelectionState() {
-        if (boardControl.state === boardId) {
-          return `${classes.body} ${classes.selected}`;
-        } else {
-          return `${classes.body} ${classes.unselected}`;
-        }
+      Classes: {
+        forOption() {
+          if (boardControl.state === boardId || menuState === true) {
+            return `${classes.icon} ${classes.option} ${classes.opSelected}`;
+          } else {
+            return `${classes.icon} ${classes.option} ${classes.opUnselected}`;
+          }
+        },
+        forBody() {
+          if (boardControl.state === boardId) {
+            return `${classes.body} ${classes.selected}`;
+          } else {
+            return `${classes.body} ${classes.unselected}`;
+          }
+        },
       },
+
       Rename: {
         evaluate() {
           if (renameState) {
@@ -54,11 +64,15 @@ const BoardItem: FC<{ boardId: string; currentBoardName: string }> = function ({
           }
           return (
             <>
-              <Link onClick={Logic.UI.setSelfSelection} to={boardId}>
+              <Link
+                className={classes.navLink}
+                onClick={Logic.UI.setSelfSelection}
+                to={`board/${boardId}`}
+              >
                 {Logic.UI.fitName()}
               </Link>
               <img
-                className={`${classes.icon} ${classes.option}`}
+                className={Logic.UI.Classes.forOption()}
                 src={optionIcon}
                 alt="iconOptionIcon"
                 onClick={Logic.UI.Menu.enable.bind(Logic)}
@@ -87,7 +101,7 @@ const BoardItem: FC<{ boardId: string; currentBoardName: string }> = function ({
   };
 
   return (
-    <div className={Logic.UI.evaluateSelectionState()}>
+    <div className={Logic.UI.Classes.forBody()}>
       <img
         className={`${classes.icon} ${classes.boardIcon}`}
         src={boardIcon}
