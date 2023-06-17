@@ -5,6 +5,7 @@
   width: 13rem;
   @include baseBodyItemColumn;
   position: relative;
+  justify-content: center;
 }
 
 .display {
@@ -17,7 +18,7 @@
   cursor: pointer;
   transition: all 0.3s;
   &:hover {
-    scale: 0.9;
+    width: 11rem;
   }
 }
 

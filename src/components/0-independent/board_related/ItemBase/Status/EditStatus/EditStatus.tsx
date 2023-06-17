@@ -40,6 +40,7 @@ const EditStatus: FC<props> = function ({
     },
     Data: {
       applyLabel(event: MouseEvent<HTMLDivElement>) {
+        //__NOTE: Subject to rewrite!
         const targetOrigin = (event.target as any).innerHTML;
         const itemDocRef = doc(
           db,
