@@ -1,9 +1,19 @@
 //---------IMPORTS------------\
 
 import classes from "./_EditComment.module.scss";
-import { FC, useRef, Dispatch, SetStateAction, useEffect } from "react";
+import {
+  FC,
+  useRef,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  KeyboardEvent,
+  useLayoutEffect,
+} from "react";
 import { itemOrigin } from "../../ItemBase";
 import { AuthContext } from "../../../../../../context/AuthContext";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../../../../../../firebase";
 
 //----------PRE---------------\
 
@@ -31,17 +41,51 @@ const EditComment: FC<props> = function ({
   //__c-logic________
 
   const Logic = {
-    UI: {},
-    Data: {},
+    UI: {
+      abortChanges(event: KeyboardEvent) {
+        if ((event as any).target === (event as any).currentTarget) {
+          if ((event as any).key === "Escape") {
+            setEditMode(false);
+          }
+        }
+      },
+      bringCursorToEnd() {
+        const length = currentDisplayValue.length;
+        const element = textareaRef.current!;
+        element.focus();
+        element.setSelectionRange(length, length);
+        element.scrollTop = element.scrollHeight;
+      },
+    },
+    Data: {
+      postChanges() {
+        const itemDocRef = doc(
+          db,
+          `MainUserDataPool_${uid}`,
+          "UserBoards",
+          itemOrigin.board,
+          itemOrigin.id
+        );
+        const updatedData = {
+          comment: textareaRef.current!.value,
+        };
+        updateDoc(itemDocRef, updatedData);
+        setEditMode(false);
+      },
+    },
   };
 
   //__c-effects______
+
+  useLayoutEffect(() => {
+    Logic.UI.bringCursorToEnd.bind(Logic)();
+  }, []);
 
   useEffect(() => {
     const evaluateClick = function (event: Event) {
       const element = bodyRef.current as any;
       if (!element.contains(event.target)) {
-        setEditMode(false);
+        Logic.Data.postChanges();
       }
     };
 
@@ -57,9 +101,13 @@ const EditComment: FC<props> = function ({
   return (
     <div className={classes.body} ref={bodyRef}>
       <div className={classes.pointer}></div>
-      <textarea name={"txtarea " + itemOrigin.id} ref={textareaRef}>
-        {currentDisplayValue}
-      </textarea>
+      <textarea
+        spellCheck="false"
+        name={"txtarea " + itemOrigin.id}
+        ref={textareaRef}
+        onKeyDown={Logic.UI.abortChanges}
+        defaultValue={currentDisplayValue}
+      ></textarea>
     </div>
   );
 };
