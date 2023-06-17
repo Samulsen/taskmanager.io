@@ -4,7 +4,7 @@
   height: 18rem;
   width: 16rem;
   border-radius: 1rem;
-  background-color: $mid-blue;
+  background-color: $pop-up-background;
   z-index: 2;
   top: 3.5rem;
   left: -1.5rem;
@@ -37,7 +37,7 @@
   position: absolute;
   width: 2rem;
   height: 2rem;
-  background-color: $mid-blue;
+  background-color: $pop-up-background;
   top: -1rem;
   left: 7rem;
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);

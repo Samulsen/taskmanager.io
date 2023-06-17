@@ -1,9 +1,9 @@
 //---------IMPORTS------------\
 
 import classes from "./_EditComment.module.scss";
-import { FC, useState, Dispatch, SetStateAction } from "react";
-import useClickOutside from "../../../../../../hooks/useClickOutside";
+import { FC, useRef, Dispatch, SetStateAction, useEffect } from "react";
 import { itemOrigin } from "../../ItemBase";
+import { AuthContext } from "../../../../../../context/AuthContext";
 
 //----------PRE---------------\
 
@@ -17,8 +17,16 @@ interface props {
 
 //---------COMPONENT----------\
 
-const EditComment: FC<props> = function ({ setEditMode, itemOrigin }) {
+const EditComment: FC<props> = function ({
+  setEditMode,
+  itemOrigin,
+  currentDisplayValue,
+}) {
   //__c-hooks________
+
+  const uid = AuthContext()!.userObject!.uid;
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const bodyRef = useRef<HTMLDivElement>(null);
 
   //__c-logic________
 
@@ -26,12 +34,32 @@ const EditComment: FC<props> = function ({ setEditMode, itemOrigin }) {
     UI: {},
     Data: {},
   };
+
+  //__c-effects______
+
+  useEffect(() => {
+    const evaluateClick = function (event: Event) {
+      const element = bodyRef.current as any;
+      if (!element.contains(event.target)) {
+        setEditMode(false);
+      }
+    };
+
+    document.addEventListener("mousedown", evaluateClick);
+
+    return () => {
+      document.removeEventListener("mousedown", evaluateClick);
+    };
+  }, []);
+
   //__c-structure____
 
   return (
-    <div className={classes.body} ref={useClickOutside(setEditMode)}>
+    <div className={classes.body} ref={bodyRef}>
       <div className={classes.pointer}></div>
-      <textarea name={"txtarea " + itemOrigin.id}></textarea>
+      <textarea name={"txtarea " + itemOrigin.id} ref={textareaRef}>
+        {currentDisplayValue}
+      </textarea>
     </div>
   );
 };
