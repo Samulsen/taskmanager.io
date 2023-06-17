@@ -63,7 +63,7 @@ const ItemBase: FC<{ base: string; data: CompositItemData }> = function ({
         />
         <Status displayValue={data.status} itemOrigin={Logic.ItemOrigin} />
         <Priority displayValue={data.priority} itemOrigin={Logic.ItemOrigin} />
-        <Comment displayValue={data.comment} />
+        <Comment displayValue={data.comment} itemOrigin={Logic.ItemOrigin} />
       </div>
       <div className={classes.rest}></div>
     </div>

@@ -6,10 +6,22 @@
   @include baseBodyItemColumn;
   padding: 0 0.5rem;
   justify-content: center;
+  position: relative;
 }
 
 .display {
   &:hover {
+    @include onHoverItemColumn;
+  }
+}
+
+.empty {
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  opacity: 0;
+  &:hover {
+    opacity: 1;
     @include onHoverItemColumn;
   }
 }
