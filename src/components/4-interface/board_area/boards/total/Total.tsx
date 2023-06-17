@@ -90,10 +90,15 @@ const Total = function () {
   };
 
   //__c-effects______
-  let accumulator = [] as CompositItemData[];
+
   useEffect(() => {
+    const processedBoards = [] as string[];
+    let accumulator = [] as CompositItemData[];
     const unsubFunctionsPool = [] as Unsubscribe[];
-    ["0171744903", "3174010796"].forEach((boardID) => {
+    const boardsArr = boardNames.map((board) => {
+      return board[0];
+    });
+    boardsArr.forEach((boardID) => {
       const q = query(
         collection(db, `MainUserDataPool_${uid}`, "UserBoards", `${boardID}`),
         where("type", "==", "item")
@@ -101,6 +106,7 @@ const Total = function () {
       unsubFunctionsPool.push(
         onSnapshot(q, { includeMetadataChanges: true }, (itemsSnapshot) => {
           if (!itemsSnapshot.metadata.hasPendingWrites) {
+            //__NOTE: Unpack new snapshot and prepare for accumulator check
             const tempQueryArray = [] as CompositItemData[];
             itemsSnapshot.forEach((item) => {
               tempQueryArray.push({
@@ -109,8 +115,18 @@ const Total = function () {
               });
             });
 
-            accumulator = [...accumulator, ...tempQueryArray];
-            rawQueryItems.setData(accumulator);
+            //__NOTE: Check for duplication
+            const hasOldSnapshot = processedBoards.includes(boardID);
+            if (hasOldSnapshot) {
+              const strippedAccumulator: CompositItemData[] =
+                accumulator.filter((item) => !(item.board_origin === boardID));
+              accumulator = [...strippedAccumulator, ...tempQueryArray];
+              rawQueryItems.setData(accumulator);
+            } else {
+              processedBoards.push(boardID);
+              accumulator = [...accumulator, ...tempQueryArray];
+              rawQueryItems.setData(accumulator);
+            }
           }
         })
       );
