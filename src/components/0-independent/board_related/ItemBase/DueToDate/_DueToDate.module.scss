@@ -1,0 +1,36 @@
+@import "./../../../../../styles/variables";
+@import "./../../../../../styles/mixins";
+
+.body {
+  width: 13rem;
+  @include baseBodyItemColumn;
+  padding: 0 0.5rem;
+  justify-content: center;
+}
+
+.display {
+  cursor: pointer;
+  &:hover {
+    @include onHoverItemColumn;
+  }
+}
+
+.empty {
+  width: 10rem;
+  height: 1.5rem;
+
+  &:hover {
+    &::after {
+      content: attr(data-descr);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.day {
+  color: $main-green;
+  font-weight: 500;
+}

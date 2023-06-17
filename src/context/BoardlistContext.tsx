@@ -13,21 +13,25 @@ import { DocumentData, doc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 import logCol from "../util/logColor";
 
-//---------MAIN---------------\
+//----------PRE---------------\
 
+//__p-types_________
+
+type id = string;
 type BoardMetaData = {
   name: string;
   timestamp: { seconds: number; nanoseconds: number };
 };
+type boardNamesArray = [id, BoardMetaData][];
 
 interface ContextValueTypeBoardlist {
   state: string;
-  boardNames: [string, BoardMetaData][];
+  boardNames: boardNamesArray;
 }
 
 interface QueryData {
   boardNames: {
-    [id: string]: BoardMetaData;
+    [id: id]: BoardMetaData;
   };
 }
 
@@ -35,7 +39,7 @@ interface QueryData {
 
 const coldData: ContextValueTypeBoardlist = {
   state: "cold",
-  boardNames: [],
+  boardNames: [] as boardNamesArray,
 };
 
 //SECTION______________________: Context objects
@@ -59,9 +63,11 @@ const BoardlistContextProvider: FC<{ children: ReactNode }> = function ({
       deconstruct(boardNamesSnapshot: DocumentData) {
         this.tempData = {
           state: "warm",
-          boardNames: Object.entries(
-            boardNamesSnapshot.data()!.boardNames as QueryData
-          ) as [string, BoardMetaData][],
+          boardNames: (
+            Object.entries(
+              boardNamesSnapshot.data()!.boardNames as QueryData
+            ) as boardNamesArray
+          ).filter(([boardId]) => boardId !== "initialField"),
         };
         return Logic.Data;
       },

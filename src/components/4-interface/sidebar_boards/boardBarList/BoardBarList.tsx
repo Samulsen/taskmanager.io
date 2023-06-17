@@ -20,8 +20,7 @@ const BoardBarList = function () {
     UI: {
       renderList() {
         return boardNames
-          .filter(([boardId]) => boardId !== "initialField")
-          .sort((a, b) => b[1].timestamp.seconds - a[1].timestamp.seconds)
+          .sort((a, b) => a[1].timestamp.seconds - b[1].timestamp.seconds)
           .map(([boardId, { name }]) => (
             <BoardItem
               key={boardId}

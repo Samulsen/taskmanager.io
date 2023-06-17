@@ -1,0 +1,61 @@
+@import "./../../../../styles/variables";
+
+.body {
+  z-index: 10;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.grouplineUpper {
+  width: 0.5rem;
+  background-color: $main-green;
+  border-top-left-radius: 1rem;
+}
+
+.main {
+  background-color: $board-blue-head;
+  width: auto;
+  display: flex;
+  align-items: center;
+  border-top: solid;
+  border-bottom: solid;
+  border-right: solid;
+  border-width: $border-width-board;
+  border-color: $border-col-board;
+
+  .quad {
+    width: 3.5rem;
+    height: 100%;
+    border-color: $border-col-board;
+    border-width: $border-width-board;
+  }
+
+  .task {
+    width: 25rem;
+  }
+
+  .mid {
+    width: 13rem;
+  }
+
+  .prio {
+    width: 8.5rem;
+  }
+
+  .comment {
+    width: 35rem;
+  }
+}
+
+.rest {
+  flex-grow: 1;
+  border-top-right-radius: 1rem;
+  background-color: $head-resttrail;
+  border-top: solid;
+  border-bottom: solid;
+  border-right: solid;
+  border-color: $border-col-board;
+  border-width: $border-width-board;
+}

@@ -1,7 +1,5 @@
 //---------IMPORTS------------\
-
-import useClickOutside from "../../../../../../hooks/useClickOutside";
-import classes from "./_RenameInput.module.scss";
+//__i-libraries______
 import {
   FC,
   Dispatch,
@@ -12,8 +10,11 @@ import {
 } from "react";
 import { AuthContext } from "../../../../../../context/AuthContext";
 import { BoardContext } from "../../../../../../context/BoardContext";
-import pathBoardNames from "../../../../../../util/pathBoardNames";
-import { updateDoc } from "firebase/firestore";
+import { updateDoc, doc } from "firebase/firestore";
+import { db } from "../../../../../../firebase";
+//__i-components_____
+import classes from "./_RenameInput.module.scss";
+import useClickOutside from "../../../../../../hooks/useClickOutside";
 
 //---------COMPONENT----------\
 const RenameInput: FC<{
@@ -21,10 +22,12 @@ const RenameInput: FC<{
   boardId: string;
 }> = function ({ setRenameState, boardId }) {
   //__c-hooks________
+
   const [wasEmptyOnRequest, setWasEmptyState] = useState(false);
   const uid = AuthContext()!.userObject!.uid;
   const updatedNameInputRef = useRef<HTMLInputElement>(null);
   const { boardControl } = BoardContext()!;
+
   //__c-logic________
 
   const Logic = {
@@ -47,13 +50,24 @@ const RenameInput: FC<{
       initRequestChain() {
         return Promise.resolve();
       },
-      updateBoardName() {
-        const ref = pathBoardNames(uid);
+      updateBoardNameInBoardList() {
+        const ref = doc(db, `MainUserDataPool_${uid}`, "UserBoards");
         const namePath = `boardNames.${boardId}.name`;
         const updateData = {
           [namePath]: updatedNameInputRef.current!.value,
         };
         return updateDoc(ref, updateData);
+      },
+      updateBoardNameInLocalMetadata() {
+        const MetaDataRef = doc(
+          db,
+          `MainUserDataPool_${uid}`,
+          "UserBoards",
+          `${boardId}`,
+          "BoardMetaData"
+        );
+        const updateData = { name: updatedNameInputRef.current!.value };
+        return updateDoc(MetaDataRef, updateData);
       },
       closeRequest() {
         setRenameState(false);
@@ -67,14 +81,15 @@ const RenameInput: FC<{
           setWasEmptyState(true);
         } else {
           this.Data.initRequestChain()
-            .then(this.Data.updateBoardName)
+            .then(this.Data.updateBoardNameInBoardList)
+            .then(this.Data.updateBoardNameInLocalMetadata)
             .then(this.Data.closeRequest)
             .catch();
         }
       }
     },
   };
-
+  //__c-structure____
   return (
     <div className={classes.body} ref={useClickOutside(setRenameState)}>
       <input

@@ -1,0 +1,47 @@
+@import "./../../../../styles/variables";
+
+.body {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.grouplineMid {
+  width: 0.5rem;
+  background-color: $main-green;
+}
+
+.main {
+  background-color: $board-blue-item;
+  width: auto;
+  display: flex;
+  border-bottom: solid;
+  border-color: $border-col-board;
+  border-width: $border-width-board;
+  &:hover {
+    box-shadow: 0px 15px 5px -15px #ffffff;
+    background-color: rgba(69, 26, 224, 0.4);
+  }
+  .marker {
+    width: 3.5rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .box {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 0.5rem;
+      border: 0.1rem solid white;
+    }
+  }
+}
+
+.rest {
+  flex-grow: 1;
+  background-color: $item-resttrail;
+  border-left: solid;
+  border-bottom: solid;
+  border-right: solid;
+  border-color: $border-col-board;
+  border-width: $border-width-board;
+}

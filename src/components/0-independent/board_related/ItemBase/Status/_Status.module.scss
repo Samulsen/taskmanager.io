@@ -1,0 +1,39 @@
+@import "./../../../../../styles/variables";
+@import "./../../../../../styles/mixins";
+
+.body {
+  width: 13rem;
+  @include baseBodyItemColumn;
+  position: relative;
+  justify-content: center;
+}
+
+.display {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    width: 11rem;
+  }
+}
+
+.default {
+  background-color: rgb(86, 86, 86);
+}
+
+.done {
+  background-color: green;
+}
+
+.untouched {
+  background-color: red;
+}
+
+.progress {
+  background-color: rgb(231, 185, 0);
+}

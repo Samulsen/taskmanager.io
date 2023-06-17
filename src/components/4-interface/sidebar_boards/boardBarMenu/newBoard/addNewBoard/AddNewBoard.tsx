@@ -2,14 +2,14 @@
 //__i-libraries______
 import classes from "./_AddNewBoard.module.scss";
 import { Dispatch, FC, SetStateAction, KeyboardEvent, useState } from "react";
-import { updateDoc, serverTimestamp } from "firebase/firestore";
+import { updateDoc, serverTimestamp, setDoc, doc } from "firebase/firestore";
 import { useRef } from "react";
 //__i-context________
 import { AuthContext } from "../../../../../../context/AuthContext";
 //__i-helper_________"
 import randomID from "../../../../../../util/randomID";
 import useClickOutside from "../../../../../../hooks/useClickOutside";
-import pathBoardNames from "../../../../../../util/pathBoardNames";
+import { db } from "../../../../../../firebase";
 
 //---------COMPONENT----------\
 const AddNewBoard: FC<{
@@ -30,27 +30,39 @@ const AddNewBoard: FC<{
     },
     Data: {
       initRequestChain() {
-        return Promise.resolve();
+        //__NOTE:Provides stable random id throught async request, passes down through resolved values!
+        return Promise.resolve(randomID());
       },
-      //__NOTE: actually opens a new collection for the board items!
-      openNewBoardCollection() {
-        return Promise.resolve();
+      //__NOTE: actually opens a new sub collection for the board items!
+      openNewBoardCollection(boardId: string): Promise<string> {
+        return new Promise((resolve) => {
+          const ref = doc(
+            db,
+            `MainUserDataPool_${uid}`,
+            "UserBoards",
+            boardId,
+            "BoardMetaData"
+          );
+          const data = {
+            name: boardInputNameRef.current!.value,
+            type: "metadata",
+          };
+          setDoc(ref, data).then(() => {
+            resolve(boardId);
+          });
+        });
       },
       //__NOTE: adds only to the boardNames Map!
-      addToBoardNames() {
-        const ref = pathBoardNames(uid);
-        const namePath = `boardNames.${randomID()}`;
-        // interface updateDataType {
-        //   [key: string]:
-        //     { name: string; timestamp: string };
-        // }
-        const updateData = {
+      addToBoardNames(boardId: string) {
+        const ref = doc(db, `MainUserDataPool_${uid}`, "UserBoards");
+        const namePath = `boardNames.${boardId}`;
+        const addedData = {
           [namePath]: {
             name: boardInputNameRef.current!.value,
             timestamp: serverTimestamp(),
           },
         };
-        return updateDoc(ref, updateData);
+        return updateDoc(ref, addedData);
       },
       closeRequest() {
         setCanAddBoardstate(false);
@@ -71,7 +83,7 @@ const AddNewBoard: FC<{
       }
     },
   };
-
+  //__c-structure____
   return (
     <div className={classes.body}>
       <div ref={useClickOutside(setCanAddBoardstate)}>

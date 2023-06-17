@@ -1,0 +1,67 @@
+@import "./../../../../styles/variables";
+
+.body {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.grouplineLower {
+  width: 0.5rem;
+  background-color: $main-green;
+  border-bottom-left-radius: 1rem;
+}
+.main {
+  background-color: $board-blue-foot;
+  width: auto;
+  display: flex;
+  border-bottom: solid;
+  border-color: $border-col-board;
+  border-width: $border-width-board;
+
+  .quad {
+    width: 3.5rem;
+    height: 100%;
+  }
+}
+
+.forTotal {
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  border-left: solid;
+  border-color: $border-col-board;
+  border-width: $border-width-board;
+  height: 100%;
+  width: 25rem;
+}
+
+.addTask {
+  font-size: 1.2rem;
+  color: white;
+  width: 25rem;
+  outline: none;
+  background-color: rgba(128, 128, 128, 0);
+  border-left: solid;
+  border-bottom: none;
+  border-right: none;
+  padding: 0 1rem;
+  border-color: $border-col-board;
+  border-width: $border-width-board;
+  font-family: "Roboto Mono", monospace;
+
+  &::placeholder {
+    opacity: 1;
+    color: white;
+  }
+}
+
+.rest {
+  flex-grow: 1;
+  background-color: $foot-resttrail;
+  border-bottom-right-radius: 1rem;
+  border-left: solid;
+  border-bottom: solid;
+  border-right: solid;
+  border-color: $border-col-board;
+  border-width: $border-width-board;
+}

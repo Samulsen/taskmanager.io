@@ -1,0 +1,66 @@
+@import "./../../../../../../styles/variables";
+.body {
+  position: absolute;
+  height: 18rem;
+  width: 16rem;
+  border-radius: 1rem;
+  background-color: $pop-up-background;
+  z-index: 2;
+  top: 3.5rem;
+  left: -1.5rem;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+  > div:not(:first-child) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: $item-fontSize;
+    font-weight: 500;
+    width: 13rem;
+    height: 3.5rem;
+    cursor: pointer;
+    &:hover {
+      width: 14rem;
+      border-style: solid;
+      border-color: white;
+      border-width: 0.1rem;
+    }
+  }
+}
+
+.pointer {
+  z-index: 1;
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  background-color: $pop-up-background;
+  top: -1rem;
+  left: 7rem;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.base {
+}
+
+.default {
+  background-color: rgb(86, 86, 86);
+}
+
+.done {
+  background-color: green;
+}
+
+.untouched {
+  background-color: red;
+}
+
+.progress {
+  background-color: rgb(231, 185, 0);
+}

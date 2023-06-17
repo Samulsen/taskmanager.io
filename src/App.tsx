@@ -43,7 +43,10 @@ const router = createBrowserRouter([
         path: ":uid",
         element: <Interface />,
         children: [
-          { path: "total", element: <Total /> },
+          {
+            path: "total",
+            element: <Total />,
+          },
           { path: ":boardID", element: <Dynamic /> },
         ],
       },

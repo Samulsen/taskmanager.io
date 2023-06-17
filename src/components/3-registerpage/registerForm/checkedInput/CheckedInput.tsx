@@ -8,7 +8,7 @@ import {
   SetStateAction,
   useEffect,
 } from "react";
-import { input, nameValidator } from "../../../../types/types";
+import { nameValidator } from "../RegisterForm";
 
 //---------MAIN---------------\
 
@@ -18,8 +18,8 @@ interface props {
   placeholder: string;
   name: string;
   validityLogic: (value: string, validator: nameValidator) => void;
-  setInputValidity: Dispatch<SetStateAction<input>>;
-  inputValidity: input;
+  setInputValidity: Dispatch<SetStateAction<string | boolean>>;
+  inputValidity: string | boolean;
 }
 type fRef = HTMLInputElement;
 

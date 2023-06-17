@@ -1,0 +1,17 @@
+@import "./../../../../../../styles/variables";
+
+.body {
+  width: 100%;
+  input {
+    text-align: center;
+    background-color: $dark-blue;
+    font-size: $item-fontSize;
+    color: white;
+    outline: 0;
+    border: $board-blue-item;
+    border-radius: 0.5rem;
+    font-family: "Roboto Mono", monospace;
+    width: 100%;
+    padding: 0.5rem;
+  }
+}

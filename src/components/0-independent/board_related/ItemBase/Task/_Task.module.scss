@@ -1,0 +1,15 @@
+@import "./../../../../../styles/variables";
+@import "./../../../../../styles/mixins";
+
+.body {
+  width: 25rem;
+  padding: 0 0.5rem;
+  justify-content: center;
+  @include baseBodyItemColumn;
+}
+
+.display {
+  &:hover {
+    @include onHoverItemColumn;
+  }
+}

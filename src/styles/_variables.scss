@@ -1,6 +1,24 @@
 $main-green: #03c988;
 $bright-blue: #1c82ad;
-$mid-blue: #00337c;
+$mid-blue: rgb(0, 51, 124);
 $dark-blue: #13005a;
 $pinkish-blue: #20038b;
 $transparent-white: #00347c78;
+
+//
+$item-fontSize: 1.2rem;
+$border-col-board: grey;
+$border-width-board: 0.1rem;
+
+$board-blue-head: rgb(69, 26, 224);
+$head-resttrail: rgba(69, 26, 224, 0.767);
+
+$board-blue-item: rgba(69, 26, 224, 0.507);
+$item-resttrail: rgba(69, 26, 224, 0.247);
+
+$board-blue-foot: rgba(69, 26, 224, 0.375);
+$foot-resttrail: rgba(69, 26, 224, 0.215);
+
+// pop up colors columns
+
+$pop-up-background: rgb(0, 61, 146);

@@ -1,9 +1,8 @@
 //---------IMPORTS------------\
 
 import classes from "./_RegisterForm.module.scss";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Dispatch, SetStateAction } from "react";
 import { useNavigate } from "react-router-dom";
-import { nameValidator } from "../../../types/types";
 import { doc, setDoc } from "firebase/firestore";
 
 //__i-components_____
@@ -18,7 +17,11 @@ import logCol from "../../../util/logColor";
 import { AuthError, UserCredential } from "firebase/auth";
 import { db } from "../../../firebase";
 
-//---------MAIN---------------\
+//----------PRE---------------\
+
+//__p-types_________
+
+export type nameValidator = Dispatch<SetStateAction<boolean | string>>;
 
 //---------COMPONENT----------\
 
@@ -153,6 +156,8 @@ const RegisterForm = function () {
     },
   };
 
+  //__c-effects______
+
   useEffect(() => {
     Logic.Valididation.forMainForm();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -164,7 +169,8 @@ const RegisterForm = function () {
     passRepValidity,
   ]);
 
-  //__c-invocation___
+  //__c-structure____
+
   return (
     <div className={classes.body}>
       <CheckedInput

@@ -21,10 +21,7 @@ const BoardItem: FC<{ boardId: string; currentBoardName: string }> = function ({
 
   const [menuState, setMenuState] = useState(false);
   const [renameState, setRenameState] = useState(false);
-  const {
-    viewControl: { setState: setView },
-    boardControl: { state, setState },
-  } = BoardContext()!;
+  const { viewControl, boardControl } = BoardContext()!;
 
   //__c-logic________
   const Logic = {
@@ -38,11 +35,11 @@ const BoardItem: FC<{ boardId: string; currentBoardName: string }> = function ({
         }
       },
       setSelfSelection() {
-        setView("Home");
-        setState(boardId);
+        boardControl.setState(boardId);
+        viewControl.setState("Home");
       },
       evaluateSelectionState() {
-        if (state === boardId) {
+        if (boardControl.state === boardId) {
           return `${classes.body} ${classes.selected}`;
         } else {
           return `${classes.body} ${classes.unselected}`;

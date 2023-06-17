@@ -7,6 +7,7 @@ import MetaDataContextProvider from "../../context/MetadataContext";
 import BoardContextProvider from "../../context/BoardContext";
 import ConfigContextProvider from "../../context/ConfigContext";
 import BoardlistContextProvider from "../../context/BoardlistContext";
+import ActiveDataContextProvider from "../../context/ActiveDataContext";
 //__i-components_____
 import BoardArea from "./board_area/BoardArea";
 import SidebarBoards from "./sidebar_boards/SidebarBoards";
@@ -25,10 +26,12 @@ const Interface = function () {
       <BoardContextProvider>
         <BoardlistContextProvider>
           <SidebarBoards />
+          <ActiveDataContextProvider>
+            <BoardArea>
+              <Outlet />
+            </BoardArea>
+          </ActiveDataContextProvider>
         </BoardlistContextProvider>
-        <BoardArea>
-          <Outlet />
-        </BoardArea>
       </BoardContextProvider>
     </div>
   );
