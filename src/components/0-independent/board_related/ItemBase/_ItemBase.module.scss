@@ -17,6 +17,10 @@
   border-bottom: solid;
   border-color: $border-col-board;
   border-width: $border-width-board;
+  &:hover {
+    box-shadow: 0px 15px 5px -15px #ffffff;
+    background-color: rgba(69, 26, 224, 0.4);
+  }
   .marker {
     width: 3.5rem;
     height: 100%;
