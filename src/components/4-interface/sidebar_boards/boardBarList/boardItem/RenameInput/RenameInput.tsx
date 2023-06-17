@@ -14,7 +14,6 @@ import { updateDoc, doc } from "firebase/firestore";
 import { db } from "../../../../../../firebase";
 //__i-components_____
 import classes from "./_RenameInput.module.scss";
-import pathBoardNames from "../../../../../../util/pathBoardNames";
 import useClickOutside from "../../../../../../hooks/useClickOutside";
 
 //---------COMPONENT----------\
@@ -52,7 +51,7 @@ const RenameInput: FC<{
         return Promise.resolve();
       },
       updateBoardNameInBoardList() {
-        const ref = pathBoardNames(uid);
+        const ref = doc(db, `MainUserDataPool_${uid}`, "UserBoards");
         const namePath = `boardNames.${boardId}.name`;
         const updateData = {
           [namePath]: updatedNameInputRef.current!.value,

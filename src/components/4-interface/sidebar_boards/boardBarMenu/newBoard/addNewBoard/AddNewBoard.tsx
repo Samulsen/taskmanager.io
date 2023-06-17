@@ -9,7 +9,6 @@ import { AuthContext } from "../../../../../../context/AuthContext";
 //__i-helper_________"
 import randomID from "../../../../../../util/randomID";
 import useClickOutside from "../../../../../../hooks/useClickOutside";
-import pathBoardNames from "../../../../../../util/pathBoardNames";
 import { db } from "../../../../../../firebase";
 
 //---------COMPONENT----------\
@@ -55,7 +54,7 @@ const AddNewBoard: FC<{
       },
       //__NOTE: adds only to the boardNames Map!
       addToBoardNames(boardId: string) {
-        const ref = pathBoardNames(uid);
+        const ref = doc(db, `MainUserDataPool_${uid}`, "UserBoards");
         const namePath = `boardNames.${boardId}`;
         const addedData = {
           [namePath]: {
