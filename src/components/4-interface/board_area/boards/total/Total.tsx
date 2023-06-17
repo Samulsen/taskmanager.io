@@ -1,9 +1,15 @@
 //---------IMPORTS------------\
 
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
 import { db } from "../../../../../firebase";
 import classes from "./_Total.module.scss";
-import { QuerySnapshot, DocumentData } from "firebase/firestore";
+import { QuerySnapshot, DocumentData, Unsubscribe } from "firebase/firestore";
 
 //__i-context________
 
@@ -84,15 +90,47 @@ const Total = function () {
   };
 
   //__c-effects______
-
+  let accumulator = [] as CompositItemData[];
   useEffect(() => {
-    if (state === "warm") {
-      Logic.Data.initializePromiseAll
-        .bind(Logic.Data)()
-        .then(Logic.Data.convertAllItems.bind(Logic.Data))
-        .then(Logic.Data.mergeToRaw.bind(Logic.Data));
-    }
-  }, [boardNames]);
+    const unsubFunctionsPool = [] as Unsubscribe[];
+    ["0171744903", "3174010796"].forEach((boardID) => {
+      const q = query(
+        collection(db, `MainUserDataPool_${uid}`, "UserBoards", `${boardID}`),
+        where("type", "==", "item")
+      );
+      unsubFunctionsPool.push(
+        onSnapshot(q, { includeMetadataChanges: true }, (itemsSnapshot) => {
+          if (!itemsSnapshot.metadata.hasPendingWrites) {
+            const tempQueryArray = [] as CompositItemData[];
+            itemsSnapshot.forEach((item) => {
+              tempQueryArray.push({
+                id: item.id,
+                ...(item.data() as RawItemFields),
+              });
+            });
+
+            accumulator = [...accumulator, ...tempQueryArray];
+            rawQueryItems.setData(accumulator);
+          }
+        })
+      );
+    });
+
+    return () => {
+      unsubFunctionsPool.forEach((unsub) => {
+        unsub();
+      });
+    };
+  }, []);
+
+  // useEffect(() => {
+  //   if (state === "warm") {
+  //     Logic.Data.initializePromiseAll
+  //       .bind(Logic.Data)()
+  //       .then(Logic.Data.convertAllItems.bind(Logic.Data))
+  //       .then(Logic.Data.mergeToRaw.bind(Logic.Data));
+  //   }
+  // }, [boardNames]);
 
   //__c-structure____
   return (
