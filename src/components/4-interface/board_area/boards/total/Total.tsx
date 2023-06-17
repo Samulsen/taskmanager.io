@@ -98,46 +98,50 @@ const Total = function () {
     const boardsArr = boardNames.map((board) => {
       return board[0];
     });
-    boardsArr.forEach((boardID) => {
-      const q = query(
-        collection(db, `MainUserDataPool_${uid}`, "UserBoards", `${boardID}`),
-        where("type", "==", "item")
-      );
-      unsubFunctionsPool.push(
-        onSnapshot(q, { includeMetadataChanges: true }, (itemsSnapshot) => {
-          if (!itemsSnapshot.metadata.hasPendingWrites) {
-            //__NOTE: Unpack new snapshot and prepare for accumulator check
-            const tempQueryArray = [] as CompositItemData[];
-            itemsSnapshot.forEach((item) => {
-              tempQueryArray.push({
-                id: item.id,
-                ...(item.data() as RawItemFields),
+    if (state === "warm") {
+      boardsArr.forEach((boardID) => {
+        const q = query(
+          collection(db, `MainUserDataPool_${uid}`, "UserBoards", `${boardID}`),
+          where("type", "==", "item")
+        );
+        unsubFunctionsPool.push(
+          onSnapshot(q, { includeMetadataChanges: true }, (itemsSnapshot) => {
+            if (!itemsSnapshot.metadata.hasPendingWrites) {
+              //__NOTE: Unpack new snapshot and prepare for accumulator check
+              const tempQueryArray = [] as CompositItemData[];
+              itemsSnapshot.forEach((item) => {
+                tempQueryArray.push({
+                  id: item.id,
+                  ...(item.data() as RawItemFields),
+                });
               });
-            });
 
-            //__NOTE: Check for duplication
-            const hasOldSnapshot = processedBoards.includes(boardID);
-            if (hasOldSnapshot) {
-              const strippedAccumulator: CompositItemData[] =
-                accumulator.filter((item) => !(item.board_origin === boardID));
-              accumulator = [...strippedAccumulator, ...tempQueryArray];
-              rawQueryItems.setData(accumulator);
-            } else {
-              processedBoards.push(boardID);
-              accumulator = [...accumulator, ...tempQueryArray];
-              rawQueryItems.setData(accumulator);
+              //__NOTE: Check for duplication
+              const hasOldSnapshot = processedBoards.includes(boardID);
+              if (hasOldSnapshot) {
+                const strippedAccumulator: CompositItemData[] =
+                  accumulator.filter(
+                    (item) => !(item.board_origin === boardID)
+                  );
+                accumulator = [...strippedAccumulator, ...tempQueryArray];
+                rawQueryItems.setData(accumulator);
+              } else {
+                processedBoards.push(boardID);
+                accumulator = [...accumulator, ...tempQueryArray];
+                rawQueryItems.setData(accumulator);
+              }
             }
-          }
-        })
-      );
-    });
+          })
+        );
+      });
+    }
 
     return () => {
       unsubFunctionsPool.forEach((unsub) => {
         unsub();
       });
     };
-  }, []);
+  }, [state]);
 
   // useEffect(() => {
   //   if (state === "warm") {
