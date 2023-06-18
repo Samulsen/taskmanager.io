@@ -9,6 +9,10 @@
   align-items: center;
   position: relative;
   border-radius: 0.5rem;
+
+  &:hover > .opUnselected {
+    opacity: 1;
+  }
 }
 
 .icon {
@@ -41,10 +45,4 @@
 }
 .opSelected {
   opacity: 1;
-}
-
-.opUnselected {
-  &:hover {
-    opacity: 1;
-  }
 }
