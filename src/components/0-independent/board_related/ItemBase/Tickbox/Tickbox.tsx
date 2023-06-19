@@ -84,7 +84,6 @@ const Tickbox: FC<props> = function ({ itemOrigin }) {
         );
       },
     },
-    Data: {},
   };
 
   //__c-effects______

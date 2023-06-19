@@ -23,7 +23,6 @@ const ItemControl = function () {
       if (itemControl.state) {
         return (
           <div
-            onClick={Logic.UI.initializeClosing}
             className={Logic.UI.Class.forBody()}
             onAnimationEnd={Logic.UI.close}
           >
@@ -31,7 +30,7 @@ const ItemControl = function () {
               <TargetDisplay />
               <SelectionMessage />
               <TargetDelete />
-              <AbortSelection />
+              <AbortSelection setActiveClosing={setActiveClosing} />
             </div>
           </div>
         );
@@ -47,13 +46,13 @@ const ItemControl = function () {
             : `${classes.body} ${classes.open}`;
         },
       },
-      initializeClosing() {
-        setActiveClosing(true);
-      },
+
       close(event: AnimationEvent) {
         if (event.target === event.currentTarget) {
-          if (event.animationName.includes("closeItemControl"))
+          if (event.animationName.includes("closeItemControl")) {
+            setActiveClosing(false);
             itemControl.setState(false);
+          }
         }
       },
     },
