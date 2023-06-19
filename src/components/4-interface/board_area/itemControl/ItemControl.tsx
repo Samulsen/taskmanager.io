@@ -13,14 +13,14 @@ import { useState, AnimationEvent } from "react";
 const ItemControl = function () {
   //__c-hooks________
 
-  const { ItemControl } = ItemControlContext()!;
+  const { itemControl } = ItemControlContext()!;
   const [activeClosing, setActiveClosing] = useState(false);
 
   //__c-logic________
 
   const Logic = {
     decideRendering() {
-      if (ItemControl.state) {
+      if (itemControl.state) {
         return (
           <div
             onClick={Logic.UI.initializeClosing}
@@ -53,7 +53,7 @@ const ItemControl = function () {
       close(event: AnimationEvent) {
         if (event.target === event.currentTarget) {
           if (event.animationName.includes("closeItemControl"))
-            ItemControl.setState(false);
+            itemControl.setState(false);
         }
       },
     },

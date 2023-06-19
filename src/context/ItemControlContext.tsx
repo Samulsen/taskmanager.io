@@ -16,10 +16,10 @@ import { itemOrigin } from "../components/0-independent/board_related/ItemBase/I
 //__p-types_________
 
 interface ContextValueType {
-  ItemControl: { state: boolean; setState: Dispatch<SetStateAction<boolean>> };
-  Selection: {
-    array: itemOrigin[];
-    setState: Dispatch<SetStateAction<itemOrigin[]>>;
+  itemControl: { state: boolean; setState: Dispatch<SetStateAction<boolean>> };
+  itemSelection: {
+    list: itemOrigin[];
+    update: Dispatch<SetStateAction<itemOrigin[]>>;
   };
 }
 
@@ -40,8 +40,8 @@ const ItemControlContextProvider: FC<{ children: ReactNode }> = function ({
   //__c-structure____
 
   const ItemControlContextValues: ContextValueType = {
-    ItemControl: { state: controlState, setState: setControlState },
-    Selection: { array: selectionArray, setState: updateSelectionArray },
+    itemControl: { state: controlState, setState: setControlState },
+    itemSelection: { list: selectionArray, update: updateSelectionArray },
   };
 
   return (

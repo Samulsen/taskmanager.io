@@ -1,7 +1,7 @@
 //---------IMPORTS------------\
 
 //__i-libraries______
-import { FC, useState, MouseEvent } from "react";
+import { FC, useState, MouseEvent, useEffect } from "react";
 //__i-style__________
 import classes from "./_Tickbox.module.scss";
 import tickIcon from "./check.svg";
@@ -23,23 +23,36 @@ interface props {
 const Tickbox: FC<props> = function ({ itemOrigin }) {
   //__c-hooks________
 
-  const { Selection, ItemControl } = ItemControlContext()!;
+  const { itemSelection, itemControl } = ItemControlContext()!;
   const [selfSelection, setSelfSelection] = useState(false);
 
   //__c-logic________
 
   const Logic = {
+    testSelectionState() {
+      const idSelectionArr: string[] = itemSelection.list.map((itemOrigin) => {
+        return itemOrigin.id;
+      });
+
+      if (idSelectionArr.includes(itemOrigin.id)) {
+        setSelfSelection(true);
+      } else {
+        setSelfSelection(false);
+      }
+    },
     addToSelection() {
-      const prevSelectionSnap = Selection.array;
-      const newSelectionSnap = [...Selection.array];
+      const newSelectionSnap = [...itemSelection.list, itemOrigin];
+      itemSelection.update(newSelectionSnap);
     },
     removeFromSelection() {},
     UI: {
       selectItem(event: MouseEvent) {
         if (event.target === event.currentTarget) {
-          if (ItemControl.state) {
+          if (itemControl.state) {
+            Logic.addToSelection();
           } else {
-            ItemControl.setState(true);
+            itemControl.setState(true);
+            Logic.addToSelection();
           }
         }
       },
@@ -67,6 +80,12 @@ const Tickbox: FC<props> = function ({ itemOrigin }) {
     },
     Data: {},
   };
+
+  //__c-effects______
+
+  useEffect(() => {
+    Logic.testSelectionState();
+  }, [itemSelection.list]);
 
   //__c-structure____
   return <div className={classes.body}>{Logic.UI.renderBoxSelection()}</div>;
