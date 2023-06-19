@@ -14,11 +14,7 @@ const BoardArea: FC<{ children: ReactNode }> = function ({ children: board }) {
   //__c-logic________
 
   const Logic = {
-    UI: {
-      renderItemControl() {
-        return <ItemControl />;
-      },
-    },
+    UI: {},
   };
 
   //__c-structure____
@@ -28,7 +24,7 @@ const BoardArea: FC<{ children: ReactNode }> = function ({ children: board }) {
       <ViewControl />
       <ItemControlContextProvider>
         {board}
-        {Logic.UI.renderItemControl()}
+        <ItemControl />
       </ItemControlContextProvider>
     </div>
   );

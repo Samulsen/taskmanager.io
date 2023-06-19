@@ -15,7 +15,7 @@ import {
 //__p-types_________
 
 interface ContextValueType {
-  Mode: { state: boolean; setState: Dispatch<SetStateAction<boolean>> };
+  ItemControl: { state: boolean; setState: Dispatch<SetStateAction<boolean>> };
 }
 
 //__p-others________
@@ -34,7 +34,7 @@ const ItemControlContextProvider: FC<{ children: ReactNode }> = function ({
   //__c-structure____
 
   const ItemControlContextValues: ContextValueType = {
-    Mode: { state: controlState, setState: setControlState },
+    ItemControl: { state: controlState, setState: setControlState },
   };
 
   return (
