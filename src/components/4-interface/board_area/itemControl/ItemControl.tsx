@@ -16,7 +16,7 @@ const ItemControl = function () {
   //__c-structure____
 
   return (
-    <div className={classes.body}>
+    <div className={`${classes.body} ${classes.open}`}>
       <div className={classes.controler}>
         <TargetDisplay />
         <SelectionMessage />
