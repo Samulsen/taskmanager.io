@@ -19,21 +19,21 @@ const Interface = function () {
   return (
     <div className={classes.body}>
       {/* //__NOTE: Context for Sidebar Control comes from two ctxts but attacks only one component lower in the three */}
-      <MetaDataContextProvider>
-        <ConfigContextProvider>
+      <ConfigContextProvider>
+        <MetaDataContextProvider>
           <SidebarControl />
-        </ConfigContextProvider>
-      </MetaDataContextProvider>
-      <BoardContextProvider>
-        <BoardlistContextProvider>
-          <SidebarBoards />
-          <ActiveDataContextProvider>
-            <BoardArea>
-              <Outlet />
-            </BoardArea>
-          </ActiveDataContextProvider>
-        </BoardlistContextProvider>
-      </BoardContextProvider>
+        </MetaDataContextProvider>
+        <BoardContextProvider>
+          <BoardlistContextProvider>
+            <SidebarBoards />
+            <ActiveDataContextProvider>
+              <BoardArea>
+                <Outlet />
+              </BoardArea>
+            </ActiveDataContextProvider>
+          </BoardlistContextProvider>
+        </BoardContextProvider>
+      </ConfigContextProvider>
     </div>
   );
 };
