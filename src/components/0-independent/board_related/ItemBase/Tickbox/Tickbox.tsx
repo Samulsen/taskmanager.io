@@ -44,7 +44,12 @@ const Tickbox: FC<props> = function ({ itemOrigin }) {
       const newSelectionSnap = [...itemSelection.list, itemOrigin];
       itemSelection.update(newSelectionSnap);
     },
-    removeFromSelection() {},
+    removeFromSelection() {
+      const newSelectionSnap = itemSelection.list.filter((globalItemOrigin) => {
+        if (!(globalItemOrigin.id === itemOrigin.id)) return globalItemOrigin;
+      });
+      itemSelection.update(newSelectionSnap);
+    },
     UI: {
       selectItem(event: MouseEvent) {
         if (event.target === event.currentTarget) {
@@ -58,6 +63,7 @@ const Tickbox: FC<props> = function ({ itemOrigin }) {
       },
       unselectItem(event: MouseEvent) {
         if (event.target === event.currentTarget) {
+          Logic.removeFromSelection();
         }
       },
       renderBoxSelection() {
