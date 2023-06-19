@@ -21,19 +21,6 @@
     box-shadow: 0px 15px 5px -15px #ffffff;
     background-color: rgba(69, 26, 224, 0.4);
   }
-  .marker {
-    width: 3.5rem;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .box {
-      width: 2rem;
-      height: 2rem;
-      border-radius: 0.5rem;
-      border: 0.1rem solid white;
-    }
-  }
 }
 
 .rest {

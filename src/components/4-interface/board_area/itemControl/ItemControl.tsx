@@ -39,7 +39,6 @@ const ItemControl = function () {
         return <></>;
       }
     },
-
     UI: {
       Class: {
         forBody() {
@@ -48,11 +47,9 @@ const ItemControl = function () {
             : `${classes.body} ${classes.open}`;
         },
       },
-
       initializeClosing() {
         setActiveClosing(true);
       },
-
       close(event: AnimationEvent) {
         if (event.target === event.currentTarget) {
           if (event.animationName.includes("closeItemControl"))

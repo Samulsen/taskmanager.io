@@ -16,6 +16,7 @@ import {
 
 interface ContextValueType {
   ItemControl: { state: boolean; setState: Dispatch<SetStateAction<boolean>> };
+  Selection: { array: string[]; setState: Dispatch<SetStateAction<string[]>> };
 }
 
 //__p-others________
@@ -30,11 +31,13 @@ const ItemControlContextProvider: FC<{ children: ReactNode }> = function ({
   //__c-hooks________
 
   const [controlState, setControlState] = useState(false);
+  const [selectionArray, updateSelectionArray] = useState([""]);
 
   //__c-structure____
 
   const ItemControlContextValues: ContextValueType = {
     ItemControl: { state: controlState, setState: setControlState },
+    Selection: { array: selectionArray, setState: updateSelectionArray },
   };
 
   return (
