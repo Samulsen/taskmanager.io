@@ -53,7 +53,7 @@ const ItemBase: FC<{ base: string; data: CompositItemData }> = function ({
     <div className={classes.body}>
       <div className={classes.grouplineMid}></div>
       <div className={classes.main}>
-        <Tickbox />
+        <Tickbox itemOrigin={Logic.ItemOrigin} />
         <Task displayValue={data.taskname} itemOrigin={Logic.ItemOrigin} />
         {Logic.UI.evaluateBase()}
         <DueToDate
