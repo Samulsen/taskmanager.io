@@ -12,6 +12,7 @@ import ActiveDataContextProvider from "../../context/ActiveDataContext";
 import BoardArea from "./board_area/BoardArea";
 import SidebarBoards from "./sidebar_boards/SidebarBoards";
 import SidebarControl from "./sidebar_control/SidebarControl";
+import ItemControl from "./board_area/itemControl/ItemControl";
 
 //---------COMPONENT----------\
 const Interface = function () {

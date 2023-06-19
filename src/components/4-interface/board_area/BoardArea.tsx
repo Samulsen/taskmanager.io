@@ -1,16 +1,32 @@
 //---------IMPORTS------------\
 
 import classes from "./_BoardArea.module.scss";
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import ViewControl from "./viewControl/ViewControl";
+import ItemControl from "./itemControl/ItemControl";
 
 //---------COMPONENT----------\
 
-const BoardArea: FC<{ children: any }> = function ({ children: board }) {
+const BoardArea: FC<{ children: ReactNode }> = function ({ children: board }) {
+  //__c-hooks________
+
+  //__c-logic________
+
+  const Logic = {
+    UI: {
+      renderItemControl() {
+        return <ItemControl />;
+      },
+    },
+  };
+
+  //__c-structure____
+
   return (
     <div className={classes.body}>
       <ViewControl />
       {board}
+      {Logic.UI.renderItemControl()}
     </div>
   );
 };
