@@ -3,7 +3,8 @@
 //__i-libraries______
 import { FC } from "react";
 //__i-style__________
-import classes from "./_TargetDisplay.module.scss";
+import classes from "./_TargetCount.module.scss";
+import { ItemControlContext } from "../../../../../context/ItemControlContext";
 //__i-context________
 //__i-components_____
 
@@ -15,8 +16,10 @@ interface props {}
 
 //---------COMPONENT----------\
 
-const TargetDisplay: FC<props> = function () {
+const TargetCount: FC<props> = function () {
   //__c-hooks________
+
+  const { itemSelection } = ItemControlContext()!;
 
   //__c-logic________
 
@@ -26,10 +29,9 @@ const TargetDisplay: FC<props> = function () {
   };
 
   //__c-structure____
-
-  return <div className={classes.body}>1</div>;
+  return <div className={classes.body}>{itemSelection.list.length}</div>;
 };
 
 //---------EXPORTS------------\
 
-export default TargetDisplay;
+export default TargetCount;

@@ -4,9 +4,9 @@ import classes from "./_ItemControl.module.scss";
 import SelectionMessage from "./selectionMessage/SelectionMessage";
 import AbortSelection from "./abortSelection/AbortSelection";
 import TargetDelete from "./targetDelete/TargetDelete";
-import TargetDisplay from "./targetDisplay/TargetDisplay";
+import TargetCount from "./targetCount/TargetCount";
 import { ItemControlContext } from "../../../../context/ItemControlContext";
-import { useState, AnimationEvent } from "react";
+import { AnimationEvent } from "react";
 
 //---------COMPONENT----------\
 
@@ -26,7 +26,7 @@ const ItemControl = function () {
             onAnimationEnd={Logic.UI.close}
           >
             <div className={classes.controler}>
-              <TargetDisplay />
+              <TargetCount />
               <SelectionMessage />
               <TargetDelete />
               <AbortSelection />
