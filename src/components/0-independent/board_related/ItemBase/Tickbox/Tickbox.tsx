@@ -23,7 +23,7 @@ interface props {
 const Tickbox: FC<props> = function ({ itemOrigin }) {
   //__c-hooks________
 
-  const { itemSelection, itemControl } = ItemControlContext()!;
+  const { itemSelection, itemControl, closingMode } = ItemControlContext()!;
   const [selfSelection, setSelfSelection] = useState(false);
 
   //__c-logic________
@@ -63,7 +63,12 @@ const Tickbox: FC<props> = function ({ itemOrigin }) {
       },
       unselectItem(event: MouseEvent) {
         if (event.target === event.currentTarget) {
-          Logic.removeFromSelection();
+          if (itemSelection.list.length === 1) {
+            Logic.removeFromSelection();
+            closingMode.setState(true);
+          } else {
+            Logic.removeFromSelection();
+          }
         }
       },
       renderBoxSelection() {

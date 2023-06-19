@@ -13,8 +13,7 @@ import { useState, AnimationEvent } from "react";
 const ItemControl = function () {
   //__c-hooks________
 
-  const { itemControl } = ItemControlContext()!;
-  const [activeClosing, setActiveClosing] = useState(false);
+  const { itemControl, closingMode } = ItemControlContext()!;
 
   //__c-logic________
 
@@ -30,7 +29,7 @@ const ItemControl = function () {
               <TargetDisplay />
               <SelectionMessage />
               <TargetDelete />
-              <AbortSelection setActiveClosing={setActiveClosing} />
+              <AbortSelection />
             </div>
           </div>
         );
@@ -41,7 +40,7 @@ const ItemControl = function () {
     UI: {
       Class: {
         forBody() {
-          return activeClosing
+          return closingMode.state
             ? `${classes.body} ${classes.close}`
             : `${classes.body} ${classes.open}`;
         },
@@ -50,7 +49,7 @@ const ItemControl = function () {
       close(event: AnimationEvent) {
         if (event.target === event.currentTarget) {
           if (event.animationName.includes("closeItemControl")) {
-            setActiveClosing(false);
+            closingMode.setState(false);
             itemControl.setState(false);
           }
         }

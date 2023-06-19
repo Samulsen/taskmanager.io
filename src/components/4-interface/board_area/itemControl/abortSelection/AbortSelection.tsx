@@ -12,23 +12,21 @@ import { ItemControlContext } from "../../../../../context/ItemControlContext";
 //----------PRE---------------\
 //__p-types_________
 
-interface props {
-  setActiveClosing: Dispatch<SetStateAction<boolean>>;
-}
+interface props {}
 
 //---------COMPONENT----------\
 
-const AbortSelection: FC<props> = function ({ setActiveClosing }) {
+const AbortSelection: FC<props> = function () {
   //__c-hooks________
 
-  const { itemSelection } = ItemControlContext()!;
+  const { itemSelection, closingMode } = ItemControlContext()!;
 
   //__c-logic________
 
   const Logic = {
     UI: {
       abortSelection() {
-        setActiveClosing(true);
+        closingMode.setState(true);
         itemSelection.update([]);
       },
     },
