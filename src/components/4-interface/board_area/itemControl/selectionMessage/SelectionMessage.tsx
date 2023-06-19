@@ -14,7 +14,7 @@ interface props {}
 
 //---------COMPONENT----------\
 
-const SelectionMessage:FC<props> = function () {
+const SelectionMessage: FC<props> = function () {
   //__c-hooks________
 
   //__c-logic________
@@ -31,4 +31,3 @@ const SelectionMessage:FC<props> = function () {
 //---------EXPORTS------------\
 
 export default SelectionMessage;
-
