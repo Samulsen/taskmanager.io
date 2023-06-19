@@ -29,7 +29,10 @@ const Tickbox: FC<props> = function ({ itemOrigin }) {
   //__c-logic________
 
   const Logic = {
-    addToSelection() {},
+    addToSelection() {
+      const prevSelectionSnap = Selection.array;
+      const newSelectionSnap = [...Selection.array];
+    },
     removeFromSelection() {},
     UI: {
       selectItem(event: MouseEvent) {

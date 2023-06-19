@@ -9,6 +9,7 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
+import { itemOrigin } from "../components/0-independent/board_related/ItemBase/ItemBase";
 
 //----------PRE---------------\
 
@@ -16,7 +17,10 @@ import {
 
 interface ContextValueType {
   ItemControl: { state: boolean; setState: Dispatch<SetStateAction<boolean>> };
-  Selection: { array: string[]; setState: Dispatch<SetStateAction<string[]>> };
+  Selection: {
+    array: itemOrigin[];
+    setState: Dispatch<SetStateAction<itemOrigin[]>>;
+  };
 }
 
 //__p-others________
@@ -31,7 +35,7 @@ const ItemControlContextProvider: FC<{ children: ReactNode }> = function ({
   //__c-hooks________
 
   const [controlState, setControlState] = useState(false);
-  const [selectionArray, updateSelectionArray] = useState([""]);
+  const [selectionArray, updateSelectionArray] = useState<itemOrigin[]>([]);
 
   //__c-structure____
 
