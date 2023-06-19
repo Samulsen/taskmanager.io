@@ -25,6 +25,9 @@
 
 .unselected {
   border: 0.1rem solid white;
+  &:hover {
+    background-color: $main-green;
+  }
 }
 
 .selected {
