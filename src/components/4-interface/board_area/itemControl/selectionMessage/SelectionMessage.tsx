@@ -7,7 +7,7 @@ import classes from "./_SelectionMessage.module.scss";
 //__i-context________
 //__i-components_____
 
-//----------PRE---------------
+//----------PRE---------------\
 //__p-types_________
 
 interface props {}
@@ -25,7 +25,7 @@ const SelectionMessage: FC<props> = function () {
   };
 
   //__c-structure____
-  return <div className={classes.body}></div>;
+  return <div className={classes.body}>Tasks selected</div>;
 };
 
 //---------EXPORTS------------\
