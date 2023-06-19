@@ -9,6 +9,12 @@ import TargetDisplay from "./targetDisplay/TargetDisplay";
 //---------COMPONENT----------\
 
 const ItemControl = function () {
+  //__c-hooks________
+
+  //__c-logic________
+
+  //__c-structure____
+
   return (
     <div className={classes.body}>
       <div className={classes.controler}>

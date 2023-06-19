@@ -12,7 +12,7 @@
   position: absolute;
   bottom: 3rem;
   right: -20rem;
-  height: 8rem;
+  height: 6rem;
   width: 40rem;
   border-radius: 1rem;
   background-color: #174d9a;
@@ -20,4 +20,6 @@
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

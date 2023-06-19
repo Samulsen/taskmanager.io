@@ -1,2 +1,14 @@
-.body {}
+@import "./../../../../../styles/variables";
 
+.body {
+  width: 6rem;
+  height: 100%;
+  background-color: $main-green;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 700;
+}
