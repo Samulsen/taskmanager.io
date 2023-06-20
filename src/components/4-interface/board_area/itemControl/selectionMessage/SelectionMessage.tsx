@@ -30,11 +30,7 @@ const SelectionMessage: FC<props> = function () {
         if (itemSelection.list.length === 1) {
           return "Task selected";
         } else {
-          if (clientAffectedData.length === itemSelection.list.length) {
-            return "all Tasks selected";
-          } else {
-            return "Tasks selected";
-          }
+          return "Tasks selected";
         }
       },
     },
