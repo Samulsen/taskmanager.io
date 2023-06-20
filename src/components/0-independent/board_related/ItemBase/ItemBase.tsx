@@ -44,6 +44,13 @@ const ItemBase: FC<props> = function ({ base, data }) {
     } as itemOrigin,
 
     UI: {
+      Classes: {
+        forMain() {
+          return selfSelection
+            ? `${classes.main} ${classes.selected}`
+            : `${classes.main} ${classes.unselected}`;
+        },
+      },
       evaluateSelectionState() {
         const idSelectionArr: string[] = itemSelection.list.map(
           (itemOrigin) => {
@@ -76,7 +83,7 @@ const ItemBase: FC<props> = function ({ base, data }) {
   return (
     <div className={classes.body}>
       <div className={classes.grouplineMid}></div>
-      <div className={classes.main}>
+      <div className={Logic.UI.Classes.forMain()}>
         <Tickbox
           itemOrigin={Logic.ItemOrigin}
           selfSelection={{ state: selfSelection, set: setSelfSelection }}
