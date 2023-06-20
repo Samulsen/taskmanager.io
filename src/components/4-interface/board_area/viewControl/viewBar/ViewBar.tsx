@@ -39,13 +39,9 @@ const ViewBar = function () {
 
   const Logic = {
     initAffectionChain() {
-      // rawQueryItems.data.sort((a, b) => a.timestamp.seconds - b.timestamp.seconds)
+      // rawQueryItems.data.sort((a, b) => b.timestamp.seconds - a.timestamp.seconds)
       // return Promise.resolve(rawQueryItems.data);
-      return Promise.resolve(
-        rawQueryItems.data.sort(
-          (a, b) => a.timestamp.seconds - b.timestamp.seconds
-        )
-      );
+      return Promise.resolve(rawQueryItems.data);
     },
     View: {
       Option: {
@@ -99,13 +95,29 @@ const ViewBar = function () {
           view_filter_AffectedData: CompositItemData[]
         ): Promise<CompositItemData[]> {
           return new Promise((resolve) => {
-            resolve(view_filter_AffectedData);
+            if (sortControl.direction === "ase") {
+              const ascendingOrder = view_filter_AffectedData.sort(
+                (a, b) => a.timestamp.seconds - b.timestamp.seconds
+              );
+
+              resolve(ascendingOrder);
+            } else {
+              const descendingOrder = view_filter_AffectedData.sort(
+                (a, b) => b.timestamp.seconds - a.timestamp.seconds
+              );
+
+              resolve(descendingOrder);
+            }
           });
         },
       },
       decide(view_filter_AffectedData: CompositItemData[]) {
-        if (sortControl.state === "none") {
+        if (sortControl.state === "creationtime") {
           return this.Option.unaffected(view_filter_AffectedData);
+        }
+        if (sortControl.state === "priority") {
+        }
+        if (sortControl.state === "date") {
         }
         return [];
       },
