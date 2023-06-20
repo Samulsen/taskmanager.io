@@ -1,11 +1,12 @@
 //---------IMPORTS------------\
 //__i-libraries______
-import { AnimationEvent, useState } from "react";
+import { AnimationEvent, useState, useEffect } from "react";
 //__i-style__________
 import classes from "./_ItemControl.module.scss";
 import loadIcon from "./loadDelReq.svg";
 //__i-context________
 import { ItemControlContext } from "../../../../context/ItemControlContext";
+import { BoardContext } from "../../../../context/BoardContext";
 //__i-components_____
 import SelectionMessage from "./selectionMessage/SelectionMessage";
 import AbortSelection from "./abortSelection/AbortSelection";
@@ -18,7 +19,8 @@ const ItemControl = function () {
   //__c-hooks________
 
   const [mergedRequest, setMergeRequest] = useState("none");
-  const { itemControl, closingMode } = ItemControlContext()!;
+  const { itemControl, closingMode, itemSelection } = ItemControlContext()!;
+  const { boardControl } = BoardContext()!;
 
   //__c-logic________
 
@@ -92,6 +94,16 @@ const ItemControl = function () {
       },
     },
   };
+
+  //__c-effects______
+
+  useEffect(() => {
+    //__NOTE: forbid switching with active controlItem
+    if (itemControl.state) {
+      closingMode.setState(true);
+      itemSelection.update([]);
+    }
+  }, [boardControl.state]);
 
   //__c-structure____
 
