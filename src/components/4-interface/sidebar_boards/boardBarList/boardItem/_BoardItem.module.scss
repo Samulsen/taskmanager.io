@@ -9,6 +9,10 @@
   align-items: center;
   position: relative;
   border-radius: 0.5rem;
+
+  &:hover > .opUnselected {
+    opacity: 1;
+  }
 }
 
 .icon {
@@ -20,9 +24,8 @@
   margin-right: 0.7rem;
 }
 
-.option {
-  margin-left: auto;
-  cursor: pointer;
+.navLink {
+  width: 100%;
 }
 
 .selected {
@@ -34,4 +37,12 @@
   &:hover {
     background-color: $transparent-white;
   }
+}
+
+.option {
+  cursor: pointer;
+  opacity: 0;
+}
+.opSelected {
+  opacity: 1;
 }

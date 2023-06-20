@@ -1,0 +1,60 @@
+@import "./../../../../styles/variables";
+
+.body {
+  z-index: 50;
+  position: relative;
+  grid-area: boardField;
+  align-self: flex-end;
+  justify-self: center;
+}
+
+.controler {
+  position: absolute;
+  bottom: 3rem;
+  right: -17rem;
+  height: 6rem;
+  width: 34rem;
+  border-radius: 1rem;
+  background-color: #174d9a;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.open {
+  animation: openItemControl 0.3s ease-in-out 0s 1 normal forwards;
+}
+
+.close {
+  animation: closeItemControl 0.3s ease-in-out 0s 1 normal forwards;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  width: fit-content;
+  font-size: 1.5rem;
+  margin: auto;
+  img {
+    width: 5rem;
+  }
+}
+
+@keyframes openItemControl {
+  from {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+}
+
+@keyframes closeItemControl {
+  to {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+}

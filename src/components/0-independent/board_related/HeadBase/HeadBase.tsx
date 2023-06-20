@@ -3,6 +3,7 @@
 import { FC } from "react";
 import classes from "./_HeadBase.module.scss";
 import HeadColumn from "./HeadColumn/HeadColumn";
+import TickboxAll from "./TickboxAll/TickboxAll";
 
 //---------COMPONENT----------\
 const HeadBase: FC<{ type: string }> = function ({ type }) {
@@ -21,7 +22,7 @@ const HeadBase: FC<{ type: string }> = function ({ type }) {
     <div className={classes.body}>
       <div className={classes.grouplineUpper}></div>
       <div className={classes.main}>
-        <div className={classes.quad}></div>
+        <TickboxAll />
         <HeadColumn width={classes.task} title="Task" />
         {Logic.UI.evaluateType()}
         <HeadColumn width={classes.mid} title="Due to Date" />

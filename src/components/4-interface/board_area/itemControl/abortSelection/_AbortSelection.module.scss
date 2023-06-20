@@ -1,0 +1,22 @@
+.body {
+  background-color: #00337c;
+  height: 100%;
+  width: 4.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  border-left: white solid 0.1rem;
+
+  img {
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    // border-radius: 10rem;
+    // transition: all 0.3s;
+    // &:hover {
+    //   background-color: rgba(255, 0, 0, 0.481);
+    // }
+  }
+}

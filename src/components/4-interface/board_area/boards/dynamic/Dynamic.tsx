@@ -33,10 +33,17 @@ const Dynamic = function () {
 
   const Logic = {
     UI: {
-      renderPassedItems() {
-        return clientAffectedData.map((data) => {
-          return <ItemBase base="dynamic" key={data.id} data={data} />;
-        });
+      renderItems() {
+        if (
+          clientAffectedData[0]?.type === "coldDataItem" ||
+          clientAffectedData.length === 0
+        ) {
+          return <></>;
+        } else {
+          return clientAffectedData.map((data) => {
+            return <ItemBase base="dynamic" key={data.id} data={data} />;
+          });
+        }
       },
     },
   };
@@ -79,7 +86,7 @@ const Dynamic = function () {
   return (
     <div className={classes.body}>
       <HeadBase type="dynamic" />
-      {Logic.UI.renderPassedItems()}
+      {Logic.UI.renderItems()}
       <FootBase type="dynamic" />
     </div>
   );

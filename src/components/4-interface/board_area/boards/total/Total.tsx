@@ -47,44 +47,16 @@ const Total = function () {
   const Logic = {
     UI: {
       renderItems() {
-        return clientAffectedData.map((item) => {
-          return <ItemBase base="total" key={item.id} data={item} />;
-        });
-      },
-    },
-    Data: {
-      createSingleBoardSnapshot(boardId: string) {
-        const q = query(
-          collection(db, `MainUserDataPool_${uid}`, "UserBoards", `${boardId}`),
-          where("type", "==", "item")
-        );
-        return getDocs(q);
-      },
-      initializePromiseAll() {
-        return Promise.all(
-          boardNames.map((board) => {
-            return this.createSingleBoardSnapshot(board[0]);
-          })
-        ).then((snapArray) => {
-          return Promise.resolve(snapArray);
-        });
-      },
-      convertAllItems(rawSnapshotArray: boardItemsSnapshotArray) {
-        const unpackedAndRepackedArray = [] as CompositItemData[];
-
-        rawSnapshotArray.forEach((singleSnapCollection) => {
-          singleSnapCollection.forEach((doc) => {
-            const compositItem: CompositItemData = {
-              id: doc.id,
-              ...(doc.data() as RawItemFields),
-            };
-            unpackedAndRepackedArray.push(compositItem);
+        if (
+          clientAffectedData[0]?.type === "coldDataItem" ||
+          clientAffectedData.length === 0
+        ) {
+          return <></>;
+        } else {
+          return clientAffectedData.map((item) => {
+            return <ItemBase base="total" key={item.id} data={item} />;
           });
-        });
-        return Promise.resolve(unpackedAndRepackedArray);
-      },
-      mergeToRaw(allItemsArray: CompositItemData[]) {
-        rawQueryItems.setData(allItemsArray);
+        }
       },
     },
   };
@@ -142,15 +114,6 @@ const Total = function () {
       });
     };
   }, [state]);
-
-  // useEffect(() => {
-  //   if (state === "warm") {
-  //     Logic.Data.initializePromiseAll
-  //       .bind(Logic.Data)()
-  //       .then(Logic.Data.convertAllItems.bind(Logic.Data))
-  //       .then(Logic.Data.mergeToRaw.bind(Logic.Data));
-  //   }
-  // }, [boardNames]);
 
   //__c-structure____
   return (

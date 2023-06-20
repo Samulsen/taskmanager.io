@@ -25,7 +25,6 @@ import EffectFilter from "./effectFilter/EffectFilter";
 import EffectSort from "./effectSort/EffectSort";
 import SepSmall from "./seperator/sepSmall/SepSmall";
 import { CompositItemData } from "../../../../../types/types";
-import { useAsyncValue } from "react-router-dom";
 
 //---------COMPONENT----------\
 

@@ -26,7 +26,10 @@ const BoardOrigin: FC<{ boardID: string | undefined }> = function ({
             break;
           }
         }
-        return <Link to={`../${boardID}`}> {boardName}</Link>;
+        if (boardName.length > 15) {
+          boardName = boardName.slice(0, 12) + "...";
+        }
+        return <Link to={`../board/${boardID}`}>{boardName}</Link>;
       },
     },
   };
