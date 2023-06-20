@@ -1,7 +1,7 @@
 //---------IMPORTS------------\
 
 //__i-libraries______
-import { FC, Dispatch, SetStateAction } from "react";
+import { FC } from "react";
 //__i-style__________
 import classes from "./_AbortSelection.module.scss";
 import abortIcon from "./abort.svg";
