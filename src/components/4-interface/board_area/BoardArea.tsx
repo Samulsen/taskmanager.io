@@ -4,7 +4,6 @@ import classes from "./_BoardArea.module.scss";
 import { FC, ReactNode } from "react";
 import ViewControl from "./viewControl/ViewControl";
 import ItemControl from "./itemControl/ItemControl";
-import ItemControlContextProvider from "../../../context/ItemControlContext";
 
 //---------COMPONENT----------\
 
@@ -22,10 +21,8 @@ const BoardArea: FC<{ children: ReactNode }> = function ({ children: board }) {
   return (
     <div className={classes.body}>
       <ViewControl />
-      <ItemControlContextProvider>
-        {board}
-        <ItemControl />
-      </ItemControlContextProvider>
+      {board}
+      <ItemControl />
     </div>
   );
 };

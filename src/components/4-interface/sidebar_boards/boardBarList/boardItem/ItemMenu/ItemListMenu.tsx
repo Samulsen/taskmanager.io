@@ -20,6 +20,7 @@ import abortIcon from "./svgs/abort.svg";
 //__i-context________
 import { BoardContext } from "../../../../../../context/BoardContext";
 import { AuthContext } from "../../../../../../context/AuthContext";
+import { ItemControlContext } from "../../../../../../context/ItemControlContext";
 //__i-helper_________
 import useClickOutside from "../../../../../../hooks/useClickOutside";
 
@@ -31,9 +32,10 @@ const ItemListMenu: FC<{
 }> = function ({ setMenuState, boardId, setRenameState }) {
   //__c-hooks________
   const { boardControl } = BoardContext()!;
-  const navigate = useNavigate();
-  const [requestDeletion, setRegquestDeletion] = useState(false);
   const uid = AuthContext()?.userObject?.uid;
+  const [requestDeletion, setRegquestDeletion] = useState(false);
+  const { closingMode, itemSelection, itemControl } = ItemControlContext()!;
+  const navigate = useNavigate();
   //__c-logic________
   const Logic = {
     UI: {
@@ -121,6 +123,11 @@ const ItemListMenu: FC<{
         });
       },
       confirmDeletion() {
+        const itemSelectionBoard = itemSelection.list[0].board;
+        if (itemControl.state && itemSelectionBoard === boardId) {
+          closingMode.setState(true);
+          itemSelection.update([]);
+        }
         this.deleteFromBoardNamesList()
           .then(this.getAllLeftDocs)
           .then(this.deleteLeftDocs);
