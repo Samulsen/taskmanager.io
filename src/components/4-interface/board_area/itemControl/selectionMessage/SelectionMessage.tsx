@@ -4,8 +4,9 @@
 import { FC } from "react";
 //__i-style__________
 import classes from "./_SelectionMessage.module.scss";
-import { ItemControlContext } from "../../../../../context/ItemControlContext";
 //__i-context________
+import { ItemControlContext } from "../../../../../context/ItemControlContext";
+import { ActiveDataContext } from "../../../../../context/ActiveDataContext";
 //__i-components_____
 
 //----------PRE---------------\
@@ -19,6 +20,7 @@ const SelectionMessage: FC<props> = function () {
   //__c-hooks________
 
   const { itemSelection } = ItemControlContext()!;
+  const { clientAffectedData } = ActiveDataContext()!;
 
   //__c-logic________
 
@@ -28,7 +30,11 @@ const SelectionMessage: FC<props> = function () {
         if (itemSelection.list.length === 1) {
           return "Task selected";
         } else {
-          return "Tasks selected";
+          if (clientAffectedData.length === itemSelection.list.length) {
+            return "all Tasks selected";
+          } else {
+            return "Tasks selected";
+          }
         }
       },
     },
