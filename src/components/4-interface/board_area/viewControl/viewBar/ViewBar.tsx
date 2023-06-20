@@ -39,8 +39,6 @@ const ViewBar = function () {
 
   const Logic = {
     initAffectionChain() {
-      // rawQueryItems.data.sort((a, b) => b.timestamp.seconds - a.timestamp.seconds)
-      // return Promise.resolve(rawQueryItems.data);
       return Promise.resolve(rawQueryItems.data);
     },
     View: {
@@ -52,7 +50,16 @@ const ViewBar = function () {
             resolve(none_AffectedData);
           });
         },
-        // forDone(none_AffectedData: CompositItemData[]) {},
+        forDone(
+          none_AffectedData: CompositItemData[]
+        ): Promise<CompositItemData[]> {
+          return new Promise((resolve) => {
+            const onlyDone = none_AffectedData.filter(
+              (item) => item.status === "done"
+            );
+            resolve(onlyDone);
+          });
+        },
         // forProgress(none_AffectedData: CompositItemData[]) {},
         // forUntouched(none_AffectedData: CompositItemData[]) {},
       },
@@ -60,16 +67,16 @@ const ViewBar = function () {
         if (viewControl.state === "Home") {
           return this.Option.forHome(none_AffectedData);
         }
-        return [];
-        // if (viewControl.state === "Done") {
-        //   return this.Option.forDone(none_AffectedData);
-        // }
+        if (viewControl.state === "Done") {
+          return this.Option.forDone(none_AffectedData);
+        }
         // if (viewControl.state === "In Progress") {
         //   return this.Option.forProgress(none_AffectedData);
         // }
         // if (viewControl.state === "Untouched") {
         //   return this.Option.forUntouched(none_AffectedData);
         // }
+        return [];
       },
     },
     Filter: {
@@ -129,12 +136,14 @@ const ViewBar = function () {
 
   //__c-effects______
 
+  setClienAffectedData(rawQueryItems.data);
+
   // useEffect(() => {
-  Logic.initAffectionChain()
-    .then(Logic.View.decide.bind(Logic.View))
-    .then(Logic.Filter.decide.bind(Logic.Filter))
-    .then(Logic.Sort.decide.bind(Logic.Sort))
-    .then(Logic.finishAffectionChain.bind(Logic));
+  // Logic.initAffectionChain()
+  //   .then(Logic.View.decide.bind(Logic.View))
+  //   .then(Logic.Filter.decide.bind(Logic.Filter))
+  //   .then(Logic.Sort.decide.bind(Logic.Sort))
+  //   .then(Logic.finishAffectionChain.bind(Logic));
   // }, [
   //   viewControl.state,
   //   sortControl.state,

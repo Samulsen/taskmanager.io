@@ -1,7 +1,7 @@
 //---------IMPORTS------------\
 
 import classes from "./_ViewTemplate.module.scss";
-import { FC } from "react";
+import { FC, MouseEvent } from "react";
 import {
   BoardContext,
   ContextValueTypeBoard,
@@ -22,8 +22,10 @@ const ViewTemplate: FC<props> = function ({ effect, icon }) {
   } = BoardContext() as ContextValueTypeBoard;
 
   const Logic = {
-    setSelfSelection() {
-      setState(effect);
+    setSelfSelection(event: MouseEvent) {
+      if (event.target === event.currentTarget) {
+        setState(effect);
+      }
     },
     evaluateStyle() {
       let mystate;
