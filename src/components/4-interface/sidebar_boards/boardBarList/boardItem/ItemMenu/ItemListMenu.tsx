@@ -87,8 +87,10 @@ const ItemListMenu: FC<{
         setRegquestDeletion(false);
       },
       deleteFromBoardNamesList() {
-        navigate("total");
-        boardControl.setState("total");
+        if (boardControl.state === boardId) {
+          navigate("total");
+          boardControl.setState("total");
+        }
         const userBoardsRef = doc(db, `MainUserDataPool_${uid}`, "UserBoards");
         const namePath = `boardNames.${boardId}`;
         return updateDoc(userBoardsRef, { [namePath]: deleteField() });
@@ -123,7 +125,7 @@ const ItemListMenu: FC<{
         });
       },
       confirmDeletion() {
-        const itemSelectionBoard = itemSelection.list[0].board;
+        const itemSelectionBoard = itemSelection.list[0]?.board;
         if (itemControl.state && itemSelectionBoard === boardId) {
           closingMode.setState(true);
           itemSelection.update([]);
