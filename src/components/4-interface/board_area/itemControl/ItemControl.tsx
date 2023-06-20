@@ -20,7 +20,7 @@ const ItemControl = function () {
 
   const [mergedRequest, setMergeRequest] = useState("none");
   const { itemControl, closingMode, itemSelection } = ItemControlContext()!;
-  const { boardControl } = BoardContext()!;
+  const { boardControl, viewControl } = BoardContext()!;
 
   //__c-logic________
 
@@ -99,6 +99,7 @@ const ItemControl = function () {
 
   useEffect(() => {
     //__NOTE: forbid switching with active controlItem
+    //__NOTE: later: when view cotrol chagens same effect!
     if (itemControl.state) {
       closingMode.setState(true);
       itemSelection.update([]);
