@@ -37,13 +37,20 @@ const TickboxAll: FC<props> = function () {
         }
       },
       enable() {
-        const allCurrentIdsArr: itemOrigin[] = clientAffectedData.map(
-          (item) => {
-            return { id: item.id, board: item.board_origin };
-          }
-        );
-        itemControl.setState(true);
-        itemSelection.update(allCurrentIdsArr);
+        if (
+          !(
+            clientAffectedData[0]?.type === "coldDataItem" ||
+            clientAffectedData.length === 0
+          )
+        ) {
+          const allCurrentIdsArr: itemOrigin[] = clientAffectedData.map(
+            (item) => {
+              return { id: item.id, board: item.board_origin };
+            }
+          );
+          itemControl.setState(true);
+          itemSelection.update(allCurrentIdsArr);
+        }
       },
       disable() {
         itemSelection.update([]);
