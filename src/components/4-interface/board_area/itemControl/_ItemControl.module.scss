@@ -32,6 +32,19 @@
   animation: closeItemControl 0.3s ease-in-out 0s 1 normal forwards;
 }
 
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  width: fit-content;
+  font-size: 1.5rem;
+  margin: auto;
+  img {
+    width: 5rem;
+  }
+}
+
 @keyframes openItemControl {
   from {
     opacity: 0;

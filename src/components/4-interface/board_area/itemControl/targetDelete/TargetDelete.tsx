@@ -1,7 +1,7 @@
 //---------IMPORTS------------\
 
 //__i-libraries______
-import { Dispatch, FC, SetStateAction } from "react";
+import { Dispatch, FC, SetStateAction, MouseEvent } from "react";
 //__i-style__________
 import classes from "./_TargetDelete.module.scss";
 import deleteIcon from "./delete.svg";
@@ -34,6 +34,15 @@ const TargetDelete: FC<props> = function ({ mergeRequest }) {
   //__c-logic________
 
   const Logic = {
+    handleDeletionRequest(event: MouseEvent) {
+      const target = (event.target as HTMLElement).id;
+      if (target === "deleteBody" || target === "deleteBinIcon") {
+        Logic.Data.initDeletion()
+          .then(Logic.Data.deleteSelection.bind(Logic.Data))
+          .then(Logic.Data.endDeletionRequest.bind(Logic.Data));
+      }
+    },
+
     UI: {},
 
     Data: {
@@ -68,8 +77,12 @@ const TargetDelete: FC<props> = function ({ mergeRequest }) {
 
   //__c-structure____
   return (
-    <div className={classes.body}>
-      <img src={deleteIcon} alt="deleteIconItemControl" />
+    <div
+      id="deleteBody"
+      className={classes.body}
+      onClick={Logic.handleDeletionRequest}
+    >
+      <img id="deleteBinIcon" src={deleteIcon} alt="deleteIconItemControl" />
       Delete
     </div>
   );

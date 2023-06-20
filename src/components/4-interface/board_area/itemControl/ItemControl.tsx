@@ -3,6 +3,7 @@
 import { AnimationEvent, useState } from "react";
 //__i-style__________
 import classes from "./_ItemControl.module.scss";
+import loadIcon from "./loadDelReq.svg";
 //__i-context________
 import { ItemControlContext } from "../../../../context/ItemControlContext";
 //__i-components_____
@@ -65,6 +66,10 @@ const ItemControl = function () {
             >
               <div className={classes.controler}>
                 <TargetCount />
+                <div className={classes.loading}>
+                  deleting items...
+                  <img src={loadIcon} alt="loadIconDuringDeletion" />
+                </div>
               </div>
             </div>
           );

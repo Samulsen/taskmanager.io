@@ -64,7 +64,9 @@ const TickboxAll: FC<props> = function () {
   //__c-effects______
 
   useEffect(() => {
-    if (itemSelection.list.length === clientAffectedData.length) {
+    const selectionLen = itemSelection.list.length;
+    const localAllLen = clientAffectedData.length;
+    if (selectionLen === localAllLen && localAllLen > 0) {
       setSelectAllState(true);
     } else {
       setSelectAllState(false);
