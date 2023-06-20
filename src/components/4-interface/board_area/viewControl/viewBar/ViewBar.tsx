@@ -40,7 +40,41 @@ const ViewBar = function () {
   const Logic = {
     tempAffectionDataPool: rawQueryItems.data as CompositItemData[],
     View: {
+      Option: {
+        forHome() {},
+        forDone() {
+          const onlyDone = Logic.tempAffectionDataPool.filter(
+            (item) => item.status === "done"
+          );
+          Logic.tempAffectionDataPool = onlyDone;
+        },
+        forProgress() {
+          const onlyProgress = Logic.tempAffectionDataPool.filter(
+            (item) => item.status === "progress"
+          );
+          Logic.tempAffectionDataPool = onlyProgress;
+        },
+        forUntouched() {
+          const onlyUntouched = Logic.tempAffectionDataPool.filter(
+            (item) => item.status === "untouched"
+          );
+          Logic.tempAffectionDataPool = onlyUntouched;
+        },
+      },
       decide() {
+        if (viewControl.state === "Home") {
+          this.Option.forHome();
+        }
+        if (viewControl.state === "Done") {
+          this.Option.forDone();
+        }
+        if (viewControl.state === "In Progress") {
+          this.Option.forProgress();
+        }
+        if (viewControl.state === "Untouched") {
+          this.Option.forUntouched();
+        }
+
         return Logic;
       },
     },
@@ -50,28 +84,25 @@ const ViewBar = function () {
       },
     },
     Sort: {
-      Options: {
+      Option: {
         unaffected() {
           if (sortControl.direction === "ase") {
             const ascendingOrder = Logic.tempAffectionDataPool.sort(
               (a, b) => a.timestamp.seconds - b.timestamp.seconds
             );
-
             Logic.tempAffectionDataPool = ascendingOrder;
           } else {
             const descendingOrder = Logic.tempAffectionDataPool.sort(
               (a, b) => b.timestamp.seconds - a.timestamp.seconds
             );
-
             Logic.tempAffectionDataPool = descendingOrder;
           }
         },
       },
       decide() {
         if (sortControl.state === "creationtime") {
-          Logic.Sort.Options.unaffected();
+          Logic.Sort.Option.unaffected();
         }
-
         return Logic;
       },
     },
@@ -82,7 +113,9 @@ const ViewBar = function () {
 
   //__c-effects______
 
-  Logic.View.decide().Filter.decide().Sort.decide().setFinalAffection();
+  useEffect(() => {
+    Logic.View.decide().Filter.decide().Sort.decide().setFinalAffection();
+  }, [viewControl, sortControl, filterControl, rawQueryItems]);
 
   //__c-structure____
 
