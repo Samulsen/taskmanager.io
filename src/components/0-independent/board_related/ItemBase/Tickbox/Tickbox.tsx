@@ -1,7 +1,7 @@
 //---------IMPORTS------------\
 
 //__i-libraries______
-import { FC, useState, MouseEvent, useEffect } from "react";
+import { FC, MouseEvent, Dispatch, SetStateAction } from "react";
 //__i-style__________
 import classes from "./_Tickbox.module.scss";
 import tickIcon from "./check.svg";
@@ -16,30 +16,19 @@ import { itemOrigin } from "../ItemBase";
 
 interface props {
   itemOrigin: itemOrigin;
+  selfSelection: { state: boolean; set: Dispatch<SetStateAction<boolean>> };
 }
 
 //---------COMPONENT----------\
 
-const Tickbox: FC<props> = function ({ itemOrigin }) {
+const Tickbox: FC<props> = function ({ itemOrigin, selfSelection }) {
   //__c-hooks________
 
   const { itemSelection, itemControl, closingMode } = ItemControlContext()!;
-  const [selfSelection, setSelfSelection] = useState(false);
 
   //__c-logic________
 
   const Logic = {
-    testSelectionState() {
-      const idSelectionArr: string[] = itemSelection.list.map((itemOrigin) => {
-        return itemOrigin.id;
-      });
-
-      if (idSelectionArr.includes(itemOrigin.id)) {
-        setSelfSelection(true);
-      } else {
-        setSelfSelection(false);
-      }
-    },
     addToSelection() {
       const newSelectionSnap = [...itemSelection.list, itemOrigin];
       itemSelection.update(newSelectionSnap);
@@ -72,7 +61,7 @@ const Tickbox: FC<props> = function ({ itemOrigin }) {
         }
       },
       renderBoxSelection() {
-        return selfSelection ? (
+        return selfSelection.state ? (
           <div className={`${classes.box} ${classes.selected}`}>
             <img
               onClick={Logic.UI.unselectItem}
@@ -90,12 +79,6 @@ const Tickbox: FC<props> = function ({ itemOrigin }) {
       },
     },
   };
-
-  //__c-effects______
-
-  useEffect(() => {
-    Logic.testSelectionState();
-  }, [itemSelection.list]);
 
   //__c-structure____
   return <div className={classes.body}>{Logic.UI.renderBoxSelection()}</div>;
