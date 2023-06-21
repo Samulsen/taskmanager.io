@@ -7,6 +7,8 @@ import classes from "./_EditSort.module.scss";
 //__i-context________
 //__i-components_____
 import useClickOutside from "../../../../../../../hooks/useClickOutside";
+import DirectionBox from "./DirectionBox/DirectionBox";
+import TypeBox from "./TypeBox/TypeBox";
 
 //----------PRE---------------\
 
@@ -31,16 +33,9 @@ const EditSort: FC<props> = function ({ setEditMode }) {
   return (
     <div className={classes.body} ref={useClickOutside(setEditMode)}>
       <div className={classes.pointer}></div>
-      <div className={classes.directionBox}>
-        <div className={classes.descending}></div>
-        <div className={classes.ascending}></div>
-      </div>
+      <DirectionBox />
       <div className={classes.seperator}></div>
-      <div className={classes.typeBox}>
-        <div>Priority</div>
-        <div>Itemage</div>
-        <div>Date</div>
-      </div>
+      <TypeBox />
     </div>
   );
 };

@@ -9,6 +9,11 @@
   top: 4rem;
   border-radius: 1rem;
   padding: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .pointer {
@@ -19,4 +24,10 @@
   background-color: var(--pop-up-background);
   top: -1rem;
   left: 8rem;
+}
+
+.seperator {
+  height: 100%;
+  width: 0.1rem;
+  background-color: white;
 }
