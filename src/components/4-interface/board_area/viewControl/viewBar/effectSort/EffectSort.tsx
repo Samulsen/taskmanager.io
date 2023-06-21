@@ -54,7 +54,7 @@ const EffectSort = function () {
         src={sortIcon}
         alt="filterIconBar"
       />
-      Sort
+      <span>Sort</span>
       {Logic.UI.renderEditMode()}
     </div>
   );

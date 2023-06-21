@@ -49,7 +49,7 @@ const EffectFilter = function () {
         src={filterIcon}
         alt="filterIconBar"
       />
-      Filter
+      <span>Filter</span>
       {Logic.Edit.render()}
     </div>
   );
