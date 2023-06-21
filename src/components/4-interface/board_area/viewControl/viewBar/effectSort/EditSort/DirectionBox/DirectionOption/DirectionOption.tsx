@@ -3,22 +3,23 @@
 //__i-libraries______
 import { FC } from "react";
 //__i-style__________
-import classes from "./_DirectionBox.module.scss";
-import ascIcon from "./ascending.svg";
-import desIcon from "./descending.svg";
+import classes from "./_DirectionOption.module.scss";
 //__i-context________
 //__i-components_____
-import DirectionOption from "./DirectionOption/DirectionOption";
 
 //----------PRE---------------\
 
 //__p-types_________
 
-interface props {}
+interface props {
+  start: number;
+  end: number;
+  icon: string;
+}
 
 //---------COMPONENT----------\
 
-const DirectionBox: FC<props> = function () {
+const DirectionOption: FC<props> = function ({ start, end, icon }) {
   //__c-hooks________
 
   //__c-logic________
@@ -31,12 +32,15 @@ const DirectionBox: FC<props> = function () {
   //__c-structure____
   return (
     <div className={classes.body}>
-      <DirectionOption start={9} end={1} icon={desIcon} />
-      <DirectionOption start={1} end={9} icon={ascIcon} />
+      <div className={classes.num}>
+        <span>{start}</span>
+        <span>{end}</span>
+      </div>
+      <img className={classes.icon} src={icon} alt="" />
     </div>
   );
 };
 
 //---------EXPORTS------------\
 
-export default DirectionBox;
+export default DirectionOption;
