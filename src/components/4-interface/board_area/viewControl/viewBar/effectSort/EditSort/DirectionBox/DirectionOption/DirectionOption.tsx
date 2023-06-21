@@ -1,7 +1,7 @@
 //---------IMPORTS------------\
 
 //__i-libraries______
-import { FC } from "react";
+import { FC, MouseEvent } from "react";
 //__i-style__________
 import classes from "./_DirectionOption.module.scss";
 //__i-context________
@@ -29,6 +29,20 @@ const DirectionOption: FC<props> = function ({ start, end, icon, direction }) {
   //__c-logic________
 
   const Logic = {
+    handleDirectionRequest(event: MouseEvent) {
+      const origin = event.target as HTMLElement;
+      const receiver = event.currentTarget as HTMLElement;
+      const idArr = [
+        `${direction}NumBox`,
+        `${direction}Start`,
+        `${direction}End`,
+        `${direction}Icon`,
+      ];
+
+      if (origin === receiver || idArr.includes(origin.id)) {
+        sortControl.setDirection(direction);
+      }
+    },
     UI: {
       Classes: {
         forBody() {
@@ -43,12 +57,20 @@ const DirectionOption: FC<props> = function ({ start, end, icon, direction }) {
 
   //__c-structure____
   return (
-    <div className={Logic.UI.Classes.forBody()}>
-      <div className={classes.num}>
-        <span>{start}</span>
-        <span>{end}</span>
+    <div
+      className={Logic.UI.Classes.forBody()}
+      onClick={Logic.handleDirectionRequest}
+    >
+      <div id={`${direction}NumBox`} className={classes.num}>
+        <span id={`${direction}Start`}>{start}</span>
+        <span id={`${direction}End`}>{end}</span>
       </div>
-      <img className={classes.icon} src={icon} alt="" />
+      <img
+        id={`${direction}Icon`}
+        className={classes.icon}
+        src={icon}
+        alt={`${direction}OptionIconSort`}
+      />
     </div>
   );
 };
