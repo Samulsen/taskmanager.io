@@ -15,7 +15,7 @@ interface props {}
 
 //---------COMPONENT----------\
 
-const EditFilterButtonMenu:FC<props> = function () {
+const EditFilterButtonMenu: FC<props> = function () {
   //__c-hooks________
 
   //__c-logic________
@@ -26,10 +26,18 @@ const EditFilterButtonMenu:FC<props> = function () {
   };
 
   //__c-structure____
-  return <div className={classes.body}></div>;
+  return (
+    <div className={classes.body}>
+      <div id="apply" className={classes.apply}>
+        Apply
+      </div>
+      <div id="reset" className={classes.reset}>
+        Reset
+      </div>
+    </div>
+  );
 };
 
 //---------EXPORTS------------\
 
 export default EditFilterButtonMenu;
-
