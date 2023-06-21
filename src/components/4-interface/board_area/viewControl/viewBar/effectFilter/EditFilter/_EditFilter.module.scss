@@ -1,2 +1,20 @@
-.body {}
+.body {
+  position: absolute;
+  z-index: 60;
+  width: 50rem;
+  height: 10rem;
+  top: 4rem;
+  right: 1rem;
+  background-color: var(--pop-up-background);
+  border-radius: 1rem;
+}
 
+.pointer {
+  position: absolute;
+  background-color: var(--pop-up-background);
+  width: 2rem;
+  height: 2rem;
+  top: -1rem;
+  right: 1.5rem;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
