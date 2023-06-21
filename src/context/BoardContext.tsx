@@ -58,9 +58,8 @@ const BoardContextProvider: FC<{ children: ReactNode }> = function ({
   const [viewControlSelection, setViewControlSelection] = useState("Home");
   const [boardListSelection, setBoardListSelection] = useState("total");
   const [filterControlSelection, setfilterControlSelection] = useState("none");
-  const [sortControlSelection, setSortControlSelection] =
-    useState("creationtime");
-  const [sortControlDirection, setSortControlDirection] = useState("ase");
+  const [sortControlSelection, setSortControlSelection] = useState("Itemage");
+  const [sortControlDirection, setSortControlDirection] = useState("des");
   const [rawQueryItems, setRawQueryItems] =
     useState<CompositItemData[]>(coldRawQueryData);
 

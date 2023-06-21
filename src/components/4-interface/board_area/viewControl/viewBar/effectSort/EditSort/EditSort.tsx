@@ -8,7 +8,7 @@ import classes from "./_EditSort.module.scss";
 //__i-components_____
 import useClickOutside from "../../../../../../../hooks/useClickOutside";
 import DirectionBox from "./DirectionBox/DirectionBox";
-import TypeBox from "./TypeBox/TypeBox";
+import SortOptionBox from "./SortOptionBox/SortOptionBox";
 
 //----------PRE---------------\
 
@@ -35,7 +35,7 @@ const EditSort: FC<props> = function ({ setEditMode }) {
       <div className={classes.pointer}></div>
       <DirectionBox />
       <div className={classes.seperator}></div>
-      <TypeBox />
+      <SortOptionBox />
     </div>
   );
 };

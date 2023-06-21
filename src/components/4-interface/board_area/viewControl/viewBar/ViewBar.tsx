@@ -91,7 +91,7 @@ const ViewBar = function () {
     Sort: {
       Option: {
         unaffected() {
-          if (sortControl.direction === "ase") {
+          if (sortControl.direction === "des") {
             const ascendingOrder = Logic.tempAffectionDataPool.sort(
               (a, b) => b.timestamp.seconds - a.timestamp.seconds
             );
@@ -105,7 +105,7 @@ const ViewBar = function () {
         },
       },
       decide() {
-        if (sortControl.state === "creationtime") {
+        if (sortControl.state === "Itemage") {
           Logic.Sort.Option.unaffected();
         }
         return Logic;
@@ -119,7 +119,10 @@ const ViewBar = function () {
   //__c-effects______
 
   useEffect(() => {
-    Logic.View.decide().Filter.decide().Sort.decide().setFinalAffection();
+    Logic.View.decide();
+    Logic.Filter.decide();
+    Logic.Sort.decide();
+    Logic.setFinalAffection();
   }, [viewControl, sortControl, filterControl, rawQueryItems]);
 
   //__c-structure____

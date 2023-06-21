@@ -3,7 +3,7 @@
 //__i-libraries______
 import { FC } from "react";
 //__i-style__________
-import classes from "./_TypeBox.module.scss";
+import classes from "./_SortOptionBox.module.scss";
 //__i-context________
 //__i-components_____
 
@@ -15,7 +15,7 @@ interface props {}
 
 //---------COMPONENT----------\
 
-const TypeBox: FC<props> = function () {
+const SortOptionBox: FC<props> = function () {
   //__c-hooks________
 
   //__c-logic________
@@ -37,4 +37,4 @@ const TypeBox: FC<props> = function () {
 
 //---------EXPORTS------------\
 
-export default TypeBox;
+export default SortOptionBox;
