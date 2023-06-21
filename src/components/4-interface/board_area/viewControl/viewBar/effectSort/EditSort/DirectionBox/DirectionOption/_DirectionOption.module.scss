@@ -1,5 +1,4 @@
 .body {
-  border: white solid 0.1rem;
   border-radius: 1rem;
   padding: 0.6rem;
   display: flex;
@@ -16,4 +15,15 @@
   display: flex;
   flex-wrap: nowrap;
   flex-direction: column;
+}
+
+.selected {
+  background-color: var(--transparent-main-green);
+}
+
+.unselected {
+  border: white solid 0.1rem;
+  &:hover {
+    background-color: var(--transparent-main-green);
+  }
 }

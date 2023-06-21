@@ -93,12 +93,12 @@ const ViewBar = function () {
         unaffected() {
           if (sortControl.direction === "ase") {
             const ascendingOrder = Logic.tempAffectionDataPool.sort(
-              (a, b) => a.timestamp.seconds - b.timestamp.seconds
+              (a, b) => b.timestamp.seconds - a.timestamp.seconds
             );
             Logic.tempAffectionDataPool = ascendingOrder;
           } else {
             const descendingOrder = Logic.tempAffectionDataPool.sort(
-              (a, b) => b.timestamp.seconds - a.timestamp.seconds
+              (a, b) => a.timestamp.seconds - b.timestamp.seconds
             );
             Logic.tempAffectionDataPool = descendingOrder;
           }
