@@ -15,7 +15,7 @@ interface props {}
 
 //---------COMPONENT----------\
 
-const FilterTarget:FC<props> = function () {
+const FilterTarget: FC<props> = function () {
   //__c-hooks________
 
   //__c-logic________
@@ -26,10 +26,9 @@ const FilterTarget:FC<props> = function () {
   };
 
   //__c-structure____
-  return <div className={classes.body}></div>;
+  return <div className={classes.body}>Priority</div>;
 };
 
 //---------EXPORTS------------\
 
 export default FilterTarget;
-

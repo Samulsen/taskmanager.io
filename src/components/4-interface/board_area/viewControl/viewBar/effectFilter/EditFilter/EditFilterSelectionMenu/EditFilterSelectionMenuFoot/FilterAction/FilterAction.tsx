@@ -15,7 +15,7 @@ interface props {}
 
 //---------COMPONENT----------\
 
-const FilterAction:FC<props> = function () {
+const FilterAction: FC<props> = function () {
   //__c-hooks________
 
   //__c-logic________
@@ -26,10 +26,9 @@ const FilterAction:FC<props> = function () {
   };
 
   //__c-structure____
-  return <div className={classes.body}></div>;
+  return <div className={classes.body}>includes not</div>;
 };
 
 //---------EXPORTS------------\
 
 export default FilterAction;
-

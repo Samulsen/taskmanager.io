@@ -31,8 +31,8 @@ const EditFilterSelectionMenuFoot: FC<props> = function () {
   //__c-structure____
   return (
     <div className={classes.body}>
-      <FilterAction />
       <FilterTarget />
+      <FilterAction />
       <FilterValue />
     </div>
   );

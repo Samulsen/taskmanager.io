@@ -1,2 +1,9 @@
-.body {}
-
+.body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--board-blue-head);
+  height: 3rem;
+  width: 10rem;
+  border-radius: 0.5rem;
+}

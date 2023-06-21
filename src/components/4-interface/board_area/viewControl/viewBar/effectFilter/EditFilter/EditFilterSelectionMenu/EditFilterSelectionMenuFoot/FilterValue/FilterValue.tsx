@@ -15,7 +15,7 @@ interface props {}
 
 //---------COMPONENT----------\
 
-const FilterValue:FC<props> = function () {
+const FilterValue: FC<props> = function () {
   //__c-hooks________
 
   //__c-logic________
@@ -26,10 +26,9 @@ const FilterValue:FC<props> = function () {
   };
 
   //__c-structure____
-  return <div className={classes.body}></div>;
+  return <div className={classes.body}>Today</div>;
 };
 
 //---------EXPORTS------------\
 
 export default FilterValue;
-
