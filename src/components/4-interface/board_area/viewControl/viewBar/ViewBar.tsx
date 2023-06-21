@@ -11,6 +11,7 @@ import homeIcon from "./svgs/homeIcon.svg";
 import doneIcon from "./svgs/doneIcon.svg";
 import progressIcon from "./svgs/progressIcon.svg";
 import untouchedIcon from "./svgs/untouchedIcon.svg";
+import unassignedIcon from "./svgs/unassignedIcon.svg";
 
 //__i-context________
 
@@ -19,12 +20,12 @@ import { BoardContext } from "../../../../../context/BoardContext";
 
 //__i-components_____
 
+import { CompositItemData } from "../../../../../types/types";
 import ViewTemplate from "./viewTemplate/ViewTemplate";
 import SepBig from "./seperator/sepBig/SepBig";
 import EffectFilter from "./effectFilter/EffectFilter";
 import EffectSort from "./effectSort/EffectSort";
 import SepSmall from "./seperator/sepSmall/SepSmall";
-import { CompositItemData } from "../../../../../types/types";
 
 //---------COMPONENT----------\
 
@@ -38,103 +39,100 @@ const ViewBar = function () {
   //__c-logic________
 
   const Logic = {
-    initAffectionChain() {
-      // rawQueryItems.data.sort((a, b) => a.timestamp.seconds - b.timestamp.seconds)
-      // return Promise.resolve(rawQueryItems.data);
-      return Promise.resolve(
-        rawQueryItems.data.sort(
-          (a, b) => a.timestamp.seconds - b.timestamp.seconds
-        )
-      );
-    },
+    tempAffectionDataPool: rawQueryItems.data as CompositItemData[],
     View: {
       Option: {
-        forHome(
-          none_AffectedData: CompositItemData[]
-        ): Promise<CompositItemData[]> {
-          return new Promise((resolve) => {
-            resolve(none_AffectedData);
-          });
+        forUnassigned() {
+          const onlyUnassigned = Logic.tempAffectionDataPool.filter(
+            (item) => item.status === "none"
+          );
+          Logic.tempAffectionDataPool = onlyUnassigned;
         },
-        // forDone(none_AffectedData: CompositItemData[]) {},
-        // forProgress(none_AffectedData: CompositItemData[]) {},
-        // forUntouched(none_AffectedData: CompositItemData[]) {},
+        forDone() {
+          const onlyDone = Logic.tempAffectionDataPool.filter(
+            (item) => item.status === "done"
+          );
+          Logic.tempAffectionDataPool = onlyDone;
+        },
+        forProgress() {
+          const onlyProgress = Logic.tempAffectionDataPool.filter(
+            (item) => item.status === "progress"
+          );
+          Logic.tempAffectionDataPool = onlyProgress;
+        },
+        forUntouched() {
+          const onlyUntouched = Logic.tempAffectionDataPool.filter(
+            (item) => item.status === "untouched"
+          );
+          Logic.tempAffectionDataPool = onlyUntouched;
+        },
       },
-      decide(none_AffectedData: CompositItemData[]) {
-        if (viewControl.state === "Home") {
-          return this.Option.forHome(none_AffectedData);
+      decide() {
+        if (viewControl.state === "Unassigned") {
+          this.Option.forUnassigned();
         }
-        return [];
-        // if (viewControl.state === "Done") {
-        //   return this.Option.forDone(none_AffectedData);
-        // }
-        // if (viewControl.state === "In Progress") {
-        //   return this.Option.forProgress(none_AffectedData);
-        // }
-        // if (viewControl.state === "Untouched") {
-        //   return this.Option.forUntouched(none_AffectedData);
-        // }
+        if (viewControl.state === "Done") {
+          this.Option.forDone();
+        }
+        if (viewControl.state === "In Progress") {
+          this.Option.forProgress();
+        }
+        if (viewControl.state === "Untouched") {
+          this.Option.forUntouched();
+        }
+        return Logic;
       },
     },
     Filter: {
-      Option: {
-        unaffected(
-          view_AffectedData: CompositItemData[]
-        ): Promise<CompositItemData[]> {
-          return new Promise((resolve) => {
-            resolve(view_AffectedData);
-          });
-        },
-      },
-      decide(view_AffectedData: CompositItemData[]) {
-        if (filterControl.state === "none") {
-          return this.Option.unaffected(view_AffectedData);
-        }
-        return [];
+      decide() {
+        return Logic;
       },
     },
     Sort: {
       Option: {
-        unaffected(
-          view_filter_AffectedData: CompositItemData[]
-        ): Promise<CompositItemData[]> {
-          return new Promise((resolve) => {
-            resolve(view_filter_AffectedData);
-          });
+        unaffected() {
+          // debugger;
+          if (sortControl.direction === "ase") {
+            const ascendingOrder = Logic.tempAffectionDataPool.sort(
+              (a, b) => b.timestamp.seconds - a.timestamp.seconds
+            );
+            Logic.tempAffectionDataPool = ascendingOrder;
+          } else {
+            const descendingOrder = Logic.tempAffectionDataPool.sort(
+              (a, b) => a.timestamp.seconds - b.timestamp.seconds
+            );
+            Logic.tempAffectionDataPool = descendingOrder;
+          }
         },
       },
-      decide(view_filter_AffectedData: CompositItemData[]) {
-        if (sortControl.state === "none") {
-          return this.Option.unaffected(view_filter_AffectedData);
+      decide() {
+        if (sortControl.state === "Itemage") {
+          Logic.Sort.Option.unaffected();
         }
-        return [];
+        return Logic;
       },
     },
-    finishAffectionChain(view_filter_sort_affectedData: CompositItemData[]) {
-      setClienAffectedData(view_filter_sort_affectedData);
+    setFinalAffection() {
+      setClienAffectedData(this.tempAffectionDataPool);
     },
   };
 
   //__c-effects______
 
-  // useEffect(() => {
-  Logic.initAffectionChain()
-    .then(Logic.View.decide.bind(Logic.View))
-    .then(Logic.Filter.decide.bind(Logic.Filter))
-    .then(Logic.Sort.decide.bind(Logic.Sort))
-    .then(Logic.finishAffectionChain.bind(Logic));
-  // }, [
-  //   viewControl.state,
-  //   sortControl.state,
-  //   filterControl.state,
-  //   rawQueryItems.data,
-  // ]);
+  useEffect(() => {
+    Logic.View.decide();
+    Logic.Filter.decide();
+    Logic.Sort.decide();
+    Logic.setFinalAffection();
+  }, [viewControl, sortControl, filterControl, rawQueryItems]);
 
   //__c-structure____
 
   return (
     <div className={classes.body}>
       <ViewTemplate icon={homeIcon} effect="Home" />
+      <SepSmall />
+      <ViewTemplate icon={unassignedIcon} effect="Unassigned" />
       <SepSmall />
       <ViewTemplate icon={doneIcon} effect="Done" />
       <SepSmall />

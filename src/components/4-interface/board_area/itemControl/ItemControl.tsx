@@ -20,7 +20,7 @@ const ItemControl = function () {
 
   const [mergedRequest, setMergeRequest] = useState("none");
   const { itemControl, closingMode, itemSelection } = ItemControlContext()!;
-  const { boardControl, viewControl } = BoardContext()!;
+  const { boardControl, viewControl, filterControl } = BoardContext()!;
 
   //__c-logic________
 
@@ -104,7 +104,7 @@ const ItemControl = function () {
       closingMode.setState(true);
       itemSelection.update([]);
     }
-  }, [boardControl.state]);
+  }, [boardControl.state, viewControl.state, filterControl.state]);
 
   //__c-structure____
 

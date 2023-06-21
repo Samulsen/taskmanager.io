@@ -17,7 +17,12 @@ import { CompositItemData } from "../types/types";
 export interface ContextValueTypeBoard {
   viewControl: { state: string; setState: Dispatch<SetStateAction<string>> };
   filterControl: { state: string; setState: Dispatch<SetStateAction<string>> };
-  sortControl: { state: string; setState: Dispatch<SetStateAction<string>> };
+  sortControl: {
+    state: string;
+    setState: Dispatch<SetStateAction<string>>;
+    direction: string;
+    setDirection: Dispatch<SetStateAction<string>>;
+  };
   boardControl: { state: string; setState: Dispatch<SetStateAction<string>> };
   rawQueryItems: {
     data: CompositItemData[];
@@ -53,7 +58,8 @@ const BoardContextProvider: FC<{ children: ReactNode }> = function ({
   const [viewControlSelection, setViewControlSelection] = useState("Home");
   const [boardListSelection, setBoardListSelection] = useState("total");
   const [filterControlSelection, setfilterControlSelection] = useState("none");
-  const [sortControlSelection, setsortControlSelection] = useState("none");
+  const [sortControlSelection, setSortControlSelection] = useState("Itemage");
+  const [sortControlDirection, setSortControlDirection] = useState("des");
   const [rawQueryItems, setRawQueryItems] =
     useState<CompositItemData[]>(coldRawQueryData);
 
@@ -70,7 +76,9 @@ const BoardContextProvider: FC<{ children: ReactNode }> = function ({
     },
     sortControl: {
       state: sortControlSelection,
-      setState: setsortControlSelection,
+      setState: setSortControlSelection,
+      direction: sortControlDirection,
+      setDirection: setSortControlDirection,
     },
     boardControl: {
       state: boardListSelection,

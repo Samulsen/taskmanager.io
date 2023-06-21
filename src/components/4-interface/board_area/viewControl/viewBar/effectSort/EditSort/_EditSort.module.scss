@@ -1,0 +1,33 @@
+@import "./../../../../../../../styles/variables";
+
+.body {
+  z-index: 60;
+  position: absolute;
+  width: 20rem;
+  height: 13rem;
+  background-color: var(--pop-up-background);
+  top: 4rem;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pointer {
+  position: absolute;
+  height: 2rem;
+  width: 2rem;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  background-color: var(--pop-up-background);
+  top: -1rem;
+  left: 9rem;
+}
+
+.seperator {
+  height: 100%;
+  width: 0.1rem;
+  background-color: white;
+}

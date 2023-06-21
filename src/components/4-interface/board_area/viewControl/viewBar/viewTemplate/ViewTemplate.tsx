@@ -1,14 +1,15 @@
 //---------IMPORTS------------\
 
 import classes from "./_ViewTemplate.module.scss";
-import { FC } from "react";
+import { FC, MouseEvent } from "react";
 import {
   BoardContext,
   ContextValueTypeBoard,
 } from "../../../../../../context/BoardContext";
 
-//---------MAIN---------------\
+//----------PRE---------------\
 
+//__p-types_________
 interface props {
   effect: string;
   icon: string;
@@ -22,13 +23,18 @@ const ViewTemplate: FC<props> = function ({ effect, icon }) {
   } = BoardContext() as ContextValueTypeBoard;
 
   const Logic = {
-    setSelfSelection() {
-      setState(effect);
+    setSelfSelection(event: MouseEvent) {
+      if (event.target === event.currentTarget) {
+        setState(effect);
+      }
     },
     evaluateStyle() {
       let mystate;
 
       if (state === "Home" && state === effect) {
+        mystate = true;
+      }
+      if (state === "Unassigned" && state === effect) {
         mystate = true;
       }
       if (state === "Done" && state === effect) {

@@ -1,0 +1,29 @@
+.body {
+  border-radius: 1rem;
+  padding: 0.6rem;
+  display: flex;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.icon {
+  width: 2.5rem;
+}
+
+.num {
+  margin-right: 0.5rem;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+
+.selected {
+  background-color: var(--transparent-main-green);
+}
+
+.unselected {
+  border: white solid 0.1rem;
+  &:hover {
+    background-color: var(--transparent-main-green);
+  }
+}

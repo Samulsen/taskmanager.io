@@ -1,0 +1,30 @@
+.body {
+  div {
+    font-weight: 700;
+    padding: 1rem 1.5rem;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 1rem;
+  border-left: solid white 0.1rem;
+}
+
+.apply {
+  background-color: var(--button-blue-back);
+  &:hover {
+    background-color: var(--transparent-main-green);
+  }
+}
+
+.reset {
+  background-color: rgba(255, 0, 0, 0.385);
+  &:hover {
+    background-color: rgba(255, 0, 0, 0.505);
+  }
+}

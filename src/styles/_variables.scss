@@ -1,6 +1,6 @@
 $main-green: #03c988;
 $bright-blue: #1c82ad;
-$mid-blue: rgb(0, 51, 124);
+$mid-blue: #00337c;
 $dark-blue: #13005a;
 $pinkish-blue: #20038b;
 $transparent-white: #00347c78;
@@ -23,3 +23,14 @@ $foot-resttrail: rgba(69, 26, 224, 0.215);
 // pop up colors columns
 
 $pop-up-background: rgb(0, 61, 146);
+
+//SECTION______________________: CSS Vars
+
+:root {
+  --board-blue-head: rgb(69, 26, 224);
+  --pinkish-blue: #20038b;
+  --pop-up-background: rgb(0, 61, 146);
+  --button-blue-back: #00337c;
+  --main-green: #03c988;
+  --transparent-main-green: rgba(3, 201, 135, 0.4);
+}

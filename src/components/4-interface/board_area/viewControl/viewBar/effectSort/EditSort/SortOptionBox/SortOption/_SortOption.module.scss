@@ -1,0 +1,20 @@
+.body {
+  text-align: center;
+  width: 8.5rem;
+  height: fit-content;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.selected {
+  background-color: var(--button-blue-back);
+}
+
+.unselected {
+  background-color: rgba(255, 255, 255, 0.214);
+  &:hover {
+    background-color: var(--button-blue-back);
+  }
+}

@@ -1,4 +1,5 @@
 .body {
+  position: relative;
   width: fit-content;
   height: 3rem;
   padding: 0 1rem;
@@ -8,21 +9,24 @@
   font-size: 1.3rem;
   border-radius: 0.5rem;
   transition: all 0.3s;
-  cursor: pointer;
+  span {
+    cursor: pointer;
+  }
 }
 
 .icon {
+  cursor: pointer;
   margin-right: 1rem;
   height: 2rem;
   width: 2rem;
 }
 
 .selected {
-  background-color: rgba(255, 255, 255, 0.234);
+  background-color: rgba(255, 255, 255, 0.138);
 }
 
 .unselected {
   &:hover {
-    background-color: rgba(255, 255, 255, 0.234);
+    background-color: rgba(255, 255, 255, 0.138);
   }
 }
