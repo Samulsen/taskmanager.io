@@ -3,7 +3,7 @@
 .body {
   z-index: 60;
   position: absolute;
-  width: 18rem;
+  width: 20rem;
   height: 13rem;
   background-color: var(--pop-up-background);
   top: 4rem;
@@ -23,7 +23,7 @@
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   background-color: var(--pop-up-background);
   top: -1rem;
-  left: 8rem;
+  left: 9rem;
 }
 
 .seperator {

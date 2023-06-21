@@ -1,0 +1,18 @@
+.body {
+  width: fit-content;
+  height: fit-content;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.selected {
+  background-color: var(--button-blue-back);
+}
+
+.unselected {
+  background-color: rgba(255, 255, 255, 0.214);
+  &:hover {
+    background-color: var(--button-blue-back);
+  }
+}

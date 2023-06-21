@@ -5,6 +5,8 @@ import { FC } from "react";
 //__i-style__________
 import classes from "./_SortOptionBox.module.scss";
 //__i-context________
+import { BoardContext } from "../../../../../../../../context/BoardContext";
+import SortOption from "./SortOption/SortOption";
 //__i-components_____
 
 //----------PRE---------------\
@@ -18,6 +20,8 @@ interface props {}
 const SortOptionBox: FC<props> = function () {
   //__c-hooks________
 
+  const { sortControl } = BoardContext()!;
+
   //__c-logic________
 
   const Logic = {
@@ -28,9 +32,9 @@ const SortOptionBox: FC<props> = function () {
   //__c-structure____
   return (
     <div className={classes.body}>
-      <div>Priority</div>
-      <div>Itemage</div>
-      <div>Date</div>
+      <SortOption target="Priority" />
+      <SortOption target="Itemage" />
+      <SortOption target="Due Date" />
     </div>
   );
 };
