@@ -11,6 +11,7 @@ import homeIcon from "./svgs/homeIcon.svg";
 import doneIcon from "./svgs/doneIcon.svg";
 import progressIcon from "./svgs/progressIcon.svg";
 import untouchedIcon from "./svgs/untouchedIcon.svg";
+import unassignedIcon from "./svgs/unassignedIcon.svg";
 
 //__i-context________
 
@@ -41,7 +42,12 @@ const ViewBar = function () {
     tempAffectionDataPool: rawQueryItems.data as CompositItemData[],
     View: {
       Option: {
-        forHome() {},
+        forUnassigned() {
+          const onlyUnassigned = Logic.tempAffectionDataPool.filter(
+            (item) => item.status === "none"
+          );
+          Logic.tempAffectionDataPool = onlyUnassigned;
+        },
         forDone() {
           const onlyDone = Logic.tempAffectionDataPool.filter(
             (item) => item.status === "done"
@@ -62,8 +68,8 @@ const ViewBar = function () {
         },
       },
       decide() {
-        if (viewControl.state === "Home") {
-          this.Option.forHome();
+        if (viewControl.state === "Unassigned") {
+          this.Option.forUnassigned();
         }
         if (viewControl.state === "Done") {
           this.Option.forDone();
@@ -74,7 +80,6 @@ const ViewBar = function () {
         if (viewControl.state === "Untouched") {
           this.Option.forUntouched();
         }
-
         return Logic;
       },
     },
@@ -122,6 +127,8 @@ const ViewBar = function () {
   return (
     <div className={classes.body}>
       <ViewTemplate icon={homeIcon} effect="Home" />
+      <SepSmall />
+      <ViewTemplate icon={unassignedIcon} effect="Unassigned" />
       <SepSmall />
       <ViewTemplate icon={doneIcon} effect="Done" />
       <SepSmall />
