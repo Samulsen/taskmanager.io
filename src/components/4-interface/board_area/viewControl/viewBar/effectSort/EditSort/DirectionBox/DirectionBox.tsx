@@ -31,8 +31,20 @@ const DirectionBox: FC<props> = function () {
   //__c-structure____
   return (
     <div className={classes.body}>
-      <DirectionOption direction="des" start={9} end={1} icon={desIcon} />
-      <DirectionOption direction="ase" start={1} end={9} icon={ascIcon} />
+      <DirectionOption
+        key="2828282"
+        direction="des"
+        start={9}
+        end={1}
+        icon={desIcon}
+      />
+      <DirectionOption
+        key="0101019"
+        direction="ase"
+        start={1}
+        end={9}
+        icon={ascIcon}
+      />
     </div>
   );
 };

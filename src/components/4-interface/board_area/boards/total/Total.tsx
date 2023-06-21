@@ -1,12 +1,6 @@
 //---------IMPORTS------------\
 
-import {
-  collection,
-  getDocs,
-  onSnapshot,
-  query,
-  where,
-} from "firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "../../../../../firebase";
 import classes from "./_Total.module.scss";
 import { QuerySnapshot, DocumentData, Unsubscribe } from "firebase/firestore";

@@ -91,7 +91,8 @@ const ViewBar = function () {
     Sort: {
       Option: {
         unaffected() {
-          if (sortControl.direction === "des") {
+          // debugger;
+          if (sortControl.direction === "ase") {
             const ascendingOrder = Logic.tempAffectionDataPool.sort(
               (a, b) => b.timestamp.seconds - a.timestamp.seconds
             );
