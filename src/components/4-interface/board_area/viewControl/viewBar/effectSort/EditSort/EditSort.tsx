@@ -29,7 +29,19 @@ const EditSort: FC<props> = function ({ setEditMode }) {
 
   //__c-structure____
   return (
-    <div className={classes.body} ref={useClickOutside(setEditMode)}></div>
+    <div className={classes.body} ref={useClickOutside(setEditMode)}>
+      <div className={classes.pointer}></div>
+      <div className={classes.directionBox}>
+        <div className={classes.descending}></div>
+        <div className={classes.ascending}></div>
+      </div>
+      <div className={classes.seperator}></div>
+      <div className={classes.typeBox}>
+        <div>Priority</div>
+        <div>Itemage</div>
+        <div>Date</div>
+      </div>
+    </div>
   );
 };
 

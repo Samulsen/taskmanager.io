@@ -1,6 +1,22 @@
+@import "./../../../../../../../styles/variables";
+
 .body {
+  z-index: 60;
   position: absolute;
-  width: 10rem;
-  height: 10rem;
-  background-color: white;
+  width: 18rem;
+  height: 15rem;
+  background-color: var(--pop-up-background);
+  top: 4rem;
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.pointer {
+  position: absolute;
+  height: 2rem;
+  width: 2rem;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  background-color: var(--pop-up-background);
+  top: -1rem;
+  left: 8rem;
 }
