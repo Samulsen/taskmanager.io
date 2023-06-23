@@ -114,7 +114,7 @@ const Total = function () {
     <div className={classes.body}>
       <HeadBase type="total" />
       {Logic.UI.renderItems()}
-      <FootBase type="total" />
+      <FootBase mode="total" />
     </div>
   );
 };

@@ -1,0 +1,13 @@
+.body {
+  height: 100%;
+  width: var(--column-width-board);
+  border-right: solid var(--border-width-board) var(--border-col-board);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--item-fontSize);
+}
+
+.empty {
+  background-color: rgba(255, 0, 0, 0.478);
+}

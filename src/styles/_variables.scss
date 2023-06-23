@@ -27,10 +27,33 @@ $pop-up-background: rgb(0, 61, 146);
 //SECTION______________________: CSS Vars
 
 :root {
-  --board-blue-head: rgb(69, 26, 224);
+  // Colors
+
   --pinkish-blue: #20038b;
+  --main-green: #03c988;
+  --bright-blue: #1c82ad;
+  --mid-blue: #00337c;
+  --dark-blue: #13005a;
+  --transparent-white: #00347c78;
+
+  --transparent-main-green: rgba(3, 201, 135, 0.4);
   --pop-up-background: rgb(0, 61, 146);
   --button-blue-back: #00337c;
-  --main-green: #03c988;
-  --transparent-main-green: rgba(3, 201, 135, 0.4);
+
+  --border-col-board: grey;
+
+  --board-blue-head: rgb(69, 26, 224);
+  --head-resttrail: rgba(69, 26, 224, 0.767);
+
+  --board-blue-item: rgba(69, 26, 224, 0.507);
+  --item-resttrail: rgba(69, 26, 224, 0.247);
+
+  --board-blue-foot: rgba(69, 26, 224, 0.375);
+  --foot-resttrail: rgba(69, 26, 224, 0.215);
+
+  // Lengths
+
+  --item-fontSize: 1.2rem;
+  --border-width-board: 0.1rem;
+  --column-width-board: 13rem;
 }
