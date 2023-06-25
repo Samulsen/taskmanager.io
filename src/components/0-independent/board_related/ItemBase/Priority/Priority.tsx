@@ -1,5 +1,6 @@
 //---------IMPORTS------------\
 
+//__i-libraries______
 import {
   FC,
   useState,
@@ -8,18 +9,24 @@ import {
   useEffect,
   KeyboardEvent,
 } from "react";
-import { itemOrigin } from "../ItemBase";
-import classes from "./_Priority.module.scss";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../../../../firebase";
+//__i-context________
 import { AuthContext } from "../../../../../context/AuthContext";
+import { ItemControlContext } from "../../../../../context/ItemControlContext";
+//__i-style__________
+import classes from "./_Priority.module.scss";
+//__i-helper_________
+import { itemOrigin } from "../ItemBase";
 
 //---------COMPONENT----------\
 const Priority: FC<{ displayValue: string; itemOrigin: itemOrigin }> =
   function ({ displayValue, itemOrigin }) {
     //__c-hooks________
+
     const uid = AuthContext()!.userObject!.uid;
     const [currentPrio, setCurrentPrio] = useState("");
+    const { itemControl, itemSelection } = ItemControlContext()!;
 
     //__c-logic________
 
@@ -35,36 +42,42 @@ const Priority: FC<{ displayValue: string; itemOrigin: itemOrigin }> =
         },
       },
       Data: {
-        submitOnUnfocus(event: FocusEvent<HTMLInputElement>) {
-          if (event.currentTarget === event.target) {
-            const itemDocRef = doc(
-              db,
-              `MainUserDataPool_${uid}`,
-              "UserBoards",
-              itemOrigin.board,
-              itemOrigin.id
-            );
-            const updatedData = {
-              priority: currentPrio === "" ? "0" : currentPrio,
-            };
-            updateDoc(itemDocRef, updatedData);
+        postSingleDoc(itemOriginParameter: itemOrigin) {
+          const itemDocRef = doc(
+            db,
+            `MainUserDataPool_${uid}`,
+            "UserBoards",
+            itemOriginParameter.board,
+            itemOriginParameter.id
+          );
+          const updatedData = {
+            priority: currentPrio === "" ? "0" : currentPrio,
+          };
+          updateDoc(itemDocRef, updatedData);
+        },
+        postUpdate() {
+          if (itemControl.state) {
+            const itemIdArr = itemSelection.list.map((item) => item.id);
+            if (itemIdArr.includes(itemOrigin.id)) {
+              itemSelection.list.forEach((sinItemOr) => {
+                this.postSingleDoc(sinItemOr);
+              });
+            } else {
+              this.postSingleDoc(itemOrigin);
+            }
+          } else {
+            this.postSingleDoc(itemOrigin);
           }
         },
-
+        submitOnUnfocus(event: FocusEvent<HTMLInputElement>) {
+          if (event.currentTarget === event.target) {
+            this.postUpdate();
+          }
+        },
         submitOnEnter(event: KeyboardEvent<HTMLInputElement>) {
           if (event.currentTarget === event.target) {
             if (event.key === "Enter") {
-              const itemDocRef = doc(
-                db,
-                `MainUserDataPool_${uid}`,
-                "UserBoards",
-                itemOrigin.board,
-                itemOrigin.id
-              );
-              const updatedData = {
-                priority: currentPrio === "" ? "0" : currentPrio,
-              };
-              updateDoc(itemDocRef, updatedData);
+              this.postUpdate();
               event.currentTarget.blur();
             }
           }
@@ -87,8 +100,8 @@ const Priority: FC<{ displayValue: string; itemOrigin: itemOrigin }> =
           name={itemOrigin.id}
           value={currentPrio}
           onChange={Logic.UI.validateInput}
-          onBlur={Logic.Data.submitOnUnfocus}
-          onKeyDown={Logic.Data.submitOnEnter}
+          onBlur={Logic.Data.submitOnUnfocus.bind(Logic.Data)}
+          onKeyDown={Logic.Data.submitOnEnter.bind(Logic.Data)}
         />
       </div>
     );
