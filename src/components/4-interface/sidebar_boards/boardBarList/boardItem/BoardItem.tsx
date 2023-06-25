@@ -59,7 +59,10 @@ const BoardItem: FC<{ boardId: string; currentBoardName: string }> = function ({
         evaluate() {
           if (renameState) {
             return (
-              <RenameInput setRenameState={setRenameState} boardId={boardId} />
+              <RenameInput
+                setRenameState={setRenameState}
+                boardData={{ id: boardId, name: currentBoardName }}
+              />
             );
           }
           return (
