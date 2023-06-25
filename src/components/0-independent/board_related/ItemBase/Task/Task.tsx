@@ -1,9 +1,22 @@
 //---------IMPORTS------------\
 
-import { itemOrigin } from "../ItemBase";
-import EditTask from "./EditTask/EditTask";
+//__i-libraries______
+import {
+  FC,
+  useState,
+  FocusEvent,
+  useRef,
+  KeyboardEvent,
+  useEffect,
+} from "react";
+//__i-style__________
 import classes from "./_Task.module.scss";
-import { FC, useState, MouseEvent } from "react";
+//__i-context________
+import { AuthContext } from "../../../../../context/AuthContext";
+//__i-helper_________
+import { itemOrigin } from "../ItemBase";
+import { db } from "../../../../../firebase";
+import { doc, updateDoc } from "firebase/firestore";
 
 //----------PRE---------------\
 
@@ -17,55 +30,88 @@ interface props {
 const Task: FC<props> = function ({ displayValue, itemOrigin }) {
   //__c-hooks________
 
-  const [editMode, setEditMode] = useState(false);
+  const [requestValidity, setRequestValidity] = useState(true);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const uid = AuthContext()!.userObject!.uid;
 
   //__c-logic________
 
   const Logic = {
-    Data: {},
+    Data: {
+      updateName() {
+        const editedDisplayValue = inputRef.current!.value;
+        if (editedDisplayValue.trim().length === 0) {
+          setRequestValidity(false);
+        } else {
+          const itemDocRef = doc(
+            db,
+            `MainUserDataPool_${uid}`,
+            "UserBoards",
+            itemOrigin.board,
+            itemOrigin.id
+          );
+          const updatedData = {
+            taskname: editedDisplayValue,
+          };
+          Logic.UI.unfocus();
+          updateDoc(itemDocRef, updatedData);
+        }
+      },
+      handleKeydown(event: KeyboardEvent) {
+        if (event.target === event.currentTarget) {
+          if (event.key === "Enter") {
+            Logic.Data.updateName();
+            return;
+          }
+        }
+      },
+      handleUnfocus(event: FocusEvent) {
+        if (event.target === event.currentTarget) {
+          Logic.Data.updateName();
+          return;
+        }
+      },
+    },
     UI: {
-      decideRenderMode() {
-        return editMode ? this.Edit.render() : this.Display.render();
+      unfocus() {
+        inputRef.current!.blur();
       },
-      Edit: {
-        enable(event: MouseEvent) {
-          if (event.currentTarget === event.target) {
-            event.stopPropagation();
-            setEditMode(true);
-          }
-        },
-        render() {
-          return (
-            <EditTask
-              editMode={{ set: setEditMode }}
-              displayValue={displayValue}
-              itemOrigin={itemOrigin}
-            />
-          );
-        },
-        disable() {},
+      evaluateSubmissionValidity() {
+        return requestValidity
+          ? { placeholder: "" }
+          : { placeholder: "cannot be empty!" };
       },
-      Display: {
-        render() {
-          let displaybleText = "";
-          if (displayValue.length > 28) {
-            displaybleText = displayValue.slice(0, 28) + "...";
-          } else {
-            displaybleText = displayValue;
-          }
-          return (
-            <div className={classes.display} onClick={Logic.UI.Edit.enable}>
-              {displaybleText}
-            </div>
-          );
-        },
+      fitText() {
+        // if (displayValue.length > 28) {
+        //   updateDefaultValue(displayValue.slice(0, 28) + "...");
+        // } else {
+        //   updateDefaultValue(displayValue);
+        // }
       },
     },
   };
 
+  //__c-effects______
+
+  useEffect(() => {
+    Logic.UI.fitText();
+  }, []);
+
   //__c-structure____
 
-  return <div className={classes.body}>{Logic.UI.decideRenderMode()}</div>;
+  return (
+    <div className={classes.body}>
+      <input
+        ref={inputRef}
+        type="text"
+        defaultValue={displayValue}
+        name="editTaskInput"
+        onBlur={Logic.Data.handleUnfocus}
+        onKeyDown={Logic.Data.handleKeydown}
+        {...Logic.UI.evaluateSubmissionValidity()}
+      />
+    </div>
+  );
 };
 
 //---------EXPORTS------------\
