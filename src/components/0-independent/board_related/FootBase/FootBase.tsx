@@ -77,13 +77,22 @@ const FootBase: FC<{ mode: string }> = function ({ mode }) {
         },
         render() {
           return (
-            <input
-              onKeyDown={Logic.Data.Dynamic.createItem}
-              ref={newItemInputRef}
-              className={classes.addTask}
-              type="text"
-              {...Logic.UI.Dynamic.evaluateSubmissionState()}
-            />
+            <>
+              <input
+                onKeyDown={Logic.Data.Dynamic.createItem}
+                ref={newItemInputRef}
+                className={classes.addTask}
+                type="text"
+                {...Logic.UI.Dynamic.evaluateSubmissionState()}
+              />
+              <FootColumns
+                mode="dynamic"
+                boardSelection={{
+                  selection: currentBoardSelection,
+                  setSelection: setCurrentBoardSelection,
+                }}
+              />
+            </>
           );
         },
       },
@@ -104,6 +113,7 @@ const FootBase: FC<{ mode: string }> = function ({ mode }) {
                 {...Logic.UI.Total.evaluateSubmissionState()}
               />
               <FootColumns
+                mode="total"
                 boardSelection={{
                   selection: currentBoardSelection,
                   setSelection: setCurrentBoardSelection,

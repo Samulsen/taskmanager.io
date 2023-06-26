@@ -27,7 +27,7 @@ $pop-up-background: rgb(0, 61, 146);
 //SECTION______________________: CSS Vars
 
 :root {
-  // Colors
+  //SUB_SECTION_______: Colors
 
   --pinkish-blue: #20038b;
   --main-green: #03c988;
@@ -51,7 +51,14 @@ $pop-up-background: rgb(0, 61, 146);
   --board-blue-foot: rgba(69, 26, 224, 0.375);
   --foot-resttrail: rgba(69, 26, 224, 0.215);
 
-  // Lengths
+  //SUB_SECTION_______: Colors Labels
+
+  --unassigned: rgb(86, 86, 86);
+  --done: green;
+  --progress: rgb(231, 185, 0);
+  --untouched: red;
+
+  //SUB_SECTION_______: Lengths
 
   --item-fontSize: 1.2rem;
   --border-width-board: 0.1rem;
