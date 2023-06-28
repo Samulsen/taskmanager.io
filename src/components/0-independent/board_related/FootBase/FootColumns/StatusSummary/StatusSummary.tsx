@@ -1,7 +1,8 @@
 //---------IMPORTS------------\
 
 //__i-libraries______
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 //__i-style__________
 import classes from "./_StatusSummary.module.scss";
 //__i-context________
@@ -20,6 +21,8 @@ const StatusSummary: FC<props> = function () {
   //__c-hooks________
 
   const { clientAffectedData } = ActiveDataContext()!;
+  const { boardID } = useParams();
+  // const []
 
   //__c-logic________
 
@@ -68,6 +71,10 @@ const StatusSummary: FC<props> = function () {
       },
     },
   };
+
+  //__c-effects______
+
+  useEffect(() => {}, [clientAffectedData, boardID]);
 
   //__c-structure____
   return (
