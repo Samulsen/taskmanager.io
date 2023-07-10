@@ -1,0 +1,18 @@
+.body {
+  height: 3rem;
+  width: 13rem;
+  background-color: var(--main-green);
+  border-radius: 0.5rem;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: white 0.1rem solid;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    scale: 1.05;
+  }
+}

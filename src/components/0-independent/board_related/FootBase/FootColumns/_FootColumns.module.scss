@@ -1,0 +1,9 @@
+.body {
+  display: flex;
+}
+
+.date {
+  width: 13rem;
+  height: 100%;
+  border-right: solid var(--border-width-board) var(--border-col-board);
+}

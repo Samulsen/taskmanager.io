@@ -11,6 +11,7 @@ import { itemOrigin } from "../../ItemBase";
 //__i-context________
 import { AuthContext } from "../../../../../../context/AuthContext";
 import { ConfigContext } from "../../../../../../context/ConfigContext";
+import { ItemControlContext } from "../../../../../../context/ItemControlContext";
 
 //----------PRE---------------\
 
@@ -32,6 +33,7 @@ const EditStatus: FC<props> = function ({
 
   const uid = AuthContext()!.userObject!.uid;
   const { autoDeleteOnDone } = ConfigContext();
+  const { itemSelection, closingMode } = ItemControlContext()!;
 
   //__c-logic________
 
@@ -44,7 +46,7 @@ const EditStatus: FC<props> = function ({
       },
     },
     Data: {
-      docItemref: doc(
+      LocalDocItemRef: doc(
         db,
         `MainUserDataPool_${uid}`,
         "UserBoards",
@@ -59,43 +61,95 @@ const EditStatus: FC<props> = function ({
             }, 500);
           });
         },
-        delete() {
-          deleteDoc(Logic.Data.docItemref);
+        delete(ref: any) {
+          deleteDoc(ref);
         },
+      },
+      createForeignDocItemRef(itemOrigin: itemOrigin) {
+        return doc(
+          db,
+          `MainUserDataPool_${uid}`,
+          "UserBoards",
+          itemOrigin.board,
+          itemOrigin.id
+        );
+      },
+      decideUpdateMode(
+        mulSelectionState: boolean,
+        updatedData: { status: string }
+      ) {
+        if (mulSelectionState) {
+          itemSelection.list.forEach((sinItem) => {
+            this.postSingleUpdate(sinItem, updatedData).then(() => {
+              if (sinItem.id === itemOrigin.id) Logic.UI.Edit.disable();
+            });
+          });
+        } else {
+          this.postSingleUpdate(itemOrigin, updatedData).then(
+            Logic.UI.Edit.disable
+          );
+        }
+      },
+      postSingleUpdate(
+        itemOrigin: itemOrigin,
+        updatedData: { status: string }
+      ) {
+        const foreignRef = this.createForeignDocItemRef(itemOrigin);
+        return updateDoc(foreignRef, updatedData);
       },
       applyLabel(event: MouseEvent<HTMLDivElement>) {
         //__NOTE: Subject to rewrite!
         const targetOrigin = (event.target as any).innerHTML;
+        const itemIdArr = itemSelection.list.map((item) => item.id);
+        const mulSelectionState = itemIdArr.includes(itemOrigin.id)
+          ? true
+          : false;
         if (targetOrigin === "") {
           const updatedData = {
             status: "none",
           };
-          updateDoc(this.docItemref, updatedData).then(Logic.UI.Edit.disable);
+          this.decideUpdateMode(mulSelectionState, updatedData);
         }
         if (targetOrigin === "Done!") {
           const updatedData = {
             status: "done",
           };
           if (autoDeleteOnDone) {
-            updateDoc(this.docItemref, updatedData)
-              .then(Logic.UI.Edit.disable)
-              .then(Logic.Data.AutoDelete.delay)
-              .then(Logic.Data.AutoDelete.delete);
+            if (mulSelectionState) {
+              itemSelection.list.forEach((sinItem) => {
+                const foreignRef = this.createForeignDocItemRef(sinItem);
+                this.postSingleUpdate(sinItem, updatedData)
+                  .then(() => {
+                    if (itemOrigin.id === sinItem.id) Logic.UI.Edit.disable();
+                  })
+                  .then(Logic.Data.AutoDelete.delay)
+                  .then(() => {
+                    Logic.Data.AutoDelete.delete(foreignRef);
+                  });
+                itemSelection.update([]);
+                closingMode.setState(true);
+              });
+            } else {
+              this.postSingleUpdate(itemOrigin, updatedData)
+                .then(Logic.UI.Edit.disable)
+                .then(Logic.Data.AutoDelete.delay)
+                .then(Logic.Data.AutoDelete.delete);
+            }
           } else {
-            updateDoc(this.docItemref, updatedData).then(Logic.UI.Edit.disable);
+            this.decideUpdateMode(mulSelectionState, updatedData);
           }
         }
         if (targetOrigin === "In Progress!") {
           const updatedData = {
             status: "progress",
           };
-          updateDoc(this.docItemref, updatedData).then(Logic.UI.Edit.disable);
+          this.decideUpdateMode(mulSelectionState, updatedData);
         }
         if (targetOrigin === "Untouched!") {
           const updatedData = {
             status: "untouched",
           };
-          updateDoc(this.docItemref, updatedData).then(Logic.UI.Edit.disable);
+          this.decideUpdateMode(mulSelectionState, updatedData);
         }
       },
     },

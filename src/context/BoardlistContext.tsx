@@ -18,7 +18,7 @@ import logCol from "../util/logColor";
 //__p-types_________
 
 type id = string;
-type BoardMetaData = {
+export type BoardMetaData = {
   name: string;
   timestamp: { seconds: number; nanoseconds: number };
 };

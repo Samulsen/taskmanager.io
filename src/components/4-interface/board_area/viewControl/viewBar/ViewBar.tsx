@@ -2,7 +2,7 @@
 
 //__i-libraries______
 
-import { useState, useEffect, useCallback } from "react";
+import { useEffect } from "react";
 
 //__i-style__________
 
@@ -124,7 +124,13 @@ const ViewBar = function () {
     Logic.Filter.decide();
     Logic.Sort.decide();
     Logic.setFinalAffection();
-  }, [viewControl, sortControl, filterControl, rawQueryItems]);
+  }, [
+    viewControl.state,
+    sortControl.state,
+    sortControl.direction,
+    filterControl.state,
+    rawQueryItems.data,
+  ]);
 
   //__c-structure____
 
@@ -139,10 +145,10 @@ const ViewBar = function () {
       <ViewTemplate icon={progressIcon} effect="In Progress" />
       <SepSmall />
       <ViewTemplate icon={untouchedIcon} effect="Untouched" />
-      <SepBig />
+      {/* <SepBig />
       <EffectFilter />
       <SepSmall />
-      <EffectSort />
+      <EffectSort /> */}
     </div>
   );
 };

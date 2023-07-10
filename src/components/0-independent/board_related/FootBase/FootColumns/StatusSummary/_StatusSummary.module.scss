@@ -1,0 +1,11 @@
+.body {
+  width: 13rem;
+  height: 100%;
+  border-right: solid var(--border-width-board) var(--border-col-board);
+  display: flex;
+
+  div {
+    transition: all 0.4s;
+    height: 100%;
+  }
+}

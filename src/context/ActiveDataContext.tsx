@@ -12,8 +12,7 @@ import {
 import { CompositItemData } from "../types/types";
 import { coldRawQueryData } from "./BoardContext";
 
-//---------MAIN---------------\
-
+//----------PRE---------------\
 interface ContextValueType {
   clientAffectedData: CompositItemData[];
   setClienAffectedData: Dispatch<SetStateAction<CompositItemData[]>>;

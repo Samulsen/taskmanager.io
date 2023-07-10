@@ -50,17 +50,17 @@
 }
 
 .default {
-  background-color: rgb(86, 86, 86);
+  background-color: var(--unassigned);
 }
 
 .done {
-  background-color: green;
+  background-color: var(--done);
 }
 
 .untouched {
-  background-color: red;
+  background-color: var(--untouched);
 }
 
 .progress {
-  background-color: rgb(231, 185, 0);
+  background-color: var(--progress);
 }

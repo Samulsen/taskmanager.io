@@ -87,7 +87,7 @@ const Dynamic = function () {
     <div className={classes.body}>
       <HeadBase type="dynamic" />
       {Logic.UI.renderItems()}
-      <FootBase type="dynamic" />
+      <FootBase mode="dynamic" />
     </div>
   );
 };

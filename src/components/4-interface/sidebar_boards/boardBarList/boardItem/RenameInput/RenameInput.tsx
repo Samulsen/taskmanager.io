@@ -19,8 +19,8 @@ import useClickOutside from "../../../../../../hooks/useClickOutside";
 //---------COMPONENT----------\
 const RenameInput: FC<{
   setRenameState: Dispatch<SetStateAction<boolean>>;
-  boardId: string;
-}> = function ({ setRenameState, boardId }) {
+  boardData: { id: string; name: string };
+}> = function ({ setRenameState, boardData }) {
   //__c-hooks________
 
   const [wasEmptyOnRequest, setWasEmptyState] = useState(false);
@@ -38,7 +38,7 @@ const RenameInput: FC<{
           : { placeholder: "" };
       },
       evaluateSelectionState() {
-        if (boardControl.state === boardId) {
+        if (boardControl.state === boardData.id) {
           return classes.isAlsoSelected;
         } else {
           return classes.notSelected;
@@ -52,7 +52,7 @@ const RenameInput: FC<{
       },
       updateBoardNameInBoardList() {
         const ref = doc(db, `MainUserDataPool_${uid}`, "UserBoards");
-        const namePath = `boardNames.${boardId}.name`;
+        const namePath = `boardNames.${boardData.id}.name`;
         const updateData = {
           [namePath]: updatedNameInputRef.current!.value,
         };
@@ -63,7 +63,7 @@ const RenameInput: FC<{
           db,
           `MainUserDataPool_${uid}`,
           "UserBoards",
-          `${boardId}`,
+          `${boardData.id}`,
           "BoardMetaData"
         );
         const updateData = { name: updatedNameInputRef.current!.value };
@@ -93,12 +93,13 @@ const RenameInput: FC<{
   return (
     <div className={classes.body} ref={useClickOutside(setRenameState)}>
       <input
-        className={Logic.UI.evaluateSelectionState()}
-        ref={updatedNameInputRef}
+        defaultValue={boardData.name}
         type="text"
-        autoFocus
-        onKeyDown={Logic.handleEnter.bind(Logic)}
         {...Logic.UI.evaluateValidSubmission()}
+        autoFocus
+        ref={updatedNameInputRef}
+        className={Logic.UI.evaluateSelectionState()}
+        onKeyDown={Logic.handleEnter.bind(Logic)}
       />
     </div>
   );

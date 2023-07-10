@@ -18,36 +18,37 @@
   border-width: $border-width-board;
 
   .quad {
-    width: 3.5rem;
+    width: 3.6rem;
     height: 100%;
+    border-right: solid var(--border-width-board) var(--border-col-board);
   }
 }
 
-.forTotal {
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-  padding-left: 1rem;
-  border-left: solid;
-  border-color: $border-col-board;
-  border-width: $border-width-board;
-  height: 100%;
-  width: 25rem;
-}
+// .forTotal {
+//   font-size: 1.2rem;
+//   display: flex;
+//   align-items: center;
+//   padding-left: 1rem;
+//   border-left: solid;
+//   border-color: $border-col-board;
+//   border-width: $border-width-board;
+//   height: 100%;
+//   width: 25rem;
+// }
 
 .addTask {
   font-size: 1.2rem;
   color: white;
   width: 25rem;
   outline: none;
-  background-color: rgba(128, 128, 128, 0);
-  border-left: solid;
-  border-bottom: none;
-  border-right: none;
+  font-family: "Roboto Mono", monospace;
   padding: 0 1rem;
+  background-color: rgba(128, 128, 128, 0);
+  border-left: none;
+  border-bottom: none;
+  border-right: solid;
   border-color: $border-col-board;
   border-width: $border-width-board;
-  font-family: "Roboto Mono", monospace;
 
   &::placeholder {
     opacity: 1;
@@ -59,7 +60,7 @@
   flex-grow: 1;
   background-color: $foot-resttrail;
   border-bottom-right-radius: 1rem;
-  border-left: solid;
+  // border-left: solid;
   border-bottom: solid;
   border-right: solid;
   border-color: $border-col-board;
