@@ -1,8 +1,7 @@
 //---------IMPORTS------------\
 
 //__i-libraries______
-import { FC, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { FC, useLayoutEffect, useState } from "react";
 //__i-style__________
 import classes from "./_StatusSummary.module.scss";
 //__i-context________
@@ -15,18 +14,37 @@ import { ActiveDataContext } from "../../../../../../context/ActiveDataContext";
 
 interface props {}
 
+interface style {
+  width: string;
+  backgroundColor: string;
+}
+
+interface partials {
+  unassigned: style;
+  progress: style;
+  done: style;
+  untouched: style;
+}
+
+const emptyData: partials = {
+  unassigned: { width: "0rem", backgroundColor: "grey" },
+  progress: { width: "0rem", backgroundColor: "grey" },
+  done: { width: "0rem", backgroundColor: "grey" },
+  untouched: { width: "0rem", backgroundColor: "grey" },
+};
+
 //---------COMPONENT----------\
 
 const StatusSummary: FC<props> = function () {
   //__c-hooks________
 
   const { clientAffectedData } = ActiveDataContext()!;
-  const { boardID } = useParams();
-  // const []
+  const [partials, updatePartials] = useState<partials>(emptyData);
 
   //__c-logic________
 
   const Logic = {
+    tempAcc: {} as partials,
     totalNum: clientAffectedData.length,
     unassignedNum: clientAffectedData.filter((item) => item.status === "none")
       .length,
@@ -45,25 +63,25 @@ const StatusSummary: FC<props> = function () {
           return `${val}rem`;
         },
         forUnassigned() {
-          return {
+          Logic.tempAcc.unassigned = {
             width: this.calcWidth(Logic.unassignedNum),
             backgroundColor: "var(--unassigned)",
           };
         },
         forDone() {
-          return {
+          Logic.tempAcc.done = {
             width: this.calcWidth(Logic.doneNum),
             backgroundColor: "var(--done)",
           };
         },
         forProgress() {
-          return {
+          Logic.tempAcc.progress = {
             width: this.calcWidth(Logic.progressNum),
             backgroundColor: "var(--progress)",
           };
         },
         forUntouched() {
-          return {
+          Logic.tempAcc.untouched = {
             width: this.calcWidth(Logic.untouchedNum),
             backgroundColor: "var(--untouched)",
           };
@@ -74,15 +92,22 @@ const StatusSummary: FC<props> = function () {
 
   //__c-effects______
 
-  useEffect(() => {}, [clientAffectedData, boardID]);
+  useLayoutEffect(() => {
+    Logic.UI.Styling.forUnassigned();
+    Logic.UI.Styling.forDone();
+    Logic.UI.Styling.forProgress();
+    Logic.UI.Styling.forUntouched();
+    updatePartials(Logic.tempAcc);
+    if (clientAffectedData.length === 0) updatePartials(emptyData);
+  }, [clientAffectedData]);
 
   //__c-structure____
   return (
     <div className={classes.body}>
-      <div style={Logic.UI.Styling.forUnassigned()}></div>
-      <div style={Logic.UI.Styling.forDone()}></div>
-      <div style={Logic.UI.Styling.forProgress()}></div>
-      <div style={Logic.UI.Styling.forUntouched()}></div>
+      <div style={partials.unassigned}></div>
+      <div style={partials.done}></div>
+      <div style={partials.progress}></div>
+      <div style={partials.untouched}></div>
     </div>
   );
 };

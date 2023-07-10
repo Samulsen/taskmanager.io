@@ -61,7 +61,6 @@ const FootBase: FC<{ mode: string }> = function ({ mode }) {
               ).then(() => {
                 setRequestValidity(true);
                 newItemInputRef.current!.value = "";
-                newItemInputRef.current!.blur();
               });
             }
           }

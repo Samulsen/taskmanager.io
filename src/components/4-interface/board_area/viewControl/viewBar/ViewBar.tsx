@@ -124,7 +124,13 @@ const ViewBar = function () {
     Logic.Filter.decide();
     Logic.Sort.decide();
     Logic.setFinalAffection();
-  }, [viewControl, sortControl, filterControl, rawQueryItems]);
+  }, [
+    viewControl.state,
+    sortControl.state,
+    sortControl.direction,
+    filterControl.state,
+    rawQueryItems.data,
+  ]);
 
   //__c-structure____
 
