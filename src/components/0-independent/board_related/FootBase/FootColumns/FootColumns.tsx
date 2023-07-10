@@ -4,7 +4,7 @@
 import { FC, Dispatch, SetStateAction } from "react";
 //__i-style__________
 import classes from "./_FootColumns.module.scss";
-import BoardSelection from "./BoardSelection/BoardSelection";
+import BoardSelection, { boardOrigin } from "./BoardSelection/BoardSelection";
 import StatusSummary from "./StatusSummary/StatusSummary";
 //__i-context________
 //__i-components_____
@@ -16,8 +16,8 @@ import StatusSummary from "./StatusSummary/StatusSummary";
 interface props {
   mode: string;
   boardSelection: {
-    selection: string;
-    setSelection: Dispatch<SetStateAction<string>>;
+    selection: boardOrigin;
+    setSelection: Dispatch<SetStateAction<boardOrigin>>;
   };
 }
 

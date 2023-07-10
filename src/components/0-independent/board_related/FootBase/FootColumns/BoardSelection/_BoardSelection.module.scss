@@ -1,4 +1,5 @@
 .body {
+  position: relative;
   height: 100%;
   width: var(--column-width-board);
   border-right: solid var(--border-width-board) var(--border-col-board);
@@ -9,10 +10,13 @@
 }
 
 .unselected {
+  cursor: pointer;
   background-color: rgba(255, 0, 0, 0.478);
 }
 
 .selected {
+  cursor: pointer;
+  background-color: var(--main-green);
 }
 
 .emtpy {

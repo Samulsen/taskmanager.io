@@ -9,6 +9,8 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../../firebase";
 //__i-style__________
 import classes from "./_FootBase.module.scss";
+//__i-helper_________
+import { boardOrigin } from "./FootColumns/BoardSelection/BoardSelection";
 //__i-context________
 import { AuthContext } from "../../../../context/AuthContext";
 //__i-components_____
@@ -24,14 +26,52 @@ const FootBase: FC<{ mode: string }> = function ({ mode }) {
   const newItemInputRef = useRef<HTMLInputElement>(null);
   const [requestValidity, setRequestValidity] = useState(true);
   const [currentBoardSelection, setCurrentBoardSelection] =
-    useState("Select Board");
+    useState<boardOrigin>({ name: "Select Board", id: "select" });
 
   //__c-logic________
 
   const Logic = {
     Data: {
       Total: {
-        createItem() {},
+        createItem(event: KeyboardEvent) {
+          if (event.key === "Enter") {
+            if (
+              currentBoardSelection.id === "select" ||
+              currentBoardSelection.id === "empty"
+            ) {
+              setRequestValidity(false);
+              return;
+            }
+            const nameValue = newItemInputRef.current!.value;
+            const boardIDTotal = currentBoardSelection.id;
+            if (nameValue.trim().length === 0) {
+              setRequestValidity(false);
+            } else {
+              const baseData: RawItemFields = {
+                type: "item",
+                timestamp: serverTimestamp(),
+                taskname: nameValue,
+                board_origin: boardIDTotal as string,
+                due_to_date: "none",
+                status: "none",
+                priority: "",
+                comment: "",
+              };
+              addDoc(
+                collection(
+                  db,
+                  `MainUserDataPool_${uid}`,
+                  "UserBoards",
+                  `${boardIDTotal}`
+                ),
+                baseData
+              ).then(() => {
+                setRequestValidity(true);
+                newItemInputRef.current!.value = "";
+              });
+            }
+          }
+        },
       },
       Dynamic: {
         createItem(event: KeyboardEvent) {
@@ -97,9 +137,10 @@ const FootBase: FC<{ mode: string }> = function ({ mode }) {
       },
       Total: {
         evaluateSubmissionState() {
+          // newItemInputRef.current?.value = "";
           return requestValidity
             ? { placeholder: "+ Select Board and then add Task" }
-            : { placeholder: "cannot be empty!" };
+            : { placeholder: "selection/input cannot be empty!" };
         },
         render() {
           return (

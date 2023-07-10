@@ -13,10 +13,15 @@ import EditBoardSelection from "./EditBoardSelection/EditBoardSelection";
 
 //__p-types_________
 
+export interface boardOrigin {
+  name: string;
+  id: string;
+}
+
 interface props {
   board: {
-    selection: string;
-    setSelection: Dispatch<SetStateAction<string>>;
+    selection: boardOrigin;
+    setSelection: Dispatch<SetStateAction<boardOrigin>>;
   };
 }
 
@@ -32,8 +37,19 @@ const BoardSelection: FC<props> = function ({ board }) {
 
   const Logic = {
     UI: {
+      fitText() {
+        let boardName = board.selection.name;
+        if (boardName.length > 15) {
+          boardName = boardName.slice(0, 12) + "...";
+        }
+        return boardName;
+      },
+
       Edit: {
         enable() {
+          if (board.selection.id === "empty") {
+            return;
+          }
           setEditMode(true);
         },
         render() {
@@ -52,7 +68,7 @@ const BoardSelection: FC<props> = function ({ board }) {
       },
       Classes: {
         forBody() {
-          return board.selection === "Select Board"
+          return board.selection.name === "Select Board"
             ? `${classes.body} ${classes.unselected}`
             : `${classes.body} ${classes.selected}`;
         },
@@ -65,7 +81,7 @@ const BoardSelection: FC<props> = function ({ board }) {
 
   useEffect(() => {
     if (boardNames.length === 0) {
-      board.setSelection("No Boards");
+      board.setSelection({ name: "No Boards", id: "empty" });
       return;
     }
 
@@ -75,7 +91,7 @@ const BoardSelection: FC<props> = function ({ board }) {
   //__c-structure____
   return (
     <div className={Logic.UI.Classes.forBody()} onClick={Logic.UI.Edit.enable}>
-      {board.selection}
+      {Logic.UI.fitText()}
       {Logic.UI.Edit.render()}
     </div>
   );
