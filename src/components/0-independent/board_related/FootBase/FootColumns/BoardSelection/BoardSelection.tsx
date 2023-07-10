@@ -68,9 +68,13 @@ const BoardSelection: FC<props> = function ({ board }) {
       },
       Classes: {
         forBody() {
-          return board.selection.name === "Select Board"
-            ? `${classes.body} ${classes.unselected}`
-            : `${classes.body} ${classes.selected}`;
+          if (board.selection.name === "Select Board") {
+            return `${classes.body} ${classes.unselected}`;
+          }
+          if (board.selection.name === "No Boards") {
+            return `${classes.body} ${classes.empty}`;
+          }
+          return `${classes.body} ${classes.selected}`;
         },
       },
     },

@@ -11,7 +11,7 @@
 
 .unselected {
   cursor: pointer;
-  background-color: rgba(255, 0, 0, 0.478);
+  background-color: rgba(255, 255, 255, 0.375);
 }
 
 .selected {
@@ -19,5 +19,7 @@
   background-color: var(--main-green);
 }
 
-.emtpy {
+.empty {
+  cursor: not-allowed;
+  background-color: rgba(255, 0, 0, 0.478);
 }

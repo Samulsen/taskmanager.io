@@ -1,7 +1,7 @@
 //---------IMPORTS------------\
 
 //__i-libraries______
-import { FC, Dispatch, SetStateAction } from "react";
+import { FC, Dispatch, SetStateAction, MouseEvent } from "react";
 //__i-style__________
 import classes from "./_EditBoardSelectionItem.module.scss";
 //__i-helper_________
@@ -45,9 +45,12 @@ const EditBoardSelectionItem: FC<props> = function ({
       },
     },
     Data: {
-      setSelectionBoard() {
-        board.setSelection({ name: boardData[1].name, id: boardData[0] });
-        setEditMode(false);
+      setSelectionBoard(event: MouseEvent) {
+        if (event.currentTarget === event.target) {
+          event.stopPropagation();
+          board.setSelection({ name: boardData[1].name, id: boardData[0] });
+          setEditMode(false);
+        }
       },
     },
   };
