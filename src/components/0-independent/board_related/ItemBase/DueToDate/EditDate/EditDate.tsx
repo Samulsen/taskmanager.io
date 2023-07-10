@@ -8,6 +8,7 @@ import useClickOutside from "../../../../../../hooks/useClickOutside";
 import { itemOrigin } from "../../ItemBase";
 import classes from "./_EditDate.module.scss";
 import { AuthContext } from "../../../../../../context/AuthContext";
+import { ItemControlContext } from "../../../../../../context/ItemControlContext";
 
 //----------PRE---------------\
 
@@ -29,6 +30,7 @@ const EditDate: FC<props> = function ({
   //__c-hooks________
 
   const uid = AuthContext()!.userObject!.uid;
+  const { itemSelection } = ItemControlContext()!;
 
   //__c-logic________
 
@@ -39,20 +41,51 @@ const EditDate: FC<props> = function ({
       },
     },
     Data: {
+      createForeignDocItemRef(itemOrigin: itemOrigin) {
+        return doc(
+          db,
+          `MainUserDataPool_${uid}`,
+          "UserBoards",
+          itemOrigin.board,
+          itemOrigin.id
+        );
+      },
+      postSingleUpdate(
+        itemOrigin: itemOrigin,
+        updatedData: { due_to_date: string }
+      ) {
+        const foreignRef = this.createForeignDocItemRef(itemOrigin);
+        return updateDoc(foreignRef, updatedData);
+      },
+      decideUpdateMode(
+        mulSelectionState: boolean,
+        updatedData: { due_to_date: string }
+      ) {
+        if (mulSelectionState) {
+          itemSelection.list.forEach((sinItem) => {
+            this.postSingleUpdate(sinItem, updatedData).then(() => {
+              if (sinItem.id === itemOrigin.id) Logic.UI.disableEditMode();
+            });
+          });
+        } else {
+          this.postSingleUpdate(itemOrigin, updatedData).then(
+            Logic.UI.disableEditMode
+          );
+        }
+      },
       handleChange(event: ChangeEvent<HTMLInputElement>) {
         if (event.currentTarget === event.target) {
           const requestedValue = event.currentTarget.value;
-          const itemDocRef = doc(
-            db,
-            `MainUserDataPool_${uid}`,
-            "UserBoards",
-            itemOrigin.board,
-            itemOrigin.id
-          );
+          const itemIdArr = itemSelection.list.map((item) => item.id);
+          const mulSelectionState = itemIdArr.includes(itemOrigin.id)
+            ? true
+            : false;
+
           const updatedData = {
             due_to_date: requestedValue === "" ? "none" : requestedValue,
           };
-          updateDoc(itemDocRef, updatedData).then(Logic.UI.disableEditMode);
+
+          this.decideUpdateMode(mulSelectionState, updatedData);
         }
       },
     },
@@ -67,7 +100,7 @@ const EditDate: FC<props> = function ({
         type="date"
         name="dateInputEditor"
         value={currentDate}
-        onChange={Logic.Data.handleChange}
+        onChange={Logic.Data.handleChange.bind(Logic.Data)}
       />
     </div>
   );
