@@ -85,7 +85,10 @@ const BoardSelection: FC<props> = function ({ board }) {
       return;
     }
 
-    // if(boardNames.length > 0 && board.selection !== "Select Board")
+    if (boardNames.length > 0) {
+      board.setSelection({ name: "Select Board", id: "select" });
+      return;
+    }
   }, [boardNames]);
 
   //__c-structure____
