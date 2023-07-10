@@ -33,7 +33,7 @@ const EditStatus: FC<props> = function ({
 
   const uid = AuthContext()!.userObject!.uid;
   const { autoDeleteOnDone } = ConfigContext();
-  const { itemSelection } = ItemControlContext()!;
+  const { itemSelection, closingMode } = ItemControlContext()!;
 
   //__c-logic________
 
@@ -61,8 +61,8 @@ const EditStatus: FC<props> = function ({
             }, 500);
           });
         },
-        delete() {
-          deleteDoc(Logic.Data.LocalDocItemRef);
+        delete(ref: any) {
+          deleteDoc(ref);
         },
       },
       createForeignDocItemRef(itemOrigin: itemOrigin) {
@@ -115,10 +115,26 @@ const EditStatus: FC<props> = function ({
             status: "done",
           };
           if (autoDeleteOnDone) {
-            this.postSingleUpdate(itemOrigin, updatedData)
-              .then(Logic.UI.Edit.disable)
-              .then(Logic.Data.AutoDelete.delay)
-              .then(Logic.Data.AutoDelete.delete);
+            if (mulSelectionState) {
+              itemSelection.list.forEach((sinItem) => {
+                const foreignRef = this.createForeignDocItemRef(sinItem);
+                this.postSingleUpdate(sinItem, updatedData)
+                  .then(() => {
+                    if (itemOrigin.id === sinItem.id) Logic.UI.Edit.disable();
+                  })
+                  .then(Logic.Data.AutoDelete.delay)
+                  .then(() => {
+                    Logic.Data.AutoDelete.delete(foreignRef);
+                  });
+                itemSelection.update([]);
+                closingMode.setState(true);
+              });
+            } else {
+              this.postSingleUpdate(itemOrigin, updatedData)
+                .then(Logic.UI.Edit.disable)
+                .then(Logic.Data.AutoDelete.delay)
+                .then(Logic.Data.AutoDelete.delete);
+            }
           } else {
             this.decideUpdateMode(mulSelectionState, updatedData);
           }
