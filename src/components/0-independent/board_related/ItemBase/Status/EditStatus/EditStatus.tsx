@@ -133,7 +133,9 @@ const EditStatus: FC<props> = function ({
               this.postSingleUpdate(itemOrigin, updatedData)
                 .then(Logic.UI.Edit.disable)
                 .then(Logic.Data.AutoDelete.delay)
-                .then(Logic.Data.AutoDelete.delete);
+                .then(() => {
+                  Logic.Data.AutoDelete.delete(this.LocalDocItemRef);
+                });
             }
           } else {
             this.decideUpdateMode(mulSelectionState, updatedData);
